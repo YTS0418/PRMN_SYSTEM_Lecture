@@ -339,7 +339,7 @@ cd PRMN_SYSTEM_Lecture
 ---
 
 ## 5. 基本の使い方（毎回の作業の流れ）
-
+![gitサイクルイメージ](/images/gitサイクルイメージ.png)
 ### Step 0：作業前に最新を取り込む
 
 ```bash
