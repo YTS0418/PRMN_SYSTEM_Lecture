@@ -36,10 +36,20 @@ Java は 1995 年に登場したプログラミング言語で、業務システ
 
 ### C・Python との実行の仕組みの違い
 
-```
-C       : ソース → [コンパイル] → 機械語(OS依存)       → CPUが直接実行
-Python  : ソース →                [インタプリタが1行ずつ実行]
-Java    : ソース → [javac] → バイトコード(.class) → [JVMが実行]
+```mermaid
+flowchart LR
+    subgraph C言語
+        direction LR
+        c1["ソース (.c)"] -->|コンパイル| c2["機械語（OS依存）"] --> c3["CPUが直接実行"]
+    end
+    subgraph Python
+        direction LR
+        p1["ソース (.py)"] -->|インタプリタ| p2["1行ずつ実行"]
+    end
+    subgraph Java
+        direction LR
+        j1["ソース (.java)"] -->|javac| j2["バイトコード (.class)"] -->|JVM| j3["実行"]
+    end
 ```
 
 Java は「コンパイルはするが、機械語ではなく JVM 用の中間コードにする」という中間的な方式です。そのおかげで OS が違っても同じ `.class` ファイルを動かせます。
@@ -51,6 +61,17 @@ Java は「コンパイルはするが、機械語ではなく JVM 用の中間�
 | **JVM** (Java Virtual Machine) | バイトコードを実行する仮想マシン |
 | **JRE** (Java Runtime Environment) | JVM + 標準ライブラリ。**実行だけ**ならこれで足りる |
 | **JDK** (Java Development Kit) | JRE + コンパイラ(`javac`)など。**開発にはこれが必要** |
+
+```mermaid
+flowchart TB
+    subgraph JDK["JDK（開発キット）"]
+        tools["javac などの開発ツール"]
+        subgraph JRE["JRE（実行環境）"]
+            lib["標準ライブラリ"]
+            jvm["JVM"]
+        end
+    end
+```
 
 → このプロジェクトでは **JDK** をインストールします。
 
@@ -65,15 +86,15 @@ java -version
 javac -version
 ```
 
-どちらもバージョンが表示されれば OK です（17 以上を推奨）。
+どちらもバージョンが表示されれば OK です。この資料は **Java 25** を前提にしているので、`25` と表示されることを確認してください（25 より古い場合は次の手順で入れ直します）。
 
 ### 3-2. インストール（Windows の場合）
 
-1. [Adoptium (Eclipse Temurin)](https://adoptium.net/) から **JDK 21 (LTS)** のインストーラ（`.msi`）をダウンロード
+1. [Adoptium (Eclipse Temurin)](https://adoptium.net/) から **JDK 25 (LTS)** のインストーラ（`.msi`）をダウンロード
 2. インストール時に **「Set JAVA_HOME variable」「Add to PATH」** を有効にする
 3. **新しいターミナルを開き直して**、3-1 のコマンドで確認
 
-> macOS: `brew install --cask temurin@21`　／　Ubuntu: `sudo apt install openjdk-21-jdk`
+> macOS: `brew install --cask temurin@25`　／　Ubuntu: `sudo apt install openjdk-25-jdk`（ディストリビューションのリポジトリに無い場合は Adoptium の配布パッケージを使います）
 
 ### 3-3. 「コマンドが見つかりません」と出たら
 - ターミナルを開き直したか（PATH は起動時に読み込まれる）
@@ -106,20 +127,41 @@ Hello, World!
 
 `javac` を実行すると `Hello.class`（バイトコード）が作られます。`java Hello` は、その `Hello.class` を JVM で動かしています。
 
+```mermaid
+flowchart LR
+    a["Hello.java"] -->|"javac Hello.java"| b["Hello.class"] -->|"java Hello"| c["画面に表示"]
+```
+
 > ⚠️ **ファイル名は `Hello.java`、クラス名も `Hello`**。`public class` の名前とファイル名は**完全に一致**させる必要があります（大文字小文字も区別）。
 
+### Java 25 の簡略記法（コンパクトソースファイル）
+
+Java 25 では、小さなプログラムなら**クラス宣言や `public static`、`String[] args` を省略**できます（JEP 512）。次のコードは、上の `Hello.java` と同じ動作です。
+
+```java
+void main() {
+    IO.println("Hello, World!");
+}
+```
+
+- `IO.println` は `java.lang.IO` クラスの出力メソッドで、`import` なしで使えます（`IO.print` / `IO.readln` もあります。入力は 02 章で使います）
+- `javac` でコンパイルせずに、`java Hello.java` で直接実行できます
+- ファイル名がそのままクラス名になります
+
+> 💡 本格的なプログラム（06 章以降）では、複数のクラスを使うため従来どおり `public class` を書きます。この資料では、**仕組みを理解しやすい従来形式を基本**にし、短いサンプルでは簡略記法も併記します。
+
 > 💡 **Windows のターミナルで日本語が文字化けする場合**
-> コンソールの文字コードが UTF-8 でないことが原因です。次のどちらかで解消できます。
+> Java 18 以降はソースファイルやファイル入出力の既定文字コードが UTF-8 ですが、**コンソール側**の文字コードが UTF-8 でないと画面の表示が化けることがあります。次のどちらかで解消できます。
 > - `chcp 65001` を実行してから `java` を実行する
-> - `java -Dstdout.encoding=UTF-8 Hello`（Java 19 以降）で実行する
+> - `java -Dstdout.encoding=UTF-8 Hello` で実行する
 >
-> ソースファイルは **UTF-8** で保存し、`javac -encoding UTF-8 Hello.java` とすると安全です。IDE（IntelliJ / VSCode）で実行する場合は、通常この問題は起きません。
+> ソースファイルは **UTF-8** で保存してください。IDE（IntelliJ / VSCode）で実行する場合は、通常この問題は起きません。
 
 ## 5. IDEで実行する
 
 ### IntelliJ IDEA（推奨）
 1. [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) をインストール
-2. **New Project** → Language: Java、Build system: **IntelliJ**、JDK: 21 を選択
+2. **New Project** → Language: Java、Build system: **IntelliJ**、JDK: 25 を選択
 3. `src` フォルダ内に `Hello` クラスを作成し、コードを貼る
 4. `main` の横の緑の ▶ をクリック
 
