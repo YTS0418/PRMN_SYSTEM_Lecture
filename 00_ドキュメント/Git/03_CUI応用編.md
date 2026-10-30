@@ -237,11 +237,11 @@ flowchart LR
     C -->|"--hard"| H["🗑️ 完全に消える<br>⚠️ 危険"]
 ```
 
-| モード | コミット | ステージ | 作業ツリー | 使う場面 |
-|---|---|---|---|---|
-| `--soft` | 取り消す | 変更が**残る** | 変更が**残る** | コミットをまとめ直したい、メッセージから書き直したい |
-| `--mixed`（省略時） | 取り消す | 空になる | 変更が**残る** | add するファイルを選び直したい |
-| `--hard` | 取り消す | 空になる | **消える** | 変更自体が不要（⚠️ 未コミットの変更も消えます） |
+| モード            | コミット | ステージ      | 作業ツリー     | 使う場面                       |
+| -------------- | ---- | --------- | --------- | -------------------------- |
+| `--soft`       | 取り消す | 変更が**残る** | 変更が**残る** | コミットをまとめ直したい、メッセージから書き直したい |
+| `--mixed`（省略時） | 取り消す | 空になる      | 変更が**残る** | add するファイルを選び直したい          |
+| `--hard`       | 取り消す | 空になる      | **消える**   | 変更自体が不要（⚠️ 未コミットの変更も消えます）  |
 
 > まずは `--soft` を使いましょう。変更が残るので、失敗しても困りません。
 
@@ -393,20 +393,14 @@ git push                      # 初回は git push -u origin feature-login
 
 1. GitHub のリポジトリページを開く。push 直後は黄色い帯に **Compare & pull request** ボタンが出るのでクリックする（出ない場合は **Pull requests** タブ → **New pull request**）。
 
-<!-- 📷 SS: /images/git/github/gh-06-01-compare-pull-request.png -->
-> 📷 **スクショ指定：`gh-06-01-compare-pull-request.png`**
-> - 画面：push 直後のリポジトリトップページ（黄色い帯が出ている状態）
-> - 強調：「Compare & pull request」ボタンを赤枠で囲む
+![Compare & pull request ボタン](images/git/github/gh-06-01-compare-pull-request.png.jpg)
 
 2. 上部で **base: main ← compare: feature-login** になっていることを確認する（「どこに ← どこから」取り込むか）。
 3. **タイトル**と**説明**を書く。
 4. 右側の **Reviewers** でレビューしてほしい人を選ぶ。
 5. **Create pull request** をクリックする。
 
-<!-- 📷 SS: /images/git/github/gh-06-02-create-pull-request.png -->
-> 📷 **スクショ指定：`gh-06-02-create-pull-request.png`**
-> - 画面：PR 作成画面（タイトル・説明を入力した状態）
-> - 強調：「base: main ← compare: feature-login」、タイトル欄、説明欄、Reviewers、「Create pull request」ボタンをそれぞれ赤枠で囲み、番号①〜⑤を振る
+![](../../images/git/github/gh-06-02-create-pull-request.png)
 
 > **まだ作業途中だけど見てほしい**ときは、Create pull request の横の ▼ から **Create draft pull request** を選ぶと、下書きの PR になります。
 
@@ -446,7 +440,7 @@ git push                      # 初回は git push -u origin feature-login
 <!-- 📷 SS: /images/git/github/gh-06-03-files-changed-comment.png -->
 > 📷 **スクショ指定：`gh-06-03-files-changed-comment.png`**
 > - 画面：Files changed タブで、ある行に「＋」からコメントを書いている状態
-> - 強調：Files changed タブ、行の「＋」ボタン、コメント入力欄、Suggest changes アイコンを赤枠で囲む
+> - 強調：Files changed タブ、行の「＋」ボタン、コメント入力欄、Suggest changes アイコンを枠で囲む
 
 <!-- 📷 SS: /images/git/github/gh-06-04-review-changes.png -->
 > 📷 **スクショ指定：`gh-06-04-review-changes.png`**

@@ -27,7 +27,7 @@
 
 ## 1. 毎回の作業の流れ
 
-![gitサイクルイメージ](/images/gitサイクルイメージ.png)
+![gitサイクルイメージ](../../images/gitサイクルイメージ.png)
 
 ```mermaid
 flowchart TD
@@ -308,11 +308,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ファイルを開くと、次のような**印**が入っています。
 
 ```
-<<<<<<< HEAD
-String title = "Hi";
-=======
 String title = "こんにちは";
->>>>>>> feature-a
 ```
 
 | 印 | 意味 |
