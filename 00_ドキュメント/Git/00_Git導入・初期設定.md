@@ -224,16 +224,16 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 ### 5-3. VSCode
 
 1. VSCode の左下にある **アカウント** アイコン（人型）をクリックする。
+   ![アカウントボタン](/images/git/setup/setup-05-01-vscode-signin(1).png)
 2. **「GitHub でサインイン」**（Sign in with GitHub）を選ぶ。
-   - 出てこない場合は、ソース管理で push / 同期を実行すると「GitHub にサインインしますか？」と出るので **許可** する。
+   - 出てこない場合は、ソース管理で push / 同期を実行すると「GitHub にサインインしますか？」と出るので **許可** する。<br>
+   ![サインイン](/images/git/setup/setup-05-01-vscode-signin(2).png)
+   ![GitHubでサインイン](/images/git/setup/setup-05-01-vscode-signin(3).png)
 3. ブラウザが開くので GitHub にログインし、**Authorize Visual Studio Code** をクリックする。
+   ![Authorize Visual Studio Code](/images/git/setup/setup-05-01-vscode-signin(4).png)
+   ![Authorize Visual Studio Code](/images/git/setup/setup-05-01-vscode-signin(5).png)
 4. 「VS Code を開きますか？」と出たら **開く** を選ぶ。
 5. アカウントアイコンに自分のユーザー名が表示されれば完了。
-
-<!-- 📷 SS: /images/git/setup/setup-05-01-vscode-signin.png -->
-> 📷 **スクショ指定：`setup-05-01-vscode-signin.png`**
-> - 画面：VSCode 左下のアカウントアイコンをクリックしてメニューが開いた状態
-> - 強調：アカウントアイコンと「GitHub でサインイン」の項目を赤枠で囲む
 
 > VSCode の認証は基本的に **VSCode のボタン操作用**です。VSCode の統合ターミナルから `git push` する場合は、5-1 / 5-2 の設定が必要になることがあります。
 
