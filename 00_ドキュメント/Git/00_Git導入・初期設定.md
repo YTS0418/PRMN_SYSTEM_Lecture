@@ -280,10 +280,7 @@ cd PRMN_SYSTEM_Lecture
 
 clone する URL は、GitHub のリポジトリページの緑色の **Code** ボタンから コピーできます。
 
-<!-- 📷 SS: /images/git/setup/setup-06-01-github-code-button.png -->
-> 📷 **スクショ指定：`setup-06-01-github-code-button.png`**
-> - 画面：GitHub のリポジトリページで緑の「Code」ボタンを押し、HTTPS タブが開いた状態
-> - 強調：「Code」ボタン、HTTPS タブ、URL 横のコピーボタンを赤枠で囲む
+![GitHubのCodeボタン](/images/git/setup/setup-06-01-github-code-button.png)
 
 ### VSCode / IntelliJ の場合
 
