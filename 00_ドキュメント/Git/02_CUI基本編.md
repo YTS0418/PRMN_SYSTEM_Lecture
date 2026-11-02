@@ -44,7 +44,7 @@ flowchart TD
 
 ```bash
 git pull                          # ① 最新を取り込む
-# ……ファイルを編集……              # ②
+# ……ファイルを編集……                # ②
 git status                        # ③ 状態確認
 git add .                         # ④ 選ぶ
 git commit -m "変更内容の説明"      # ⑤ 記録
@@ -286,14 +286,18 @@ gitGraph
 **同じファイルの同じ場所**を、2つのブランチで別々に書き換えると、Git はどちらを残すべきか判断できません。これがコンフリクトです。
 
 ```mermaid
+---
+config:
+  gitGraph:
+    rotateCommitLabel: false
+---
 gitGraph
-    commit id: "title = 'Hello'"
+    commit id: "A - Hello"
     branch feature-a
     checkout feature-a
-    commit id: "title = 'こんにちは'"
+    commit id: "A - こんにちは"
     checkout main
-    commit id: "title = 'Hi'"
-    merge feature-a id: "⚠️ どっち？"
+    merge feature-a id: "⚠️" tag: "どっち？"
 ```
 
 ### 起きるとこう表示される

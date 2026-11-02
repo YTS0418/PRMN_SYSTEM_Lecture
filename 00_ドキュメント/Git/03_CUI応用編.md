@@ -393,14 +393,14 @@ git push                      # 初回は git push -u origin feature-login
 
 1. GitHub のリポジトリページを開く。push 直後は黄色い帯に **Compare & pull request** ボタンが出るのでクリックする（出ない場合は **Pull requests** タブ → **New pull request**）。
 
-![Compare & pull request ボタン](images/git/github/gh-06-01-compare-pull-request.png.jpg)
+![Compare & pull request ボタン](images/git/github/gh-06-01-compare-pull-request.jpg)
 
 2. 上部で **base: main ← compare: feature-login** になっていることを確認する（「どこに ← どこから」取り込むか）。
 3. **タイトル**と**説明**を書く。
 4. 右側の **Reviewers** でレビューしてほしい人を選ぶ。
 5. **Create pull request** をクリックする。
 
-![](../../images/git/github/gh-06-02-create-pull-request.png)
+![](/images/git/github/gh-06-02-create-pull-request.png)
 
 > **まだ作業途中だけど見てほしい**ときは、Create pull request の横の ▼ から **Create draft pull request** を選ぶと、下書きの PR になります。
 
