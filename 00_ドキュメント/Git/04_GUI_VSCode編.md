@@ -126,15 +126,10 @@ Git の操作は、主に次の4か所で行います。
 
 1. **変更** の一覧で、ステージしたいファイルにマウスを乗せる。
 2. 右に出る **＋**（変更をステージ）をクリックする。
-   ![ステージングする「＋」ボタン(1)](/images/git/vscode/vsc-04-01-stage-button(1).png)
    - すべてステージするときは、「変更」の見出しの横の **＋**（すべての変更をステージ）をクリック。
-      ![ステージングする「＋」ボタン(2)](/images/git/vscode/vsc-04-01-stage-button(2).png)
-3. ファイルが **ステージされている変更**（Staged Changes）に移動する。
-
 ![stage-button](/images/git/vscode/vsc-04-01-stage-button.png)
 
----
-
+3. ファイルが **ステージされている変更**（Staged Changes）に移動する。
 ![staged-changes](/images/git/vscode/vsc-04-02-staged-changes.png)
 
 > **ステージを取り消す**（CUI の `git restore --staged`）：ステージされている変更のファイルの **−**（変更のステージング解除）をクリック。
