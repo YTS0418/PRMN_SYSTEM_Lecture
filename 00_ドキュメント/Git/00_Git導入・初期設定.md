@@ -2,7 +2,7 @@
 
 [📚 Git資料の目次](#git-資料の構成) ｜ 次へ → [01. Git の仕組みと用語](./01_Gitの仕組みと用語.md)
 
-Git / GitHub を使い始めるための**最初の1回だけ**行う準備です。終わったら、この資料はもう読まなくて大丈夫です（PC を買い替えたときなどに見返してください）。
+Git / GitHub を使い始めるための**最初の1回だけ**行う準備です。<br>終わったら、この資料はもう読まなくて大丈夫です（PC を買い替えたときなどに見返してください）。
 
 ## Git 資料の構成
 
@@ -27,8 +27,8 @@ flowchart LR
 | [05 GUI IntelliJ編](./05_GUI_IntelliJ編.md) | IntelliJ IDEA のボタン操作で同じことをする |
 | [06 CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md) | GUI でできないこと・困ったときの戻り方 |
 
-> **学ぶ順番について**
-> まず **CUI（コマンド）で仕組みを理解**し、ある程度慣れてから **GUI（ボタン操作）** に移ります。GUI はボタンの裏で同じコマンドを実行しているだけなので、コマンドを知っていると「今このボタンで何が起きたか」が分かり、迷わなくなります。
+> **学ぶ順番について**<br>
+> まず **CUI（コマンド）で仕組みを理解**し、ある程度慣れてから **GUI（ボタン操作）** に移ります。<br>GUI はボタンの裏で同じコマンドを実行しているだけなので、コマンドを知っていると「今このボタンで何が起きたか」が分かり、迷わなくなります。
 
 ## 目次
 
@@ -39,8 +39,8 @@ flowchart LR
 5. [GitHub への認証設定](#5-github-への認証設定)
 6. [リポジトリを clone する](#6-リポジトリを-clone-する)
 7. [動作確認](#7-動作確認)
-8. [おすすめ：練習用リポジトリを作る](#8-おすすめ練習用リポジトリを作る)
-9. [管理者向け：main ブランチの保護設定](#9-管理者向けmain-ブランチの保護設定)
+8. [リポジトリを作る](#8-リポジトリを作る)
+9. [main ブランチを保護する](#9-main-ブランチを保護する)
 
 ---
 
@@ -67,7 +67,7 @@ Git の設定（[4章](#4-名前とメールアドレスの設定)）で **GitHu
 4. アンケート画面などは「Skip」でOK。
 5. 作成したら、**ユーザー名**と**登録したメールアドレス**を控えておく。
 
-> **メールアドレスを公開したくない場合**
+> **メールアドレスを公開したくない場合**<br>
 > GitHub の **Settings → Emails** で「Keep my email addresses private」にチェックを入れると、`ユーザー名@users.noreply.github.com` 形式の非公開用アドレスが発行されます。4章ではこのアドレスを使ってもOKです。
 
 ---
@@ -150,7 +150,7 @@ GitHub は Git 操作での**パスワード認証を廃止**しています。�
 
 | 使う道具 | 認証の方法 | 難易度 |
 |---|---|---|
-| [ターミナル（Windows）](#5-1-ターミナルwindows) | Git Credential Manager（Git に同梱。初回 push 時にブラウザが開く） | ★ かんたん |
+| [ターミナル（Windows）](#5-1-ターミナルwindows) | Git Credential Manager<br>（Git に同梱。初回 push 時にブラウザが開く） | ★ かんたん |
 | [ターミナル（Mac）](#5-2-ターミナルmac) | Personal Access Token (PAT) を Password 欄に入力 → Keychain に保存 | ★★ やや手間 |
 | [VSCode](#5-3-vscode) | VSCode から GitHub にサインイン（ブラウザで承認） | ★ かんたん |
 | [IntelliJ IDEA](#5-4-intellij-idea) | 設定で GitHub アカウントを追加（ブラウザ or PAT） | ★ かんたん |
@@ -177,7 +177,7 @@ flowchart TD
 2. 左メニューの一番下 **Developer settings** → **Personal access tokens** → **Tokens (classic)** を選ぶ。
 3. **Generate new token (classic)** をクリックする。
 4. 次のように入力する。
-   - **Note**：`講義用PC` など用途が分かる名前
+   - **Note**：`講義用PC`、 `VSCode(MacBook)`など用途が分かる名前
    - **Expiration**：`90 days` など
    - **Select scopes**：**`repo`** にチェック（IntelliJ IDEA で使う場合は、加えて **`gist`**・**`read:org`** にもチェック）
 5. **Generate token** をクリックする。
@@ -276,7 +276,7 @@ git clone https://github.com/YTS0418/PRMN_SYSTEM_Lecture.git
 cd PRMN_SYSTEM_Lecture
 ```
 
-> ⚠️ **OneDrive など同期フォルダの中に clone するのは避けましょう。** 同期のタイミングで Git の管理ファイルが壊れることがあります。
+> ⚠️ **OneDrive など同期フォルダの中に clone するのは避けましょう** <br>同期のタイミングで Git の管理ファイルが壊れることがあります。
 
 clone する URL は、GitHub のリポジトリページの緑色の **Code** ボタンから コピーできます。
 
@@ -306,42 +306,113 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-push までできるか試したい場合は、[8章の練習用リポジトリ](#8-おすすめ練習用リポジトリを作る)で試すのがおすすめです。
+自分のリポジトリを新しく作りたい場合は、[8章](#8-リポジトリを作る)を参照してください。
 
 ---
 
-## 8. おすすめ：練習用リポジトリを作る
+## 8. リポジトリを作る
 
-講義資料のリポジトリでいきなり練習すると、他の人に影響が出るかもしれません。**自分専用の練習用リポジトリ**を作っておくと、取り消しやコンフリクトを安心して試せます。
+リポジトリを新しく作る方法です。作り方は2通りあります。迷ったら**方法1**を選んでください。
+
+| 方法 | 向いているケース |
+| --- | --- |
+| 方法1：GitHub で作って clone する | これから新しく始める |
+| 方法2：手元のフォルダを Git 管理にして push する | すでに手元にあるフォルダ・プログラムを GitHub に上げたい |
+
+### 方法1：GitHub で作って clone する（おすすめ）
 
 1. GitHub 右上の **＋** → **New repository** をクリックする。
-2. **Repository name** に `git-practice` などと入力する。
-3. **Add a README file** にチェックを入れる。
-4. **Create repository** をクリックする。
-5. 6章と同じ手順で clone する。
+2. **Repository name** にリポジトリの名前（例：`my-repository`）を入力する。
+3. **Public**（誰でも見られる）か **Private**（自分だけ）を選ぶ。
+4. **Add a README file** にチェックを入れる。
+5. **Create repository** をクリックする。
+6. 6章と同じ手順で clone する。
 
 ```bash
-git clone https://github.com/自分のユーザー名/git-practice.git
-cd git-practice
+git clone https://github.com/自分のユーザー名/my-repository.git
+cd my-repository
 ```
+
+### 方法2：手元のフォルダを Git 管理にして push する
+
+すでにあるフォルダを、あとから Git 管理にする方法です。
+
+**① GitHub に空のリポジトリを作る**
+
+方法1の手順1〜3と同じですが、**README などのチェックは入れずに**（空のまま）Create repository します。
+
+**② 手元のフォルダで Git を始める**
+
+対象のフォルダに移動して実行します。
+
+```bash
+cd my-repository
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+```
+
+| コマンド | 意味 |
+| --- | --- |
+| `git init` | このフォルダを Git 管理にする（`.git` フォルダができる） |
+| `git add .` | フォルダ内のファイルをコミット対象にする |
+| `git commit -m "..."` | 最初の記録を作る |
+| `git branch -M main` | ブランチ名を `main` にする |
+
+**③ GitHub のリポジトリとつないで push する**
+
+```bash
+git remote add origin https://github.com/自分のユーザー名/my-repository.git
+git push -u origin main
+```
+
+`git remote add origin` は「このリポジトリの送り先（GitHub）を `origin` という名前で登録する」コマンドです。`-u` を付けた初回の push だけ、以降は `git push` だけで送れるようになります。
+
+> ⚠️ **すでに Git 管理されているフォルダの中に、さらに `git init` しないでください** <br>リポジトリの中にリポジトリができてしまい、混乱の原因になります。迷ったら `git status` を実行し、`fatal: not a git repository` と出るフォルダでだけ `git init` します。
+
+### 作成できたか確認する
+
+```bash
+git status
+git remote -v
+```
+
+`git remote -v` に GitHub の URL が表示されれば、GitHub とつながっています。
 
 ---
 
-## 9. 管理者向け：main ブランチの保護設定
+## 9. main ブランチを保護する
 
-> このセクションは**リポジトリの管理者（メンター）向け**です。学習者は読み飛ばしてOKです。
+8章で作ったリポジトリでは、最初は main に直接 push できてしまいます。うっかり main を壊さないように、**リポジトリを作ったら最初に main ブランチの保護設定をする**ことをおすすめします。
 
-main に直接 push できる状態だと、うっかりミスで main が壊れることがあります。GitHub の **ブランチ保護ルール**で、main への変更を**プルリクエスト経由に限定**できます。
+GitHub の **ブランチ保護ルール**を設定すると、main への変更は**ブランチを作ってプルリクエスト（PR）を出し、マージする**という流れに限定されます。
 
-1. リポジトリの **Settings** → **Branches**（または **Rules** → **Rulesets**）を開く。
-2. **Add branch ruleset**（または Add rule）をクリックし、対象に `main` を指定する。
-3. 次の項目を有効にする。
+### 設定手順
+
+1. 自分のリポジトリのページで **Settings** → **Rules** → **Rulesets** を開く。
+2. **New ruleset** → **New branch ruleset** をクリックする。
+3. **Ruleset Name** に `protect-main` など分かりやすい名前を入力する。
+4. **Enforcement status** を **Active** にする。
+5. **Target branches** → **Add target** → **Include default branch** を選ぶ（main が対象になる）。
+6. **Rules** で次の項目にチェックを入れる。
    - **Require a pull request before merging**（PR を必須にする）
-   - 必要に応じて **Require approvals**（レビューの承認を必須にする）
    - **Block force pushes**（force push を禁止する）
-4. 保存する。
+7. **Create** をクリックして保存する。
 
-> 学習段階では「承認 1 人以上」を必須にしておくと、自然とレビューの文化が身につきます。
+### 設定するとどうなる？
+
+main に直接 push しようとすると、次のようにエラーになります。これは設定が効いている証拠なので、慌てなくて大丈夫です。
+
+```
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+```
+
+変更したいときは、ブランチを作って push し、GitHub 上で PR を作成してマージします（手順は [02 CUI基本編](./02_CUI基本編.md) 以降で学びます）。
+
+> 💡 **自分ひとりのリポジトリでは「承認（Require approvals）」は入れなくてOK** <br>自分で出した PR は自分では承認できないため、必須にするとマージできなくなります。チームで開発するときに、レビュー担当者の承認を必須にしましょう。
+
+> ⚠️ **Private リポジトリでは、無料プランだとルールが使えない場合があります** <br>設定画面に有料プランの案内が出たときは、Public リポジトリにするか、「main に直接 push しない」ことを自分で守りましょう。
 
 ---
 
