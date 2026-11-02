@@ -429,7 +429,7 @@ git push                      # 初回は git push -u origin feature-login
 1. PR の **Files changed** タブを開く。
 2. 気になる行の左にある **＋** をクリックしてコメントを書く。
    - 具体的な修正案を出したいときは、コメント欄の **Suggest changes**（±のアイコン）を使うと、修正後のコードを提案できる。
-3. 全部見終わったら、右上の **Review changes** をクリックし、次のどれかを選んで **Submit review**。
+3. 全部見終わったら、右上の **Submit review** をクリックし、次のどれかを選んで **Submit review**。
 
 | 選択肢 | 意味 |
 |---|---|
@@ -437,17 +437,13 @@ git push                      # 初回は git push -u origin feature-login
 | **Approve** | 承認（マージしてOK） |
 | **Request changes** | 修正が必要 |
 
-<!-- 📷 SS: /images/git/github/gh-06-03-files-changed-comment.png -->
-> 📷 **スクショ指定：`gh-06-03-files-changed-comment.png`**
-> - 画面：Files changed タブで、ある行に「＋」からコメントを書いている状態
-> - 強調：Files changed タブ、行の「＋」ボタン、コメント入力欄、Suggest changes アイコンを枠で囲む
+![files-changed-comment](/images/git/github/gh-06-03-files-changed-comment.png)
 
-<!-- 📷 SS: /images/git/github/gh-06-04-review-changes.png -->
-> 📷 **スクショ指定：`gh-06-04-review-changes.png`**
-> - 画面：右上の「Review changes」を押して、Comment / Approve / Request changes の選択肢が出た状態
-> - 強調：「Review changes」ボタン、3つの選択肢、「Submit review」ボタンを赤枠で囲む
+---
 
-> **レビューのマナー**：人ではなくコードについて書く／「なぜそうしたほうがいいか」を添える／良いところも伝える。
+![review-changes](/images/git/github/gh-06-04-review-changes.png)
+
+> **レビューのマナー**：<br>人ではなくコードについて書く／「なぜそうしたほうがいいか」を添える／良いところも伝える。
 
 ### 6-4. 指摘に対応する（自分側）
 
