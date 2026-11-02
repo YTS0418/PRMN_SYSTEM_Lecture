@@ -126,7 +126,9 @@ Git の操作は、主に次の4か所で行います。
 
 1. **変更** の一覧で、ステージしたいファイルにマウスを乗せる。
 2. 右に出る **＋**（変更をステージ）をクリックする。
+   ![ステージングする「＋」ボタン(1)](/images/git/vscode/vsc-04-01-stage-button(1).png)
    - すべてステージするときは、「変更」の見出しの横の **＋**（すべての変更をステージ）をクリック。
+      ![ステージングする「＋」ボタン(2)](/images/git/vscode/vsc-04-01-stage-button(2).png)
 3. ファイルが **ステージされている変更**（Staged Changes）に移動する。
 
 ![stage-button](/images/git/vscode/vsc-04-01-stage-button.png)
@@ -173,10 +175,7 @@ Git の操作は、主に次の4か所で行います。
 
 「…」 → **プル**（Pull）／**プッシュ**（Push）を選びます。GitHub の状態を確認だけしたいときは **フェッチ**（Fetch）を選びます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-05-02-pull-push-menu.png -->
-> 📷 **スクショ指定：`vsc-05-02-pull-push-menu.png`**
-> - 画面：「…」メニューを開き、プル・プッシュ・フェッチが見えている状態
-> - 強調：「プル」「プッシュ」「フェッチ」の項目を赤枠で囲む
+![「…」メニュー](/images/git/vscode/vsc-05-02-pull-push-menu.png)
 
 ### 初めて push するブランチ
 
@@ -195,20 +194,14 @@ Git の操作は、主に次の4か所で行います。
 
 ソース管理ビューの下部にある **グラフ**（Graph）セクションに、コミットの履歴がブランチの線つきで表示されます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-06-01-source-control-graph.png -->
-> 📷 **スクショ指定：`vsc-06-01-source-control-graph.png`**
-> - 画面：main と feature ブランチが分かれている状態の、ソース管理ビュー下部のグラフ
-> - 強調：グラフの線、ブランチ名のラベル（main / origin/main / feature-login）を赤枠で囲む
+![ソース管理ビュー下部のグラフ](/images/git/vscode/vsc-06-01-source-control-graph.png)
 
 - コミットをクリックすると、そのコミットで変更されたファイルが表示されます。
 - グラフに表示するブランチは、グラフ上部のボタンで切り替えられます（「すべてのブランチ」にすると `--all` と同じ）。
 
 **ファイル単位の履歴**は、エクスプローラーの下部にある **タイムライン**（Timeline）で確認できます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-06-02-timeline.png -->
-> 📷 **スクショ指定：`vsc-06-02-timeline.png`**
-> - 画面：エクスプローラーでファイルを選択し、下部のタイムラインにコミット履歴が並んだ状態
-> - 強調：「タイムライン」セクションとコミットの一覧を赤枠で囲む
+![「タイムライン」セクション](/images/git/vscode/vsc-06-02-timeline.png)
 
 ---
 

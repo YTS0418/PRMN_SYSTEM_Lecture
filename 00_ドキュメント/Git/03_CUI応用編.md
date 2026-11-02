@@ -466,11 +466,7 @@ git push
 ### 6-5. マージする
 
 承認されたら、PR の下部にある **Merge pull request** でマージします。▼ からマージ方式を選べます。
-
-<!-- 📷 SS: /images/git/github/gh-06-06-merge-options.png -->
-> 📷 **スクショ指定：`gh-06-06-merge-options.png`**
-> - 画面：PR 下部のマージボタンの ▼ を開き、3つの方式が表示された状態
-> - 強調：「Merge pull request」ボタンと3つの選択肢を赤枠で囲む
+![「Merge pull request」ボタンと3つの選択肢](/images/git/github/gh-06-06-merge-options.png)
 
 | 方式 | main の履歴 | 特徴 |
 |---|---|---|
@@ -502,11 +498,7 @@ gitGraph
 > **どの方式を使うかはチームで決めて統一**しましょう。迷ったら Create a merge commit が分かりやすいです。
 
 マージ後、**Delete branch** ボタンで GitHub 上のブランチを削除します。
-
-<!-- 📷 SS: /images/git/github/gh-06-07-delete-branch.png -->
-> 📷 **スクショ指定：`gh-06-07-delete-branch.png`**
-> - 画面：マージ完了後の PR 画面（紫の「Merged」ラベルが出ている状態）
-> - 強調：「Merged」ラベルと「Delete branch」ボタンを赤枠で囲む
+![「Merged」ラベルと「Delete branch」ボタン](/images/git/github/gh-06-07-delete-branch.png)
 
 ### 6-6. マージ後の後片付け（手元）
 
