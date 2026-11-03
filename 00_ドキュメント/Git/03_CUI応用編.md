@@ -444,11 +444,11 @@ git push                      # 初回は git push -u origin feature-login
 | **Approve** | 承認（マージしてOK） |
 | **Request changes** | 修正が必要 |
 
-![files-changed-comment](/images/git/github/gh-06-03-files-changed-comment.png)
+![files-changed-comment](../../images/git/github/gh-06-03-files-changed-comment.png)
 
 ---
 
-![review-changes](/images/git/github/gh-06-04-review-changes.png)
+![review-changes](../../images/git/github/gh-06-04-review-changes.png)
 
 > **レビューのマナー**：<br>人ではなくコードについて書く／「なぜそうしたほうがいいか」を添える／良いところも伝える。
 
@@ -465,7 +465,7 @@ git push
 
 対応したコメントには返信し、**Resolve conversation** を押して解決済みにします。Suggest changes で提案された修正は、**Commit suggestion** ボタンで GitHub 上から直接取り込むこともできます（その場合は、あとで手元で `git pull` してください）。
 
-<!-- 📷 SS: /images/git/github/gh-06-05-resolve-conversation.png -->
+<!-- 📷 SS: ../../images/git/github/gh-06-05-resolve-conversation.png -->
 > 📷 **スクショ指定：`gh-06-05-resolve-conversation.png`**
 > - 画面：PR の Conversation タブで、レビューコメントに返信した状態
 > - 強調：返信欄、「Resolve conversation」ボタン、（あれば）「Commit suggestion」ボタンを赤枠で囲む
@@ -473,7 +473,7 @@ git push
 ### 6-5. マージする
 
 承認されたら、PR の下部にある **Merge pull request** でマージします。▼ からマージ方式を選べます。
-![「Merge pull request」ボタンと3つの選択肢](/images/git/github/gh-06-06-merge-options.png)
+![「Merge pull request」ボタンと3つの選択肢](../../images/git/github/gh-06-06-merge-options.png)
 
 | 方式 | main の履歴 | 特徴 |
 |---|---|---|
@@ -505,7 +505,7 @@ gitGraph
 > **どの方式を使うかはチームで決めて統一**しましょう。迷ったら Create a merge commit が分かりやすいです。
 
 マージ後、**Delete branch** ボタンで GitHub 上のブランチを削除します。
-![「Merged」ラベルと「Delete branch」ボタン](/images/git/github/gh-06-07-delete-branch.png)
+![「Merged」ラベルと「Delete branch」ボタン](../../images/git/github/gh-06-07-delete-branch.png)
 
 ### 6-6. マージ後の後片付け（手元）
 
@@ -524,7 +524,7 @@ git fetch --prune             # ④ GitHub で削除済みのブランチの控�
 
 PR の下部に **This branch has conflicts that must be resolved** と表示されることがあります。
 
-<!-- 📷 SS: /images/git/github/gh-06-08-pr-conflict.png -->
+<!-- 📷 SS: ../../images/git/github/gh-06-08-pr-conflict.png -->
 > 📷 **スクショ指定：`gh-06-08-pr-conflict.png`**
 > - 画面：PR の下部にコンフリクトの警告が出ている状態
 > - 強調：「This branch has conflicts that must be resolved」のメッセージと、コンフリクトしているファイル名を赤枠で囲む

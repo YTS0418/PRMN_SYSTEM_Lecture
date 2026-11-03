@@ -66,12 +66,12 @@ flowchart LR
 | ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` / `revert` / `reset` |
 | ④ メインメニュー | 左上の **☰** → **Git** | すべての Git 操作 | — |
 
-<!-- 📷 SS: /images/git/intellij/ij-01-01-overview.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-01-01-overview.png -->
 > 📷 **スクショ指定：`ij-01-01-overview.png`**
 > - 画面：プロジェクトを開き、ファイルを2つほど変更した状態の IntelliJ IDEA 全体（Commit ツールウィンドウを開いた状態）
 > - 強調：①上部のブランチウィジェット、②左端のコミットアイコンと Commit ツールウィンドウ、③左下の Git アイコン、④左上の ☰ をそれぞれ赤枠で囲み、番号を振る
 
-<!-- 📷 SS: /images/git/intellij/ij-01-02-git-menu.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-01-02-git-menu.png -->
 > 📷 **スクショ指定：`ij-01-02-git-menu.png`**
 > - 画面：☰ → Git メニューを開いた状態
 > - 強調：「Commit...」「Push...」「Pull...」「Fetch」「Branches...」「Uncommitted Changes」の項目を赤枠で囲む
@@ -100,12 +100,12 @@ flowchart LR
 2. 左の **GitHub** を選ぶと、登録したアカウントのリポジトリ一覧が表示される（URL を直接入力する場合は **Repository URL** を選ぶ）。
 3. 対象のリポジトリを選び、**Directory**（保存先）を指定して **Clone** をクリックする。
 
-<!-- 📷 SS: /images/git/intellij/ij-02-01-welcome-clone.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-02-01-welcome-clone.png -->
 > 📷 **スクショ指定：`ij-02-01-welcome-clone.png`**
 > - 画面：IntelliJ IDEA のウェルカム画面
 > - 強調：「Clone Repository」ボタンを赤枠で囲む
 
-<!-- 📷 SS: /images/git/intellij/ij-02-02-clone-dialog.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-02-02-clone-dialog.png -->
 > 📷 **スクショ指定：`ij-02-02-clone-dialog.png`**
 > - 画面：Clone Repository ダイアログで GitHub を選び、リポジトリ一覧が表示された状態
 > - 強調：左の「GitHub」、リポジトリ一覧、「Directory」欄、「Clone」ボタンを赤枠で囲み、番号①〜④を振る
@@ -123,14 +123,14 @@ flowchart LR
 - **Changes**：変更したファイル
 - **Unversioned Files**：新しく作った、まだ Git 管理外のファイル
 
-<!-- 📷 SS: /images/git/intellij/ij-03-01-commit-window.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-03-01-commit-window.png -->
 > 📷 **スクショ指定：`ij-03-01-commit-window.png`**
 > - 画面：Commit ツールウィンドウに Changes（青のファイル2つ）と Unversioned Files（赤茶のファイル1つ）がある状態
 > - 強調：「Changes」と「Unversioned Files」の見出し、ファイル名の色を赤枠で囲む
 
 ファイルを**ダブルクリック**すると、**左に変更前・右に変更後**の差分が表示されます。
 
-<!-- 📷 SS: /images/git/intellij/ij-03-02-diff-view.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-03-02-diff-view.png -->
 > 📷 **スクショ指定：`ij-03-02-diff-view.png`**
 > - 画面：変更ファイルをダブルクリックして開いた差分ビュー
 > - 強調：左側（変更前）と右側（変更後）、色付きの変更箇所をそれぞれ枠で囲み、「変更前」「変更後」と注記する
@@ -151,12 +151,12 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 下の **コミットメッセージ** 欄に内容を書く。
 3. **Commit** をクリックする（push まで行うなら **Commit and Push...**）。
 
-<!-- 📷 SS: /images/git/intellij/ij-04-01-check-files.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-04-01-check-files.png -->
 > 📷 **スクショ指定：`ij-04-01-check-files.png`**
 > - 画面：Commit ツールウィンドウで、一部のファイルにだけチェックを入れた状態
 > - 強調：チェックを入れたファイルのチェックボックスと、チェックを入れていないファイルを赤枠で囲み、「コミットされる」「コミットされない」と注記する
 
-<!-- 📷 SS: /images/git/intellij/ij-04-02-commit-message.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-04-02-commit-message.png -->
 > 📷 **スクショ指定：`ij-04-02-commit-message.png`**
 > - 画面：コミットメッセージ欄に「ログイン画面に入力チェックを追加」と入力した状態
 > - 強調：メッセージ欄、「Commit」ボタン、「Commit and Push...」ボタン、「Amend」チェックボックスを赤枠で囲む
@@ -176,7 +176,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 1. 上部のブランチウィジェット → **Push...**、または ☰ → `Git` → `Push...`（`Ctrl + Shift + K` / Mac は `⌘ + Shift + K`）。
 2. 左に送るコミットの一覧、右にそのコミットで変わるファイルが表示される。内容を確認して **Push** をクリックする。
 
-<!-- 📷 SS: /images/git/intellij/ij-05-01-push-dialog.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-05-01-push-dialog.png -->
 > 📷 **スクショ指定：`ij-05-01-push-dialog.png`**
 > - 画面：Push ダイアログ（送るコミットが2つある状態）
 > - 強調：「feature-login → origin : feature-login」の表示、コミット一覧、「Push」ボタンを赤枠で囲む
@@ -189,7 +189,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 - **Update Project**（Update）は、今いるブランチに GitHub の最新を取り込みます。初回は方式を聞かれるので **Merge** を選びます。
 
-<!-- 📷 SS: /images/git/intellij/ij-05-02-update-project.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-05-02-update-project.png -->
 > 📷 **スクショ指定：`ij-05-02-update-project.png`**
 > - 画面：Update Project のダイアログ（Merge / Rebase の選択肢がある状態）
 > - 強調：「Merge incoming changes into the current branch」を選んだ状態のラジオボタンと「OK」ボタンを赤枠で囲む
@@ -210,7 +210,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 - 中央：コミットの一覧とグラフ
 - 右：選んだコミットで変更されたファイル
 
-<!-- 📷 SS: /images/git/intellij/ij-06-01-git-log.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-06-01-git-log.png -->
 > 📷 **スクショ指定：`ij-06-01-git-log.png`**
 > - 画面：Git ツールウィンドウの Log タブ（main と feature ブランチが分かれている状態）
 > - 強調：左のブランチ一覧、中央のグラフとコミット一覧、右の変更ファイル一覧をそれぞれ枠で囲み、番号を振る
@@ -233,12 +233,12 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. **New Branch...** を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力し、**Checkout branch** にチェックが入っていることを確認して **Create** をクリックする（作成と同時に切り替わる）。
 
-<!-- 📷 SS: /images/git/intellij/ij-07-01-branch-widget.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-07-01-branch-widget.png -->
 > 📷 **スクショ指定：`ij-07-01-branch-widget.png`**
 > - 画面：上部のブランチ名をクリックして、ブランチのポップアップが開いた状態
 > - 強調：上部のブランチ名、「New Branch...」、Local / Remote のブランチ一覧を赤枠で囲む
 
-<!-- 📷 SS: /images/git/intellij/ij-07-02-new-branch-dialog.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-07-02-new-branch-dialog.png -->
 > 📷 **スクショ指定：`ij-07-02-new-branch-dialog.png`**
 > - 画面：Create New Branch ダイアログにブランチ名を入力した状態
 > - 強調：ブランチ名の入力欄、「Checkout branch」チェックボックス、「Create」ボタンを赤枠で囲む
@@ -249,7 +249,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 一覧から移動したいブランチにマウスを乗せ、サブメニューから **Checkout** を選ぶ。
    - **Remote** にある `origin/〇〇` を Checkout すると、手元に同じ名前のブランチが作られて切り替わります。
 
-<!-- 📷 SS: /images/git/intellij/ij-07-03-checkout-submenu.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-07-03-checkout-submenu.png -->
 > 📷 **スクショ指定：`ij-07-03-checkout-submenu.png`**
 > - 画面：ブランチ一覧で別のブランチにマウスを乗せ、サブメニューが開いた状態
 > - 強調：「Checkout」と、同じサブメニュー内の「Merge '〇〇' into '△△'」を赤枠で囲む（8章で使うことを注記）
@@ -258,7 +258,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 未コミットの変更が切り替え先とぶつかる場合、次のダイアログが表示されます。
 
-<!-- 📷 SS: /images/git/intellij/ij-07-04-smart-checkout.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-07-04-smart-checkout.png -->
 > 📷 **スクショ指定：`ij-07-04-smart-checkout.png`**
 > - 画面：未コミットの変更があるまま別ブランチに切り替えようとしたときのダイアログ
 > - 強調：「Smart Checkout」「Force Checkout」「Don't Checkout」の各ボタンを赤枠で囲む
@@ -285,7 +285,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. サブメニューから **Merge 'origin/main' into 'feature-login'** を選ぶ。
 5. コンフリクトがなければマージ完了。**Push...** で push する。
 
-<!-- 📷 SS: /images/git/intellij/ij-08-01-merge-origin-main.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-08-01-merge-origin-main.png -->
 > 📷 **スクショ指定：`ij-08-01-merge-origin-main.png`**
 > - 画面：ブランチポップアップで Remote → origin/main のサブメニューを開いた状態
 > - 強調：「origin/main」と「Merge 'origin/main' into 'feature-login'」を赤枠で囲む
@@ -302,7 +302,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 マージや Update でコンフリクトが起きると、**Conflicts** ダイアログが表示されます。
 
-<!-- 📷 SS: /images/git/intellij/ij-09-01-conflicts-dialog.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-09-01-conflicts-dialog.png -->
 > 📷 **スクショ指定：`ij-09-01-conflicts-dialog.png`**
 > - 画面：Conflicts ダイアログ（コンフリクトしたファイルが一覧表示された状態）
 > - 強調：ファイル一覧、「Accept Yours」「Accept Theirs」「Merge...」ボタンを赤枠で囲む
@@ -322,7 +322,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. 上部の **Accept Left** / **Accept Right** で、まとめて片方を採用することもできる。
 5. 内容を確認して **Apply** をクリックする。
 
-<!-- 📷 SS: /images/git/intellij/ij-09-02-merge-editor.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-09-02-merge-editor.png -->
 > 📷 **スクショ指定：`ij-09-02-merge-editor.png`**
 > - 画面：3画面のマージエディタを開いた状態（コンフリクトが1〜2か所ある）
 > - 強調：左（自分の変更）・中央（結果）・右（相手の変更）の3領域を枠で囲んで名前を注記し、「»」「«」「×」ボタンと「Apply」ボタンを赤枠で囲む
@@ -341,7 +341,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 IntelliJ は、**Git ツールウィンドウの Log でコミットを右クリック**すると、多くの取り消し操作ができます。
 
-<!-- 📷 SS: /images/git/intellij/ij-10-01-log-context-menu.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-10-01-log-context-menu.png -->
 > 📷 **スクショ指定：`ij-10-01-log-context-menu.png`**
 > - 画面：Git ツールウィンドウの Log で、コミットを右クリックしてメニューを開いた状態
 > - 強調：「Undo Commit...」「Revert Commit」「Reset Current Branch to Here...」「Edit Commit Message...」の項目を赤枠で囲む
@@ -356,12 +356,12 @@ IntelliJ は、**Git ツールウィンドウの Log でコミットを右クリ
 | 任意のコミットまで戻す（push 前） | Log で戻したいコミットを右クリック → **Reset Current Branch to Here...** → モードを選ぶ | `git reset --soft / --mixed / --hard` |
 | push 済みのコミットを打ち消す | Log でコミットを右クリック → **Revert Commit** → 自動で打ち消すコミットができるので Push | `git revert コミットID` |
 
-<!-- 📷 SS: /images/git/intellij/ij-10-02-rollback.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-10-02-rollback.png -->
 > 📷 **スクショ指定：`ij-10-02-rollback.png`**
 > - 画面：Commit ツールウィンドウでファイルを右クリックし、Rollback... を選んだあとの確認ダイアログ
 > - 強調：「Rollback」ボタンを赤枠で囲み、「⚠️ 元に戻せない」と注記する
 
-<!-- 📷 SS: /images/git/intellij/ij-10-03-reset-dialog.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-10-03-reset-dialog.png -->
 > 📷 **スクショ指定：`ij-10-03-reset-dialog.png`**
 > - 画面：Reset Current Branch to Here... のダイアログ（Soft / Mixed / Hard / Keep の選択肢）
 > - 強調：4つのモードの選択肢と、それぞれの説明文を赤枠で囲む
@@ -375,7 +375,7 @@ IntelliJ は、**Git ツールウィンドウの Log でコミットを右クリ
 1. Log で **Reset Current Branch to Here...**（または Undo Commit...）で取り消す。
 2. **Push...** を開き、**Push** ボタンの横の ▼ → **Force Push** を選ぶ（IntelliJ は自動で `--force-with-lease` 相当の安全な方法で上書きします）。
 
-<!-- 📷 SS: /images/git/intellij/ij-10-04-force-push.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-10-04-force-push.png -->
 > 📷 **スクショ指定：`ij-10-04-force-push.png`**
 > - 画面：Push ダイアログで Push ボタン横の ▼ を開いた状態
 > - 強調：「Force Push」の項目を赤枠で囲み、「⚠️ 自分だけのブランチでのみ使う」と注記する
@@ -395,12 +395,12 @@ IntelliJ には、Git の **スタッシュ** と、IntelliJ 独自の **シェ�
 - **退避**：☰ → `Git` → `Uncommitted Changes` → **Stash Changes...** → メッセージを入力して **Create Stash**
 - **戻す**：☰ → `Git` → `Uncommitted Changes` → **Unstash Changes...** → 一覧から選んで **Pop Stash**（戻して削除）または **Apply Stash**（戻して残す）
 
-<!-- 📷 SS: /images/git/intellij/ij-11-01-stash-changes.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-11-01-stash-changes.png -->
 > 📷 **スクショ指定：`ij-11-01-stash-changes.png`**
 > - 画面：☰ → Git → Uncommitted Changes のサブメニューを開いた状態
 > - 強調：「Stash Changes...」「Unstash Changes...」「Shelve Changes...」の項目を赤枠で囲む
 
-<!-- 📷 SS: /images/git/intellij/ij-11-02-unstash-dialog.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-11-02-unstash-dialog.png -->
 > 📷 **スクショ指定：`ij-11-02-unstash-dialog.png`**
 > - 画面：Unstash Changes ダイアログ（スタッシュが1つ以上ある状態）
 > - 強調：スタッシュの一覧、「Pop stash」チェックボックス（または Pop / Apply ボタン）を赤枠で囲む
@@ -410,7 +410,7 @@ IntelliJ には、Git の **スタッシュ** と、IntelliJ 独自の **シェ�
 - **退避**：Commit ツールウィンドウでファイルを右クリック → **Shelve Changes...**（ファイルを選んで退避できる）
 - **戻す**：Commit ツールウィンドウの **Shelf** タブを開き、対象を右クリック → **Unshelve...**
 
-<!-- 📷 SS: /images/git/intellij/ij-11-03-shelf-tab.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-11-03-shelf-tab.png -->
 > 📷 **スクショ指定：`ij-11-03-shelf-tab.png`**
 > - 画面：Commit ツールウィンドウの Shelf タブで、退避した変更を右クリックした状態
 > - 強調：「Shelf」タブと「Unshelve...」の項目を赤枠で囲む
@@ -429,7 +429,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. ☰ → `Git` → `GitHub` → **Create Pull Request...**（または左端の **Pull Requests** アイコン → **＋**）を選ぶ。
 3. 取り込み先（**main**）と自分のブランチ、タイトル・説明を入力し、**Create Pull Request** をクリックする。
 
-<!-- 📷 SS: /images/git/intellij/ij-12-01-create-pr.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-12-01-create-pr.png -->
 > 📷 **スクショ指定：`ij-12-01-create-pr.png`**
 > - 画面：Pull Requests ツールウィンドウで PR 作成フォームを開いた状態（タイトル・説明を入力済み）
 > - 強調：取り込み先と元のブランチの指定、タイトル欄、説明欄、「Create Pull Request」ボタンを赤枠で囲む
@@ -440,7 +440,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. 変更ファイルをダブルクリックすると差分が開き、行の横の **＋**（吹き出し）からコメントを書ける。
 3. **Checkout** で PR のブランチに切り替えると、手元で動かして確認できる。
 
-<!-- 📷 SS: /images/git/intellij/ij-12-02-review-pr.png -->
+<!-- 📷 SS: ../../images/git/intellij/ij-12-02-review-pr.png -->
 > 📷 **スクショ指定：`ij-12-02-review-pr.png`**
 > - 画面：Pull Requests ツールウィンドウで PR を開き、変更ファイル一覧と差分にコメントを書いている状態
 > - 強調：左端の Pull Requests アイコン、PR 一覧、変更ファイル一覧、コメント入力欄を赤枠で囲む
