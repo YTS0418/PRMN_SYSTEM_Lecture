@@ -83,7 +83,7 @@ Git の操作は、主に次の4か所で行います。
 
 ![clone-button](/images/git/vscode/vsc-02-01-clone-button.png)
 
-1. 上部に入力欄が出るので、GitHub でコピーした URL を貼り付けて `Enter`（または **GitHub から複製** を選んでリポジトリ一覧から選ぶ）。
+3. 上部に入力欄が出るので、GitHub でコピーした URL を貼り付けて `Enter`（または **GitHub から複製** を選んでリポジトリ一覧から選ぶ）。
 
 ![clone-url](/images/git/vscode/vsc-02-02-clone-url.png)
 
