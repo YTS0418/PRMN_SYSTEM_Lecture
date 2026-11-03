@@ -147,10 +147,8 @@ IntelliJ IDEA には、Git とは別に **Local History**（ローカル履歴�
 
 **使い方**：ファイル（またはフォルダ）を右クリック → **Local History** → **Show History** → 戻したい時点を選んで **Revert**。
 
-<!-- 📷 SS: /images/git/intellij/ij-99-01-local-history.png -->
-> 📷 **スクショ指定：`ij-99-01-local-history.png`**
-> - 画面：Local History の画面（左に保存時刻の一覧、右に差分）
-> - 強調：時刻の一覧、差分、「Revert」ボタンを赤枠で囲む
+
+![IntelliJ IDEAのLocal History画面](../../images/git/intellij/ij-99-01-local-history.png)
 
 > ⚠️ Local History は**その PC の IntelliJ の中だけ**に残る一時的な記録です。期間が過ぎると消えるので、**大事な変更は必ずコミット**しましょう。VSCode では、エクスプローラーの **タイムライン** に「ファイルの保存」の履歴が残っていれば、同じように戻せる場合があります。
 
