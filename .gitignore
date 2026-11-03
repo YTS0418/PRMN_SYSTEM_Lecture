@@ -12,6 +12,7 @@ desktop.ini
 .idea/
 *.swp
 *~
+.github/
 
 # 一時ファイル
 *.tmp
