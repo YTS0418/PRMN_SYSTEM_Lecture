@@ -63,18 +63,12 @@ flowchart LR
 |---|---|---|---|
 | ① ブランチウィジェット | 画面上部のブランチ名をクリック | ブランチの作成・切り替え、マージ、Update / Commit / Push | `switch` / `merge` / `pull` / `push` |
 | ② Commit ツールウィンドウ | 左端のコミットアイコン（`Alt + 0` / Mac は `⌘ + 0`） | 変更の確認、コミット、Amend、Shelf | `status` / `add` / `commit` |
-| ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` / `revert` / `reset` |
+| ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` /  `revert` / `reset` |
 | ④ メインメニュー | 左上の **☰** → **Git** | すべての Git 操作 | — |
 
-<!-- 📷 SS: ../../images/git/intellij/ij-01-01-overview.png -->
-> 📷 **スクショ指定：`ij-01-01-overview.png`**
-> - 画面：プロジェクトを開き、ファイルを2つほど変更した状態の IntelliJ IDEA 全体（Commit ツールウィンドウを開いた状態）
-> - 強調：①上部のブランチウィジェット、②左端のコミットアイコンと Commit ツールウィンドウ、③左下の Git アイコン、④左上の ☰ をそれぞれ赤枠で囲み、番号を振る
+![IntelliJ IDEAのGit操作画面](../../images/git/intellij/ij-01-01-overview.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-01-02-git-menu.png -->
-> 📷 **スクショ指定：`ij-01-02-git-menu.png`**
-> - 画面：☰ → Git メニューを開いた状態
-> - 強調：「Commit...」「Push...」「Pull...」「Fetch」「Branches...」「Uncommitted Changes」の項目を赤枠で囲む
+![IntelliJ IDEAのGitメニュー](../../images/git/intellij/ij-01-02-git-menu.png)
 
 > **ボタンが見つからないとき**は、`Shift` を2回押して出る **Search Everywhere** で `push` や `branch` などと検索すると、操作を探せます。
 
@@ -100,15 +94,9 @@ flowchart LR
 2. 左の **GitHub** を選ぶと、登録したアカウントのリポジトリ一覧が表示される（URL を直接入力する場合は **Repository URL** を選ぶ）。
 3. 対象のリポジトリを選び、**Directory**（保存先）を指定して **Clone** をクリックする。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-02-01-welcome-clone.png -->
-> 📷 **スクショ指定：`ij-02-01-welcome-clone.png`**
-> - 画面：IntelliJ IDEA のウェルカム画面
-> - 強調：「Clone Repository」ボタンを赤枠で囲む
+![IntelliJ IDEAのウェルカム画面（リポジトリのクローン）](../../images/git/intellij/ij-02-01-welcome-clone.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-02-02-clone-dialog.png -->
-> 📷 **スクショ指定：`ij-02-02-clone-dialog.png`**
-> - 画面：Clone Repository ダイアログで GitHub を選び、リポジトリ一覧が表示された状態
-> - 強調：左の「GitHub」、リポジトリ一覧、「Directory」欄、「Clone」ボタンを赤枠で囲み、番号①〜④を振る
+![IntelliJ IDEAのリポジトリのクローン画面](../../images/git/intellij/ij-02-02-clone-dialog.png)
 
 > ⚠️ OneDrive などの同期フォルダの中は避けましょう（[00 導入編 6章](./00_Git導入・初期設定.md#6-リポジトリを-clone-する)）。
 
@@ -123,10 +111,7 @@ flowchart LR
 - **Changes**：変更したファイル
 - **Unversioned Files**：新しく作った、まだ Git 管理外のファイル
 
-<!-- 📷 SS: ../../images/git/intellij/ij-03-01-commit-window.png -->
-> 📷 **スクショ指定：`ij-03-01-commit-window.png`**
-> - 画面：Commit ツールウィンドウに Changes（青のファイル2つ）と Unversioned Files（赤茶のファイル1つ）がある状態
-> - 強調：「Changes」と「Unversioned Files」の見出し、ファイル名の色を赤枠で囲む
+![IntelliJ IDEAのCommitツールウィンドウ（変更済みファイルと未追跡ファイル）](../../images/git/intellij/ij-03-01-commit-window.png)
 
 ファイルを**ダブルクリック**すると、**左に変更前・右に変更後**の差分が表示されます。
 
