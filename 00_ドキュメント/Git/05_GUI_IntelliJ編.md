@@ -247,10 +247,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. サブメニューから **Merge 'origin/main' into 'feature-login'** を選ぶ。
 5. コンフリクトがなければマージ完了。**Push...** で push する。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-08-01-merge-origin-main.png -->
-> 📷 **スクショ指定：`ij-08-01-merge-origin-main.png`**
-> - 画面：ブランチポップアップで Remote → origin/main のサブメニューを開いた状態
-> - 強調：「origin/main」と「Merge 'origin/main' into 'feature-login'」を赤枠で囲む
+![origin/mainをfeature-loginにマージするメニュー](../../images/git/intellij/ij-08-01-merge-origin-main.png)
 
 > ⚠️ **向きに注意**：メニューの文字が「Merge '取り込むブランチ' into '今いるブランチ'」になっているか必ず確認しましょう。
 
