@@ -14,7 +14,7 @@
 
 ## 目次
 
- 1.  [ 画面の見方](#1-画面の見方)
+1. [画面の見方](#1-画面の見方)
     - [「…」メニュー（ビューとその他のアクション）](#メニュービューとその他のアクション)
 2. [clone する](#2-clone-する)
 3. [変更と差分を確認する](#3-変更と差分を確認する)
@@ -26,24 +26,24 @@
     - [push・pull を個別に行う](#pushpull-を個別に行う)
     - [初めて push するブランチ](#初めて-push-するブランチ)
 6. [履歴を見る](#6-履歴を見る)
-  - [7. ブランチを作る・切り替える](#7-ブランチを作る切り替える)
+7. [ブランチを作る・切り替える](#7-ブランチを作る切り替える)
     - [7-1. ブランチを作る](#7-1-ブランチを作る)
     - [7-2. ブランチを切り替える](#7-2-ブランチを切り替える)
     - [7-3. 未コミットの変更があるときのダイアログ](#7-3-未コミットの変更があるときのダイアログ)
-  - [8. 最新の main を取り込む（マージ）](#8-最新の-main-を取り込むマージ)
-  - [9. コンフリクトを解決する](#9-コンフリクトを解決する)
+8. [最新の main を取り込む（マージ）](#8-最新の-main-を取り込むマージ)
+9. [コンフリクトを解決する](#9-コンフリクトを解決する)
     - [方法1：エディタ上のボタンで解決する（かんたん）](#方法1エディタ上のボタンで解決するかんたん)
     - [方法2：マージエディターで解決する](#方法2マージエディターで解決する)
     - [解決したら](#解決したら)
-  - [10. 取り消す](#10-取り消す)
-  - [11. 変更を退避する（スタッシュ）](#11-変更を退避するスタッシュ)
+10. [取り消す](#10-取り消す)
+11. [変更を退避する（スタッシュ）](#11-変更を退避するスタッシュ)
     - [退避する](#退避する)
     - [戻す](#戻す)
-  - [12. プルリクエストを使う](#12-プルリクエストを使う)
+12. [プルリクエストを使う](#12-プルリクエストを使う)
     - [拡張機能を入れる](#拡張機能を入れる)
     - [PR を作る](#pr-を作る)
     - [PR をレビューする](#pr-をレビューする)
-  - [13. コマンドとの対応表](#13-コマンドとの対応表)
+13. [コマンドとの対応表](#13-コマンドとの対応表)
 
 ---
 
@@ -60,13 +60,13 @@ Git の操作は、主に次の4か所で行います。
 | ③ エディタ | 差分の確認、コンフリクトの解決 | `diff` |
 | ④ ステータスバー | 今のブランチの確認・切り替え、同期 | `branch` / `switch` / `pull` / `push` |
 
-![overview](/images/git/vscode/vsc-01-01-overview.png)
+![overview](../../images/git/vscode/vsc-01-01-overview.png)
 
 ### 「…」メニュー（ビューとその他のアクション）
 
 ソース管理ビューの上部にある **「…」** から、プル・プッシュ・ブランチ・スタッシュなど、ほとんどの Git 操作を選べます。**ボタンが見つからないときは「…」を探しましょう。**
 
-![more-actions-menu](/images/git/vscode/vsc-01-02-more-actions-menu.png)
+![more-actions-menu](../../images/git/vscode/vsc-01-02-more-actions-menu.png)
 
 > **コマンドパレット**（`Ctrl + Shift + P` / Mac は `⌘ + Shift + P`）で `git` と入力しても、すべての Git 操作を検索できます。
 
@@ -79,11 +79,11 @@ Git の操作は、主に次の4か所で行います。
 1. VSCode を起動し、ウィンドウを何も開いていない状態でソース管理アイコンをクリックする。
 2. **リポジトリのクローン**（Clone Repository）をクリックする。
 
-![clone-button](/images/git/vscode/vsc-02-01-clone-button.png)
+![clone-button](../../images/git/vscode/vsc-02-01-clone-button.png)
 
 3. 上部に入力欄が出るので、GitHub でコピーした URL を貼り付けて `Enter`（または **GitHub から複製** を選んでリポジトリ一覧から選ぶ）。
 
-![clone-url](/images/git/vscode/vsc-02-02-clone-url.png)
+![clone-url](../../images/git/vscode/vsc-02-02-clone-url.png)
 
 4. 保存先のフォルダを選び、**リポジトリの宛先として選択** をクリックする。
 5. 「クローンしたリポジトリを開きますか？」と聞かれたら **開く** をクリックする。
@@ -104,13 +104,11 @@ Git の操作は、主に次の4か所で行います。
 | **A**（Added） | 新規ファイルをステージした | `new file` |
 | **C**（Conflict） | コンフリクト中 | `both modified` |
 
-![changes-list](/images/git/vscode/vsc-03-01-changes-list.png)
+![「変更」一覧](../../images/git/vscode/vsc-03-01-changes-list.png)
 
 ファイル名をクリックすると、**左に変更前・右に変更後**の差分が表示されます。
 
-![diff-view.png](/images/git/vscode/vsc-03-02-diff-view.png)
-<!-- 📷 SS: /images/git/vscode/vsc-03-02-diff-view.png -->
-
+![差分ビュー](../../images/git/vscode/vsc-03-02-diff-view.png)
 
 > エディタの行番号の横にも、色の帯（緑：追加、青：変更、赤い三角：削除）が表示されます。クリックするとその場で差分を確認できます。
 
@@ -125,13 +123,9 @@ Git の操作は、主に次の4か所で行います。
 1. **変更** の一覧で、ステージしたいファイルにマウスを乗せる。
 2. 右に出る **＋**（変更をステージ）をクリックする。
    - すべてステージするときは、「変更」の見出しの横の **＋**（すべての変更をステージ）をクリック。
+  ![stage-button](../../images/git/vscode/vsc-04-01-stage-button.png)
 3. ファイルが **ステージされている変更**（Staged Changes）に移動する。
-
-![stage-button](/images/git/vscode/vsc-04-01-stage-button.png)
-
----
-
-![staged-changes](/images/git/vscode/vsc-04-02-staged-changes.png)
+  ![staged-changes](../../images/git/vscode/vsc-04-02-staged-changes.png)
 
 > **ステージを取り消す**（CUI の `git restore --staged`）：ステージされている変更のファイルの **−**（変更のステージング解除）をクリック。
 
@@ -142,7 +136,7 @@ Git の操作は、主に次の4か所で行います。
 1. 上部の **メッセージ** 欄にコミットメッセージを入力する。
 2. **✓ コミット** ボタンをクリックする。
 
-![commit](/images/git/vscode/vsc-04-03-commit.png)
+![commit](../../images/git/vscode/vsc-04-03-commit.png)
 
 > ⚠️ **ステージせずにコミットボタンを押すと**、「ステージされている変更がありません。すべての変更をステージしてコミットしますか？」と聞かれます。**はい** を選ぶと `git add .` と同じく全ファイルが入るので、入れたくないファイルがないか確認してから押しましょう。
 
@@ -165,22 +159,19 @@ Git の操作は、主に次の4か所で行います。
 
 **変更の同期** をクリックすると、**pull してから push** を続けて行います。
 
-![sync-button](/images/git/vscode/vsc-05-01-sync-button.png)
+![sync-button](../../images/git/vscode/vsc-05-01-sync-button.png)
 
 ### push・pull を個別に行う
 
 「…」 → **プル**（Pull）／**プッシュ**（Push）を選びます。GitHub の状態を確認だけしたいときは **フェッチ**（Fetch）を選びます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-05-02-pull-push-menu.png -->
-> 📷 **スクショ指定：`vsc-05-02-pull-push-menu.png`**
-> - 画面：「…」メニューを開き、プル・プッシュ・フェッチが見えている状態
-> - 強調：「プル」「プッシュ」「フェッチ」の項目を赤枠で囲む
+![「…」メニュー](../../images/git/vscode/vsc-05-02-pull-push-menu.png)
 
 ### 初めて push するブランチ
 
 新しいブランチでは、同期ボタンの代わりに **Branch の発行**（Publish Branch）ボタンが表示されます。クリックすると、`git push -u origin ブランチ名` と同じことが行われます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-05-03-publish-branch.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-05-03-publish-branch.png -->
 > 📷 **スクショ指定：`vsc-05-03-publish-branch.png`**
 > - 画面：新しく作ったブランチでコミットした直後のソース管理ビュー
 > - 強調：「Branch の発行」ボタンを赤枠で囲む
@@ -193,20 +184,14 @@ Git の操作は、主に次の4か所で行います。
 
 ソース管理ビューの下部にある **グラフ**（Graph）セクションに、コミットの履歴がブランチの線つきで表示されます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-06-01-source-control-graph.png -->
-> 📷 **スクショ指定：`vsc-06-01-source-control-graph.png`**
-> - 画面：main と feature ブランチが分かれている状態の、ソース管理ビュー下部のグラフ
-> - 強調：グラフの線、ブランチ名のラベル（main / origin/main / feature-login）を赤枠で囲む
+![ソース管理ビュー下部のグラフ](../../images/git/vscode/vsc-06-01-source-control-graph.png)
 
 - コミットをクリックすると、そのコミットで変更されたファイルが表示されます。
 - グラフに表示するブランチは、グラフ上部のボタンで切り替えられます（「すべてのブランチ」にすると `--all` と同じ）。
 
 **ファイル単位の履歴**は、エクスプローラーの下部にある **タイムライン**（Timeline）で確認できます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-06-02-timeline.png -->
-> 📷 **スクショ指定：`vsc-06-02-timeline.png`**
-> - 画面：エクスプローラーでファイルを選択し、下部のタイムラインにコミット履歴が並んだ状態
-> - 強調：「タイムライン」セクションとコミットの一覧を赤枠で囲む
+![「タイムライン」セクション](../../images/git/vscode/vsc-06-02-timeline.png)
 
 ---
 
@@ -222,12 +207,12 @@ Git の操作は、主に次の4か所で行います。
 2. 上部に出るメニューから **＋ 新しいブランチの作成...**（Create new branch...）を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力して `Enter`。作成と同時にそのブランチに切り替わる。
 
-<!-- 📷 SS: /images/git/vscode/vsc-07-01-branch-statusbar.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-07-01-branch-statusbar.png -->
 > 📷 **スクショ指定：`vsc-07-01-branch-statusbar.png`**
 > - 画面：VSCode 左下のステータスバー
 > - 強調：ブランチ名（main）の部分を赤枠で囲み、「ここをクリック」と注記する
 
-<!-- 📷 SS: /images/git/vscode/vsc-07-02-create-branch.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-07-02-create-branch.png -->
 > 📷 **スクショ指定：`vsc-07-02-create-branch.png`**
 > - 画面：ブランチ名をクリックして上部にメニューが出た状態
 > - 強調：「新しいブランチの作成...」の項目と、下に並ぶ既存ブランチ一覧を赤枠で囲む
@@ -242,7 +227,7 @@ Git の操作は、主に次の4か所で行います。
 
 未コミットの変更が切り替え先とぶつかる場合、次のようなダイアログが表示されます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-07-03-checkout-dialog.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-07-03-checkout-dialog.png -->
 > 📷 **スクショ指定：`vsc-07-03-checkout-dialog.png`**
 > - 画面：未コミットの変更があるまま別ブランチに切り替えようとしたときのダイアログ
 > - 強調：「スタッシュしてチェックアウト」「変更の移行」「チェックアウトの強制」の各ボタンを赤枠で囲む
@@ -268,12 +253,12 @@ Git の操作は、主に次の4か所で行います。
 4. 一覧から **origin/main** を選ぶ。
 5. コンフリクトがなければマージ完了。**変更の同期** で push する。
 
-<!-- 📷 SS: /images/git/vscode/vsc-08-01-merge-branch-menu.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-08-01-merge-branch-menu.png -->
 > 📷 **スクショ指定：`vsc-08-01-merge-branch-menu.png`**
 > - 画面：「…」→「ブランチ」のサブメニューを開いた状態
 > - 強調：「ブランチ」と「ブランチをマージ...」の項目を赤枠で囲む
 
-<!-- 📷 SS: /images/git/vscode/vsc-08-02-select-origin-main.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-08-02-select-origin-main.png -->
 > 📷 **スクショ指定：`vsc-08-02-select-origin-main.png`**
 > - 画面：マージするブランチの選択一覧
 > - 強調：「origin/main」を赤枠で囲む（「main」ではなく「origin/main」を選ぶことを注記）
@@ -288,7 +273,7 @@ Git の操作は、主に次の4か所で行います。
 
 コンフリクトが起きると、ソース管理ビューに **マージの変更**（Merge Changes）として、該当ファイルが **C** マークつきで表示されます。
 
-<!-- 📷 SS: /images/git/vscode/vsc-09-01-merge-changes.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-09-01-merge-changes.png -->
 > 📷 **スクショ指定：`vsc-09-01-merge-changes.png`**
 > - 画面：コンフリクト発生直後のソース管理ビュー
 > - 強調：「マージの変更」の見出しと、C マークのついたファイルを赤枠で囲む
@@ -304,7 +289,7 @@ Git の操作は、主に次の4か所で行います。
 | **両方の変更を取り込む**（Accept Both Changes） | 両方を残す（あとで手で整える） |
 | **変更の比較**（Compare Changes） | 左右に並べて比べる |
 
-<!-- 📷 SS: /images/git/vscode/vsc-09-02-conflict-inline.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-09-02-conflict-inline.png -->
 > 📷 **スクショ指定：`vsc-09-02-conflict-inline.png`**
 > - 画面：コンフリクトしたファイルをエディタで開いた状態（色分けされた2つのブロックが見える）
 > - 強調：上部の4つのボタン、緑のブロック（現在の変更）、青のブロック（入力側の変更）を赤枠で囲み、それぞれ「自分側」「相手側」と注記する
@@ -317,7 +302,7 @@ Git の操作は、主に次の4か所で行います。
 - 上の画面のチェックボックスで、結果に取り込む変更を選ぶ。結果は直接編集もできる。
 - 終わったら右下の **マージの完了**（Complete Merge）をクリックする。
 
-<!-- 📷 SS: /images/git/vscode/vsc-09-03-merge-editor.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-09-03-merge-editor.png -->
 > 📷 **スクショ指定：`vsc-09-03-merge-editor.png`**
 > - 画面：マージエディターを開いた状態
 > - 強調：「入力側」「現在」「結果」の3つの領域、各変更のチェックボックス、右下の「マージの完了」ボタンを赤枠で囲む
@@ -329,7 +314,7 @@ Git の操作は、主に次の4か所で行います。
 3. メッセージ欄にマージのメッセージが自動で入っているので、そのまま **✓ コミット** をクリックする。
 4. **変更の同期** で push する。
 
-<!-- 📷 SS: /images/git/vscode/vsc-09-04-conflict-resolved-commit.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-09-04-conflict-resolved-commit.png -->
 > 📷 **スクショ指定：`vsc-09-04-conflict-resolved-commit.png`**
 > - 画面：解決したファイルをステージし、メッセージ欄に「Merge remote-tracking branch 'origin/main' ...」が入っている状態
 > - 強調：ステージ済みのファイル、自動入力されたメッセージ、「✓ コミット」ボタンを赤枠で囲む
@@ -350,17 +335,17 @@ Git の操作は、主に次の4か所で行います。
 | 直前のコミットを直す（push 前） | コミットボタンの ▼ → **コミット (修正)**（Commit (Amend)） | `git commit --amend` |
 | push 済みのコミットを打ち消す | 標準の機能ではできない → ターミナルで `git revert` | `git revert コミットID` |
 
-<!-- 📷 SS: /images/git/vscode/vsc-10-01-discard-changes.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-10-01-discard-changes.png -->
 > 📷 **スクショ指定：`vsc-10-01-discard-changes.png`**
 > - 画面：変更ファイルにマウスを乗せ、右側のボタンが表示された状態
 > - 強調：「↶」（変更を破棄）ボタンを赤枠で囲み、「⚠️ 元に戻せない」と注記する
 
-<!-- 📷 SS: /images/git/vscode/vsc-10-02-undo-last-commit.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-10-02-undo-last-commit.png -->
 > 📷 **スクショ指定：`vsc-10-02-undo-last-commit.png`**
 > - 画面：「…」→「コミット」のサブメニューを開いた状態
 > - 強調：「前回のコミットを元に戻す」の項目を赤枠で囲む
 
-<!-- 📷 SS: /images/git/vscode/vsc-10-03-commit-amend.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-10-03-commit-amend.png -->
 > 📷 **スクショ指定：`vsc-10-03-commit-amend.png`**
 > - 画面：コミットボタンの ▼ を開いた状態
 > - 強調：「コミット (修正)」と「コミットしてプッシュ」の項目を赤枠で囲む
@@ -379,7 +364,7 @@ Git の操作は、主に次の4か所で行います。
 
 「…」 → **スタッシュ** → **スタッシュ (未追跡ファイルを含む)**（Stash (Include Untracked)）を選び、メッセージを入力して `Enter`。
 
-<!-- 📷 SS: /images/git/vscode/vsc-11-01-stash-menu.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-11-01-stash-menu.png -->
 > 📷 **スクショ指定：`vsc-11-01-stash-menu.png`**
 > - 画面：「…」→「スタッシュ」のサブメニューを開いた状態
 > - 強調：「スタッシュ」「スタッシュ (未追跡ファイルを含む)」「スタッシュを適用」「スタッシュのポップ」の項目を赤枠で囲む
@@ -407,7 +392,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 1. 左端の **拡張機能** アイコンをクリックし、`GitHub Pull Requests` で検索する。
 2. 発行元が **GitHub** のものを選び、**インストール** をクリックする。
 
-<!-- 📷 SS: /images/git/vscode/vsc-12-01-install-pr-extension.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-12-01-install-pr-extension.png -->
 > 📷 **スクショ指定：`vsc-12-01-install-pr-extension.png`**
 > - 画面：拡張機能ビューで「GitHub Pull Requests」を検索した結果
 > - 強調：検索欄、発行元「GitHub」の表示、「インストール」ボタンを赤枠で囲む
@@ -418,7 +403,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. ソース管理ビュー上部の **プル リクエストの作成** アイコン（または左端に追加された **GitHub** アイコン → **Create Pull Request**）をクリックする。
 3. **base**（取り込み先：`main`）と **compare**（自分のブランチ）、タイトル・説明を入力して **作成**（Create）をクリックする。
 
-<!-- 📷 SS: /images/git/vscode/vsc-12-02-create-pr.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-12-02-create-pr.png -->
 > 📷 **スクショ指定：`vsc-12-02-create-pr.png`**
 > - 画面：PR 作成フォームを開いた状態（タイトル・説明を入力済み）
 > - 強調：base / compare のブランチ指定、タイトル欄、説明欄、「作成」ボタンを赤枠で囲む
@@ -429,7 +414,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. **Checkout** をクリックすると、その PR のブランチに切り替わり、手元で動かして確認できる。
 3. 変更ファイルを開き、行番号の横の **＋** からコメントを書ける。
 
-<!-- 📷 SS: /images/git/vscode/vsc-12-03-review-pr.png -->
+<!-- 📷 SS: ../../images/git/vscode/vsc-12-03-review-pr.png -->
 > 📷 **スクショ指定：`vsc-12-03-review-pr.png`**
 > - 画面：GitHub ビューで PR を開き、説明と変更ファイル一覧が表示された状態
 > - 強調：PR 一覧、「Checkout」ボタン、変更ファイル一覧を赤枠で囲む
