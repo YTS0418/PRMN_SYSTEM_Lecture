@@ -180,10 +180,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 - 中央：コミットの一覧とグラフ
 - 右：選んだコミットで変更されたファイル
 
-<!-- 📷 SS: ../../images/git/intellij/ij-06-01-git-log.png -->
-> 📷 **スクショ指定：`ij-06-01-git-log.png`**
-> - 画面：Git ツールウィンドウの Log タブ（main と feature ブランチが分かれている状態）
-> - 強調：左のブランチ一覧、中央のグラフとコミット一覧、右の変更ファイル一覧をそれぞれ枠で囲み、番号を振る
+![IntelliJ IDEAのGit Log画面](../../images/git/intellij/ij-06-01-git-log.png)
 
 > 上部の検索欄や **Branch** / **User** / **Date** / **Paths** のフィルターで、履歴を絞り込めます。
 
@@ -203,15 +200,10 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. **New Branch...** を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力し、**Checkout branch** にチェックが入っていることを確認して **Create** をクリックする（作成と同時に切り替わる）。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-01-branch-widget.png -->
-> 📷 **スクショ指定：`ij-07-01-branch-widget.png`**
-> - 画面：上部のブランチ名をクリックして、ブランチのポップアップが開いた状態
-> - 強調：上部のブランチ名、「New Branch...」、Local / Remote のブランチ一覧を赤枠で囲む
+![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-02-new-branch-dialog.png -->
-> 📷 **スクショ指定：`ij-07-02-new-branch-dialog.png`**
-> - 画面：Create New Branch ダイアログにブランチ名を入力した状態
-> - 強調：ブランチ名の入力欄、「Checkout branch」チェックボックス、「Create」ボタンを赤枠で囲む
+![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png) -->
+
 
 ### 7-2. ブランチを切り替える
 
