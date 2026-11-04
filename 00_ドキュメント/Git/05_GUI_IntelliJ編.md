@@ -208,7 +208,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 ![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
-![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png) -->
+![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png)
 
 ### 7-2. ブランチを切り替える
 
@@ -217,6 +217,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
    - **Remote** にある `origin/〇〇` を Checkout すると、手元に同じ名前のブランチが作られて切り替わります。
 
 ![ブランチ切り替え画面のポップアップ](../../images/git/intellij/ij-07-03-checkout-submenu.png)
+※8章で利用します
 
 ### 7-3. 未コミットの変更があるときのダイアログ
 
