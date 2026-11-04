@@ -429,10 +429,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. ☰ → `Git` → `GitHub` → **Create Pull Request...**（または左端の **Pull Requests** アイコン → **＋**）を選ぶ。
 3. 取り込み先（**main**）と自分のブランチ、タイトル・説明を入力し、**Create Pull Request** をクリックする。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-12-01-create-pr.png -->
-> 📷 **スクショ指定：`ij-12-01-create-pr.png`**
-> - 画面：Pull Requests ツールウィンドウで PR 作成フォームを開いた状態（タイトル・説明を入力済み）
-> - 強調：取り込み先と元のブランチの指定、タイトル欄、説明欄、「Create Pull Request」ボタンを赤枠で囲む
+![PRを作るイメージ画像](/images/git/intellij/ij-12-01-create-pr.png)
 
 ### PR をレビューする
 
@@ -440,10 +437,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. 変更ファイルをダブルクリックすると差分が開き、行の横の **＋**（吹き出し）からコメントを書ける。
 3. **Checkout** で PR のブランチに切り替えると、手元で動かして確認できる。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-12-02-review-pr.png -->
-> 📷 **スクショ指定：`ij-12-02-review-pr.png`**
-> - 画面：Pull Requests ツールウィンドウで PR を開き、変更ファイル一覧と差分にコメントを書いている状態
-> - 強調：左端の Pull Requests アイコン、PR 一覧、変更ファイル一覧、コメント入力欄を赤枠で囲む
+![PRをレビューするイメージ画像](/images/git/intellij/ij-12-02-review-pr.png)
 
 > マージ方式の選択やブランチの削除は、Web 画面のほうが分かりやすいです。慣れるまでは **作成は IntelliJ でも Web でもOK、レビューとマージは Web** がおすすめです。
 
