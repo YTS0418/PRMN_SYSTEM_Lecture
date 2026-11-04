@@ -206,10 +206,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. **New Branch...** を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力し、**Checkout branch** にチェックが入っていることを確認して **Create** をクリックする（作成と同時に切り替わる）。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-01-branch-widget.png -->
-> 📷 **スクショ指定：`ij-07-01-branch-widget.png`**
-> - 画面：上部のブランチ名をクリックして、ブランチのポップアップが開いた状態
-> - 強調：上部のブランチ名、「New Branch...」、Local / Remote のブランチ一覧を赤枠で囲む
+![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
 <!-- 📷 SS: ../../images/git/intellij/ij-07-02-new-branch-dialog.png -->
 > 📷 **スクショ指定：`ij-07-02-new-branch-dialog.png`**
