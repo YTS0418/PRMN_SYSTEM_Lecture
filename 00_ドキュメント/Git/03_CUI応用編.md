@@ -463,12 +463,11 @@ git commit -m "レビュー指摘：エラーメッセージの文言を修正"
 git push
 ```
 
-対応したコメントには返信し、**Resolve conversation** を押して解決済みにします。Suggest changes で提案された修正は、**Commit suggestion** ボタンで GitHub 上から直接取り込むこともできます（その場合は、あとで手元で `git pull` してください）。
+対応したコメントには返信し、**Resolve conversation** を押して解決済みにします。Suggest changes で提案された修正は、**Commit changes** ボタンで GitHub 上から直接取り込むこともできます（その場合は、あとで手元で `git pull` してください）。
 
-<!-- 📷 SS: ../../images/git/github/gh-06-05-resolve-conversation.png -->
-> 📷 **スクショ指定：`gh-06-05-resolve-conversation.png`**
-> - 画面：PR の Conversation タブで、レビューコメントに返信した状態
-> - 強調：返信欄、「Resolve conversation」ボタン、（あれば）「Commit suggestion」ボタンを赤枠で囲む
+![Resolve conversation](../../images/git/github/gh-06-05-resolve-conversation-01.png)
+
+![Commit changes](../../images/git/github/gh-06-05-resolve-conversation-02.png)
 
 ### 6-5. マージする
 

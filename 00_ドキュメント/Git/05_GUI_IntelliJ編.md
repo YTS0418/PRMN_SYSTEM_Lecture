@@ -63,18 +63,12 @@ flowchart LR
 |---|---|---|---|
 | ① ブランチウィジェット | 画面上部のブランチ名をクリック | ブランチの作成・切り替え、マージ、Update / Commit / Push | `switch` / `merge` / `pull` / `push` |
 | ② Commit ツールウィンドウ | 左端のコミットアイコン（`Alt + 0` / Mac は `⌘ + 0`） | 変更の確認、コミット、Amend、Shelf | `status` / `add` / `commit` |
-| ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` / `revert` / `reset` |
+| ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` /  `revert` / `reset` |
 | ④ メインメニュー | 左上の **☰** → **Git** | すべての Git 操作 | — |
 
-<!-- 📷 SS: ../../images/git/intellij/ij-01-01-overview.png -->
-> 📷 **スクショ指定：`ij-01-01-overview.png`**
-> - 画面：プロジェクトを開き、ファイルを2つほど変更した状態の IntelliJ IDEA 全体（Commit ツールウィンドウを開いた状態）
-> - 強調：①上部のブランチウィジェット、②左端のコミットアイコンと Commit ツールウィンドウ、③左下の Git アイコン、④左上の ☰ をそれぞれ赤枠で囲み、番号を振る
+![IntelliJ IDEAのGit操作画面](../../images/git/intellij/ij-01-01-overview.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-01-02-git-menu.png -->
-> 📷 **スクショ指定：`ij-01-02-git-menu.png`**
-> - 画面：☰ → Git メニューを開いた状態
-> - 強調：「Commit...」「Push...」「Pull...」「Fetch」「Branches...」「Uncommitted Changes」の項目を赤枠で囲む
+![IntelliJ IDEAのGitメニュー](../../images/git/intellij/ij-01-02-git-menu.png)
 
 > **ボタンが見つからないとき**は、`Shift` を2回押して出る **Search Everywhere** で `push` や `branch` などと検索すると、操作を探せます。
 
@@ -100,15 +94,9 @@ flowchart LR
 2. 左の **GitHub** を選ぶと、登録したアカウントのリポジトリ一覧が表示される（URL を直接入力する場合は **Repository URL** を選ぶ）。
 3. 対象のリポジトリを選び、**Directory**（保存先）を指定して **Clone** をクリックする。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-02-01-welcome-clone.png -->
-> 📷 **スクショ指定：`ij-02-01-welcome-clone.png`**
-> - 画面：IntelliJ IDEA のウェルカム画面
-> - 強調：「Clone Repository」ボタンを赤枠で囲む
+![IntelliJ IDEAのウェルカム画面（リポジトリのクローン）](../../images/git/intellij/ij-02-01-welcome-clone.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-02-02-clone-dialog.png -->
-> 📷 **スクショ指定：`ij-02-02-clone-dialog.png`**
-> - 画面：Clone Repository ダイアログで GitHub を選び、リポジトリ一覧が表示された状態
-> - 強調：左の「GitHub」、リポジトリ一覧、「Directory」欄、「Clone」ボタンを赤枠で囲み、番号①〜④を振る
+![IntelliJ IDEAのリポジトリのクローン画面](../../images/git/intellij/ij-02-02-clone-dialog.png)
 
 > ⚠️ OneDrive などの同期フォルダの中は避けましょう（[00 導入編 6章](./00_Git導入・初期設定.md#6-リポジトリを-clone-する)）。
 
@@ -123,17 +111,11 @@ flowchart LR
 - **Changes**：変更したファイル
 - **Unversioned Files**：新しく作った、まだ Git 管理外のファイル
 
-<!-- 📷 SS: ../../images/git/intellij/ij-03-01-commit-window.png -->
-> 📷 **スクショ指定：`ij-03-01-commit-window.png`**
-> - 画面：Commit ツールウィンドウに Changes（青のファイル2つ）と Unversioned Files（赤茶のファイル1つ）がある状態
-> - 強調：「Changes」と「Unversioned Files」の見出し、ファイル名の色を赤枠で囲む
+![IntelliJ IDEAのCommitツールウィンドウ（変更済みファイルと未追跡ファイル）](../../images/git/intellij/ij-03-01-commit-window.png)
 
 ファイルを**ダブルクリック**すると、**左に変更前・右に変更後**の差分が表示されます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-03-02-diff-view.png -->
-> 📷 **スクショ指定：`ij-03-02-diff-view.png`**
-> - 画面：変更ファイルをダブルクリックして開いた差分ビュー
-> - 強調：左側（変更前）と右側（変更後）、色付きの変更箇所をそれぞれ枠で囲み、「変更前」「変更後」と注記する
+![IntelliJ IDEAの差分ビュー（変更前と変更後）](../../images/git/intellij/ij-03-02-diff-view.png)
 
 > エディタの行番号の横にも、色の帯（緑：追加、青：変更、灰色の三角：削除）が表示されます。クリックすると、その場で差分の確認や取り消しができます。
 
@@ -151,15 +133,9 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 下の **コミットメッセージ** 欄に内容を書く。
 3. **Commit** をクリックする（push まで行うなら **Commit and Push...**）。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-04-01-check-files.png -->
-> 📷 **スクショ指定：`ij-04-01-check-files.png`**
-> - 画面：Commit ツールウィンドウで、一部のファイルにだけチェックを入れた状態
-> - 強調：チェックを入れたファイルのチェックボックスと、チェックを入れていないファイルを赤枠で囲み、「コミットされる」「コミットされない」と注記する
+![IntelliJ IDEAのコミット対象ファイル選択画面](../../images/git/intellij/ij-04-01-check-files.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-04-02-commit-message.png -->
-> 📷 **スクショ指定：`ij-04-02-commit-message.png`**
-> - 画面：コミットメッセージ欄に「ログイン画面に入力チェックを追加」と入力した状態
-> - 強調：メッセージ欄、「Commit」ボタン、「Commit and Push...」ボタン、「Amend」チェックボックスを赤枠で囲む
+![IntelliJ IDEAのコミットメッセージ入力画面](../../images/git/intellij/ij-04-02-commit-message.png)
 
 > **行単位でコミットする**：差分ビューで、変更ブロックの横にあるチェックボックスを外すと、その部分だけコミットから除外できます（CUI よりかんたんです）。
 
@@ -176,10 +152,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 1. 上部のブランチウィジェット → **Push...**、または ☰ → `Git` → `Push...`（`Ctrl + Shift + K` / Mac は `⌘ + Shift + K`）。
 2. 左に送るコミットの一覧、右にそのコミットで変わるファイルが表示される。内容を確認して **Push** をクリックする。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-05-01-push-dialog.png -->
-> 📷 **スクショ指定：`ij-05-01-push-dialog.png`**
-> - 画面：Push ダイアログ（送るコミットが2つある状態）
-> - 強調：「feature-login → origin : feature-login」の表示、コミット一覧、「Push」ボタンを赤枠で囲む
+![IntelliJ IDEAのPushダイアログ](../../images/git/intellij/ij-05-01-push-dialog.png)
 
 > **初めて push するブランチ**も、同じ Push ダイアログでそのまま **Push** をクリックすれば OK です（`-u origin ブランチ名` 相当の設定は自動で行われます）。ダイアログ内に **New** と表示されます。
 
@@ -189,10 +162,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 - **Update Project**（Update）は、今いるブランチに GitHub の最新を取り込みます。初回は方式を聞かれるので **Merge** を選びます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-05-02-update-project.png -->
-> 📷 **スクショ指定：`ij-05-02-update-project.png`**
-> - 画面：Update Project のダイアログ（Merge / Rebase の選択肢がある状態）
-> - 強調：「Merge incoming changes into the current branch」を選んだ状態のラジオボタンと「OK」ボタンを赤枠で囲む
+![IntelliJ IDEAのUpdate Projectダイアログ](../../images/git/intellij/ij-05-02-update-project.png)
 
 ### fetch する
 
@@ -210,10 +180,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 - 中央：コミットの一覧とグラフ
 - 右：選んだコミットで変更されたファイル
 
-<!-- 📷 SS: ../../images/git/intellij/ij-06-01-git-log.png -->
-> 📷 **スクショ指定：`ij-06-01-git-log.png`**
-> - 画面：Git ツールウィンドウの Log タブ（main と feature ブランチが分かれている状態）
-> - 強調：左のブランチ一覧、中央のグラフとコミット一覧、右の変更ファイル一覧をそれぞれ枠で囲み、番号を振る
+![IntelliJ IDEAのGit Log画面](../../images/git/intellij/ij-06-01-git-log.png)
 
 > 上部の検索欄や **Branch** / **User** / **Date** / **Paths** のフィルターで、履歴を絞り込めます。
 
@@ -233,15 +200,10 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. **New Branch...** を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力し、**Checkout branch** にチェックが入っていることを確認して **Create** をクリックする（作成と同時に切り替わる）。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-01-branch-widget.png -->
-> 📷 **スクショ指定：`ij-07-01-branch-widget.png`**
-> - 画面：上部のブランチ名をクリックして、ブランチのポップアップが開いた状態
-> - 強調：上部のブランチ名、「New Branch...」、Local / Remote のブランチ一覧を赤枠で囲む
+![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-02-new-branch-dialog.png -->
-> 📷 **スクショ指定：`ij-07-02-new-branch-dialog.png`**
-> - 画面：Create New Branch ダイアログにブランチ名を入力した状態
-> - 強調：ブランチ名の入力欄、「Checkout branch」チェックボックス、「Create」ボタンを赤枠で囲む
+![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png) -->
+
 
 ### 7-2. ブランチを切り替える
 
