@@ -135,10 +135,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 ![IntelliJ IDEAのコミット対象ファイル選択画面](../../images/git/intellij/ij-04-01-check-files.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-04-02-commit-message.png -->
-> 📷 **スクショ指定：`ij-04-02-commit-message.png`**
-> - 画面：コミットメッセージ欄に「ログイン画面に入力チェックを追加」と入力した状態
-> - 強調：メッセージ欄、「Commit」ボタン、「Commit and Push...」ボタン、「Amend」チェックボックスを赤枠で囲む
+![IntelliJ IDEAのコミットメッセージ入力画面](../../images/git/intellij/ij-04-02-commit-message.png)
 
 > **行単位でコミットする**：差分ビューで、変更ブロックの横にあるチェックボックスを外すと、その部分だけコミットから除外できます（CUI よりかんたんです）。
 
