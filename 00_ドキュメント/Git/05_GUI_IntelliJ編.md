@@ -133,10 +133,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 下の **コミットメッセージ** 欄に内容を書く。
 3. **Commit** をクリックする（push まで行うなら **Commit and Push...**）。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-04-01-check-files.png -->
-> 📷 **スクショ指定：`ij-04-01-check-files.png`**
-> - 画面：Commit ツールウィンドウで、一部のファイルにだけチェックを入れた状態
-> - 強調：チェックを入れたファイルのチェックボックスと、チェックを入れていないファイルを赤枠で囲み、「コミットされる」「コミットされない」と注記する
+![IntelliJ IDEAのコミット対象ファイル選択画面](../../images/git/intellij/ij-04-01-check-files.png)
 
 <!-- 📷 SS: ../../images/git/intellij/ij-04-02-commit-message.png -->
 > 📷 **スクショ指定：`ij-04-02-commit-message.png`**
