@@ -251,7 +251,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 #### 方法1：ブラウザでログイン（おすすめ）
 
 1. 設定画面を開く。
-   - **Windows**：`File` → `Settings`（`Ctrl ,`）
+   - **Windows**：`File` → `Settings`（`Ctrl + ,`）
    - **Mac**：`IntelliJ IDEA` → `Settings`（`⌘ + ,`）
 2. 左メニューの **Version Control** → **GitHub** を開く。
 3. **＋** ボタン → **Log In via GitHub** をクリックする。
