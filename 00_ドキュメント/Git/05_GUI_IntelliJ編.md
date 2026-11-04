@@ -208,10 +208,8 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 ![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-02-new-branch-dialog.png -->
-> 📷 **スクショ指定：`ij-07-02-new-branch-dialog.png`**
-> - 画面：Create New Branch ダイアログにブランチ名を入力した状態
-> - 強調：ブランチ名の入力欄、「Checkout branch」チェックボックス、「Create」ボタンを赤枠で囲む
+![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png) -->
+
 
 ### 7-2. ブランチを切り替える
 
