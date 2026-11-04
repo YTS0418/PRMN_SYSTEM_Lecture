@@ -180,10 +180,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 - 中央：コミットの一覧とグラフ
 - 右：選んだコミットで変更されたファイル
 
-<!-- 📷 SS: ../../images/git/intellij/ij-06-01-git-log.png -->
-> 📷 **スクショ指定：`ij-06-01-git-log.png`**
-> - 画面：Git ツールウィンドウの Log タブ（main と feature ブランチが分かれている状態）
-> - 強調：左のブランチ一覧、中央のグラフとコミット一覧、右の変更ファイル一覧をそれぞれ枠で囲み、番号を振る
+![IntelliJ IDEAのGit Log画面](../../images/git/intellij/ij-06-01-git-log.png)
 
 > 上部の検索欄や **Branch** / **User** / **Date** / **Paths** のフィルターで、履歴を絞り込めます。
 
