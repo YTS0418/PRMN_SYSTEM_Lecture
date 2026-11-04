@@ -162,10 +162,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 - **Update Project**（Update）は、今いるブランチに GitHub の最新を取り込みます。初回は方式を聞かれるので **Merge** を選びます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-05-02-update-project.png -->
-> 📷 **スクショ指定：`ij-05-02-update-project.png`**
-> - 画面：Update Project のダイアログ（Merge / Rebase の選択肢がある状態）
-> - 強調：「Merge incoming changes into the current branch」を選んだ状態のラジオボタンと「OK」ボタンを赤枠で囲む
+![IntelliJ IDEAのUpdate Projectダイアログ](../../images/git/intellij/ij-05-02-update-project.png)
 
 ### fetch する
 
