@@ -395,25 +395,16 @@ IntelliJ には、Git の **スタッシュ** と、IntelliJ 独自の **シェ�
 - **退避**：☰ → `Git` → `Uncommitted Changes` → **Stash Changes...** → メッセージを入力して **Create Stash**
 - **戻す**：☰ → `Git` → `Uncommitted Changes` → **Unstash Changes...** → 一覧から選んで **Pop Stash**（戻して削除）または **Apply Stash**（戻して残す）
 
-<!-- 📷 SS: ../../images/git/intellij/ij-11-01-stash-changes.png -->
-> 📷 **スクショ指定：`ij-11-01-stash-changes.png`**
-> - 画面：☰ → Git → Uncommitted Changes のサブメニューを開いた状態
-> - 強調：「Stash Changes...」「Unstash Changes...」「Shelve Changes...」の項目を赤枠で囲む
+![スタッシュのイメージ画像1](../../images/git/intellij/ij-11-01-stash-changes.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-11-02-unstash-dialog.png -->
-> 📷 **スクショ指定：`ij-11-02-unstash-dialog.png`**
-> - 画面：Unstash Changes ダイアログ（スタッシュが1つ以上ある状態）
-> - 強調：スタッシュの一覧、「Pop stash」チェックボックス（または Pop / Apply ボタン）を赤枠で囲む
+![スタッシュのイメージ画像2](../../images/git/intellij/ij-11-02-unstash-dialog.png)
 
 ### シェルフ（IntelliJ 独自）
 
 - **退避**：Commit ツールウィンドウでファイルを右クリック → **Shelve Changes...**（ファイルを選んで退避できる）
 - **戻す**：Commit ツールウィンドウの **Shelf** タブを開き、対象を右クリック → **Unshelve...**
 
-<!-- 📷 SS: ../../images/git/intellij/ij-11-03-shelf-tab.png -->
-> 📷 **スクショ指定：`ij-11-03-shelf-tab.png`**
-> - 画面：Commit ツールウィンドウの Shelf タブで、退避した変更を右クリックした状態
-> - 強調：「Shelf」タブと「Unshelve...」の項目を赤枠で囲む
+![シェルフイメージ画像](../../images/git/intellij/ij-11-03-shelf-tab.png)
 
 ---
 
@@ -429,7 +420,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. ☰ → `Git` → `GitHub` → **Create Pull Request...**（または左端の **Pull Requests** アイコン → **＋**）を選ぶ。
 3. 取り込み先（**main**）と自分のブランチ、タイトル・説明を入力し、**Create Pull Request** をクリックする。
 
-![PRを作るイメージ画像](/images/git/intellij/ij-12-01-create-pr.png)
+![PRを作るイメージ画像](../../images/git/intellij/ij-12-01-create-pr.png)
 
 ### PR をレビューする
 
@@ -437,7 +428,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. 変更ファイルをダブルクリックすると差分が開き、行の横の **＋**（吹き出し）からコメントを書ける。
 3. **Checkout** で PR のブランチに切り替えると、手元で動かして確認できる。
 
-![PRをレビューするイメージ画像](/images/git/intellij/ij-12-02-review-pr.png)
+![PRをレビューするイメージ画像](../../images/git/intellij/ij-12-02-review-pr.png)
 
 > マージ方式の選択やブランチの削除は、Web 画面のほうが分かりやすいです。慣れるまでは **作成は IntelliJ でも Web でもOK、レビューとマージは Web** がおすすめです。
 
