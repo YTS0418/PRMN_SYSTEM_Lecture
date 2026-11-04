@@ -152,10 +152,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 1. 上部のブランチウィジェット → **Push...**、または ☰ → `Git` → `Push...`（`Ctrl + Shift + K` / Mac は `⌘ + Shift + K`）。
 2. 左に送るコミットの一覧、右にそのコミットで変わるファイルが表示される。内容を確認して **Push** をクリックする。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-05-01-push-dialog.png -->
-> 📷 **スクショ指定：`ij-05-01-push-dialog.png`**
-> - 画面：Push ダイアログ（送るコミットが2つある状態）
-> - 強調：「feature-login → origin : feature-login」の表示、コミット一覧、「Push」ボタンを赤枠で囲む
+![IntelliJ IDEAのPushダイアログ](../../images/git/intellij/ij-05-01-push-dialog.png)
 
 > **初めて push するブランチ**も、同じ Push ダイアログでそのまま **Push** をクリックすれば OK です（`-u origin ブランチ名` 相当の設定は自動で行われます）。ダイアログ内に **New** と表示されます。
 
