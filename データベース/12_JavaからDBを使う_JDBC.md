@@ -112,7 +112,7 @@ public Optional<Student> findById(int id) {
 
 ポイントです。
 
-- 「**行（ResultSet）→ Domain のオブジェクト（Student）**」の変換を、Infrastructure 層が担当する。`ResultSet` は、この層から外に出さない（4層アーキテクチャ編 02 章）
+- 「**行（ResultSet）→ Domain のオブジェクト（Student）**」の変換を、Infrastructure 層が担当する。`ResultSet` は、この層から外に出さない（4層アーキテクチャ編 02 章・04 章）
 - 列は、名前（`rs.getString("name")`）か、番号（1 から）で読み取る。名前のほうが間違いにくい
 - 1 行だけ取る場合は `if (rs.next())`、複数行は `while (rs.next())`
 
@@ -198,7 +198,7 @@ ON CONFLICT (student_id, course_id, academic_year) DO UPDATE SET score = EXCLUDE
 
 ## 7. Repository を JDBC で実装する
 
-4層アーキテクチャ編 05 章で読んだ `InMemory…Repository` に対応する、**JDBC 版**を Infrastructure 層に追加します。
+4層アーキテクチャ編 06 章で読んだ `InMemory…Repository` に対応する、**JDBC 版**を Infrastructure 層に追加します。
 
 ```mermaid
 classDiagram
@@ -305,7 +305,7 @@ try (Connection conn = dataSource.getConnection()) {
 
 今回のサンプルのユースケース（学生の登録、成績の登録）は、**どれも更新が 1 回だけ**です。自動コミットで足りるので、step2 ではこの書き方は使いません。
 
-ただし、「学生と最初の履修を同時に登録する」のような、**複数の更新が必要なユースケース**では、トランザクションの境界を **Application 層**で決める必要があります（11 章 8 節）。素の JDBC では、Application 層が `Connection` を扱わずに境界を決める仕組みを自分で作る必要があり、手間がかかります。Spring では **`@Transactional`** を付けるだけで済みます（4層アーキテクチャ編 06 章）。
+ただし、「学生と最初の履修を同時に登録する」のような、**複数の更新が必要なユースケース**では、トランザクションの境界を **Application 層**で決める必要があります（11 章 8 節）。素の JDBC では、Application 層が `Connection` を扱わずに境界を決める仕組みを自分で作る必要があり、手間がかかります。Spring では **`@Transactional`** を付けるだけで済みます（4層アーキテクチャ編 07 章）。
 
 ## 11. 接続の使い回し（コネクションプール）
 
