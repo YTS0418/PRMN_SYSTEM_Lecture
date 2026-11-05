@@ -62,7 +62,7 @@ flowchart LR
 | Packaging | Jar |
 | Java | **25** |
 
-<!-- 📷 SS: ../images/database/spring/spr-06-01-initializr.png -->
+<!-- 📷 SS: ../images/architecture/spring/spr-06-01-initializr.png -->
 > 📷 **スクショ指定：`spr-06-01-initializr.png`**
 > - 画面：[Spring Initializr](https://start.spring.io/) を開き、Project: Maven、Language: Java、Spring Boot は最新の安定版、Java: 25 を選んだ状態
 > - 強調：Project、Language、Spring Boot のバージョン、Java のバージョンの選択をそれぞれ赤枠で囲み、番号①〜④を振る
@@ -75,7 +75,7 @@ flowchart LR
 | **JDBC API** | `JdbcClient` など、JDBC を使いやすくする機能 |
 | **PostgreSQL Driver** | PostgreSQL に接続する JDBC ドライバ（データベース編 12 章） |
 
-<!-- 📷 SS: ../images/database/spring/spr-06-02-dependencies.png -->
+<!-- 📷 SS: ../images/architecture/spring/spr-06-02-dependencies.png -->
 > 📷 **スクショ指定：`spr-06-02-dependencies.png`**
 > - 画面：Initializr の「ADD DEPENDENCIES」で Spring Web、JDBC API、PostgreSQL Driver を追加した状態
 > - 強調：追加した 3 つの依存関係と、「GENERATE」ボタンを赤枠で囲む
