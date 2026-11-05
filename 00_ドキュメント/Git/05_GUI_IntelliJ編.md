@@ -202,8 +202,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 ![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
-![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png) -->
-
+![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png)
 
 ### 7-2. ブランチを切り替える
 
@@ -211,19 +210,14 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 一覧から移動したいブランチにマウスを乗せ、サブメニューから **Checkout** を選ぶ。
    - **Remote** にある `origin/〇〇` を Checkout すると、手元に同じ名前のブランチが作られて切り替わります。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-03-checkout-submenu.png -->
-> 📷 **スクショ指定：`ij-07-03-checkout-submenu.png`**
-> - 画面：ブランチ一覧で別のブランチにマウスを乗せ、サブメニューが開いた状態
-> - 強調：「Checkout」と、同じサブメニュー内の「Merge '〇〇' into '△△'」を赤枠で囲む（8章で使うことを注記）
+![ブランチ切り替え画面のポップアップ](../../images/git/intellij/ij-07-03-checkout-submenu.png)
+※8章で利用します
 
 ### 7-3. 未コミットの変更があるときのダイアログ
 
 未コミットの変更が切り替え先とぶつかる場合、次のダイアログが表示されます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-04-smart-checkout.png -->
-> 📷 **スクショ指定：`ij-07-04-smart-checkout.png`**
-> - 画面：未コミットの変更があるまま別ブランチに切り替えようとしたときのダイアログ
-> - 強調：「Smart Checkout」「Force Checkout」「Don't Checkout」の各ボタンを赤枠で囲む
+![Gitチェックアウトの問題ダイヤログ](../../images/git/intellij/ij-07-04-smart-checkout.png)
 
 | 選択肢 | 何が起きるか | CUI でいうと | 使う場面 |
 |---|---|---|---|
