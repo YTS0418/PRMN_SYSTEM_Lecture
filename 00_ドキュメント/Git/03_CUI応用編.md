@@ -528,6 +528,8 @@ PR の下部に **This branch has conflicts that must be resolved** と表示さ
 > - 画面：PR の下部にコンフリクトの警告が出ている状態
 > - 強調：「This branch has conflicts that must be resolved」のメッセージと、コンフリクトしているファイル名を赤枠で囲む
 
+![PRにおけるコンフリクト発生画面](../../images/git/github/gh-06-08-pr-conflict.png)
+
 **手元で [2章の手順](#2-自分のブランチを最新の-main-に合わせる)** を行い、コンフリクトを解決して push すれば、PR の表示も自動で解消されます。
 
 ```bash
