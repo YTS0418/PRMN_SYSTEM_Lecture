@@ -255,10 +255,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 マージや Update でコンフリクトが起きると、**Conflicts** ダイアログが表示されます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-09-01-conflicts-dialog.png -->
-> 📷 **スクショ指定：`ij-09-01-conflicts-dialog.png`**
-> - 画面：Conflicts ダイアログ（コンフリクトしたファイルが一覧表示された状態）
-> - 強調：ファイル一覧、「Accept Yours」「Accept Theirs」「Merge...」ボタンを赤枠で囲む
+![IntelliJ IDEAの競合（Conflicts）ダイアログ](../../images/git/intellij/ij-09-01-conflicts-dialog.png)
 
 | ボタン | 意味 |
 |---|---|
