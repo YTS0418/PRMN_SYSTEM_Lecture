@@ -202,8 +202,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 ![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
 
-![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png) -->
-
+![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png)
 
 ### 7-2. ブランチを切り替える
 
@@ -211,19 +210,14 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 一覧から移動したいブランチにマウスを乗せ、サブメニューから **Checkout** を選ぶ。
    - **Remote** にある `origin/〇〇` を Checkout すると、手元に同じ名前のブランチが作られて切り替わります。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-03-checkout-submenu.png -->
-> 📷 **スクショ指定：`ij-07-03-checkout-submenu.png`**
-> - 画面：ブランチ一覧で別のブランチにマウスを乗せ、サブメニューが開いた状態
-> - 強調：「Checkout」と、同じサブメニュー内の「Merge '〇〇' into '△△'」を赤枠で囲む（8章で使うことを注記）
+![ブランチ切り替え画面のポップアップ](../../images/git/intellij/ij-07-03-checkout-submenu.png)
+※8章で利用します
 
 ### 7-3. 未コミットの変更があるときのダイアログ
 
 未コミットの変更が切り替え先とぶつかる場合、次のダイアログが表示されます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-07-04-smart-checkout.png -->
-> 📷 **スクショ指定：`ij-07-04-smart-checkout.png`**
-> - 画面：未コミットの変更があるまま別ブランチに切り替えようとしたときのダイアログ
-> - 強調：「Smart Checkout」「Force Checkout」「Don't Checkout」の各ボタンを赤枠で囲む
+![Gitチェックアウトの問題ダイヤログ](../../images/git/intellij/ij-07-04-smart-checkout.png)
 
 | 選択肢 | 何が起きるか | CUI でいうと | 使う場面 |
 |---|---|---|---|
@@ -261,10 +255,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 マージや Update でコンフリクトが起きると、**Conflicts** ダイアログが表示されます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-09-01-conflicts-dialog.png -->
-> 📷 **スクショ指定：`ij-09-01-conflicts-dialog.png`**
-> - 画面：Conflicts ダイアログ（コンフリクトしたファイルが一覧表示された状態）
-> - 強調：ファイル一覧、「Accept Yours」「Accept Theirs」「Merge...」ボタンを赤枠で囲む
+![IntelliJ IDEAの競合（Conflicts）ダイアログ](../../images/git/intellij/ij-09-01-conflicts-dialog.png)
 
 | ボタン | 意味 |
 |---|---|
@@ -297,10 +288,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 IntelliJ は、**Git ツールウィンドウの Log でコミットを右クリック**すると、多くの取り消し操作ができます。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-10-01-log-context-menu.png -->
-> 📷 **スクショ指定：`ij-10-01-log-context-menu.png`**
-> - 画面：Git ツールウィンドウの Log で、コミットを右クリックしてメニューを開いた状態
-> - 強調：「Undo Commit...」「Revert Commit」「Reset Current Branch to Here...」「Edit Commit Message...」の項目を赤枠で囲む
+![ログメニューイメージ画像](../../images/git/intellij/ij-10-01-log-context-menu.png)
 
 | やりたいこと | IntelliJ での操作 | CUI でいうと |
 |---|---|---|
@@ -312,15 +300,9 @@ IntelliJ は、**Git ツールウィンドウの Log でコミットを右クリ
 | 任意のコミットまで戻す（push 前） | Log で戻したいコミットを右クリック → **Reset Current Branch to Here...** → モードを選ぶ | `git reset --soft / --mixed / --hard` |
 | push 済みのコミットを打ち消す | Log でコミットを右クリック → **Revert Commit** → 自動で打ち消すコミットができるので Push | `git revert コミットID` |
 
-<!-- 📷 SS: ../../images/git/intellij/ij-10-02-rollback.png -->
-> 📷 **スクショ指定：`ij-10-02-rollback.png`**
-> - 画面：Commit ツールウィンドウでファイルを右クリックし、Rollback... を選んだあとの確認ダイアログ
-> - 強調：「Rollback」ボタンを赤枠で囲み、「⚠️ 元に戻せない」と注記する
+![ロールバックイメージ画像](../../images/git/intellij/ij-10-02-rollback.png)
 
-<!-- 📷 SS: ../../images/git/intellij/ij-10-03-reset-dialog.png -->
-> 📷 **スクショ指定：`ij-10-03-reset-dialog.png`**
-> - 画面：Reset Current Branch to Here... のダイアログ（Soft / Mixed / Hard / Keep の選択肢）
-> - 強調：4つのモードの選択肢と、それぞれの説明文を赤枠で囲む
+![Gitリセットイメージ画像](../../images/git/intellij/ij-10-03-reset-dialog.png)
 
 > Reset のモードの意味は [03 応用編 4-3](./03_CUI応用編.md#4-3-コミットをなかったことにするresetpush-前のみ) と同じです（**Keep** は「未コミットの変更を残したまま、ぶつからない範囲で巻き戻す」モード）。まずは **Soft** を使いましょう。
 
@@ -331,10 +313,7 @@ IntelliJ は、**Git ツールウィンドウの Log でコミットを右クリ
 1. Log で **Reset Current Branch to Here...**（または Undo Commit...）で取り消す。
 2. **Push...** を開き、**Push** ボタンの横の ▼ → **Force Push** を選ぶ（IntelliJ は自動で `--force-with-lease` 相当の安全な方法で上書きします）。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-10-04-force-push.png -->
-> 📷 **スクショ指定：`ij-10-04-force-push.png`**
-> - 画面：Push ダイアログで Push ボタン横の ▼ を開いた状態
-> - 強調：「Force Push」の項目を赤枠で囲み、「⚠️ 自分だけのブランチでのみ使う」と注記する
+![Pushイメージ画像](../../images/git/intellij/ij-10-04-force-push.png)
 
 > ⚠️ main など他の人も使うブランチでは、Force Push せずに **Revert Commit** を使いましょう。IntelliJ は初期設定で main への Force Push を禁止しています（`Settings` → `Version Control` → `Git` の **Protected branches**）。
 
