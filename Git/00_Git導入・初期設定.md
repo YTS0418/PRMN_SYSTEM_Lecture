@@ -233,14 +233,14 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 ### 5-3. VSCode
 
 1. VSCode の左下にある **アカウント** アイコン（人型）をクリックする。
-   ![アカウントボタン](../../images/git/setup/setup-05-01-vscode-signin-01.png)
+   ![アカウントボタン](../images/git/setup/setup-05-01-vscode-signin-01.png)
 2. **「GitHub でサインイン」**（Sign in with GitHub）を選ぶ。
    - 出てこない場合は、ソース管理で push / 同期を実行すると「GitHub にサインインしますか？」と出るので **許可** する。<br>
-   ![サインイン](../../images/git/setup/setup-05-01-vscode-signin-02.png)
-   ![GitHubでサインイン](../../images/git/setup/setup-05-01-vscode-signin-03.png)
+   ![サインイン](../images/git/setup/setup-05-01-vscode-signin-02.png)
+   ![GitHubでサインイン](../images/git/setup/setup-05-01-vscode-signin-03.png)
 3. ブラウザが開くので GitHub にログインし、**Authorize Visual Studio Code** をクリックする。
-   ![Authorize Visual Studio Code](../../images/git/setup/setup-05-01-vscode-signin-04.png)
-   ![Authorize Visual Studio Code](../../images/git/setup/setup-05-01-vscode-signin-05.png)
+   ![Authorize Visual Studio Code](../images/git/setup/setup-05-01-vscode-signin-04.png)
+   ![Authorize Visual Studio Code](../images/git/setup/setup-05-01-vscode-signin-05.png)
 4. 「VS Code を開きますか？」と出たら **開く** を選ぶ。
 5. アカウントアイコンに自分のユーザー名が表示されれば完了。
 
@@ -258,7 +258,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 4. ブラウザが開くので GitHub にログインし、**Authorize in GitHub** をクリックする。
 5. アカウント一覧に自分のユーザー名が表示されれば完了。**OK** で閉じる。
 
-<!-- 📷 SS: ../../images/git/setup/setup-05-02-intellij-github-account.png -->
+<!-- 📷 SS: ../images/git/setup/setup-05-02-intellij-github-account.png -->
 > 📷 **スクショ指定：`setup-05-02-intellij-github-account.png`**
 > - 画面：Settings → Version Control → GitHub で「＋」を押してメニューが出た状態
 > - 強調：左メニューの「GitHub」、「＋」ボタン、「Log In via GitHub」を赤枠で囲む
@@ -289,7 +289,7 @@ cd PRMN_SYSTEM_Lecture
 
 clone する URL は、GitHub のリポジトリページの緑色の **Code** ボタンから コピーできます。
 
-<!-- 📷 SS: ../../images/git/setup/setup-06-01-github-code-button.png -->
+<!-- 📷 SS: ../images/git/setup/setup-06-01-github-code-button.png -->
 > 📷 **スクショ指定：`setup-06-01-github-code-button.png`**
 > - 画面：GitHub のリポジトリページで緑の「Code」ボタンを押し、HTTPS タブが開いた状態
 > - 強調：「Code」ボタン、HTTPS タブ、URL 横のコピーボタンを赤枠で囲む

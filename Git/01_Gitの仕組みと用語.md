@@ -21,7 +21,7 @@
 
 ## 1. Git と GitHub とは
 
-![GitとGitHubの画像](../../images/git_github.png)
+![GitとGitHubの画像](../images/git_github.png)
 
 ### Git（ギット）
 

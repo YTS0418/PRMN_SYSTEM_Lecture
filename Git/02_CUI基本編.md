@@ -35,7 +35,7 @@
 
 ## 1. 毎回の作業の流れ
 
-![gitサイクルイメージ](../../images/gitサイクルイメージ.png)
+![gitサイクルイメージ](../images/gitサイクルイメージ.png)
 
 ```mermaid
 flowchart TD
