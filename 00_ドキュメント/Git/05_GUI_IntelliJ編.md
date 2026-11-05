@@ -272,10 +272,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. 上部の **Accept Left** / **Accept Right** で、まとめて片方を採用することもできる。
 5. 内容を確認して **Apply** をクリックする。
 
-<!-- 📷 SS: ../../images/git/intellij/ij-09-02-merge-editor.png -->
-> 📷 **スクショ指定：`ij-09-02-merge-editor.png`**
-> - 画面：3画面のマージエディタを開いた状態（コンフリクトが1〜2か所ある）
-> - 強調：左（自分の変更）・中央（結果）・右（相手の変更）の3領域を枠で囲んで名前を注記し、「»」「«」「×」ボタンと「Apply」ボタンを赤枠で囲む
+![IntelliJ IDEAの3画面マージエディタ](../../images/git/intellij/ij-09-02-merge-editor.png)
 
 ### 解決したら
 
