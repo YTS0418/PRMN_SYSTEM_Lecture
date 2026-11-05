@@ -1,8 +1,8 @@
-# 04. フレームワークとSpring
+# 05. フレームワークとSpring
 
 [📖 4層アーキテクチャの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
-[← 前へ：03 依存の向きとインタフェース](03_依存の向きとインタフェース.md) ｜ [次へ：05 サンプル実装の読み方 →](05_サンプル実装の読み方.md)
+[← 前へ：04 Javaで4層を作る](04_Javaで4層を作る.md) ｜ [次へ：06 サンプル実装の読み方 →](06_サンプル実装の読み方.md)
 
 ## この章のゴール
 - **ライブラリ**と**フレームワーク**の違い（制御の反転）を説明できる
@@ -71,7 +71,7 @@ class StudentController {
 }
 ```
 
-> 前の章の DI も、制御の反転の一種です。`GradeService` は「自分で部品を作る」のをやめ、**部品を渡される側**になりました。フレームワークは、それをさらに押し進めたものです。
+> 03 章・04 章の DI も、制御の反転の一種です。`GradeService` は「自分で部品を作る」のをやめ、**部品を渡される側**になりました。フレームワークは、それをさらに押し進めたものです。
 
 > 💡 実際には、境目はあいまいです。ライブラリでも、コールバック（呼び返される処理）を登録するものがあります。「**全体の流れを握っているのは誰か**」で考えると分かりやすくなります。
 
@@ -83,7 +83,7 @@ Web アプリケーションには、どんなシステムでも必要になる*
 
 | 共通の作業 | フレームワークがやってくれること |
 |---|---|
-| 部品の組み立て | DI コンテナが、`new` と受け渡しを自動で行う（03 章） |
+| 部品の組み立て | DI コンテナが、`new` と受け渡しを自動で行う（03 章・04 章） |
 | HTTP の処理 | URL と Java のメソッドの対応づけ、リクエストの解釈、JSON への変換 |
 | データベース接続 | 接続の設定、接続の使い回し（コネクションプール） |
 | 設定の管理 | 設定ファイルの読み込み、環境ごとの切り替え |
@@ -105,7 +105,7 @@ Web アプリケーションには、どんなシステムでも必要になる*
 
 **Spring Framework** は、Java で最も広く使われているフレームワークの 1 つです。2000 年代前半に登場し、当時の Java の企業向け標準（Java EE）が複雑だったことへの代替として広まりました。
 
-核となる機能は、前の章で見た **DI コンテナ**（部品を作って、必要な場所に渡す管理役）です。その上に、Web、データベース、セキュリティなどの機能が、**プロジェクト**として用意されています。
+核となる機能は、03 章で見た **DI コンテナ**（部品を作って、必要な場所に渡す管理役）です。その上に、Web、データベース、セキュリティなどの機能が、**プロジェクト**として用意されています。
 
 | プロジェクト | 役割 | 4層との関係 |
 |---|---|---|
@@ -144,7 +144,7 @@ flowchart TB
 | **自動設定** | クラスパスにあるライブラリを見て、**必要な設定を自動で行う**。たとえば PostgreSQL のドライバがあれば、データベース接続の部品（DataSource）を自動で用意する |
 | **組み込みサーバー** | Tomcat などの Web サーバーを内蔵しており、`java -jar` で**単体で起動**できる（別途サーバーをインストールしなくてよい） |
 | **設定ファイル** | `application.properties`（または `application.yml`）に、接続先などを書く |
-| **Initializr** | 必要なライブラリを選ぶと、プロジェクトの雛形を作ってくれる Web サイト（06 章） |
+| **Initializr** | 必要なライブラリを選ぶと、プロジェクトの雛形を作ってくれる Web サイト（07 章） |
 
 設定ファイルのイメージです。データベースの接続先を書くだけで、あとは自動設定が接続を用意します。
 
@@ -163,7 +163,7 @@ spring.datasource.username=postgres
 
 Spring が作って管理するオブジェクトを **Bean**（ビーン）といいます。Bean を作って保管し、必要な場所に渡す管理役が **DI コンテナ**（`ApplicationContext`）です。
 
-03 章で `Main` が行っていた「`new` で作って、コンストラクタに渡す」作業を、コンテナが**起動時に自動で**行います。
+04 章で `Main` が行っていた「`new` で作って、コンストラクタに渡す」作業を、コンテナが**起動時に自動で**行います。
 
 ```mermaid
 flowchart LR
@@ -193,6 +193,67 @@ flowchart LR
 
 `@Controller`・`@Service`・`@Repository` は、どれも `@Component` の一種で、**役割を表す名札**の意味が強いものです。名前を見るだけで、4 層のどこに属するか分かります。
 
+### 4層と Spring での呼び名
+
+Spring Boot でよく見る名前と、この資料の 4 層は次のように対応します（実際に書くのは [07 章](07_Spring_Bootで書き直す.md)）。
+
+| この資料の層 | Spring での呼び名 | 付けるアノテーション |
+|---|---|---|
+| Presentation | **Controller** | `@RestController` / `@Controller` |
+| Application | **Service** | `@Service` |
+| Domain | **Entity**（Model） | （通常は不要） |
+| Domain（保存の窓口） / Infrastructure（実装） | **Repository** | `@Repository` |
+
+> 💡 現場では「Controller → Service → Repository の 3 層」と呼ぶことも多いです。3 層・MVC などとの対応は [02 章 8 節](02_4層の役割.md#8-他の呼び名との対応) を参照してください。
+
+### 組み立ては DI コンテナが行う
+
+03 章で説明した「部品をつなぐ場所（起動処理）」の仕事を、Spring では DI コンテナが**自動で**行います。開発者が書くのは、次の 2 つだけです。
+
+1. 起動クラスに `@SpringBootApplication` を付ける
+2. 「どの実装を使うか」を `@Configuration` と `@Bean` で宣言する（クラスに `@Repository` を付けて、自動で見つけさせる方法もあります）
+
+```java
+@SpringBootApplication
+public class GradesApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GradesApplication.class, args);   // コンテナを起動する
+    }
+}
+
+@Configuration
+class RepositoryConfig {
+    @Bean                                                       // 「この戻り値を部品として管理して」
+    StudentRepository studentRepository() {
+        return new InMemoryStudentRepository();                 // ここで保存先を決める
+    }
+    // …（他の Repository も同様）
+}
+```
+
+`GradeService` や Controller に相当するクラスは、**コンストラクタの引数の型を見て**、コンテナが適切な部品を渡します。`new GradeService(...)` を、開発者は書きません。
+
+```mermaid
+flowchart LR
+    subgraph C["Spring の DI コンテナ"]
+        direction LR
+        repo["StudentRepository<br>（InMemory… の実体）"] -.->|注入| svc["GradeService"]
+        svc -.->|注入| ctl["Controller"]
+    end
+    cfg["@Configuration<br>@Bean の宣言"] -->|定義を渡す| C
+    app["起動クラス<br>@SpringBootApplication"] -->|コンテナを起動| C
+```
+
+素の Java（04 章の `Main`）と Spring を比べると、次のようになります。
+
+| | 素の Java | Spring |
+|---|---|---|
+| 部品を作る人 | `Main`（`new` で書く） | DI コンテナ |
+| 「何を使うか」を決める場所 | `Main` | `@Configuration` / `@Bean`（または `@Repository` の付いたクラス） |
+| 渡す方法 | コンストラクタの引数に自分で渡す | コンストラクタの引数の型を見て、コンテナが渡す |
+| 全部の層を知っているのは | `Main` | 設定クラスと起動クラス（コンテナが仲介） |
+| 保存先を切り替えるとき | `Main` の `new InMemory…` を `new Jdbc…` に変える | `@Bean` の戻り値を `Jdbc…` に変える（実装ごとに切り替える `@Profile` という仕組みもあります） |
+
 ### コンストラクタ注入
 
 ```java
@@ -207,7 +268,7 @@ public class GradeService {
 }
 ```
 
-03 章の `GradeService` に `@Service` を付けただけです。**`GradeService` のコードは、Spring を使っても使わなくても、ほとんど変わりません**。
+04 章の `GradeService` に `@Service` を付けただけです。**`GradeService` のコードは、Spring を使っても使わなくても、ほとんど変わりません**。
 
 > 💡 `private @Autowired StudentRepository repo;` のように、**フィールドに直接 `@Autowired` を付ける**書き方（フィールド注入）も存在しますが、推奨されません。`final` にできず、テストで差し替えにくく、依存が見えにくいためです。**コンストラクタ注入を使いましょう**。
 
@@ -239,7 +300,7 @@ flowchart TB
 |---|---|
 | 業務のルールは長く使う | フレームワークが変わる・古くなっても、Domain 層はそのまま使い続けられる |
 | テストしやすい | Spring を起動しなくても、`new Enrollment(...)` だけでテストできる |
-| 04 章までの設計がそのまま使える | 素の Java 版（`step1`）の Domain 層は、Spring 版でも **1 行も変えずに**使える |
+| 第 1 部・04 章までの設計がそのまま使える | 素の Java 版（`step1`）の Domain 層は、Spring 版でも **1 行も変えずに**使える |
 
 > 💡 `import org.springframework...` が書かれているのが、`presentation`、`application`、`infrastructure` のパッケージだけで、**`domain` には 1 つも無い**。これが、Spring を使うときの 4 層の約束です。
 
@@ -376,6 +437,6 @@ Python など、他の言語を学んだ人向けに、代表的な Web フレ�
 
 ---
 
-[← 前へ：03 依存の向きとインタフェース](03_依存の向きとインタフェース.md) ｜ [次へ：05 サンプル実装の読み方 →](05_サンプル実装の読み方.md)
+[← 前へ：04 Javaで4層を作る](04_Javaで4層を作る.md) ｜ [次へ：06 サンプル実装の読み方 →](06_サンプル実装の読み方.md)
 
 [📖 4層アーキテクチャの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
