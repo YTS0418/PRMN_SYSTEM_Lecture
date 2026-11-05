@@ -77,7 +77,7 @@ try (Connection conn = DriverManager.getConnection(url, "postgres", System.geten
 
 > ⚠️ **パスワードをソースコードに書かない**でください。上の例のように環境変数から読むか、設定ファイルに分けて、Git にコミットしないようにします。
 
-`Connection` は、使い終わったら**必ず閉じます**。Java 入門 09 章で学んだ **try-with-resources** を使えば、例外が起きても確実に閉じられます。
+`Connection` は、使い終わったら**必ず閉じます**。**try-with-resources** を使えば、例外が起きても確実に閉じられます（付録 Java 入門 09 章で扱っています）。
 
 ## 3. SQL を実行して結果を受け取る
 

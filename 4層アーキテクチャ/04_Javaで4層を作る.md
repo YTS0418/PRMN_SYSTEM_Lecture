@@ -92,7 +92,7 @@ public record Enrollment(int studentId, int courseId, int academicYear, Integer 
 - `score` を `int` ではなく `Integer` にしているのは、**「まだ点数が無い（履修中）」を `null` で表す**ためです（データベース編 06 章・12 章）
 - Domain 層には `println`・SQL・`Scanner` を書きません
 
-> 💡 Java 入門 06 章の `Student`（`private` + 検査つき）は、すでに Domain 層のクラスの考え方になっています。
+> 💡 フィールドを `private` にして、作るときに値を検査するクラスは、Domain 層のクラスの考え方そのものです（付録 Java 入門 06 章でも、同じ書き方を扱っています）。
 
 ## 4. 保存の窓口：interface で宣言する
 
@@ -134,7 +134,7 @@ classDiagram
 - `GradeService` は、実体がメモリなのかデータベースなのかを**知らない**
 - 実装クラスは `StudentRepository` を実装するだけなので、**差し替えても `GradeService` は変わらない**
 
-> Java 入門の 10 章で `List<Student> students = new ArrayList<>();` と書いたのも同じ発想です。変数の型は**インタフェース**（`List`）、実体は `ArrayList`。`LinkedList` に変えても使う側は変わりません。
+> Java の標準ライブラリにも同じ発想があります。`List<Student> students = new ArrayList<>();` と書くとき、変数の型は**インタフェース**（`List`）、実体は `ArrayList` です。`LinkedList` に変えても、使う側は変わりません。
 
 ## 5. Application 層：コンストラクタ注入
 
