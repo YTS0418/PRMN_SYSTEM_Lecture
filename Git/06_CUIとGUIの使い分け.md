@@ -1,6 +1,6 @@
 # 06. CUI と GUI の使い分け
 
-← 前へ [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md) ｜ 最初へ → [00. 導入・初期設定](./00_Git導入・初期設定.md#git-資料の構成)
+[📚 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ ← 前へ [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
 
 GUI は便利ですが、**すべての Git 操作ができるわけではありません**。この資料では、GUI でできない（やりにくい）操作と、GUI で困ったときに CUI に戻る方法をまとめます。
 
@@ -158,4 +158,4 @@ IntelliJ IDEA には、Git とは別に **Local History**（ローカル履歴�
 
 ---
 
-← 前へ [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md) ｜ 最初へ → [00. 導入・初期設定](./00_Git導入・初期設定.md#git-資料の構成)
+[📚 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ ← 前へ [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)

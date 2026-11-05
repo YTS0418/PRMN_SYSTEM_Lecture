@@ -1,6 +1,6 @@
 # 04. GUI VSCode編
 
-← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ 次へ → [06. CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)<br> IntelliJ を使う人は → [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+[📚 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ ← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ 次へ → [06. CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)<br> IntelliJ を使う人は → [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
 
 [02 CUI 基本編](./02_CUI基本編.md)・[03 CUI 応用編](./03_CUI応用編.md)でコマンドで行った操作を、**VSCode のボタン操作**で行います。<br>各操作の見出しの下に「**CUI でいうと**」を書いているので、コマンドと見比べながら進めてください。
 
@@ -448,4 +448,4 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 
 ---
 
-← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ 次へ → [06. CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)<br> IntelliJ を使う人は → [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+[📚 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ ← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ 次へ → [06. CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)<br> IntelliJ を使う人は → [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
