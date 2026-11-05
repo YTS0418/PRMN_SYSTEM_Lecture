@@ -1,5 +1,7 @@
 # 09. SQL：基本操作
 
+[📖 データベースの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+
 [← 前へ：08 SQL：テーブルの作成（DDL）](08_SQL_DDL.md) ｜ [次へ：10 SQL：応用 →](10_SQL_応用.md)
 
 ## この章のゴール
@@ -302,3 +304,5 @@ SELECT setval(pg_get_serial_sequence('students', 'student_id'), (SELECT MAX(stud
 ---
 
 [← 前へ：08 SQL：テーブルの作成（DDL）](08_SQL_DDL.md) ｜ [次へ：10 SQL：応用 →](10_SQL_応用.md)
+
+[📖 データベースの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)

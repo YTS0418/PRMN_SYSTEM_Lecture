@@ -1,6 +1,8 @@
 # 03. CUI 応用編
 
-[📚 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ ← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+
+← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
 
 チーム開発で必ず出会う「main が先に進んでしまった」「間違えてコミット／push してしまった」「プルリクエストってどう使うの？」に対応できるようになることが目標です。
 
@@ -639,4 +641,6 @@ Thumbs.db
 
 ---
 
-[📚 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ ← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+
+[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
