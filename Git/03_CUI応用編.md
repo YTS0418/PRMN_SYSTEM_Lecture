@@ -487,9 +487,9 @@ git push
 
 対応したコメントには返信し、**Resolve conversation** を押して解決済みにします。Suggest changes で提案された修正は、**Commit changes** ボタンで GitHub 上から直接取り込むこともできます（その場合は、あとで手元で `git pull` してください）。
 
-![Resolve conversation](../../images/git/github/gh-06-05-resolve-conversation-01.png)
+![Resolve conversation](../images/git/github/gh-06-05-resolve-conversation-01.png)
 
-![Commit changes](../../images/git/github/gh-06-05-resolve-conversation-02.png)
+![Commit changes](../images/git/github/gh-06-05-resolve-conversation-02.png)
 
 ### 6-5. マージする
 
@@ -545,7 +545,7 @@ git fetch --prune             # ④ GitHub で削除済みのブランチの控�
 
 PR の下部に **This branch has conflicts that must be resolved** と表示されることがあります。
 
-![PRにおけるコンフリクト画面](../../images/git/github/gh-06-08-pr-conflict.png)
+![PRにおけるコンフリクト画面](../images/git/github/gh-06-08-pr-conflict.png)
 
 **手元で [2章の手順](#2-自分のブランチを最新の-main-に合わせる)** を行い、コンフリクトを解決して push すれば、PR の表示も自動で解消されます。
 

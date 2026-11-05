@@ -67,9 +67,9 @@ flowchart LR
 | ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` /  `revert` / `reset` |
 | ④ メインメニュー | 左上の **☰** → **Git** | すべての Git 操作 | — |
 
-![IntelliJ IDEAのGit操作画面](../../images/git/intellij/ij-01-01-overview.png)
+![IntelliJ IDEAのGit操作画面](../images/git/intellij/ij-01-01-overview.png)
 
-![IntelliJ IDEAのGitメニュー](../../images/git/intellij/ij-01-02-git-menu.png)
+![IntelliJ IDEAのGitメニュー](../images/git/intellij/ij-01-02-git-menu.png)
 
 > **ボタンが見つからないとき**は、`Shift` を2回押して出る **どこでも検索** で `push` や `branch` などと検索すると、操作を探せます。
 
@@ -95,9 +95,9 @@ flowchart LR
 2. 左の **GitHub** を選ぶと、登録したアカウントのリポジトリ一覧が表示される（URL を直接入力する場合は **リポジトリー URL** を選ぶ）。
 3. 対象のリポジトリを選び、**ディレクトリ**（保存先）を指定して **クローン** をクリックする。
 
-![IntelliJ IDEAのウェルカム画面（リポジトリのクローン）](../../images/git/intellij/ij-02-01-welcome-clone.png)
+![IntelliJ IDEAのウェルカム画面（リポジトリのクローン）](../images/git/intellij/ij-02-01-welcome-clone.png)
 
-![IntelliJ IDEAのリポジトリのクローン画面](../../images/git/intellij/ij-02-02-clone-dialog.png)
+![IntelliJ IDEAのリポジトリのクローン画面](../images/git/intellij/ij-02-02-clone-dialog.png)
 
 > ⚠️ OneDrive などの同期フォルダの中は避けましょう（[00 導入編 6章](./00_Git導入・初期設定.md#6-リポジトリを-clone-する)）。
 
@@ -112,11 +112,11 @@ flowchart LR
 - **変更**：変更したファイル
 - **バージョン管理外のファイル**：新しく作った、まだ Git 管理外のファイル
 
-![IntelliJ IDEAのCommitツールウィンドウ（変更済みファイルと未追跡ファイル）](../../images/git/intellij/ij-03-01-commit-window.png)
+![IntelliJ IDEAのCommitツールウィンドウ（変更済みファイルと未追跡ファイル）](../images/git/intellij/ij-03-01-commit-window.png)
 
 ファイルを**ダブルクリック**すると、**左に変更前・右に変更後**の差分が表示されます。
 
-![IntelliJ IDEAの差分ビュー（変更前と変更後）](../../images/git/intellij/ij-03-02-diff-view.png)
+![IntelliJ IDEAの差分ビュー（変更前と変更後）](../images/git/intellij/ij-03-02-diff-view.png)
 
 > エディタの行番号の横にも、色の帯（緑：追加、青：変更、灰色の三角：削除）が表示されます。クリックすると、その場で差分の確認や取り消しができます。
 
@@ -134,9 +134,9 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 下の **コミットメッセージ** 欄に内容を書く。
 3. **コミット** をクリックする（push まで行うなら **コミットしてプッシュ...**）。
 
-![IntelliJ IDEAのコミット対象ファイル選択画面](../../images/git/intellij/ij-04-01-check-files.png)
+![IntelliJ IDEAのコミット対象ファイル選択画面](../images/git/intellij/ij-04-01-check-files.png)
 
-![IntelliJ IDEAのコミットメッセージ入力画面](../../images/git/intellij/ij-04-02-commit-message.png)
+![IntelliJ IDEAのコミットメッセージ入力画面](../images/git/intellij/ij-04-02-commit-message.png)
 
 > **行単位でコミットする**：差分ビューで、変更ブロックの横にあるチェックボックスを外すと、その部分だけコミットから除外できます（CUI よりかんたんです）。
 
@@ -153,7 +153,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 1. 上部のブランチウィジェット → **プッシュ...**、または ☰ → `Git` → `プッシュ...`（`Ctrl + Shift + K` / Mac は `⌘ + Shift + K`）。
 2. 左に送るコミットの一覧、右にそのコミットで変わるファイルが表示される。内容を確認して **プッシュ** をクリックする。
 
-![IntelliJ IDEAのPushダイアログ](../../images/git/intellij/ij-05-01-push-dialog.png)
+![IntelliJ IDEAのPushダイアログ](../images/git/intellij/ij-05-01-push-dialog.png)
 
 > **初めて push するブランチ**も、同じ プッシュ ダイアログでそのまま **プッシュ** をクリックすれば OK です（`-u origin ブランチ名` 相当の設定は自動で行われます）。ダイアログ内に **新規** と表示されます。
 
@@ -163,7 +163,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 - **プロジェクトを更新**（更新）は、今いるブランチに GitHub の最新を取り込みます。初回は方式を聞かれるので **マージ** を選びます。
 
-![IntelliJ IDEAのUpdate Projectダイアログ](../../images/git/intellij/ij-05-02-update-project.png)
+![IntelliJ IDEAのUpdate Projectダイアログ](../images/git/intellij/ij-05-02-update-project.png)
 
 ### fetch する
 
@@ -181,7 +181,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 - 中央：コミットの一覧とグラフ
 - 右：選んだコミットで変更されたファイル
 
-![IntelliJ IDEAのGit Log画面](../../images/git/intellij/ij-06-01-git-log.png)
+![IntelliJ IDEAのGit Log画面](../images/git/intellij/ij-06-01-git-log.png)
 
 > 上部の検索欄や **ブランチ** / **ユーザー** / **日付** / **パス** のフィルターで、履歴を絞り込めます。
 
@@ -201,9 +201,9 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. **新規ブランチ...** を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力し、**ブランチをチェックアウト** にチェックが入っていることを確認して **作成** をクリックする（作成と同時に切り替わる）。
 
-![ブランチのポップアップ](../../images/git/intellij/ij-07-01-branch-widget.png)
+![ブランチのポップアップ](../images/git/intellij/ij-07-01-branch-widget.png)
 
-![新規ブランチの作成ダイヤログ](../../images/git/intellij/ij-07-02-new-branch-dialog.png)
+![新規ブランチの作成ダイヤログ](../images/git/intellij/ij-07-02-new-branch-dialog.png)
 
 ### 7-2. ブランチを切り替える
 
@@ -211,14 +211,14 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 一覧から移動したいブランチにマウスを乗せ、サブメニューから **チェックアウト** を選ぶ。
    - **リモート** にある `origin/〇〇` を チェックアウト すると、手元に同じ名前のブランチが作られて切り替わります。
 
-![ブランチ切り替え画面のポップアップ](../../images/git/intellij/ij-07-03-checkout-submenu.png)
+![ブランチ切り替え画面のポップアップ](../images/git/intellij/ij-07-03-checkout-submenu.png)
 ※8章で利用します
 
 ### 7-3. 未コミットの変更があるときのダイアログ
 
 未コミットの変更が切り替え先とぶつかる場合、次のダイアログが表示されます。
 
-![Gitチェックアウトの問題ダイヤログ](../../images/git/intellij/ij-07-04-smart-checkout.png)
+![Gitチェックアウトの問題ダイヤログ](../images/git/intellij/ij-07-04-smart-checkout.png)
 
 | 選択肢 | 何が起きるか | CUI でいうと | 使う場面 |
 |---|---|---|---|
@@ -242,7 +242,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. サブメニューから **'origin/main' を 'feature-login' にマージ** を選ぶ。
 5. コンフリクトがなければマージ完了。**プッシュ...** で push する。
 
-![origin/mainをfeature-loginにマージするメニュー](../../images/git/intellij/ij-08-01-merge-origin-main.png)
+![origin/mainをfeature-loginにマージするメニュー](../images/git/intellij/ij-08-01-merge-origin-main.png)
 
 > ⚠️ **向きに注意**：メニューの文字が「'取り込むブランチ' を '今いるブランチ' にマージ」になっているか必ず確認しましょう。
 
@@ -256,7 +256,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 マージや 更新 でコンフリクトが起きると、**競合** ダイアログが表示されます。
 
-![IntelliJ IDEAの競合（Conflicts）ダイアログ](../../images/git/intellij/ij-09-01-conflicts-dialog.png)
+![IntelliJ IDEAの競合（Conflicts）ダイアログ](../images/git/intellij/ij-09-01-conflicts-dialog.png)
 
 | ボタン | 意味 |
 |---|---|
@@ -273,7 +273,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. 上部の **左を採用** / **右を採用** で、まとめて片方を採用することもできる。
 5. 内容を確認して **適用** をクリックする。
 
-![IntelliJ IDEAの3画面マージエディタ](../../images/git/intellij/ij-09-02-merge-editor.png)
+![IntelliJ IDEAの3画面マージエディタ](../images/git/intellij/ij-09-02-merge-editor.png)
 
 ### 解決したら
 
@@ -289,7 +289,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 IntelliJ は、**Git ツールウィンドウの ログ でコミットを右クリック**すると、多くの取り消し操作ができます。
 
-![ログメニューイメージ画像](../../images/git/intellij/ij-10-01-log-context-menu.png)
+![ログメニューイメージ画像](../images/git/intellij/ij-10-01-log-context-menu.png)
 
 | やりたいこと | IntelliJ での操作 | CUI でいうと |
 |---|---|---|
@@ -301,9 +301,9 @@ IntelliJ は、**Git ツールウィンドウの ログ でコミットを右ク
 | 任意のコミットまで戻す（push 前） | ログ で戻したいコミットを右クリック → **現在のブランチをここまでリセット...** → モードを選ぶ | `git reset --soft / --mixed / --hard` |
 | push 済みのコミットを打ち消す | ログ でコミットを右クリック → **コミットを取り消す** → 自動で打ち消すコミットができるので プッシュ | `git revert コミットID` |
 
-![ロールバックイメージ画像](../../images/git/intellij/ij-10-02-rollback.png)
+![ロールバックイメージ画像](../images/git/intellij/ij-10-02-rollback.png)
 
-![Gitリセットイメージ画像](../../images/git/intellij/ij-10-03-reset-dialog.png)
+![Gitリセットイメージ画像](../images/git/intellij/ij-10-03-reset-dialog.png)
 
 > Reset のモードの意味は [03 応用編 4-3](./03_CUI応用編.md#4-3-コミットをなかったことにするresetpush-前のみ) と同じです（**Keep** は「未コミットの変更を残したまま、ぶつからない範囲で巻き戻す」モード）。まずは **Soft** を使いましょう。
 
@@ -314,7 +314,7 @@ IntelliJ は、**Git ツールウィンドウの ログ でコミットを右ク
 1. ログ で **現在のブランチをここまでリセット...**（または コミットを元に戻す...）で取り消す。
 2. **プッシュ...** を開き、**プッシュ** ボタンの横の ▼ → **強制プッシュ** を選ぶ（IntelliJ は自動で `--force-with-lease` 相当の安全な方法で上書きします）。
 
-![Pushイメージ画像](../../images/git/intellij/ij-10-04-force-push.png)
+![Pushイメージ画像](../images/git/intellij/ij-10-04-force-push.png)
 
 > ⚠️ main など他の人も使うブランチでは、強制プッシュ せずに **コミットを取り消す** を使いましょう。IntelliJ は初期設定で main への 強制プッシュ を禁止しています（`設定` → `バージョン管理` → `Git` の **保護されたブランチ**）。
 
@@ -331,16 +331,16 @@ IntelliJ には、Git の **スタッシュ** と、IntelliJ 独自の **シェ�
 - **退避**：☰ → `Git` → `未コミットの変更` → **変更をスタッシュ...** → メッセージを入力して **スタッシュを作成**
 - **戻す**：☰ → `Git` → `未コミットの変更` → **スタッシュ解除...** → 一覧から選んで **スタッシュをポップ**（戻して削除）または **スタッシュを適用**（戻して残す）
 
-![スタッシュのイメージ画像1](../../images/git/intellij/ij-11-01-stash-changes.png)
+![スタッシュのイメージ画像1](../images/git/intellij/ij-11-01-stash-changes.png)
 
-![スタッシュのイメージ画像2](../../images/git/intellij/ij-11-02-unstash-dialog.png)
+![スタッシュのイメージ画像2](../images/git/intellij/ij-11-02-unstash-dialog.png)
 
 ### シェルフ（IntelliJ 独自）
 
 - **退避**：コミット ツールウィンドウでファイルを右クリック → **変更をシェルブ...**（ファイルを選んで退避できる）
 - **戻す**：コミット ツールウィンドウの **シェルフ** タブを開き、対象を右クリック → **シェルブ解除...**
 
-![シェルフイメージ画像](../../images/git/intellij/ij-11-03-shelf-tab.png)
+![シェルフイメージ画像](../images/git/intellij/ij-11-03-shelf-tab.png)
 
 ---
 
@@ -356,7 +356,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. ☰ → `Git` → `GitHub` → **プルリクエストを作成...**（または左端の **プルリクエスト** アイコン → **＋**）を選ぶ。
 3. 取り込み先（**main**）と自分のブランチ、タイトル・説明を入力し、**プルリクエストを作成** をクリックする。
 
-![PRを作るイメージ画像](../../images/git/intellij/ij-12-01-create-pr.png)
+![PRを作るイメージ画像](../images/git/intellij/ij-12-01-create-pr.png)
 
 ### PR をレビューする
 
@@ -364,7 +364,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. 変更ファイルをダブルクリックすると差分が開き、行の横の **＋**（吹き出し）からコメントを書ける。
 3. **チェックアウト** で PR のブランチに切り替えると、手元で動かして確認できる。
 
-![PRをレビューするイメージ画像](../../images/git/intellij/ij-12-02-review-pr.png)
+![PRをレビューするイメージ画像](../images/git/intellij/ij-12-02-review-pr.png)
 
 > マージ方式の選択やブランチの削除は、Web 画面のほうが分かりやすいです。慣れるまでは **作成は IntelliJ でも Web でもOK、レビューとマージは Web** がおすすめです。
 
