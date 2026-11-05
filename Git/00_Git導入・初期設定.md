@@ -32,22 +32,32 @@ flowchart LR
 
 ## 目次
 
-1. [準備の全体像](#1-準備の全体像)
-2. [GitHub アカウントの作成](#2-github-アカウントの作成)
-3. [Git のインストール](#3-git-のインストール)
+- [00. Git 導入・初期設定](#00-git-導入初期設定)
+  - [Git 資料の構成](#git-資料の構成)
+  - [目次](#目次)
+  - [1. 準備の全体像](#1-準備の全体像)
+  - [2. GitHub アカウントの作成](#2-github-アカウントの作成)
+  - [3. Git のインストール](#3-git-のインストール)
     - [Windows の場合](#windows-の場合)
     - [Mac の場合](#mac-の場合)
-4. [名前とメールアドレスの設定](#4-名前とメールアドレスの設定)
-5. [GitHub への認証設定](#5-github-への認証設定)
-6. [リポジトリを clone する](#6-リポジトリを-clone-する)
+  - [4. 名前とメールアドレスの設定](#4-名前とメールアドレスの設定)
+  - [5. GitHub への認証設定](#5-github-への認証設定)
+    - [5-0. Personal Access Token (PAT) の発行手順](#5-0-personal-access-token-pat-の発行手順)
+    - [5-1. ターミナル（Windows）](#5-1-ターミナルwindows)
+    - [5-2. ターミナル（Mac）](#5-2-ターミナルmac)
+    - [5-3. VSCode](#5-3-vscode)
+    - [5-4. IntelliJ IDEA](#5-4-intellij-idea)
+      - [方法1：ブラウザでログイン（おすすめ）](#方法1ブラウザでログインおすすめ)
+      - [方法2：PAT でログイン（方法1がうまくいかない場合）](#方法2pat-でログイン方法1がうまくいかない場合)
+  - [6. リポジトリを clone する](#6-リポジトリを-clone-する)
     - [ターミナルの場合](#ターミナルの場合)
     - [VSCode / IntelliJ の場合](#vscode--intellij-の場合)
-7. [動作確認](#7-動作確認)
-8. [リポジトリを作る](#8-リポジトリを作る)
+  - [7. 動作確認](#7-動作確認)
+  - [8. リポジトリを作る](#8-リポジトリを作る)
     - [方法1：GitHub で作って clone する（おすすめ）](#方法1github-で作って-clone-するおすすめ)
     - [方法2：手元のフォルダを Git 管理にして push する](#方法2手元のフォルダを-git-管理にして-push-する)
     - [作成できたか確認する](#作成できたか確認する)
-9. [main ブランチを保護する](#9-main-ブランチを保護する)
+  - [9. main ブランチを保護する](#9-main-ブランチを保護する)
     - [設定手順](#設定手順)
     - [設定するとどうなる？](#設定するとどうなる)
 
@@ -251,17 +261,14 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 #### 方法1：ブラウザでログイン（おすすめ）
 
 1. 設定画面を開く。
-   - **Windows**：`File` → `Settings`（`Ctrl + Alt + S`）
+   - **Windows**：`File` → `Settings`（`Ctrl + ,`）
    - **Mac**：`IntelliJ IDEA` → `Settings`（`⌘ + ,`）
 2. 左メニューの **Version Control** → **GitHub** を開く。
 3. **＋** ボタン → **Log In via GitHub** をクリックする。
 4. ブラウザが開くので GitHub にログインし、**Authorize in GitHub** をクリックする。
 5. アカウント一覧に自分のユーザー名が表示されれば完了。**OK** で閉じる。
 
-<!-- 📷 SS: ../images/git/setup/setup-05-02-intellij-github-account.png -->
-> 📷 **スクショ指定：`setup-05-02-intellij-github-account.png`**
-> - 画面：Settings → Version Control → GitHub で「＋」を押してメニューが出た状態
-> - 強調：左メニューの「GitHub」、「＋」ボタン、「Log In via GitHub」を赤枠で囲む
+![InteliJ IDEAでのGitHubへのログイン](../../images/git/setup/setup-05-02-intellij-github-account.png)
 
 #### 方法2：PAT でログイン（方法1がうまくいかない場合）
 
@@ -289,10 +296,7 @@ cd PRMN_SYSTEM_Lecture
 
 clone する URL は、GitHub のリポジトリページの緑色の **Code** ボタンから コピーできます。
 
-<!-- 📷 SS: ../images/git/setup/setup-06-01-github-code-button.png -->
-> 📷 **スクショ指定：`setup-06-01-github-code-button.png`**
-> - 画面：GitHub のリポジトリページで緑の「Code」ボタンを押し、HTTPS タブが開いた状態
-> - 強調：「Code」ボタン、HTTPS タブ、URL 横のコピーボタンを赤枠で囲む
+![clone](../../images/git/setup/setup-06-01-github-code-button.png)
 
 ### VSCode / IntelliJ の場合
 
