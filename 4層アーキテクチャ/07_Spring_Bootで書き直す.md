@@ -179,11 +179,11 @@ public class GradeService {
 | 注意 | 既定では、**チェック例外**（`IOException` など）では取り消されない |
 | 注意 | 同じクラスの中から `this.メソッド()` で呼んでも、効かない（外から呼ばれたときだけ働く） |
 
-> データベース編 12 章で、「素の JDBC では、Application 層が `Connection` を扱わずに境界を決める仕組みを自分で作る必要がある」と述べました。`@Transactional` は、それを肩代わりします。
+> データベース編 12 章の補足で、「素の JDBC では、Application 層が `Connection` を扱わずに境界を決める仕組みを自分で作る必要がある」と述べました。`@Transactional` は、それを肩代わりします。
 
 ## 7. Infrastructure 層：@Repository と JdbcClient
 
-Repository の実装は、Domain 層のインタフェースを `implements` する点は同じです。SQL の実行には、Spring の **`JdbcClient`** を使います。`Connection` を開く・閉じる、`try-with-resources`、`SQLException` の処理が、**すべて不要**になります。
+Repository の実装は、Domain 層のインタフェースを `implements` する点は同じです。SQL の実行には、データベース編 12 章（step2）と同じ **`JdbcClient`** を使います。step2 との違いは、`JdbcClient` を `Main` で作らず、**Spring Boot が用意して渡してくれる**ことです。
 
 ```java
 @Repository
@@ -204,16 +204,16 @@ class JdbcStudentRepository implements StudentRepository {
 
 > 📦 **サンプル**：[`step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java)
 
-データベース編 12 章の素の JDBC 版（約 13 行）と比べてみてください。
+データベース編 12 章の補足にある、素の JDBC 版（約 13 行）と比べてみてください。
 
-| | 素の JDBC（step2） | JdbcClient（step3） |
+| | 素の JDBC（12 章の補足） | JdbcClient（step2・step3） |
 |---|---|---|
 | 接続の取得・解放 | 自分で書く（`try-with-resources`） | **不要**（Spring が管理） |
 | プレースホルダ | `?` と番号 | `:名前`（名前付き） |
 | `ResultSet` の読み取り | `while (rs.next())` を自分で書く | 行 → オブジェクトの変換だけを書く |
 | 例外 | `SQLException`（チェック例外）を自分で包む | Spring が**実行時例外**に変換する（一意制約違反は `DuplicateKeyException` など） |
 
-> 💡 例外が自動で変換されるので、Application 層は `java.sql` を知らずに済みます。データベース編 12 章で `RepositoryException` を作った目的（`SQLException` を上の層に漏らさない）が、フレームワークで自動的に達成されます。
+> 💡 例外が自動で変換されるので、Application 層は `java.sql` を知らずに済みます。`SQLException` を上の層に漏らさない、という目的（データベース編 12 章）が、自動的に達成されます。
 
 `@Repository` は、**この層の部品である**ことを表す名札です。Domain 層の `StudentRepository` インタフェースを実装したクラスなので、`GradeService` のコンストラクタが `StudentRepository` を要求すると、Spring がこのクラスを見つけて渡します。
 

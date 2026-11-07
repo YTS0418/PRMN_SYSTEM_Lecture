@@ -103,7 +103,7 @@ Git 資料の構成は次のとおりです。
 | [09 SQL：基本操作](/データベース/09_SQL_基本操作.md) | INSERT / SELECT / UPDATE / DELETE、NULL |
 | [10 SQL：応用](/データベース/10_SQL_応用.md) | 集計、JOIN、サブクエリ、VIEW |
 | [11 トランザクション](/データベース/11_トランザクション.md) | ACID、COMMIT / ROLLBACK、同時実行、ロック |
-| [12 JavaからDBを使う（JDBC）](/データベース/12_JavaからDBを使う_JDBC.md) | JDBC、PreparedStatement、Repository の実装 |
+| [12 JavaからDBを使う（JDBC）](/データベース/12_JavaからDBを使う_JDBC.md) | JDBC、JdbcClient、Repository の実装 |
 
 #### 4. 4層アーキテクチャ
 
