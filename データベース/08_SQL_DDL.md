@@ -154,7 +154,8 @@ ALTER TABLE students DROP COLUMN email;                                -- 列を
 | 制約の追加・削除 | `ADD CONSTRAINT 名前 ...` / `DROP CONSTRAINT 名前` |
 | テーブル名の変更 | `RENAME TO 新しい名前` |
 
-> ⚠️ **すでにデータが入っているテーブルの変更には注意が必要**です。たとえば、既存の行がある状態で `ADD COLUMN email VARCHAR(100) NOT NULL` とすると、既存の行の `email` が空になるため、エラーになります。**列を NULL 可で追加 → データを埋める → `SET NOT NULL`** という手順を踏みます。
+> [!WARNING]
+> **すでにデータが入っているテーブルの変更には注意が必要**です。たとえば、既存の行がある状態で `ADD COLUMN email VARCHAR(100) NOT NULL` とすると、既存の行の `email` が空になるため、エラーになります。**列を NULL 可で追加 → データを埋める → `SET NOT NULL`** という手順を踏みます。
 
 ## 6. DROP TABLE
 

@@ -177,7 +177,8 @@ flowchart LR
 - ③で、`GradeService` が `StudentRepository` を必要としていれば、**`StudentRepository` を実装した Bean** を探して渡します
 - Bean は、既定では**アプリケーション全体で 1 つだけ**作られ、共有されます
 
-> ⚠️ Bean は共有されるため、**フィールドに利用者ごとの状態（ログイン中のユーザーなど）を持たせてはいけません**。`GradeService` のように、状態を持たず、必要な部品だけを持つ作りにします。
+> [!WARNING]
+> Bean は共有されるため、**フィールドに利用者ごとの状態（ログイン中のユーザーなど）を持たせてはいけません**。`GradeService` のように、状態を持たず、必要な部品だけを持つ作りにします。
 
 ### 主なアノテーション
 
@@ -405,7 +406,8 @@ Python など、他の言語を学んだ人向けに、代表的な Web フレ�
 | Spring Framework | **7.0 系**（Spring Boot 4.0 が内蔵） |
 | 対応する Java | Spring Boot 4.0 は Java 17 以上（Java 25 も対応） |
 
-> ⚠️ これらは、執筆時点の情報です。実機での動作確認は行っていません。新しい版が出ている場合は、[Spring Boot 公式サイト](https://spring.io/projects/spring-boot)で最新の情報を確認してください。
+> [!WARNING]
+> これらは、執筆時点の情報です。実機での動作確認は行っていません。新しい版が出ている場合は、[Spring Boot 公式サイト](https://spring.io/projects/spring-boot)で最新の情報を確認してください。
 
 ### 参考リンク
 

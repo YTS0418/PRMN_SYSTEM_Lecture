@@ -73,7 +73,8 @@ ORDER BY student_id;
 
 学生ごとの履修数と、評価済みの科目の平均点です。4層アーキテクチャ編の `GradeService.transcript` が Java で計算していた平均点と同じものを、SQL の 1 文で求めています。
 
-> ⚠️ **`GROUP BY` を使うとき、`SELECT` に書ける列は、`GROUP BY` に指定した列と、集約関数だけ**です。`SELECT course_id, AVG(score) ... GROUP BY student_id` のように、グループにない列を書くとエラーになります。
+> [!WARNING]
+> **`GROUP BY` を使うとき、`SELECT` に書ける列は、`GROUP BY` に指定した列と、集約関数だけ**です。`SELECT course_id, AVG(score) ... GROUP BY student_id` のように、グループにない列を書くとエラーになります。
 
 ## 3. HAVING：グループを絞り込む
 
@@ -143,7 +144,7 @@ flowchart LR
     e -->|"ON course_id"| c["courses<br>course_id, title"]
 ```
 
-> 💡 **外部キーは「つなぐ線」**です。`ON` の条件は、ほとんどの場合、外部キーと参照先の主キーを `=` で結ぶ形になります。05 章の正規化で分けたテーブルは、`JOIN` で元の「全部入りの表」の形に戻せます。
+> 💡 外部キーは「**つなぐ線**」です。`ON` の条件は、ほとんどの場合、外部キーと参照先の主キーを `=` で結ぶ形になります。05 章の正規化で分けたテーブルは、`JOIN` で元の「全部入りの表」の形に戻せます。
 
 ### INNER JOIN
 
@@ -205,7 +206,7 @@ WHERE student_id IN (SELECT student_id FROM enrollments WHERE score < 60);
 
 ## 8. VIEW：よく使う SELECT に名前を付ける
 
-複数の `JOIN` を含む長い `SELECT` は、何度も書くのが大変です。**`VIEW`（ビュー）**は、`SELECT` に名前を付けて保存し、**テーブルのように使える**ようにする仕組みです。
+複数の `JOIN` を含む長い `SELECT` は、何度も書くのが大変です。**`VIEW`**（ビュー）は、`SELECT` に名前を付けて保存し、**テーブルのように使える**ようにする仕組みです。
 
 ```sql
 CREATE VIEW transcripts AS
@@ -254,7 +255,8 @@ EXPLAIN SELECT * FROM enrollments WHERE course_id = 3;
 | 合否の判定など、**業務のルール** | **Java（Domain 層）** | ルールを 1 か所に集める（09 章 7 節） |
 | 画面に出す文字列の整形 | **Java（Presentation 層）** | 画面の都合は、データベースに持ち込まない |
 
-> ⚠️ **N+1 問題**：「学生 100 人の成績一覧」を作るとき、Java で「学生を 1 回取得 → 学生ごとに履修を 100 回取得」とすると、SQL が 101 回発行されて遅くなります。`JOIN` を使って 1 回で取得するようにします。
+> [!WARNING]
+> **N+1 問題**：「学生 100 人の成績一覧」を作るとき、Java で「学生を 1 回取得 → 学生ごとに履修を 100 回取得」とすると、SQL が 101 回発行されて遅くなります。`JOIN` を使って 1 回で取得するようにします。
 
 4層アーキテクチャでは、これらの SQL は **Infrastructure 層**（Repository の実装）に書きます。Application 層や Domain 層に SQL は書きません（12 章）。
 

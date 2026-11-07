@@ -75,7 +75,8 @@ try (Connection conn = DriverManager.getConnection(url, "postgres", System.geten
 | `localhost:5432` | ホスト名とポート |
 | `grades_db` | データベース名 |
 
-> ⚠️ **パスワードをソースコードに書かない**でください。上の例のように環境変数から読むか、設定ファイルに分けて、Git にコミットしないようにします。
+> [!WARNING]
+> **パスワードをソースコードに書かない**でください。上の例のように環境変数から読むか、設定ファイルに分けて、Git にコミットしないようにします。
 
 `Connection` は、使い終わったら**必ず閉じます**。**try-with-resources** を使えば、例外が起きても確実に閉じられます（付録 Java 入門 09 章で扱っています）。
 
@@ -194,7 +195,8 @@ ON CONFLICT (student_id, course_id, academic_year) DO UPDATE SET score = EXCLUDE
 
 4層アーキテクチャ編で `Enrollment` の `score` を `Integer` にしていたのは、このためです。Java 側の `null`（履修中）と、データベース側の `NULL` を、Infrastructure 層で対応させます。
 
-> ⚠️ `getInt` を使うと、**履修中の行が 0 点として読み込まれます**。合否の判定は誤り（0 点＝不合格）になるので、気づきにくいバグになります。
+> [!WARNING]
+> `getInt` を使うと、**履修中の行が 0 点として読み込まれます**。合否の判定は誤り（0 点＝不合格）になるので、気づきにくいバグになります。
 
 ## 7. Repository を JDBC で実装する
 

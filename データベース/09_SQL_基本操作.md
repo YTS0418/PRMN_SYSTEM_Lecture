@@ -145,7 +145,7 @@ SELECT * FROM enrollments WHERE score IS NULL;      -- ○ 履修中の 3 件
 SELECT * FROM enrollments WHERE score IS NOT NULL;  -- ○ 評価済みの 12 件
 ```
 
-NULL に対する `=` や `<` などの比較は、結果が**真でも偽でもなく「不明」**になり、`WHERE` に合致しません。NULL かどうかは、**必ず `IS NULL` / `IS NOT NULL`** で調べます。
+NULL に対する `=` や `<` などの比較は、結果が真でも偽でもなく「**不明**」になり、`WHERE` に合致しません。NULL かどうかは、**必ず `IS NULL` / `IS NOT NULL`** で調べます。
 
 ### 3 値論理
 
@@ -167,7 +167,8 @@ SELECT student_id, course_id, COALESCE(score, 0) AS score FROM enrollments;
 
 `COALESCE(a, b)` は、「`a` が NULL なら `b`」です。ただし、**「履修中」を 0 点として扱う**ことになるので、意味を考えて使います。
 
-> ⚠️ **NULL を含む計算は NULL になります**（`score + 10` は、`score` が NULL なら NULL）。集計関数（`AVG` など）は、NULL の行を**無視**します（10 章）。
+> [!WARNING]
+> **NULL を含む計算は NULL になります**（`score + 10` は、`score` が NULL なら NULL）。集計関数（`AVG` など）は、NULL の行を**無視**します（10 章）。
 
 ## 6. ORDER BY / LIMIT：並べ替えと件数の制限
 
@@ -190,7 +191,8 @@ LIMIT 3;
 | `LIMIT n` | 最大 n 件まで |
 | `OFFSET m` | 先頭 m 件を飛ばす（`LIMIT n OFFSET m` でページ送りになる） |
 
-> ⚠️ **`ORDER BY` を書かないと、行の順序は保証されません**。「普段は入れた順に出るから」と期待してはいけません。
+> [!WARNING]
+> **`ORDER BY` を書かないと、行の順序は保証されません**。「普段は入れた順に出るから」と期待してはいけません。
 
 > 💡 PostgreSQL では、**NULL は最も大きい値として扱われます**。そのため、`ORDER BY score DESC` では**NULL の行が先頭**に来ます。上の例のように `WHERE score IS NOT NULL` で除くか、`ORDER BY score DESC NULLS LAST` と指定します。
 

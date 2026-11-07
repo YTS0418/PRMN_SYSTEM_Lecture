@@ -30,7 +30,7 @@
 
 ## 1. この章で作るもの
 
-step1 は**コンソール**で操作するアプリケーションでした。Spring 版では、Presentation 層を **Web API（REST）**に置き換えます。URL にアクセスすると、JSON で結果が返ります。
+step1 は**コンソール**で操作するアプリケーションでした。Spring 版では、Presentation 層を **Web API**（REST）に置き換えます。URL にアクセスすると、JSON で結果が返ります。
 
 | 機能（ユースケース） | HTTP | URL |
 |---|---|---|
@@ -106,7 +106,8 @@ src/main/java/grades/
         └── JdbcStudentRepository.java, JdbcCourseRepository.java, JdbcEnrollmentRepository.java
 ```
 
-> ⚠️ 起動クラス（`GradesApplication`）は、`grades` パッケージの**直下**に置きます。Spring は、起動クラスのパッケージ**以下**を、部品（`@Service` など）を探す範囲にするためです（05 章のコンポーネントスキャン）。
+> [!WARNING]
+> 起動クラス（`GradesApplication`）は、`grades` パッケージの**直下**に置きます。Spring は、起動クラスのパッケージ**以下**を、部品（`@Service` など）を探す範囲にするためです（05 章のコンポーネントスキャン）。
 
 ## 4. 設定ファイル
 
@@ -314,7 +315,8 @@ curl http://localhost:8080/students/1/transcript
 
 `Transcript` の `record` が、そのまま JSON になっていることが分かります。`GradeService` と Domain の `Enrollment.isPassed()` は、step1 のものと同じコードです。
 
-> ⚠️ `POST` や `PUT` のリクエストを `curl` で送る場合、JSON のクォートの書き方が **Windows のコマンドプロンプト／PowerShell／Git Bash で異なります**。サンプルの README に、環境ごとの書き方を載せます。
+> [!WARNING]
+> `POST` や `PUT` のリクエストを `curl` で送る場合、JSON のクォートの書き方が **Windows のコマンドプロンプト／PowerShell／Git Bash で異なります**。サンプルの README に、環境ごとの書き方を載せます。
 
 ### 確認すること
 

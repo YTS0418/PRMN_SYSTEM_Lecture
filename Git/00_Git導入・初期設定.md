@@ -204,7 +204,8 @@ flowchart TD
 5. **Generate token** をクリックする。
 6. 表示された `ghp_xxxxxxxx...` を**必ずその場でコピー**する（**この画面を閉じると二度と表示されません**）。
 
-> ⚠️ **トークンはパスワードと同じ扱いです**
+> [!WARNING]
+> **トークンはパスワードと同じ扱いです**
 > - 他人に教えない／ファイルやコミットに書かない／スクリーンショットに写さない
 > - 流出したら、同じ画面から **Delete** してすぐ無効化する
 
@@ -294,7 +295,8 @@ git clone https://github.com/YTS0418/PRMN_SYSTEM_Lecture.git
 cd PRMN_SYSTEM_Lecture
 ```
 
-> ⚠️ **OneDrive など同期フォルダの中に clone するのは避けましょう** <br>同期のタイミングで Git の管理ファイルが壊れることがあります。
+> [!WARNING]
+> **OneDrive など同期フォルダの中に clone するのは避けましょう** <br>同期のタイミングで Git の管理ファイルが壊れることがあります。
 
 clone する URL は、GitHub のリポジトリページの緑色の **Code** ボタンから コピーできます。
 
@@ -384,7 +386,8 @@ git push -u origin main
 
 `git remote add origin` は「このリポジトリの送り先（GitHub）を `origin` という名前で登録する」コマンドです。`-u` を付けた初回の push だけ、以降は `git push` だけで送れるようになります。
 
-> ⚠️ **すでに Git 管理されているフォルダの中に、さらに `git init` しないでください** <br>リポジトリの中にリポジトリができてしまい、混乱の原因になります。迷ったら `git status` を実行し、`fatal: not a git repository` と出るフォルダでだけ `git init` します。
+> [!WARNING]
+> **すでに Git 管理されているフォルダの中に、さらに `git init` しないでください** <br>リポジトリの中にリポジトリができてしまい、混乱の原因になります。迷ったら `git status` を実行し、`fatal: not a git repository` と出るフォルダでだけ `git init` します。
 
 ### 作成できたか確認する
 
@@ -425,7 +428,8 @@ remote: error: GH013: Repository rule violations found for refs/heads/main.
 
 > 💡 **自分ひとりのリポジトリでは「承認（Require approvals）」は入れなくてOK** <br>自分で出した PR は自分では承認できないため、必須にするとマージできなくなります。チームで開発するときに、レビュー担当者の承認を必須にしましょう。
 
-> ⚠️ **Private リポジトリでは、無料プランだとルールが使えない場合があります** <br>設定画面に有料プランの案内が出たときは、Public リポジトリにするか、「main に直接 push しない」ことを自分で守りましょう。
+> [!WARNING]
+> **Private リポジトリでは、無料プランだとルールが使えない場合があります** <br>設定画面に有料プランの案内が出たときは、Public リポジトリにするか、「main に直接 push しない」ことを自分で守りましょう。
 
 ---
 

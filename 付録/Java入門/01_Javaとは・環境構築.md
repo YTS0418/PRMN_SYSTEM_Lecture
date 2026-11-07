@@ -141,7 +141,8 @@ flowchart LR
     a["Hello.java"] -->|"javac Hello.java"| b["Hello.class"] -->|"java Hello"| c["画面に表示"]
 ```
 
-> ⚠️ **ファイル名は `Hello.java`、クラス名も `Hello`**。`public class` の名前とファイル名は**完全に一致**させる必要があります（大文字小文字も区別）。
+> [!WARNING]
+> **ファイル名は `Hello.java`、クラス名も `Hello`**。`public class` の名前とファイル名は**完全に一致**させる必要があります（大文字小文字も区別）。
 
 ### Java 25 の簡略記法（コンパクトソースファイル）
 
