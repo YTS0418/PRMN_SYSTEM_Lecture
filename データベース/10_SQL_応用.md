@@ -154,7 +154,7 @@ flowchart LR
 
 「履修が 1 件もない学生」も含めて、学生ごとの履修数を出したいとします。`INNER JOIN` では、履修がない学生は**結果から消えてしまいます**。
 
-**`LEFT JOIN`** は、**左側のテーブルの行をすべて残し**、右側に対応する行がなければ、右側の列を **NULL** にします。
+**`LEFT JOIN`** は、**左側のテーブルの行をすべて残し**、右側に対応する行がなければ、右側の列を **NULL** にします。正式には `LEFT OUTER JOIN` と書きますが、`OUTER` は省略できます。
 
 ```sql
 SELECT s.name, COUNT(e.enrollment_id) AS courses
@@ -178,6 +178,8 @@ ORDER BY s.student_id;
 |---|---|
 | `INNER JOIN` | 両側に対応する行がある行だけ |
 | `LEFT JOIN` | **左側の行はすべて**。右側が無ければ NULL |
+
+このほか、右側の行をすべて残す `RIGHT OUTER JOIN`（`RIGHT JOIN`）と、両方の行のすべての組み合わせを作る `CROSS JOIN` もあります。どちらも使う機会は多くありません。
 
 > 💡 `COUNT(e.enrollment_id)` と書いたのは、`COUNT(*)` だと、履修がない学生も「1 行」と数えてしまうためです。右側の列を数えれば、NULL の行は数えられず、0 になります。
 
