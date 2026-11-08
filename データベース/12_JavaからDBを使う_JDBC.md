@@ -92,7 +92,8 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 >
 > ```sql
 > CREATE ROLE grades_app LOGIN PASSWORD '（推測されにくいパスワード）';
-> GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO grades_app;   -- 行の読み書きだけ。DROP や CREATE はできない
+> -- 行の読み書きだけを許可する（DROP TABLE や CREATE TABLE はできない）
+> GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO grades_app;
 > ```
 >
 > パスワードを書いたコードを GitHub に上げてしまった実例は、[Git 02 章の「やってはいけないこと」](../Git/02_CUI基本編.md#9-やってはいけないこと)にあります。
