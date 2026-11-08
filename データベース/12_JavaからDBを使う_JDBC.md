@@ -76,7 +76,7 @@ dataSource.setUrl("jdbc:postgresql://localhost:5432/grades_db");
 dataSource.setUser("postgres");
 dataSource.setPassword(System.getenv("DB_PASSWORD"));
 
-JdbcClient jdbc = JdbcClient.create(dataSource);
+JdbcClient jdbcClient = JdbcClient.create(dataSource);
 ```
 
 | URL の部分 | 意味 |
@@ -90,20 +90,50 @@ JdbcClient jdbc = JdbcClient.create(dataSource);
 
 接続を開く・閉じる処理は、`JdbcClient` が SQL の実行ごとに行います。自分で閉じる必要はありません。
 
+### 参考：Spring Boot を使う場合
+
+この章では Spring Boot を使わないので、`DataSource` と `JdbcClient` を Java のコードで作りました。**Spring Boot を使う場合は、接続設定を Java で書きません**。`src/main/resources/application.properties` に次のように書くと、Spring Boot が `DataSource`（コネクションプール：11 節）と `JdbcClient` を自動で用意し、Repository のコンストラクタに渡してくれます（[4層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)）。
+
+```properties
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/grades_db
+spring.datasource.username=postgres
+spring.datasource.password=${DB_PASSWORD}
+```
+
+> `${DB_PASSWORD}` は、環境変数 `DB_PASSWORD` の値に置き換わります。パスワードを設定ファイルに直接書かないためです。`driver-class-name` は、URL から自動で判断されるので省略することもできます。
+
 ## 3. SQL を実行して結果を受け取る
 
-SQL の値を入れたい場所に `:名前`（名前付きプレースホルダ）を書き、`param` で値を渡します。`StudentRepository.findById` の実装です。
+SQL の値を入れたい場所に `:名前`（名前付きプレースホルダ）を書き、`param` で値を渡します。`StudentRepository` を実装する `JdbcStudentRepository` の `findById` です。
 
 ```java
-@Override
-public Optional<Student> findById(int id) {
-    return jdbc.sql("SELECT student_id, name, department_id, enrolled_year FROM students WHERE student_id = :id")
-            .param("id", id)                                  // :id に値を渡す
-            .query((rs, rowNum) -> new Student(rs.getInt("student_id"), rs.getString("name"),
-                    rs.getInt("department_id"), rs.getInt("enrolled_year")))   // 行 → Domain のオブジェクト
-            .optional();                                      // 0 件なら Optional.empty()
+public class JdbcStudentRepository implements StudentRepository {
+    private final JdbcClient jdbcClient;
+
+    // コンストラクタインジェクション：JdbcClient は外から受け取る（自分で作らない）
+    public JdbcStudentRepository(JdbcClient jdbcClient) {
+        this.jdbcClient = jdbcClient;
+    }
+
+    @Override
+    public Optional<Student> findById(int id) {
+        String sql = """
+                SELECT student_id, name, department_id, enrolled_year
+                FROM students
+                WHERE student_id = :id
+                """;
+        return jdbcClient.sql(sql)
+                .param("id", id)                              // :id に値を渡す
+                .query((rs, rowNum) -> new Student(rs.getInt("student_id"), rs.getString("name"),
+                        rs.getInt("department_id"), rs.getInt("enrolled_year")))   // 行 → Domain のオブジェクト
+                .optional();                                  // 0 件なら Optional.empty()
+    }
 }
 ```
+
+- `JdbcClient` は、コンストラクタの引数で受け取ります（**コンストラクタインジェクション**）。誰が `JdbcClient` を作るか（8 節の `Main`、または Spring Boot）を、Repository は知らなくて済みます（4層アーキテクチャ編 03 章）
+- SQL は、**テキストブロック**（`"""` で囲む複数行の文字列：[Java 入門 02 章](../付録/Java入門/02_基本文法・変数と型.md)）で変数に入れてから、`sql(...)` に渡します。SQL が長くなっても、改行して読みやすく書けます
 
 > 📦 **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java)
 
@@ -159,6 +189,19 @@ SELECT * FROM students WHERE name = '' OR '1'='1'
 | ✕ 連結 | `"... WHERE name = '" + name + "'"` | **危険**（SQL インジェクション） |
 | ○ プレースホルダ | `"... WHERE name = :name"` + `.param("name", name)` | 安全（値は SQL として解釈されない） |
 
+### 参考：位置パラメータと名前付きパラメータ
+
+プレースホルダには、`?` と `:名前` の 2 種類があります。`JdbcClient` はどちらも使えます。安全性は同じです。
+
+| | 位置パラメータ | 名前付きパラメータ（この資料） |
+|---|---|---|
+| SQL での書き方 | `WHERE name = ? AND enrolled_year = ?` | `WHERE name = :name AND enrolled_year = :year` |
+| 値の渡し方 | `.param("Taro").param(2024)`（**書いた順番**に対応） | `.param("name", "Taro").param("year", 2024)`（**名前**で対応） |
+| 長所 | 短く書ける。素の JDBC（12 節）と同じ | 順番を気にしなくてよい。同じ値を 2 か所で使える |
+| 短所 | `?` が多いと、順番を取り違えやすい | 名前の書き間違いに注意（13 節） |
+
+この資料では、取り違えの起きにくい**名前付きパラメータ**を使います。
+
 > 💡 **SQL に値を入れるときは、必ずプレースホルダを使う**。これは例外なしのルールです。テーブル名や列名のように、プレースホルダでは指定できない部分を動的に変える場合は、あらかじめ決めた**選択肢の中から選ぶ**（利用者の入力をそのまま使わない）ようにします。
 
 ## 5. 行を追加する：採番された ID の受け取り
@@ -166,13 +209,21 @@ SELECT * FROM students WHERE name = '' OR '1'='1'
 `StudentRepository.save` は、学生を追加し、**採番された ID を持つ `Student`** を返します（4層アーキテクチャ編）。09 章の `RETURNING` を使います。
 
 ```java
-int id = jdbc.sql("INSERT INTO students (name, department_id, enrolled_year) VALUES (:name, :departmentId, :enrolledYear) RETURNING student_id")
-        .param("name", student.name())
-        .param("departmentId", student.departmentId())
-        .param("enrolledYear", student.enrolledYear())
-        .query(Integer.class)                         // RETURNING があるので query
-        .single();
-return student.withId(id);                            // 採番された ID を持つ Student を返す
+@Override
+public Student save(Student student) {
+    String sql = """
+            INSERT INTO students (name, department_id, enrolled_year)
+            VALUES (:name, :departmentId, :enrolledYear)
+            RETURNING student_id
+            """;
+    int id = jdbcClient.sql(sql)
+            .param("name", student.name())
+            .param("departmentId", student.departmentId())
+            .param("enrolledYear", student.enrolledYear())
+            .query(Integer.class)                         // RETURNING があるので query
+            .single();
+    return student.withId(id);                            // 採番された ID を持つ Student を返す
+}
 ```
 
 > 💡 `RETURNING` がある `INSERT` は、結果の行を返すので、`update` ではなく `query` を使います。
@@ -215,7 +266,7 @@ classDiagram
     }
     class InMemoryStudentRepository
     class JdbcStudentRepository {
-        -JdbcClient jdbc
+        -JdbcClient jdbcClient
     }
     StudentRepository <|.. InMemoryStudentRepository : 実装（step1）
     StudentRepository <|.. JdbcStudentRepository : 実装（step2）
@@ -249,7 +300,7 @@ classDiagram
 | **Application** | **変更なし**（`GradeService`、`Transcript`） |
 | **Presentation** | **変更なし**（`ConsoleApp`） |
 | **Infrastructure** | `jdbc` パッケージに **`Jdbc…Repository` を追加**（`memory` パッケージはそのまま残してよい） |
-| **Main**（組み立て） | `new InMemory…` を `new Jdbc…(jdbc)` に**差し替える** |
+| **Main**（組み立て） | `new InMemory…` を `new Jdbc…(jdbcClient)` に**差し替える** |
 
 ```mermaid
 flowchart LR
@@ -267,8 +318,8 @@ flowchart LR
 `Main` では、2 節のとおり `DataSource` と `JdbcClient` を用意して、`Jdbc…Repository` に渡します。
 
 ```java
-JdbcClient jdbc = JdbcClient.create(dataSource);
-StudentRepository students = new JdbcStudentRepository(jdbc);   // new InMemoryStudentRepository() から差し替え
+JdbcClient jdbcClient = JdbcClient.create(dataSource);
+StudentRepository students = new JdbcStudentRepository(jdbcClient);   // new InMemoryStudentRepository() から差し替え
 ```
 
 > 💡 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`GradeService` も `ConsoleApp` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
