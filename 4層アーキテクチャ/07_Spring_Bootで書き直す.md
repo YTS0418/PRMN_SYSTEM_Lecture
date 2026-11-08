@@ -44,7 +44,6 @@ flowchart LR
     ctl --> svc["GradeService<br>Application"]
     svc --> dom["Domain<br>（変更なし）"]
     repo["Jdbc…Repository<br>Infrastructure"] -.->|実装| dom
-    svc --> repo
     repo --> pg[("PostgreSQL<br>grades_db")]
 ```
 
@@ -188,12 +187,20 @@ Repository の実装は、Domain 層のインタフェースを `implements` す
 ```java
 @Repository
 class JdbcStudentRepository implements StudentRepository {
-    private final JdbcClient jdbc;                       // Spring Boot が用意してくれる部品
-    JdbcStudentRepository(JdbcClient jdbc) { this.jdbc = jdbc; }
+    private final JdbcClient jdbcClient;                 // Spring Boot が用意してくれる部品
+
+    JdbcStudentRepository(JdbcClient jdbcClient) {       // コンストラクタインジェクション
+        this.jdbcClient = jdbcClient;
+    }
 
     @Override
     public Optional<Student> findById(int id) {
-        return jdbc.sql("SELECT student_id, name, department_id, enrolled_year FROM students WHERE student_id = :id")
+        String sql = """
+                SELECT student_id, name, department_id, enrolled_year
+                FROM students
+                WHERE student_id = :id
+                """;
+        return jdbcClient.sql(sql)
                 .param("id", id)                         // :id に値を渡す（SQL インジェクションの心配なし）
                 .query((rs, rowNum) -> new Student(rs.getInt("student_id"), rs.getString("name"),
                         rs.getInt("department_id"), rs.getInt("enrolled_year")))
