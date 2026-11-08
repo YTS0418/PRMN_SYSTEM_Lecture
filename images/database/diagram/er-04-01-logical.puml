@@ -1,0 +1,38 @@
+' 論理 ER 図（UML のクラス図の表記、キーを {PK} {FK} {UK} で示す）：04 章 5 節
+' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+@startuml er-04-01-logical
+!include _common.iuml
+class departments {
+  department_id {PK}
+  name {UK}
+}
+class teachers {
+  teacher_id {PK}
+  name
+  department_id {FK}
+}
+class students {
+  student_id {PK}
+  name
+  department_id {FK}
+  enrolled_year
+}
+class courses {
+  course_id {PK}
+  title
+  credits
+  teacher_id {FK}
+}
+class enrollments {
+  enrollment_id {PK}
+  student_id {FK}
+  course_id {FK}
+  academic_year
+  score
+}
+departments "1" --- "0..*" students : 所属
+departments "1" -- "0..*" teachers : 所属
+teachers "1" -- "0..*" courses : 担当
+students "1" -- "0..*" enrollments : 履修する
+courses "1" -- "0..*" enrollments : 履修される
+@enduml

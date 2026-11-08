@@ -1,0 +1,27 @@
+' 第 2 正規形にした結果：05 章 5 節
+' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+@startuml er-05-01-2nf
+!include _common.iuml
+class students {
+  student_id {PK}
+  name
+  department_id
+  department_name
+}
+class courses {
+  course_id {PK}
+  title
+  credits
+  teacher_id
+  teacher_name
+  teacher_department_id
+}
+class enrollments {
+  student_id {PK}
+  course_id {PK}
+  academic_year {PK}
+  score
+}
+students "1" -- "0..*" enrollments : 履修する
+courses "1" -- "0..*" enrollments : 履修される
+@enduml

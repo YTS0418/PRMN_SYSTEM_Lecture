@@ -1,0 +1,28 @@
+' 概念 ER 図（鳥の足記法 / IE 記法）：03 章 7 節（補足）
+' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+@startuml er-03-02-crows-foot
+!include _common.iuml
+entity Department {
+  name
+}
+entity Teacher {
+  name
+}
+entity Student {
+  name
+  enrolled_year
+}
+entity Course {
+  title
+  credits
+}
+entity Enrollment {
+  academic_year
+  score
+}
+Department ||---o{ Student : 所属
+Department ||--o{ Teacher : 所属
+Teacher ||--o{ Course : 担当
+Student ||--o{ Enrollment : 履修する
+Course ||--o{ Enrollment : 履修される
+@enduml
