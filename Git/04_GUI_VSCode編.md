@@ -212,10 +212,7 @@ Git の操作は、主に次の4か所で行います。
 > - 画面：VSCode 左下のステータスバー
 > - 強調：ブランチ名（main）の部分を赤枠で囲み、「ここをクリック」と注記する
 
-<!-- 📷 SS: ../images/git/vscode/vsc-07-02-create-branch.png -->
-> 📷 **スクショ指定：`vsc-07-02-create-branch.png`**
-> - 画面：ブランチ名をクリックして上部にメニューが出た状態
-> - 強調：「新しいブランチの作成...」の項目と、下に並ぶ既存ブランチ一覧を赤枠で囲む
+![create-branch](../images/git/vscode/vsc-07-02-create-branch.png)
 
 ### 7-2. ブランチを切り替える
 
