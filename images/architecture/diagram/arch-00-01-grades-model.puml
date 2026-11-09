@@ -1,0 +1,25 @@
+' 成績管理の題材のデータ（学生・科目・履修）：4層アーキテクチャ編 00 章 4 節
+' データベース編の ER 図と同じ見た目（../../database/diagram/_common.iuml）を使う
+' 生成：plantuml -tpng arch-*.puml（このフォルダで実行）
+@startuml arch-00-01-grades-model
+!include ../../database/diagram/_common.iuml
+class Student {
+  id
+  name
+  departmentId
+  enrolledYear
+}
+class Course {
+  id
+  title
+  credits
+}
+class Enrollment {
+  studentId
+  courseId
+  academicYear
+  score
+}
+Student "1" -- "0..*" Enrollment : 履修する
+Course "1" -- "0..*" Enrollment : 履修される
+@enduml
