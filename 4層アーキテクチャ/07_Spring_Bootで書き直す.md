@@ -47,7 +47,7 @@ flowchart LR
     repo --> pg[("PostgreSQL<br>grades_db")]
 ```
 
-> 📦 **サンプル**：[`step3-spring/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step3-spring)
+> 📦 **サンプル**：[`step3-spring/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step3-spring)
 
 ## 2. プロジェクトの作成
 
@@ -165,7 +165,7 @@ public class GradeService {
 }
 ```
 
-> 📦 **サンプル**：[`step3-spring/src/main/java/grades/application/GradeService.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/application/GradeService.java)
+> 📦 **サンプル**：[`step3-spring/src/main/java/grades/application/GradeService.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/application/GradeService.java)
 
 ### @Transactional
 
@@ -209,7 +209,7 @@ class JdbcStudentRepository implements StudentRepository {
 }
 ```
 
-> 📦 **サンプル**：[`step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java)
+> 📦 **サンプル**：[`step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java)
 
 データベース編 12 章の補足にある、素の JDBC 版（約 13 行）と比べてみてください。
 
@@ -246,7 +246,7 @@ class StudentController {
 }
 ```
 
-> 📦 **サンプル**：[`step3-spring/src/main/java/grades/presentation/StudentController.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/StudentController.java)
+> 📦 **サンプル**：[`step3-spring/src/main/java/grades/presentation/StudentController.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/StudentController.java)
 
 | アノテーション | 役割 |
 |---|---|

@@ -36,7 +36,7 @@
 psql -U postgres -d grades_db -f db/02_seed.sql
 ```
 
-> 📦 **サンプル**：[`db/02_seed.sql`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/db/02_seed.sql)
+> 📦 **サンプル**：[`db/02_seed.sql`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/db/02_seed.sql)
 
 入るデータの概要です。
 
