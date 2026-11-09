@@ -1,0 +1,13 @@
+' 多対多の解消（関連エンティティ Enrollment）：03 章 5 節
+' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+@startuml er-03-04-resolved
+!include _common.iuml
+class Student
+class Course
+class Enrollment {
+  academic_year
+  score
+}
+Student "1" -- "0..*" Enrollment : 履修する
+Course "1" -- "0..*" Enrollment : 履修される
+@enduml

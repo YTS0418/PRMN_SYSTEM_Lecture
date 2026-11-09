@@ -1,0 +1,9 @@
+' 多対多の関係：03 章 5 節
+' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+@startuml er-03-03-many-to-many
+!include _common.iuml
+left to right direction
+class Student
+class Course
+Student "0..*" -- "0..*" Course : 履修
+@enduml

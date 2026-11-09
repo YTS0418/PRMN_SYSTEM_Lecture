@@ -1,0 +1,28 @@
+' 概念 ER 図（UML のクラス図の表記）：00 章 5 節、03 章 6・7 節
+' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+@startuml er-03-01-uml
+!include _common.iuml
+class Department {
+  name
+}
+class Teacher {
+  name
+}
+class Student {
+  name
+  enrolled_year
+}
+class Course {
+  title
+  credits
+}
+class Enrollment {
+  academic_year
+  score
+}
+Department "1" --- "0..*" Student : 所属
+Department "1" -- "0..*" Teacher : 所属
+Teacher "1" -- "0..*" Course : 担当
+Student "1" -- "0..*" Enrollment : 履修する
+Course "1" -- "0..*" Enrollment : 履修される
+@enduml
