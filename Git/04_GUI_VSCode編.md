@@ -207,7 +207,7 @@ Git の操作は、主に次の4か所で行います。
 2. 上部に出るメニューから **＋ 新しいブランチの作成...**（Create new branch...）を選ぶ。
 3. ブランチ名（例：`feature-login`）を入力して `Enter`。作成と同時にそのブランチに切り替わる。
 
-![VS Codeのステータスバーに表示されたmainブランチ](../../images/git/vscode/vsc-07-01-branch-statusbar.png)
+![VS Codeのステータスバーに表示されたmainブランチ](../images/git/vscode/vsc-07-01-branch-statusbar.png)
 
 ![create-branch](../images/git/vscode/vsc-07-02-create-branch.png)
 
