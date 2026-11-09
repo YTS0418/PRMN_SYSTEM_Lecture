@@ -1,0 +1,15 @@
+' データベース編の ER 図で共通の見た目
+skinparam defaultFontName "Noto Sans CJK JP"
+skinparam defaultFontSize 14
+skinparam dpi 150
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam classBackgroundColor #ECECFF
+skinparam classBorderColor #9370DB
+skinparam entityBackgroundColor #ECECFF
+skinparam entityBorderColor #9370DB
+skinparam ArrowColor #555555
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+hide empty members
