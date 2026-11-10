@@ -210,7 +210,10 @@ flowchart TD
 > - 流出したら、同じ画面から **Delete** してすぐ無効化する
 
 > 🔒 **セキュリティの視点**：トークンを作るときは、**有効期限を付け**（`No expiration` を選ばない）、**必要な権限（スコープ）だけ**にチェックします（[GitHub Docs「個人用アクセス トークンを管理する」](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)）。GitHub アカウント自体も、[2 要素認証](https://docs.github.com/ja/authentication/securing-your-account-with-two-factor-authentication-2fa)を有効にしておきます（いずれも閲覧日：2026-11-08）。パソコンがウイルスに感染すると、保存されたパスワードやトークンは、まとめて盗まれます。
-> 実例：2026 年、マネーフォワードは、業務用の GitHub の認証情報が漏れ、リポジトリを第三者にコピーされたと公表しました（[マネーフォワード 第一報](https://corp.moneyforward.com/news/info/20260501-mf-press-1/)、2026-05-01、閲覧日：2026-11-08）。2025 年には、日本経済新聞社の社員の**私物のパソコン**がウイルスに感染して業務用チャット（Slack）の認証情報が漏れ、約 1 万 7 千人分の情報が流出した可能性があると公表されました（[日本経済新聞社のお知らせ](https://www.nikkei.co.jp/nikkeiinfo/news/information/1393.html)、2025-11-04、閲覧日：2026-11-08）。
+>
+> #### 実例
+> - 2026 年、マネーフォワードは、業務用の GitHub の認証情報が漏れ、リポジトリを第三者にコピーされたと公表しました（[マネーフォワード 第一報](https://corp.moneyforward.com/news/info/20260501-mf-press-1/)、2026-05-01、閲覧日：2026-11-08）。
+> - 2025 年には、日本経済新聞社の社員の**私物のパソコン**がウイルスに感染して業務用チャット（Slack）の認証情報が漏れ、約 1 万 7 千人分の情報が流出した可能性があると公表されました（[日本経済新聞社のお知らせ](https://www.nikkei.co.jp/nikkeiinfo/news/information/1393.html)、2025-11-04、閲覧日：2026-11-08）。
 
 ### 5-1. ターミナル（Windows）
 

@@ -438,7 +438,10 @@ VSCode でメッセージのタブが開くので、入力して保存（`Ctrl +
 - ✅ こまめにコミットする（セーブポイントは多いほうが安心）
 
 > 🔒 **セキュリティの視点**：パスワードや API キーは、`.env` のような**別のファイル**に書き、そのファイル名を `.gitignore` に書いて、Git の管理から外します。個人情報の入ったファイル（名簿、成績のデータなど）も、リポジトリに入れません。うっかり push してしまったら、履歴から消すだけでは足りません。**そのキーやパスワードを無効にして、新しいものに替えます**（[GitHub Docs「リポジトリからの機微なデータの削除」](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)）。GitHub には、キーらしい文字列を含む push を止める[プッシュ保護](https://docs.github.com/ja/code-security/secret-scanning/introduction/about-push-protection)もあります（いずれも閲覧日：2026-11-08）。
-> 実例：2022 年、トヨタ自動車は、開発の委託先がデータサーバーへのアクセスキーを含むソースコードを GitHub に公開したまま、約 5 年間気付かなかったと公表しました（[トヨタ自動車のお知らせ](https://global.toyota/jp/newsroom/corporate/38095972.html)、2022-10-07、閲覧日：2026-11-08）。2026 年のマネーフォワードの事例では、GitHub から流出したソースコードの中に認証キーやパスワードが書かれていたため、それらを無効にして再発行しました。リポジトリには、個人情報も混ざっていました（[マネーフォワード 第一報](https://corp.moneyforward.com/news/info/20260501-mf-press-1/)、[第四報](https://corp.moneyforward.com/news/info/20260623-mf-press-1/)、閲覧日：2026-11-08）。
+>
+> #### 実例
+> - 2022 年、トヨタ自動車は、開発の委託先がデータサーバーへのアクセスキーを含むソースコードを GitHub に公開したまま、約 5 年間気付かなかったと公表しました（[トヨタ自動車のお知らせ](https://global.toyota/jp/newsroom/corporate/38095972.html)、2022-10-07、閲覧日：2026-11-08）。
+> - 2026 年のマネーフォワードの事例では、GitHub から流出したソースコードの中に認証キーやパスワードが書かれていたため、それらを無効にして再発行しました。リポジトリには、個人情報も混ざっていました（[マネーフォワード 第一報](https://corp.moneyforward.com/news/info/20260501-mf-press-1/)、[第四報](https://corp.moneyforward.com/news/info/20260623-mf-press-1/)、閲覧日：2026-11-08）。
 
 > 🔒 **セキュリティの視点**：生成 AI のチャットに、パスワード・API キー・個人情報を**貼り付けない**でください。エラーの相談でコードやログを貼るときも、キーや個人情報が含まれていないか確かめます。IPA の「情報セキュリティ10大脅威 2026」（組織編）では、「AI の利用をめぐるサイバーリスク」が初めて選ばれ、3 位になりました（[IPA](https://www.ipa.go.jp/security/10threats/10threats2026.html)、閲覧日：2026-11-08）。
 
