@@ -260,6 +260,8 @@ Controller は、**入力を受け取り、Service を呼び、結果を返す**
 
 > 💡 05 章で説明した「制御の反転」を、ここで体験しています。`main` から `transcript(...)` を呼ぶコードは、**どこにもありません**。URL にアクセスがあると、Spring が Controller のメソッドを呼びます。
 
+> 🔒 **セキュリティの視点**：この例の `GET /students/{id}/transcript` は、URL の `1` を `2` に変えるだけで、**誰でも他人の成績を見られます**。ログインした人が誰で、その人がこのデータを見てよいかを確かめる仕組み（**認証・認可**）がないためです。Web アプリの脆弱性をまとめた OWASP Top 10:2025 では、この「アクセス制御の不備」が 1 位です（[OWASP「A01:2025 Broken Access Control」](https://top10.owasp.org/2025/A01_2025-Broken_Access_Control)、閲覧日：2026-11-08）。本番のアプリケーションでは、Spring Security（[05 章](05_フレームワークとSpring.md)）などで認証・認可を加えます。
+
 ## 9. エラーを HTTP の応答に変える
 
 step1 の `ConsoleApp` は、例外を捕まえて「エラー: …」と表示していました。Web API では、**HTTP のステータスコード**で結果を伝えます。例外を応答に変換する役割は、Presentation 層に置きます。
@@ -285,6 +287,8 @@ class ApiExceptionHandler {
 | `DuplicateKeyException` など | Spring（データベースの制約違反が変換されたもの） | `409 Conflict`（必要に応じて追加） |
 
 > 💡 例外を発生させる側（Domain / Application）は、**HTTP のことを知りません**。変換は Presentation 層だけで行うので、コンソール版と Web API 版で、Domain と Application を共通に使えます。
+
+> 🔒 **セキュリティの視点**：上の例で `e.getMessage()` を返してよいのは、Domain・Application で**自分で書いたメッセージ**（「点数は 0〜100 にしてください」など）だからです。`DuplicateKeyException` のようなデータベース由来の例外のメッセージには、SQL 文やテーブル名が含まれるので、**そのまま返さず**、短い文に置き換えます（データベース編 [12 章 9 節](../データベース/12_JavaからDBを使う_JDBC.md#9-例外の扱い)）。なお Spring Boot は、既定の設定では、捕まえなかった例外のスタックトレースやメッセージを応答に含めません（[Spring Boot「Common Application Properties」](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)、閲覧日：2026-11-08）。開発中に表示する設定にした場合は、本番で戻します。
 
 ## 10. 動かして確かめる
 

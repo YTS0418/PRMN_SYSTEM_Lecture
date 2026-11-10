@@ -230,6 +230,8 @@ SELECT * FROM transcripts WHERE student_id = 1;
 
 > 💡 正規化（05 章）でテーブルを細かく分けると、取り出すときに `JOIN` が必要になります。`VIEW` は、**その面倒さを解消**する手段の 1 つです。
 
+> 🔒 **セキュリティの視点**：`VIEW` は、**見せる列や行を絞る**ためにも使えます。たとえば、点数の列を含まない VIEW だけを読めるユーザーを作れば、そのユーザーには点数が見えません（権限は `GRANT` で与えます：[PostgreSQL 文書「GRANT」](https://www.postgresql.jp/document/18/html/sql-grant.html)）。上流工程の「学生は、自分の成績だけを見られる」（[上流工程 06 章](../上流工程/06_設計への受け渡し.md#3-機能要件と非機能要件)）のような**行ごとの制限**は、PostgreSQL の**行単位セキュリティ**でも実現できます（[PostgreSQL 文書「行セキュリティポリシー」](https://www.postgresql.jp/document/18/html/ddl-rowsecurity.html)、いずれも閲覧日：2026-11-08）。
+
 ## 9. 実行計画を見る
 
 SQL が**どのように実行されるか**は、`EXPLAIN` で確認できます。

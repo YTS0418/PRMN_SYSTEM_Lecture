@@ -77,6 +77,8 @@ flowchart LR
 > [!WARNING]
 > **このパスワードは忘れないでください**。接続のたびに必要です。学習用のパソコンでも、推測されにくいものにしましょう。
 
+> 🔒 **セキュリティの視点**：Docker の例（3 節）の `postgres` のような簡単なパスワードは、**自分のパソコンの中から接続する**ときに限って使います。設定ファイル（`postgresql.conf` の `listen_addresses`、`pg_hba.conf`）を書き換えて、**ほかのコンピュータからの接続を許可しない**でください。
+
 ### ポート番号
 
 通常は、既定の **5432** のままにします。
@@ -104,10 +106,12 @@ brew services start postgresql@18
 Docker が使える場合、1 つのコマンドでサーバーを用意できます（パスワードは学習用の例です）。
 
 ```bash
-docker run --name grades-pg -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:18
+docker run --name grades-pg -e POSTGRES_PASSWORD=postgres -p 127.0.0.1:5432:5432 -d postgres:18
 ```
 
 > この方法は、**クライアント（psql など）は別に用意**します。動作確認は行っていません。公式のドキュメントも確認してください。
+
+> 🔒 **セキュリティの視点**：`-p 5432:5432` のように書くと、**同じネットワークにあるほかのコンピュータからも**接続できる状態になります。Docker の公式ドキュメントも、ポートの公開は既定では安全でないと注意しています。上の例のように `127.0.0.1:` を付けると、そのパソコンからしか接続できません（[Docker Docs「Port publishing and mapping」](https://docs.docker.com/engine/network/port-publishing/)、閲覧日：2026-11-08）。簡単なパスワードのデータベースを外から接続できる状態にすると、自動で探し回るプログラムに見つかり、データを盗まれたり消されたりするおそれがあります。
 
 ## 4. psql で接続する
 
