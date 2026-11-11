@@ -129,7 +129,8 @@ Git 資料の構成は次のとおりです。
 | [06 サンプル実装の読み方](/4層アーキテクチャ/06_サンプル実装の読み方.md) | 素の Java で作った 4 層の成績管理（保存先はメモリ）を読み解く |
 | [07 Spring Bootで書き直す](/4層アーキテクチャ/07_Spring_Bootで書き直す.md) | 同じ構造を Spring Boot で書く |
 
-> 📦 **サンプルリポジトリ**：[PRMN_SYSTEM_Sample](https://github.com/<ORG>/PRMN_SYSTEM_Sample)（URL は仮置きです）
+> [!NOTE]
+> **サンプルリポジトリ**：[PRMN_SYSTEM_Sample](https://github.com/<ORG>/PRMN_SYSTEM_Sample)（URL は仮置きです）
 
 #### 5. 上流工程
 
