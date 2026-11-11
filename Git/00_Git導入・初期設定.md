@@ -29,6 +29,7 @@ flowchart LR
 | [05 GUI IntelliJ編](./05_GUI_IntelliJ編.md) | IntelliJ IDEA のボタン操作で同じことをする |
 | [06 CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md) | GUI でできないこと・困ったときの戻り方 |
 
+> [!NOTE]
 > **CUI と GUI の関係について**<br>
 > この資料では、まず **CUI（コマンド）で仕組みを理解**し、そのうえで **GUI（ボタン操作）** を説明します。<br>GUI はボタンの裏で同じコマンドを実行しているだけなので、コマンドを知っていると「今このボタンで何が起きたか」が分かり、迷わなくなります。
 
@@ -88,6 +89,7 @@ Git の設定（[4章](#4-名前とメールアドレスの設定)）で **GitHu
 4. アンケート画面などは「Skip」でOK。
 5. 作成したら、**ユーザー名**と**登録したメールアドレス**を控えておく。
 
+> [!NOTE]
 > **メールアドレスを公開したくない場合**<br>
 > GitHub の **Settings → Emails** で「Keep my email addresses private」にチェックを入れると、`ユーザー名@users.noreply.github.com` 形式の非公開用アドレスが発行されます。4章ではこのアドレスを使ってもOKです。
 
@@ -111,6 +113,7 @@ git --version
 4. **開いているターミナル／VSCode／IntelliJ をいったんすべて閉じて、開き直す**（開き直さないと認識されません）。
 5. `git --version` でバージョンが表示されれば完了。
 
+> [!NOTE]
 > **winget を使う方法（コマンドでインストール）**
 > ```powershell
 > winget install --id Git.Git -e --source winget
@@ -130,6 +133,7 @@ git --version
 brew install git
 ```
 
+> [!TIP]
 > インストール後、ターミナルを開き直してから `git --version` で確認してください。
 
 ---
@@ -176,6 +180,7 @@ GitHub は Git 操作での**パスワード認証を廃止**しています。�
 | [VSCode](#5-3-vscode) | VSCode から GitHub にサインイン（ブラウザで承認） | ★ かんたん |
 | [IntelliJ IDEA](#5-4-intellij-idea) | 設定で GitHub アカウントを追加（ブラウザ or PAT） | ★ かんたん |
 
+> [!NOTE]
 > どの道具でも、うまくいかないときの最終手段は **PAT**（[5-0](#5-0-personal-access-token-pat-の発行手順)）です。
 
 ```mermaid
@@ -209,7 +214,8 @@ flowchart TD
 > - 他人に教えない／ファイルやコミットに書かない／スクリーンショットに写さない
 > - 流出したら、同じ画面から **Delete** してすぐ無効化する
 
-> 🔒 **セキュリティの視点**：トークンを作るときは、**有効期限を付け**（`No expiration` を選ばない）、**必要な権限（スコープ）だけ**にチェックします（[GitHub Docs「個人用アクセス トークンを管理する」](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)）。GitHub アカウント自体も、[2 要素認証](https://docs.github.com/ja/authentication/securing-your-account-with-two-factor-authentication-2fa)を有効にしておきます（いずれも閲覧日：2026-11-08）。パソコンがウイルスに感染すると、保存されたパスワードやトークンは、まとめて盗まれます。
+> [!CAUTION]
+> **セキュリティの視点**：トークンを作るときは、**有効期限を付け**（`No expiration` を選ばない）、**必要な権限（スコープ）だけ**にチェックします（[GitHub Docs「個人用アクセス トークンを管理する」](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)）。GitHub アカウント自体も、[2 要素認証](https://docs.github.com/ja/authentication/securing-your-account-with-two-factor-authentication-2fa)を有効にしておきます（いずれも閲覧日：2026-11-08）。パソコンがウイルスに感染すると、保存されたパスワードやトークンは、まとめて盗まれます。
 >
 > #### 実例
 > - 2026 年、マネーフォワードは、業務用の GitHub の認証情報が漏れ、リポジトリを第三者にコピーされたと公表しました（[マネーフォワード 第一報](https://corp.moneyforward.com/news/info/20260501-mf-press-1/)、2026-05-01、閲覧日：2026-11-08）。
@@ -224,6 +230,7 @@ Git for Windows には **Git Credential Manager** が同梱されているため
 3. **Sign in with your browser** を選び、GitHub にログインして **Authorize** をクリックする。
 4. push が成功すれば完了。以降は入力不要。
 
+> [!NOTE]
 > ログイン画面が出ずに失敗する場合は、Mac と同じく PAT を使います。
 
 ### 5-2. ターミナル（Mac）
@@ -247,6 +254,7 @@ git config --global credential.helper               # osxkeychain と表示さ�
 git config --global credential.helper osxkeychain   # 何も表示されない場合に実行
 ```
 
+> [!TIP]
 > 認証情報が古くなってエラーが続くときは、「キーチェーンアクセス」アプリで `github.com` を検索して削除すると、次の push で再入力できます。
 
 ### 5-3. VSCode
@@ -263,6 +271,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 4. 「VS Code を開きますか？」と出たら **開く** を選ぶ。
 5. アカウントアイコンに自分のユーザー名が表示されれば完了。
 
+> [!NOTE]
 > VSCode の認証は基本的に **VSCode のボタン操作用**です。VSCode の統合ターミナルから `git push` する場合は、5-1 / 5-2 の設定が必要になることがあります。
 
 ### 5-4. IntelliJ IDEA
@@ -432,7 +441,8 @@ remote: error: GH013: Repository rule violations found for refs/heads/main.
 
 変更したいときは、ブランチを作って push し、GitHub 上で PR を作成してマージします（手順は [02 CUI基本編](./02_CUI基本編.md) 以降で学びます）。
 
-> 💡 **自分ひとりのリポジトリでは「承認（Require approvals）」は入れなくてOK** <br>自分で出した PR は自分では承認できないため、必須にするとマージできなくなります。チームで開発するときに、レビュー担当者の承認を必須にしましょう。
+> [!TIP]
+> **自分ひとりのリポジトリでは「承認（Require approvals）」は入れなくてOK** <br>自分で出した PR は自分では承認できないため、必須にするとマージできなくなります。チームで開発するときに、レビュー担当者の承認を必須にしましょう。
 
 > [!WARNING]
 > **Private リポジトリでは、無料プランだとルールが使えない場合があります** <br>設定画面に有料プランの案内が出たときは、Public リポジトリにするか、「main に直接 push しない」ことを自分で守りましょう。
