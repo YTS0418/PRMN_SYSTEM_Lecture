@@ -64,6 +64,7 @@ flowchart LR
 </dependency>
 ```
 
+> [!IMPORTANT]
 > 4 層のうち、データベースを直接扱うのは **Infrastructure 層だけ**です。`JdbcClient` や `java.sql` を import してよいのは、`infrastructure.jdbc` パッケージの中だけ、という約束にします。
 
 ## 2. 接続する
@@ -88,7 +89,8 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 > [!WARNING]
 > **パスワードをソースコードに書かない**でください。上の例のように環境変数から読むか、設定ファイルに分けて、Git にコミットしないようにします。
 
-> 🔒 **セキュリティの視点**：この章の例では管理者の `postgres` で接続していますが、実際のアプリケーションでは、**アプリ専用のユーザー**を作り、必要な権限だけを与えます。こうしておくと、SQL インジェクション（4 節）などで乗っ取られても、テーブルの削除や作成はできません。IPA も、データベースのアカウントの権限を必要最小限にすることを、保険的対策として挙げています（[IPA「安全なウェブサイトの作り方 1.1 SQL インジェクション」](https://www.ipa.go.jp/security/vuln/websecurity/sql.html)、閲覧日：2026-11-08）。
+> [!CAUTION]
+> **セキュリティの視点**：この章の例では管理者の `postgres` で接続していますが、実際のアプリケーションでは、**アプリ専用のユーザー**を作り、必要な権限だけを与えます。こうしておくと、SQL インジェクション（4 節）などで乗っ取られても、テーブルの削除や作成はできません。IPA も、データベースのアカウントの権限を必要最小限にすることを、保険的対策として挙げています（[IPA「安全なウェブサイトの作り方 1.1 SQL インジェクション」](https://www.ipa.go.jp/security/vuln/websecurity/sql.html)、閲覧日：2026-11-08）。
 >
 > ```sql
 > CREATE ROLE grades_app LOGIN PASSWORD '（推測されにくいパスワード）';
@@ -111,6 +113,7 @@ spring.datasource.username=postgres
 spring.datasource.password=${DB_PASSWORD}
 ```
 
+> [!NOTE]
 > `${DB_PASSWORD}` は、環境変数 `DB_PASSWORD` の値に置き換わります。パスワードを設定ファイルに直接書かないためです。`driver-class-name` は、URL から自動で判断されるので省略することもできます。
 
 ## 3. SQL を実行して結果を受け取る
@@ -145,7 +148,8 @@ public class JdbcStudentRepository implements StudentRepository {
 - `JdbcClient` は、コンストラクタの引数で受け取ります（**コンストラクタインジェクション**）。誰が `JdbcClient` を作るか（8 節の `Main`、または Spring Boot）を、Repository は知らなくて済みます（4層アーキテクチャ編 03 章）
 - SQL は、**テキストブロック**（`"""` で囲む複数行の文字列：[Java 入門 02 章](../付録/Java入門/02_基本文法・変数と型.md)）で変数に入れてから、`sql(...)` に渡します。SQL が長くなっても、改行して読みやすく書けます
 
-> 📦 **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java)
+> [!NOTE]
+> **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java)
 
 SQL の種類と欲しい結果に合わせて、最後に呼ぶメソッドを選びます。
 
@@ -212,9 +216,11 @@ SELECT * FROM students WHERE name = '' OR '1'='1'
 
 この資料では、取り違えの起きにくい**名前付きパラメータ**を使います。
 
-> 💡 **SQL に値を入れるときは、必ずプレースホルダを使う**。これは例外なしのルールです。テーブル名や列名のように、プレースホルダでは指定できない部分を動的に変える場合は、あらかじめ決めた**選択肢の中から選ぶ**（利用者の入力をそのまま使わない）ようにします。
+> [!TIP]
+> **SQL に値を入れるときは、必ずプレースホルダを使う**。これは例外なしのルールです。テーブル名や列名のように、プレースホルダでは指定できない部分を動的に変える場合は、あらかじめ決めた**選択肢の中から選ぶ**（利用者の入力をそのまま使わない）ようにします。
 
-> 🔒 **セキュリティの視点**：SQL インジェクションは、昔から知られている攻撃ですが、**今も被害が出ています**。
+> [!CAUTION]
+> **セキュリティの視点**：SQL インジェクションは、昔から知られている攻撃ですが、**今も被害が出ています**。
 >
 > #### 実例
 > - 2025 年には、模試を運営する会社のサーバーが SQL インジェクションで不正アクセスされ、受験者の情報 約 28 万件などが流出した可能性があると公表されました（[学悠出版「不正アクセスによる情報流出の可能性に関するお詫びとお知らせ」](https://www.zenkenmoshi.jp/)、2025-06-30、閲覧日：2026-11-08）。
@@ -243,7 +249,8 @@ public Student save(Student student) {
 }
 ```
 
-> 💡 `RETURNING` がある `INSERT` は、結果の行を返すので、`update` ではなく `query` を使います。
+> [!TIP]
+> `RETURNING` がある `INSERT` は、結果の行を返すので、`update` ではなく `query` を使います。
 
 履修の保存（`EnrollmentRepository.save`）は、メモリ版の「同じ（学生, 科目, 年度）があれば上書き」を、SQL の `ON CONFLICT` で実現できます。
 
@@ -295,7 +302,8 @@ classDiagram
 | `JdbcCourseRepository` | `SELECT ... FROM courses`（読み取りのみ） |
 | `JdbcEnrollmentRepository` | `INSERT ... ON CONFLICT`、`SELECT ... WHERE student_id = :studentId` |
 
-> 📦 **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step2-jdbc/src/grades/infrastructure/jdbc)
+> [!NOTE]
+> **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step2-jdbc/src/grades/infrastructure/jdbc)
 
 ### Domain のオブジェクトとテーブルは、同じ形でなくてよい
 
@@ -339,7 +347,8 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 StudentRepository students = new JdbcStudentRepository(jdbcClient);   // new InMemoryStudentRepository() から差し替え
 ```
 
-> 💡 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`GradeService` も `ConsoleApp` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
+> [!NOTE]
+> 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`GradeService` も `ConsoleApp` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
 
 ## 9. 例外の扱い
 
@@ -361,9 +370,11 @@ try {
 }
 ```
 
-> 💡 たとえば `DuplicateKeyException` を受け取ったら、「すでに登録されています」という分かりやすいエラーに変換して、上の層に伝えます（11 章 7 節の二重登録の例）。
+> [!TIP]
+> たとえば `DuplicateKeyException` を受け取ったら、「すでに登録されています」という分かりやすいエラーに変換して、上の層に伝えます（11 章 7 節の二重登録の例）。
 
-> 🔒 **セキュリティの視点**：例外のメッセージ（SQL 文、テーブル名、制約名）を、**そのまま利用者の画面に出さない**でください。攻撃者にとっては、データベースの構造を知る手がかりになります。利用者には「登録に失敗しました」のような短い文を見せ、詳しい内容は開発者用の**ログ**に残します。ただし、パスワードや個人情報は、ログにも書きません。IPA も、エラーメッセージをそのまま表示しないことを、保険的対策として挙げています（[IPA「安全なウェブサイトの作り方 1.1 SQL インジェクション」](https://www.ipa.go.jp/security/vuln/websecurity/sql.html)、閲覧日：2026-11-08）。
+> [!CAUTION]
+> **セキュリティの視点**：例外のメッセージ（SQL 文、テーブル名、制約名）を、**そのまま利用者の画面に出さない**でください。攻撃者にとっては、データベースの構造を知る手がかりになります。利用者には「登録に失敗しました」のような短い文を見せ、詳しい内容は開発者用の**ログ**に残します。ただし、パスワードや個人情報は、ログにも書きません。IPA も、エラーメッセージをそのまま表示しないことを、保険的対策として挙げています（[IPA「安全なウェブサイトの作り方 1.1 SQL インジェクション」](https://www.ipa.go.jp/security/vuln/websecurity/sql.html)、閲覧日：2026-11-08）。
 
 ## 10. トランザクション
 
@@ -382,6 +393,7 @@ try {
 | `PGSimpleDataSource` / `DriverManager` | 呼ぶたびに新しい接続を作る。学習用・小規模向け |
 | コネクションプール（**HikariCP** など） | 接続を使い回す。実際のアプリケーション向け。Spring Boot は既定で HikariCP を使う |
 
+> [!NOTE]
 > `JdbcClient.create(dataSource)` と書くコードは、`DataSource` の実体がプールでも単純な実装でも**変わりません**。これも、インタフェースを通して使う利点です。プールの場合、接続を閉じる処理は「**プールに返す**」動作になります。
 
 ## 12. 補足：素の JDBC

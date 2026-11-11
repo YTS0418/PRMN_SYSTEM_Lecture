@@ -6,6 +6,7 @@
 
 チーム開発で必ず出会う「main が先に進んでしまった」「間違えてコミット／push してしまった」「プルリクエストってどう使うの？」に対応できるようになることが目標です。
 
+> [!TIP]
 > 取り消し操作は、自分で作ったリポジトリ（[00 導入編 8章](./00_Git導入・初期設定.md#8-リポジトリを作る)）で一度試してから、本番で使いましょう。
 
 ## 目次
@@ -87,6 +88,7 @@ flowchart LR
 | `git fetch` | GitHub の最新状態を取ってきて、`origin/〇〇` を更新する | **変わらない**（確認だけ） |
 | `git pull` | fetch したうえで、今いるブランチに merge する | 変わる |
 
+> [!TIP]
 > `git fetch` → `git log --oneline --graph --all` で「GitHub で何が起きたか」を先に見てから取り込むと、安全に作業できます。
 
 ---
@@ -126,8 +128,10 @@ git merge origin/main        # ④ 最新の main を自分のブランチに取
 git push                     # ⑤ 取り込んだ結果を GitHub に送る
 ```
 
+> [!NOTE]
 > `git fetch` と `git merge origin/main` は、`git pull origin main` の1行にまとめることもできます。
 
+> [!NOTE]
 > **なぜ `main` ではなく `origin/main`？**
 > 自分の PC の `main` は、最後に pull したときのままで古い可能性があります。`origin/main` は fetch 直後の **GitHub の最新の main** なので、確実に最新を取り込めます。
 
@@ -143,6 +147,7 @@ git commit --no-edit          # マージコミットが作られる（メッセ
 git push
 ```
 
+> [!TIP]
 > やり直したいときは `git merge --abort` で、取り込む前の状態に戻れます。
 
 ### どのくらいの頻度で合わせる？
@@ -157,6 +162,7 @@ git push
 
 ## 3. 参考：rebase で合わせる
 
+> [!NOTE]
 > このセクションは**参考**です。慣れるまでは [2章の merge](#2-自分のブランチを最新の-main-に合わせる) を使ってください。
 
 `rebase` は、自分のコミットを**最新の main の先端に付け替え**ます。マージコミットができないので、履歴が一直線できれいになります。
@@ -219,6 +225,7 @@ flowchart TD
     R6 -.->|"消しすぎた！"| R7
 ```
 
+> [!TIP]
 > **迷ったら `git revert`**。履歴を消さずに「打ち消すコミット」を足すだけなので、どんな状況でも安全です。
 
 ### 4-1. コミット前の変更を取り消す（restore）
@@ -276,6 +283,7 @@ flowchart LR
 | `--mixed`（省略時） | 取り消す | 空になる      | 変更が**残る** | add するファイルを選び直したい          |
 | `--hard`       | 取り消す | 空になる      | **消える**   | 変更自体が不要（⚠️ 未コミットの変更も消えます）  |
 
+> [!TIP]
 > まずは `--soft` を使いましょう。変更が残るので、失敗しても困りません。
 
 ### 4-4. push 済みのコミットを取り消す（revert）
@@ -303,8 +311,10 @@ gitGraph
 | push 済みで使うと | force push が必要。他の人の環境と食い違う | 普通に push できる |
 | 使う場面 | **push 前** | **push 後** |
 
+> [!NOTE]
 > `--no-edit` をつけないと、メッセージを編集する画面（Vim など）が開きます。開いた場合は `Esc` → `:wq` → `Enter` で閉じます。
 
+> [!NOTE]
 > マージコミットを revert するときは `git revert -m 1 コミットID` のように `-m 1` が必要です。迷ったらメンターに相談してください。
 
 ### 4-5. 自分だけのブランチで push を取り消す（reset ＋ force push）
@@ -344,6 +354,7 @@ git reset --hard 9e8d7c6            # 今のブランチをその時点に戻す
 git switch -c rescue 9e8d7c6        # その時点から新しいブランチを作る（安全）
 ```
 
+> [!NOTE]
 > PowerShell で `HEAD@{1}` のような書き方を使うときは、`'HEAD@{1}'` のように引用符で囲みます。コミット ID を使えば引用符は不要です。
 
 ---
@@ -387,6 +398,7 @@ git switch 正しいブランチ      # ② 正しいブランチへ
 git stash pop                 # ③ 正しいブランチで変更を戻す
 ```
 
+> [!TIP]
 > stash は「取り置き」なので、**長期間ためこまない**ようにしましょう。何を退避したか忘れがちです。
 
 ---
@@ -437,6 +449,7 @@ git push                      # 初回は git push -u origin feature-login
 
 ![](../images/git/github/gh-06-02-create-pull-request.png)
 
+> [!TIP]
 > **まだ作業途中だけど見てほしい**ときは、Create pull request の横の ▼ から **Create draft pull request** を選ぶと、下書きの PR になります。
 
 #### PR の説明の書き方（例）
@@ -457,6 +470,7 @@ git push                      # 初回は git push -u origin feature-login
 - エラーメッセージの文言が分かりやすいか
 ```
 
+> [!NOTE]
 > リポジトリに `.github/pull_request_template.md` を置くと、PR を作るときにこのひな形が自動で入ります。
 
 ### 6-3. レビューする（レビュアー側）
@@ -478,6 +492,7 @@ git push                      # 初回は git push -u origin feature-login
 
 ![review-changes](../images/git/github/gh-06-04-review-changes.png)
 
+> [!NOTE]
 > **レビューのマナー**：<br>人ではなくコードについて書く／「なぜそうしたほうがいいか」を添える／良いところも伝える。
 
 ### 6-4. 指摘に対応する（自分側）
@@ -529,6 +544,7 @@ gitGraph
     commit id: "CD（C と D をまとめたもの）" type: HIGHLIGHT
 ```
 
+> [!IMPORTANT]
 > **どの方式を使うかはチームで決めて統一**しましょう。迷ったら Create a merge commit が分かりやすいです。
 
 マージ後、**Delete branch** ボタンで GitHub 上のブランチを削除します。
@@ -543,6 +559,7 @@ git branch -d feature-login   # ③ 手元のブランチを削除
 git fetch --prune             # ④ GitHub で削除済みのブランチの控えを消す
 ```
 
+> [!NOTE]
 > **Squash and merge** でマージした場合、`git branch -d` が「not fully merged」と拒否することがあります。GitHub で PR がマージ済み（Merged）になっていることを確認できたら、`git branch -D feature-login`（大文字）で削除します。
 
 次の作業は、また **最新の main から新しいブランチを作る**ところから始めます。
@@ -564,6 +581,7 @@ git commit --no-edit
 git push                   # PR のコンフリクト表示が消える
 ```
 
+> [!NOTE]
 > 簡単なコンフリクトなら、PR 画面の **Resolve conflicts** ボタンから GitHub 上で直接解決することもできます。ただし、動作確認ができないので、手元で解決するほうが安全です。
 
 ---
@@ -587,6 +605,7 @@ git fetch
 git switch 他の人のブランチ名      # origin に同じ名前があれば、自動で手元に作られる
 ```
 
+> [!NOTE]
 > レビューのときに、実際に動かして確認したい場合に使います。
 
 ### .gitignore：Git で管理しないファイルを指定する
@@ -612,6 +631,7 @@ Thumbs.db
 .env
 ```
 
+> [!IMPORTANT]
 > **すでにコミットしてしまったファイル**は、`.gitignore` に書いても無視されません。次のコマンドで Git の管理から外します（ファイル自体は PC に残ります）。
 > ```bash
 > git rm --cached ファイル名

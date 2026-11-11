@@ -36,7 +36,8 @@
 psql -U postgres -d grades_db -f db/02_seed.sql
 ```
 
-> 📦 **サンプル**：[`db/02_seed.sql`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/db/02_seed.sql)
+> [!NOTE]
+> **サンプル**：[`db/02_seed.sql`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/db/02_seed.sql)
 
 入るデータの概要です。
 
@@ -48,7 +49,8 @@ psql -U postgres -d grades_db -f db/02_seed.sql
 | courses | 5 | プログラミング基礎、データベース、線形代数、電気回路、有機化学 |
 | enrollments | 15 | 履修記録（うち 3 件は、点数が NULL の「履修中」） |
 
-> 💡 もう一度やり直したいときは、`01_schema.sql` → `02_seed.sql` の順に流し直せば、最初の状態に戻ります。
+> [!TIP]
+> もう一度やり直したいときは、`01_schema.sql` → `02_seed.sql` の順に流し直せば、最初の状態に戻ります。
 
 ## 2. INSERT：行を追加する
 
@@ -124,7 +126,8 @@ SELECT name, enrolled_year FROM students WHERE department_id = 1;
 | 文字列の部分一致 | `LIKE` （`%` は任意の文字列、`_` は任意の 1 文字） | `title LIKE 'プログラ%'` |
 | 組み合わせ | `AND` `OR` `NOT` | `score >= 60 AND academic_year = 2024` |
 
-> 💡 SQL の `=` は**比較**です（Java の `==` にあたる）。代入ではありません。等しくない場合は `<>` と書きます（`!=` も使えます）。
+> [!TIP]
+> SQL の `=` は**比較**です（Java の `==` にあたる）。代入ではありません。等しくない場合は `<>` と書きます（`!=` も使えます）。
 
 `AND` と `OR` を混ぜるときは、**括弧で優先順位を明示**します。
 
@@ -194,7 +197,8 @@ LIMIT 3;
 > [!WARNING]
 > **`ORDER BY` を書かないと、行の順序は保証されません**。「普段は入れた順に出るから」と期待してはいけません。
 
-> 💡 PostgreSQL では、**NULL は最も大きい値として扱われます**。そのため、`ORDER BY score DESC` では**NULL の行が先頭**に来ます。上の例のように `WHERE score IS NOT NULL` で除くか、`ORDER BY score DESC NULLS LAST` と指定します。
+> [!TIP]
+> PostgreSQL では、**NULL は最も大きい値として扱われます**。そのため、`ORDER BY score DESC` では**NULL の行が先頭**に来ます。上の例のように `WHERE score IS NOT NULL` で除くか、`ORDER BY score DESC NULLS LAST` と指定します。
 
 ## 7. 式と CASE
 
@@ -212,7 +216,8 @@ FROM enrollments;
 
 `CASE` は、Java の `if - else if - else` に近い式です。この例は、4層アーキテクチャ編の `Enrollment.isPassed()`（60 点以上が合格）と同じ判定を、SQL で書いたものです。
 
-> 💡 **同じルールが、Java（Domain 層）と SQL の両方に現れる**ことになります。合格点を変える場合に両方を直す必要が出てきます。こうした重複を避けるため、判定は Domain 層に集め、SQL は**データの取り出しに専念させる**設計が基本です。
+> [!TIP]
+> **同じルールが、Java（Domain 層）と SQL の両方に現れる**ことになります。合格点を変える場合に両方を直す必要が出てきます。こうした重複を避けるため、判定は Domain 層に集め、SQL は**データの取り出しに専念させる**設計が基本です。
 
 ## 8. UPDATE：行を更新する
 
@@ -247,7 +252,8 @@ WHERE student_id = 3 AND course_id = 4 AND academic_year = 2024;
 > [!WARNING]
 > **`DELETE` も、`WHERE` がないと全行が消えます。** 必ず `SELECT` で対象を確認してから実行してください。
 
-> 🔒 **セキュリティの視点**：データは、操作のミスだけでなく、攻撃でも失われます。代表的なのが**ランサムウェア**（データを暗号化して使えなくし、元に戻す代わりに身代金を要求する攻撃）で、IPA の「情報セキュリティ10大脅威 2026」（組織編）の 1 位です（[IPA](https://www.ipa.go.jp/security/10threats/10threats2026.html)、閲覧日：2026-11-08）。定期的に**バックアップ**を取り（PostgreSQL では [`pg_dump`](https://www.postgresql.jp/document/18/html/app-pgdump.html)）、**普段つながっている場所だけに置かない**ようにします。
+> [!CAUTION]
+> **セキュリティの視点**：データは、操作のミスだけでなく、攻撃でも失われます。代表的なのが**ランサムウェア**（データを暗号化して使えなくし、元に戻す代わりに身代金を要求する攻撃）で、IPA の「情報セキュリティ10大脅威 2026」（組織編）の 1 位です（[IPA](https://www.ipa.go.jp/security/10threats/10threats2026.html)、閲覧日：2026-11-08）。定期的に**バックアップ**を取り（PostgreSQL では [`pg_dump`](https://www.postgresql.jp/document/18/html/app-pgdump.html)）、**普段つながっている場所だけに置かない**ようにします。
 >
 > #### 実例
 > - 2025 年のアスクルの被害では、サーバーと同じデータセンターにあったバックアップも暗号化され、削除もされたため、復旧が長引きました（[アスクル 第 13 報](https://pdf.irpocket.com/C0032/PDLX/O3bg/N4O3.pdf)、2025-12-12、閲覧日：2026-11-08）。
@@ -262,7 +268,8 @@ WHERE student_id = 3 AND course_id = 4 AND academic_year = 2024;
 | `DELETE FROM students WHERE student_id = 1;` | 学生が消え、その**履修記録も一緒に消える** | `enrollments.student_id` は `ON DELETE CASCADE` |
 | `DELETE FROM departments WHERE department_id = 1;` | **エラー**になる | 学生・教員が所属している（既定は RESTRICT） |
 
-> 💡 行の `DELETE` と、テーブルの `DROP TABLE`（08 章）は別物です。`DELETE` はテーブルの構造を残し、行だけを消します。
+> [!TIP]
+> 行の `DELETE` と、テーブルの `DROP TABLE`（08 章）は別物です。`DELETE` はテーブルの構造を残し、行だけを消します。
 
 ## 10. 制約違反のエラー
 
@@ -277,7 +284,8 @@ WHERE student_id = 3 AND course_id = 4 AND academic_year = 2024;
 
 メッセージには、**どの制約に違反したか**（制約名）と、**どの値が問題か**（`DETAIL` 行）が書かれています。
 
-> 💡 これらのエラーは、Java からは例外として届きます（12 章）。Domain 層の検査で多くは防げますが、**最後の砦としてデータベースが止めてくれる**ことを、ここで体験しておきましょう（06 章）。
+> [!TIP]
+> これらのエラーは、Java からは例外として届きます（12 章）。Domain 層の検査で多くは防げますが、**最後の砦としてデータベースが止めてくれる**ことを、ここで体験しておきましょう（06 章）。
 
 ## 11. 自動採番の位置を合わせる
 

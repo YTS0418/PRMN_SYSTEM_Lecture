@@ -6,6 +6,7 @@
 
 コマンド（CUI, CLI）で、Git 作業ができるようになることが目標です。
 
+> [!NOTE]
 > **ターミナルはどこで開く？**
 > **VSCode や IntelliJ IDEA の中にあるターミナル**（統合ターミナル）を使うのがおすすめです。あとで GUI 編に進んだとき、同じ画面のまま「さっきのコマンドはこのボタン」と見比べられます。
 > - VSCode：メニューの `ターミナル` → `新しいターミナル`（`` Ctrl + ` ``）
@@ -61,6 +62,7 @@ git commit -m "変更内容の説明"      # ⑤ 記録
 git push                          # ⑥ 送る
 ```
 
+> [!IMPORTANT]
 > **作業を始める前に必ず pull、終わったら push** を習慣にしましょう。
 
 ---
@@ -107,6 +109,7 @@ flowchart LR
     ST -->|"git commit"| LR_
 ```
 
+> [!TIP]
 > Git は**次に使うべきコマンドのヒント**（`use "git ..."`）を表示してくれます。<br>よく読みましょう。
 
 ---
@@ -135,6 +138,7 @@ flowchart LR
     WT -->|"git add A.java B.java"| ST
 ```
 
+> [!WARNING]
 > `git add .` は便利ですが、**入れたくないファイル（メモや設定ファイル）まで入ってしまう**ことがあります。`git add .` の前後に `git status` で確認しましょう。
 
 ### 3-3. 記録する（commit）
@@ -192,6 +196,7 @@ git log --oneline --graph  # ブランチの分かれ方も表示
 - `HEAD ->` が**今いる場所**
 - `origin/〇〇` は**GitHub 上のブランチ**の位置
 
+> [!TIP]
 > 表示が長くて画面が切り替わったときは、`q` キーで終了します。
 
 ### 差分（diff）
@@ -232,6 +237,7 @@ gitGraph
     commit id: "D 入力チェック"
 ```
 
+> [!TIP]
 > **ブランチ名のつけ方**：`feature-機能名`、`fix-直す内容` のように、何の作業か分かる名前にします（英数字とハイフンがおすすめ）。
 
 ### ブランチを作るときは main を最新にしてから
@@ -261,6 +267,7 @@ git push -u origin feature-login
 | 切り替え先のブランチと**ぶつからない**変更 | 変更を持ったまま切り替わる（切り替え先のブランチで作業が続く） |
 | 切り替え先のブランチと**ぶつかる**変更 | `error: Your local changes ... would be overwritten` と出て切り替えが止まる |
 
+> [!IMPORTANT]
 > **基本は「切り替える前にコミットする」**。コミットしたくない場合の退避方法（stash）は [03 応用編](./03_CUI応用編.md#5-作業を一時的に退避するstash)で扱います。
 
 ---
@@ -273,6 +280,7 @@ git push -u origin feature-login
 git merge 取り込みたいブランチ名
 ```
 
+> [!WARNING]
 > **merge の向きに注意**：`git merge` は「**今いるブランチ**に、**指定したブランチ**の変更を取り込む」コマンドです。**先に取り込み先のブランチへ移動**してから実行します。
 
 例：`feature-login` の作業を `main` に合体したい場合
@@ -297,6 +305,7 @@ gitGraph
 
 合体後、`main` は `feature-login` の内容を含み、`feature-login` 自体は変わりません。
 
+> [!IMPORTANT]
 > チーム開発では、main へのマージは**コマンドではなくプルリクエスト（PR）で行う**のが基本です。PR の使い方は [03 応用編](./03_CUI応用編.md#6-プルリクエストを使う)で扱います。
 
 ---
@@ -362,8 +371,10 @@ flowchart TD
 String title = "こんにちは";
 ```
 
+> [!WARNING]
 > **どちらを残すべきか分からないときは、勝手に決めずに相手と相談しましょう。** 落ち着いてやり直したいときは `git merge --abort` でマージ前の状態に戻れます。
 
+> [!NOTE]
 > GUI では、コンフリクトをボタンで解決できる専用の画面があります（[04 VSCode編](./04_GUI_VSCode編.md) / [05 IntelliJ編](./05_GUI_IntelliJ編.md)）。
 
 ---
@@ -437,13 +448,15 @@ VSCode でメッセージのタブが開くので、入力して保存（`Ctrl +
 - ✅ 作業前に `git pull`、作業後に `git push`
 - ✅ こまめにコミットする（セーブポイントは多いほうが安心）
 
-> 🔒 **セキュリティの視点**：パスワードや API キーは、`.env` のような**別のファイル**に書き、そのファイル名を `.gitignore` に書いて、Git の管理から外します。個人情報の入ったファイル（名簿、成績のデータなど）も、リポジトリに入れません。うっかり push してしまったら、履歴から消すだけでは足りません。**そのキーやパスワードを無効にして、新しいものに替えます**（[GitHub Docs「リポジトリからの機微なデータの削除」](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)）。GitHub には、キーらしい文字列を含む push を止める[プッシュ保護](https://docs.github.com/ja/code-security/secret-scanning/introduction/about-push-protection)もあります（いずれも閲覧日：2026-11-08）。
+> [!CAUTION]
+> **セキュリティの視点**：パスワードや API キーは、`.env` のような**別のファイル**に書き、そのファイル名を `.gitignore` に書いて、Git の管理から外します。個人情報の入ったファイル（名簿、成績のデータなど）も、リポジトリに入れません。うっかり push してしまったら、履歴から消すだけでは足りません。**そのキーやパスワードを無効にして、新しいものに替えます**（[GitHub Docs「リポジトリからの機微なデータの削除」](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)）。GitHub には、キーらしい文字列を含む push を止める[プッシュ保護](https://docs.github.com/ja/code-security/secret-scanning/introduction/about-push-protection)もあります（いずれも閲覧日：2026-11-08）。
 >
 > #### 実例
 > - 2022 年、トヨタ自動車は、開発の委託先がデータサーバーへのアクセスキーを含むソースコードを GitHub に公開したまま、約 5 年間気付かなかったと公表しました（[トヨタ自動車のお知らせ](https://global.toyota/jp/newsroom/corporate/38095972.html)、2022-10-07、閲覧日：2026-11-08）。
 > - 2026 年のマネーフォワードの事例では、GitHub から流出したソースコードの中に認証キーやパスワードが書かれていたため、それらを無効にして再発行しました。リポジトリには、個人情報も混ざっていました（[マネーフォワード 第一報](https://corp.moneyforward.com/news/info/20260501-mf-press-1/)、[第四報](https://corp.moneyforward.com/news/info/20260623-mf-press-1/)、閲覧日：2026-11-08）。
 
-> 🔒 **セキュリティの視点**：生成 AI のチャットに、パスワード・API キー・個人情報を**貼り付けない**でください。エラーの相談でコードやログを貼るときも、キーや個人情報が含まれていないか確かめます。IPA の「情報セキュリティ10大脅威 2026」（組織編）では、「AI の利用をめぐるサイバーリスク」が初めて選ばれ、3 位になりました（[IPA](https://www.ipa.go.jp/security/10threats/10threats2026.html)、閲覧日：2026-11-08）。
+> [!CAUTION]
+> **セキュリティの視点**：生成 AI のチャットに、パスワード・API キー・個人情報を**貼り付けない**でください。エラーの相談でコードやログを貼るときも、キーや個人情報が含まれていないか確かめます。IPA の「情報セキュリティ10大脅威 2026」（組織編）では、「AI の利用をめぐるサイバーリスク」が初めて選ばれ、3 位になりました（[IPA](https://www.ipa.go.jp/security/10threats/10threats2026.html)、閲覧日：2026-11-08）。
 
 ---
 
