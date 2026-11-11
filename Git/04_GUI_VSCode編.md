@@ -249,11 +249,8 @@ Git の操作は、主に次の4か所で行います。
 > 📷 **スクショ指定：`vsc-08-01-merge-branch-menu.png`**
 > - 画面：「…」→「ブランチ」のサブメニューを開いた状態
 > - 強調：「ブランチ」と「ブランチをマージ...」の項目を赤枠で囲む
-
-<!-- 📷 SS: ../images/git/vscode/vsc-08-02-select-origin-main.png -->
-> 📷 **スクショ指定：`vsc-08-02-select-origin-main.png`**
-> - 画面：マージするブランチの選択一覧
-> - 強調：「origin/main」を赤枠で囲む（「main」ではなく「origin/main」を選ぶことを注記）
+）
+![マージするブランチの選択画面（origin/main）](../images/git/vscode/vsc-08-02-select-origin-main.png)
 
 > [!WARNING]
 > **向きに注意**：「今いるブランチ」に「選んだブランチ」が取り込まれます。main にいる状態で feature を選ぶと、逆向きになってしまいます。
