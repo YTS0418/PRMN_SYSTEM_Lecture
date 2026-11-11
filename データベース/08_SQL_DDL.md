@@ -36,6 +36,7 @@
 | `ALTER` | 変更する |
 | `DROP` | 削除する |
 
+> [!NOTE]
 > データそのものを扱う命令（`INSERT` `SELECT` など）は DML で、09 章から扱います。
 
 ## 2. CREATE TABLE
@@ -77,6 +78,7 @@ CREATE TABLE teachers (
 );
 ```
 
+> [!NOTE]
 > `department_id ... REFERENCES departments (department_id)` は、「この列の値は、`departments` テーブルの `department_id` に存在するものだけ」という意味です。
 
 ## 3. 作る順序と消す順序
@@ -97,7 +99,8 @@ flowchart TB
 | **作る** | ① departments → ② teachers・students → ③ courses → ④ enrollments | 参照される側（親）を先に作る |
 | **消す** | ④ enrollments → ③ courses → ② teachers・students → ① departments | 参照する側（子）を先に消す。親を先に消すと、外部キーに違反する |
 
-> 💡 矢印は「参照される → 参照する」の向きです。**矢印の元（親）から作り、矢印の先（子）から消す**と覚えてください。
+> [!TIP]
+> 矢印は「参照される → 参照する」の向きです。**矢印の元（親）から作り、矢印の先（子）から消す**と覚えてください。
 
 ## 4. 制約の書き方
 
@@ -130,7 +133,8 @@ CREATE TABLE enrollments (
 CONSTRAINT uq_enrollments_student_course_year UNIQUE (student_id, course_id, academic_year)
 ```
 
-> 💡 命名規約の例：`pk_テーブル名`、`fk_テーブル名_列名`、`uq_テーブル名_列名`、`ck_テーブル名_列名`。このサンプルでは、読みやすさのため、名前を付けずに書いています。
+> [!TIP]
+> 命名規約の例：`pk_テーブル名`、`fk_テーブル名_列名`、`uq_テーブル名_列名`、`ck_テーブル名_列名`。このサンプルでは、読みやすさのため、名前を付けずに書いています。
 
 ## 5. ALTER TABLE
 
@@ -207,7 +211,8 @@ pgAdmin には、既存のテーブルから **ER 図を自動で描く機能**�
 
 サンプルの `db/01_schema.sql` は、ここまでの内容を 1 つにまとめたものです。
 
-> 📦 **サンプル**：[`db/01_schema.sql`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/db/01_schema.sql)
+> [!NOTE]
+> **サンプル**：[`db/01_schema.sql`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/db/01_schema.sql)
 
 | 部分 | 内容 | 関連する章 |
 |---|---|---|
@@ -228,6 +233,7 @@ pgAdmin には、既存のテーブルから **ER 図を自動で描く機能**�
 - 変更は、`ALTER TABLE` を書いたファイルを**順番に追加**していく（元のファイルは書き換えない）
 - 専用のツール（**Flyway**、**Liquibase** など）で、変更の適用を自動化する。Spring Boot とも連携できる
 
+> [!WARNING]
 > この資料では、学習のしやすさのため、「全部消して作り直す」`01_schema.sql` を使います。**本番のデータベースでは、このやり方は絶対にしません**。
 
 ## 10. よくあるミス

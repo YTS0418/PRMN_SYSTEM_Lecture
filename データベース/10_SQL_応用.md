@@ -49,7 +49,8 @@ SELECT COUNT(*) AS total, COUNT(score) AS graded, AVG(score) AS average FROM enr
 - `COUNT(*)` は全 15 行、`COUNT(score)` は点数のある 12 行
 - `AVG(score)` は、**NULL の 3 行を除いた** 12 件の平均
 
-> 💡 集約関数は NULL を**無視**します。「履修中」を平均に含めたくない成績管理では都合がよいですが、**意図を意識して使う**ことが大切です（`COALESCE(score, 0)` で 0 点扱いにすると、平均が下がります）。
+> [!TIP]
+> 集約関数は NULL を**無視**します。「履修中」を平均に含めたくない成績管理では都合がよいですが、**意図を意識して使う**ことが大切です（`COALESCE(score, 0)` で 0 点扱いにすると、平均が下がります）。
 
 ## 2. GROUP BY：グループごとに集計する
 
@@ -144,7 +145,8 @@ flowchart LR
     e -->|"ON course_id"| c["courses<br>course_id, title"]
 ```
 
-> 💡 外部キーは「**つなぐ線**」です。`ON` の条件は、ほとんどの場合、外部キーと参照先の主キーを `=` で結ぶ形になります。05 章の正規化で分けたテーブルは、`JOIN` で元の「全部入りの表」の形に戻せます。
+> [!TIP]
+> 外部キーは「**つなぐ線**」です。`ON` の条件は、ほとんどの場合、外部キーと参照先の主キーを `=` で結ぶ形になります。05 章の正規化で分けたテーブルは、`JOIN` で元の「全部入りの表」の形に戻せます。
 
 ### INNER JOIN
 
@@ -181,7 +183,8 @@ ORDER BY s.student_id;
 
 このほか、右側の行をすべて残す `RIGHT OUTER JOIN`（`RIGHT JOIN`）と、両方の行のすべての組み合わせを作る `CROSS JOIN` もあります。どちらも使う機会は多くありません。
 
-> 💡 `COUNT(e.enrollment_id)` と書いたのは、`COUNT(*)` だと、履修がない学生も「1 行」と数えてしまうためです。右側の列を数えれば、NULL の行は数えられず、0 になります。
+> [!TIP]
+> `COUNT(e.enrollment_id)` と書いたのは、`COUNT(*)` だと、履修がない学生も「1 行」と数えてしまうためです。右側の列を数えれば、NULL の行は数えられず、0 になります。
 
 ## 7. サブクエリ
 
@@ -204,7 +207,8 @@ WHERE student_id IN (SELECT student_id FROM enrollments WHERE score < 60);
 
 「60 点未満の履修がある学生」（Taro、Jiro）の名前が出ます。
 
-> 💡 サブクエリで書けることの多くは、`JOIN` でも書けます。読みやすいほうを選びましょう。
+> [!TIP]
+> サブクエリで書けることの多くは、`JOIN` でも書けます。読みやすいほうを選びましょう。
 
 ## 8. VIEW：よく使う SELECT に名前を付ける
 
@@ -228,9 +232,11 @@ SELECT * FROM transcripts WHERE student_id = 1;
 
 この `transcripts` ビューは、4層アーキテクチャ編の `Transcript`（成績一覧の DTO）の元になるデータと同じ形です。
 
-> 💡 正規化（05 章）でテーブルを細かく分けると、取り出すときに `JOIN` が必要になります。`VIEW` は、**その面倒さを解消**する手段の 1 つです。
+> [!TIP]
+> 正規化（05 章）でテーブルを細かく分けると、取り出すときに `JOIN` が必要になります。`VIEW` は、**その面倒さを解消**する手段の 1 つです。
 
-> 🔒 **セキュリティの視点**：`VIEW` は、**見せる列や行を絞る**ためにも使えます。たとえば、点数の列を含まない VIEW だけを読めるユーザーを作れば、そのユーザーには点数が見えません（権限は `GRANT` で与えます：[PostgreSQL 文書「GRANT」](https://www.postgresql.jp/document/18/html/sql-grant.html)）。上流工程の「学生は、自分の成績だけを見られる」（[上流工程 06 章](../上流工程/06_設計への受け渡し.md#3-機能要件と非機能要件)）のような**行ごとの制限**は、PostgreSQL の**行単位セキュリティ**でも実現できます（[PostgreSQL 文書「行セキュリティポリシー」](https://www.postgresql.jp/document/18/html/ddl-rowsecurity.html)、いずれも閲覧日：2026-11-08）。
+> [!CAUTION]
+> **セキュリティの視点**：`VIEW` は、**見せる列や行を絞る**ためにも使えます。たとえば、点数の列を含まない VIEW だけを読めるユーザーを作れば、そのユーザーには点数が見えません（権限は `GRANT` で与えます：[PostgreSQL 文書「GRANT」](https://www.postgresql.jp/document/18/html/sql-grant.html)）。上流工程の「学生は、自分の成績だけを見られる」（[上流工程 06 章](../上流工程/06_設計への受け渡し.md#3-機能要件と非機能要件)）のような**行ごとの制限**は、PostgreSQL の**行単位セキュリティ**でも実現できます（[PostgreSQL 文書「行セキュリティポリシー」](https://www.postgresql.jp/document/18/html/ddl-rowsecurity.html)、いずれも閲覧日：2026-11-08）。
 
 ## 9. 実行計画を見る
 
