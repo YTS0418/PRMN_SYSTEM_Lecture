@@ -71,9 +71,11 @@ class StudentController {
 }
 ```
 
+> [!NOTE]
 > 03 章・04 章の DI も、制御の反転の一種です。`GradeService` は「自分で部品を作る」のをやめ、**部品を渡される側**になりました。フレームワークは、それをさらに押し進めたものです。
 
-> 💡 実際には、境目はあいまいです。ライブラリでも、コールバック（呼び返される処理）を登録するものがあります。「**全体の流れを握っているのは誰か**」で考えると分かりやすくなります。
+> [!NOTE]
+> 実際には、境目はあいまいです。ライブラリでも、コールバック（呼び返される処理）を登録するものがあります。「**全体の流れを握っているのは誰か**」で考えると分かりやすくなります。
 
 ## 2. フレームワークを使う理由と注意点
 
@@ -117,6 +119,7 @@ Web アプリケーションには、どんなシステムでも必要になる*
 | **Spring Batch** | 大量データの一括処理（バッチ） | Application |
 | **Spring Cloud** | マイクロサービスの連携 | 全体 |
 
+> [!NOTE]
 > この資料で使うのは、**Spring Boot、Spring MVC、JDBC まわり**（JdbcClient）です。
 
 ## 4. Spring Boot とは
@@ -153,8 +156,10 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/grades_db
 spring.datasource.username=postgres
 ```
 
-> 💡 **Spring Framework と Spring Boot の関係**：Boot は Framework の「代わり」ではなく、Framework を**使いやすくした入口**です。Spring Boot で作ったアプリケーションの中身は、Spring Framework で動いています。現在、新しく始めるプロジェクトは、ほとんどが Spring Boot を使います。
+> [!NOTE]
+> **Spring Framework と Spring Boot の関係**：Boot は Framework の「代わり」ではなく、Framework を**使いやすくした入口**です。Spring Boot で作ったアプリケーションの中身は、Spring Framework で動いています。現在、新しく始めるプロジェクトは、ほとんどが Spring Boot を使います。
 
+> [!NOTE]
 > 「規約が設定に勝る」（Convention over Configuration）という考え方が、Spring Boot の基本です。標準的な設定は自動で行い、**変えたい部分だけ**自分で書きます。
 
 ## 5. DI コンテナと Bean
@@ -205,7 +210,8 @@ Spring Boot でよく見る名前と、この資料の 4 層は次のように�
 | Domain | **Entity**（Model） | （通常は不要） |
 | Domain（保存の窓口） / Infrastructure（実装） | **Repository** | `@Repository` |
 
-> 💡 現場では「Controller → Service → Repository の 3 層」と呼ぶことも多いです。3 層・MVC などとの対応は [02 章 8 節](02_4層の役割.md#8-他の呼び名との対応) を参照してください。
+> [!NOTE]
+> 現場では「Controller → Service → Repository の 3 層」と呼ぶことも多いです。3 層・MVC などとの対応は [02 章 8 節](02_4層の役割.md#8-他の呼び名との対応) を参照してください。
 
 ### 組み立ては DI コンテナが行う
 
@@ -271,7 +277,8 @@ public class GradeService {
 
 04 章の `GradeService` に `@Service` を付けただけです。**`GradeService` のコードは、Spring を使っても使わなくても、ほとんど変わりません**。
 
-> 💡 `private @Autowired StudentRepository repo;` のように、**フィールドに直接 `@Autowired` を付ける**書き方（フィールド注入）も存在しますが、推奨されません。`final` にできず、テストで差し替えにくく、依存が見えにくいためです。**コンストラクタ注入を使いましょう**。
+> [!TIP]
+> `private @Autowired StudentRepository repo;` のように、**フィールドに直接 `@Autowired` を付ける**書き方（フィールド注入）も存在しますが、推奨されません。`final` にできず、テストで差し替えにくく、依存が見えにくいためです。**コンストラクタ注入を使いましょう**。
 
 ## 6. 4層を Spring で作ると
 
@@ -303,7 +310,8 @@ flowchart TB
 | テストしやすい | Spring を起動しなくても、`new Enrollment(...)` だけでテストできる |
 | 第 1 部・04 章までの設計がそのまま使える | 素の Java 版（`step1`）の Domain 層は、Spring 版でも **1 行も変えずに**使える |
 
-> 💡 `import org.springframework...` が書かれているのが、`presentation`、`application`、`infrastructure` のパッケージだけで、**`domain` には 1 つも無い**。これが、Spring を使うときの 4 層の約束です。
+> [!TIP]
+> `import org.springframework...` が書かれているのが、`presentation`、`application`、`infrastructure` のパッケージだけで、**`domain` には 1 つも無い**。これが、Spring を使うときの 4 層の約束です。
 
 ## 7. 他の Java フレームワークとの違い
 
@@ -318,6 +326,7 @@ Java には、Spring 以外にも、Web アプリケーションを作るため�
 | **Helidon** | Oracle が開発する軽量なマイクロサービス向け | 方式により異なる | 軽量 | マイクロサービス |
 | **Google Guice / Dagger** | **DI だけ**を提供するライブラリ（Web などの機能は無い） | Guice は実行時、Dagger は**コンパイル時** | 軽量 | 小規模、Android（Dagger） |
 
+> [!NOTE]
 > この表は、**2026 年時点の一般的な傾向**です。実際の性能は、作るアプリケーションの内容や設定によって変わります。
 
 ### 見方のポイント
@@ -329,7 +338,8 @@ Java には、Spring 以外にも、Web アプリケーションを作るため�
 | **情報量・採用実績** | Spring は圧倒的に多い。書籍・記事・求人も多く、困ったときに調べやすい |
 | **機能の範囲** | Spring は周辺プロジェクトが豊富で、ほとんどの用途に対応できる |
 
-> 💡 Jakarta EE と Spring は対立するものではありません。Spring Framework 6 以降は、Jakarta EE の API（Servlet、JPA など）の上で動いています。
+> [!NOTE]
+> Jakarta EE と Spring は対立するものではありません。Spring Framework 6 以降は、Jakarta EE の API（Servlet、JPA など）の上で動いています。
 
 ### この資料で Spring Boot を使う理由
 
@@ -337,7 +347,8 @@ Java には、Spring 以外にも、Web アプリケーションを作るため�
 - **採用実績が多い**（実務や、プロジェクトでの共同作業で出会う可能性が高い）
 - 4 層の考え方（Controller / Service / Repository）が、**標準的な構成として定着している**
 
-> 💡 どのフレームワークを選んでも、**4 層の考え方は共通**です。Quarkus や Micronaut で作る場合も、Domain 層は素の Java のまま、Presentation / Application / Infrastructure 層を、そのフレームワークの書き方で作ります。
+> [!TIP]
+> どのフレームワークを選んでも、**4 層の考え方は共通**です。Quarkus や Micronaut で作る場合も、Domain 層は素の Java のまま、Presentation / Application / Infrastructure 層を、そのフレームワークの書き方で作ります。
 
 ## 8. 他言語のフレームワークと比べる
 
@@ -393,8 +404,10 @@ Python など、他の言語を学んだ人向けに、代表的な Web フレ�
 | 書きやすさ | 少ないコードで済む。小〜中規模に向く | クラスは増えるが、業務ルールを保存方法から独立させられる |
 | 向く場面 | 画面とデータが近い、素早く作りたいアプリ | 業務ルールが複雑で、保存先やフレームワークの変更に備えたいアプリ |
 
-> 💡 どちらが優れているということではありません。**規模・変更の見込み・チームの経験**で選びます。この資料は、業務システムを長く育てることを想定して、4 層に分ける設計を学びます。
+> [!TIP]
+> どちらが優れているということではありません。**規模・変更の見込み・チームの経験**で選びます。この資料は、業務システムを長く育てることを想定して、4 層に分ける設計を学びます。
 
+> [!NOTE]
 > **言語が違っても、4 層の考え方は共通**です。Python（Django や FastAPI）でも、ルールを Domain に、保存を Infrastructure に分けて設計することはできます。
 
 ## 9. この資料の前提バージョン

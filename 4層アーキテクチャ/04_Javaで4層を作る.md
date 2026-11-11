@@ -40,7 +40,8 @@
 | 起動処理（組み立てる場所） | **`Main`** の `main` メソッド（Spring では DI コンテナ。05 章） |
 | 層をまたぐ入れ物（DTO） | `record` |
 
-> 💡 Java 入門の [06 章（クラス）](../付録/Java入門/06_クラスとオブジェクト.md)・[07 章（継承とインタフェース）](../付録/Java入門/07_継承とポリモーフィズム.md) の知識を使います。分からなくなったら、そちらに戻ってください。
+> [!NOTE]
+> Java 入門の [06 章（クラス）](../付録/Java入門/06_クラスとオブジェクト.md)・[07 章（継承とインタフェース）](../付録/Java入門/07_継承とポリモーフィズム.md) の知識を使います。分からなくなったら、そちらに戻ってください。
 
 ## 2. パッケージ構成
 
@@ -71,7 +72,8 @@ src/grades/
 > [!WARNING]
 > `Main` は、全部の層を知っている唯一のクラスです。「どの実装を使うか」を決めて部品をつなぐ役割を持ちます（8 節）。Spring では、この組み立てを **DI コンテナ**が肩代わりします（05 章）。
 
-> 📦 **サンプル**：実際のフォルダ構成は [`step1-memory/src/grades/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step1-memory/src/grades) で確認できます。
+> [!NOTE]
+> **サンプル**：実際のフォルダ構成は [`step1-memory/src/grades/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step1-memory/src/grades) で確認できます。
 
 ## 3. Domain 層：record でルールを持たせる
 
@@ -88,12 +90,14 @@ public record Enrollment(int studentId, int courseId, int academicYear, Integer 
 }
 ```
 
-> 📦 **サンプル**：[`step1-memory/src/grades/domain/Enrollment.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/Enrollment.java)
+> [!NOTE]
+> **サンプル**：[`step1-memory/src/grades/domain/Enrollment.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/Enrollment.java)
 
 - `score` を `int` ではなく `Integer` にしているのは、**「まだ点数が無い（履修中）」を `null` で表す**ためです（データベース編 06 章・12 章）
 - Domain 層には `println`・SQL・`Scanner` を書きません
 
-> 💡 フィールドを `private` にして、作るときに値を検査するクラスは、Domain 層のクラスの考え方そのものです（付録 Java 入門 06 章でも、同じ書き方を扱っています）。
+> [!TIP]
+> フィールドを `private` にして、作るときに値を検査するクラスは、Domain 層のクラスの考え方そのものです（付録 Java 入門 06 章でも、同じ書き方を扱っています）。
 
 ## 4. 保存の窓口：interface で宣言する
 
@@ -108,7 +112,8 @@ public interface StudentRepository {
 }
 ```
 
-> 📦 **サンプル**：[`step1-memory/src/grades/domain/StudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/StudentRepository.java)
+> [!NOTE]
+> **サンプル**：[`step1-memory/src/grades/domain/StudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/StudentRepository.java)
 
 - **Application 層**（`GradeService`）は、このインタフェースの型で変数を持ち、使う
 - **Infrastructure 層**（`InMemoryStudentRepository`、`JdbcStudentRepository`）は、これを `implements` する
@@ -135,6 +140,7 @@ classDiagram
 - `GradeService` は、実体がメモリなのかデータベースなのかを**知らない**
 - 実装クラスは `StudentRepository` を実装するだけなので、**差し替えても `GradeService` は変わらない**
 
+> [!NOTE]
 > Java の標準ライブラリにも同じ発想があります。`List<Student> students = new ArrayList<>();` と書くとき、変数の型は**インタフェース**（`List`）、実体は `ArrayList` です。`LinkedList` に変えても、使う側は変わりません。
 
 ## 5. Application 層：コンストラクタ注入
@@ -152,7 +158,8 @@ public class GradeService {
 }
 ```
 
-> 📦 **サンプル**：[`step1-memory/src/grades/application/GradeService.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/application/GradeService.java)
+> [!NOTE]
+> **サンプル**：[`step1-memory/src/grades/application/GradeService.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/application/GradeService.java)
 
 `GradeService` の中には `new` が 1 つもありません。「何を使うか」は**作る側が決める**、「どう使うか」は `GradeService` が決める、という分担です。
 
@@ -164,7 +171,8 @@ courseRepository.findById(courseId);     // 科目があるか確認
 enrollmentRepository.save(enrollment);   // 保存
 ```
 
-> 💡 Spring（[05 章](05_フレームワークとSpring.md)）でも、**コンストラクタ注入が推奨**されています。ここで書いた `GradeService` は、Spring でも（`@Service` を付けるだけで）ほぼそのまま使えます。
+> [!TIP]
+> Spring（[05 章](05_フレームワークとSpring.md)）でも、**コンストラクタ注入が推奨**されています。ここで書いた `GradeService` は、Spring でも（`@Service` を付けるだけで）ほぼそのまま使えます。
 
 ## 6. Presentation 層：入力を変換して呼ぶ
 
@@ -198,13 +206,15 @@ public static void main(String[] args) {
 }
 ```
 
-> 📦 **サンプル**：[`step1-memory/src/grades/Main.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/Main.java)（サンプルの step1 は、仕組みが見えるように素の Java で書いています。Spring 版は `step3-spring` です）
+> [!NOTE]
+> **サンプル**：[`step1-memory/src/grades/Main.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/Main.java)（サンプルの step1 は、仕組みが見えるように素の Java で書いています。Spring 版は `step3-spring` です）
 
 保存先を変えたいときに書き換えるのは、**`Main` の `new InMemory…` を `new Jdbc…` に変える数行だけ**です。他のクラスは変更不要です。データベース編 12 章では、実際にそうします。
 
 本物のデータベースが無くても、メモリ実装を渡して `GradeService` をテストできます。
 
-> 💡 テストの書き方（JUnit）は、この資料の範囲外です。「差し替えられるからテストしやすい」という点だけ押さえておけば十分です。
+> [!NOTE]
+> テストの書き方（JUnit）は、この資料の範囲外です。「差し替えられるからテストしやすい」という点だけ押さえておけば十分です。
 
 ## 9. import で依存の向きを確かめる
 

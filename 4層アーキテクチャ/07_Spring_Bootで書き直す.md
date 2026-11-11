@@ -10,6 +10,7 @@
 - `@RestController`・`@Service`・`@Repository` で 4 層を組み立てられる
 - `JdbcClient` で Repository を実装し、`@Transactional` でトランザクションの境界を指定できる
 
+> [!NOTE]
 > 概念（フレームワークとは、DI コンテナとは、など）は [05 章](05_フレームワークとSpring.md) で説明しました。この章は、**実際に書く**ための章です。データベース（PostgreSQL）は、[データベース編](../データベース/00_はじめに.md) で作った `grades_db` をそのまま使います。
 
 ## 目次
@@ -47,7 +48,8 @@ flowchart LR
     repo --> pg[("PostgreSQL<br>grades_db")]
 ```
 
-> 📦 **サンプル**：[`step3-spring/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step3-spring)
+> [!NOTE]
+> **サンプル**：[`step3-spring/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step3-spring)
 
 ## 2. プロジェクトの作成
 
@@ -83,7 +85,8 @@ flowchart LR
 
 「GENERATE」でダウンロードした zip を展開し、IDE（IntelliJ IDEA や VSCode）で開きます。
 
-> 💡 依存関係の名前や、`pom.xml` に書かれる内容は、Spring Boot のバージョンによって変わることがあります。**Initializr が正しい組み合わせを作ってくれる**ので、手で書き換える必要はありません。
+> [!NOTE]
+> 依存関係の名前や、`pom.xml` に書かれる内容は、Spring Boot のバージョンによって変わることがあります。**Initializr が正しい組み合わせを作ってくれる**ので、手で書き換える必要はありません。
 
 ## 3. パッケージ構成
 
@@ -147,7 +150,8 @@ flowchart LR
     step1 -->|"Domain は変えずに書き直す"| step3
 ```
 
-> 💡 **Domain 層がまったく変わらない**ことに注目してください（05 章 6 節）。業務のルールは、フレームワークや保存先が変わっても、そのまま使い続けられます。
+> [!TIP]
+> **Domain 層がまったく変わらない**ことに注目してください（05 章 6 節）。業務のルールは、フレームワークや保存先が変わっても、そのまま使い続けられます。
 
 ## 6. Application 層：@Service と @Transactional
 
@@ -165,7 +169,8 @@ public class GradeService {
 }
 ```
 
-> 📦 **サンプル**：[`step3-spring/src/main/java/grades/application/GradeService.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/application/GradeService.java)
+> [!NOTE]
+> **サンプル**：[`step3-spring/src/main/java/grades/application/GradeService.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/application/GradeService.java)
 
 ### @Transactional
 
@@ -178,6 +183,7 @@ public class GradeService {
 | 注意 | 既定では、**チェック例外**（`IOException` など）では取り消されない |
 | 注意 | 同じクラスの中から `this.メソッド()` で呼んでも、効かない（外から呼ばれたときだけ働く） |
 
+> [!NOTE]
 > データベース編 12 章の補足で、「素の JDBC では、Application 層が `Connection` を扱わずに境界を決める仕組みを自分で作る必要がある」と述べました。`@Transactional` は、それを肩代わりします。
 
 ## 7. Infrastructure 層：@Repository と JdbcClient
@@ -209,7 +215,8 @@ class JdbcStudentRepository implements StudentRepository {
 }
 ```
 
-> 📦 **サンプル**：[`step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java)
+> [!NOTE]
+> **サンプル**：[`step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java)
 
 データベース編 12 章の補足にある、素の JDBC 版（約 13 行）と比べてみてください。
 
@@ -220,7 +227,8 @@ class JdbcStudentRepository implements StudentRepository {
 | `ResultSet` の読み取り | `while (rs.next())` を自分で書く | 行 → オブジェクトの変換だけを書く |
 | 例外 | `SQLException`（チェック例外）を自分で包む | Spring が**実行時例外**に変換する（一意制約違反は `DuplicateKeyException` など） |
 
-> 💡 例外が自動で変換されるので、Application 層は `java.sql` を知らずに済みます。`SQLException` を上の層に漏らさない、という目的（データベース編 12 章）が、自動的に達成されます。
+> [!TIP]
+> 例外が自動で変換されるので、Application 層は `java.sql` を知らずに済みます。`SQLException` を上の層に漏らさない、という目的（データベース編 12 章）が、自動的に達成されます。
 
 `@Repository` は、**この層の部品である**ことを表す名札です。Domain 層の `StudentRepository` インタフェースを実装したクラスなので、`GradeService` のコンストラクタが `StudentRepository` を要求すると、Spring がこのクラスを見つけて渡します。
 
@@ -246,7 +254,8 @@ class StudentController {
 }
 ```
 
-> 📦 **サンプル**：[`step3-spring/src/main/java/grades/presentation/StudentController.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/StudentController.java)
+> [!NOTE]
+> **サンプル**：[`step3-spring/src/main/java/grades/presentation/StudentController.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/StudentController.java)
 
 | アノテーション | 役割 |
 |---|---|
@@ -258,9 +267,11 @@ class StudentController {
 
 Controller は、**入力を受け取り、Service を呼び、結果を返す**だけです。step1 の `ConsoleApp` と同様に、業務のルール（点数の範囲など）は書きません。`Transcript`（DTO）は、そのまま JSON になります。
 
-> 💡 05 章で説明した「制御の反転」を、ここで体験しています。`main` から `transcript(...)` を呼ぶコードは、**どこにもありません**。URL にアクセスがあると、Spring が Controller のメソッドを呼びます。
+> [!TIP]
+> 05 章で説明した「制御の反転」を、ここで体験しています。`main` から `transcript(...)` を呼ぶコードは、**どこにもありません**。URL にアクセスがあると、Spring が Controller のメソッドを呼びます。
 
-> 🔒 **セキュリティの視点**：この例の `GET /students/{id}/transcript` は、URL の `1` を `2` に変えるだけで、**誰でも他人の成績を見られます**。ログインした人が誰で、その人がこのデータを見てよいかを確かめる仕組み（**認証・認可**）がないためです。Web アプリの脆弱性をまとめた OWASP Top 10:2025 では、この「アクセス制御の不備」が 1 位です（[OWASP「A01:2025 Broken Access Control」](https://top10.owasp.org/2025/A01_2025-Broken_Access_Control)、閲覧日：2026-11-08）。本番のアプリケーションでは、Spring Security（[05 章](05_フレームワークとSpring.md)）などで認証・認可を加えます。
+> [!CAUTION]
+> **セキュリティの視点**：この例の `GET /students/{id}/transcript` は、URL の `1` を `2` に変えるだけで、**誰でも他人の成績を見られます**。ログインした人が誰で、その人がこのデータを見てよいかを確かめる仕組み（**認証・認可**）がないためです。Web アプリの脆弱性をまとめた OWASP Top 10:2025 では、この「アクセス制御の不備」が 1 位です（[OWASP「A01:2025 Broken Access Control」](https://top10.owasp.org/2025/A01_2025-Broken_Access_Control)、閲覧日：2026-11-08）。本番のアプリケーションでは、Spring Security（[05 章](05_フレームワークとSpring.md)）などで認証・認可を加えます。
 
 ## 9. エラーを HTTP の応答に変える
 
@@ -286,9 +297,11 @@ class ApiExceptionHandler {
 | `IllegalArgumentException` | Domain 層（`Enrollment` の点数の範囲など） | `400 Bad Request` |
 | `DuplicateKeyException` など | Spring（データベースの制約違反が変換されたもの） | `409 Conflict`（必要に応じて追加） |
 
-> 💡 例外を発生させる側（Domain / Application）は、**HTTP のことを知りません**。変換は Presentation 層だけで行うので、コンソール版と Web API 版で、Domain と Application を共通に使えます。
+> [!TIP]
+> 例外を発生させる側（Domain / Application）は、**HTTP のことを知りません**。変換は Presentation 層だけで行うので、コンソール版と Web API 版で、Domain と Application を共通に使えます。
 
-> 🔒 **セキュリティの視点**：上の例で `e.getMessage()` を返してよいのは、Domain・Application で**自分で書いたメッセージ**（「点数は 0〜100 にしてください」など）だからです。`DuplicateKeyException` のようなデータベース由来の例外のメッセージには、SQL 文やテーブル名が含まれるので、**そのまま返さず**、短い文に置き換えます（データベース編 [12 章 9 節](../データベース/12_JavaからDBを使う_JDBC.md#9-例外の扱い)）。なお Spring Boot は、既定の設定では、捕まえなかった例外のスタックトレースやメッセージを応答に含めません（[Spring Boot「Common Application Properties」](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)、閲覧日：2026-11-08）。開発中に表示する設定にした場合は、本番で戻します。
+> [!CAUTION]
+> **セキュリティの視点**：上の例で `e.getMessage()` を返してよいのは、Domain・Application で**自分で書いたメッセージ**（「点数は 0〜100 にしてください」など）だからです。`DuplicateKeyException` のようなデータベース由来の例外のメッセージには、SQL 文やテーブル名が含まれるので、**そのまま返さず**、短い文に置き換えます（データベース編 [12 章 9 節](../データベース/12_JavaからDBを使う_JDBC.md#9-例外の扱い)）。なお Spring Boot は、既定の設定では、捕まえなかった例外のスタックトレースやメッセージを応答に含めません（[Spring Boot「Common Application Properties」](https://docs.spring.io/spring-boot/appendix/application-properties/index.html)、閲覧日：2026-11-08）。開発中に表示する設定にした場合は、本番で戻します。
 
 ## 10. 動かして確かめる
 
