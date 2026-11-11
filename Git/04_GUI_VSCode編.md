@@ -245,11 +245,8 @@ Git の操作は、主に次の4か所で行います。
 4. 一覧から **origin/main** を選ぶ。
 5. コンフリクトがなければマージ完了。**変更の同期** で push する。
 
-<!-- 📷 SS: ../images/git/vscode/vsc-08-01-merge-branch-menu.png -->
-> 📷 **スクショ指定：`vsc-08-01-merge-branch-menu.png`**
-> - 画面：「…」→「ブランチ」のサブメニューを開いた状態
-> - 強調：「ブランチ」と「ブランチをマージ...」の項目を赤枠で囲む
-）
+![VS Codeのブランチマージメニュー](../images/git/vscode/vsc-08-01-merge-branch-menu.png)
+
 ![マージするブランチの選択画面（origin/main）](../images/git/vscode/vsc-08-02-select-origin-main.png)
 
 > [!WARNING]
