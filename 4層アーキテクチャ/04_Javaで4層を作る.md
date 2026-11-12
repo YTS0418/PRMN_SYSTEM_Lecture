@@ -91,7 +91,7 @@ public record Enrollment(int studentId, int courseId, int academicYear, Integer 
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/Enrollment.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/Enrollment.java)
+> **サンプル**：[`step1-memory/src/grades/domain/履修.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/履修.java)
 
 - `score` を `int` ではなく `Integer` にしているのは、**「まだ点数が無い（履修中）」を `null` で表す**ためです（データベース編 06 章・12 章）
 - Domain 層には `println`・SQL・`Scanner` を書きません
@@ -113,7 +113,7 @@ public interface StudentRepository {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/StudentRepository.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/StudentRepository.java)
+> **サンプル**：[`step1-memory/src/grades/domain/学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/学生リポジトリ.java)
 
 - **Application 層**（`GradeService`）は、このインタフェースの型で変数を持ち、使う
 - **Infrastructure 層**（`InMemoryStudentRepository`、`JdbcStudentRepository`）は、これを `implements` する
@@ -159,7 +159,7 @@ public class GradeService {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/application/GradeService.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/application/GradeService.java)
+> **サンプル**：[`step1-memory/src/grades/usecase/成績一覧を表示する.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/usecase/成績一覧を表示する.java)
 
 `GradeService` の中には `new` が 1 つもありません。「何を使うか」は**作る側が決める**、「どう使うか」は `GradeService` が決める、という分担です。
 

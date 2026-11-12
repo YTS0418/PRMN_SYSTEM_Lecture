@@ -149,7 +149,7 @@ public class JdbcStudentRepository implements StudentRepository {
 - SQL は、**テキストブロック**（`"""` で囲む複数行の文字列：[Java 入門 02 章](../付録/Java入門/02_基本文法・変数と型.md)）で変数に入れてから、`sql(...)` に渡します。SQL が長くなっても、改行して読みやすく書けます
 
 > [!NOTE]
-> **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java)
+> **サンプル**：[`step2-jdbc/src/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java)
 
 SQL の種類と欲しい結果に合わせて、最後に呼ぶメソッドを選びます。
 
@@ -303,7 +303,7 @@ classDiagram
 | `JdbcEnrollmentRepository` | `INSERT ... ON CONFLICT`、`SELECT ... WHERE student_id = :studentId` |
 
 > [!NOTE]
-> **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step2-jdbc/src/grades/infrastructure/jdbc)
+> **サンプル**：[`step2-jdbc/src/grades/dataaccess/jdbc/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step2-jdbc/src/grades/dataaccess/jdbc)
 
 ### Domain のオブジェクトとテーブルは、同じ形でなくてよい
 

@@ -170,7 +170,7 @@ public class GradeService {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/application/GradeService.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/application/GradeService.java)
+> **サンプル**：[`step3-spring/src/main/java/grades/usecase/成績を登録する.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/usecase/成績を登録する.java)
 
 ### @Transactional
 
@@ -180,8 +180,7 @@ public class GradeService {
 |---|---|
 | 付ける場所 | Application 層（`@Service`）のメソッド。**ユースケース 1 つ = トランザクション 1 つ** |
 | 取り消されるとき | `RuntimeException`（実行時例外）が投げられたとき |
-| 注意 | 既定では、**チェック例外**（`IOException` など）では取り消されない |
-| 注意 | 同じクラスの中から `this.メソッド()` で呼んでも、効かない（外から呼ばれたときだけ働く） |
+| 注意 | <ul><li>既定では、**チェック例外**（`IOException` など）では取り消されない</li><li>同じクラスの中から `this.メソッド()` で呼んでも、効かない（外から呼ばれたときだけ働く）</li></ul> |
 
 > [!NOTE]
 > データベース編 12 章の補足で、「素の JDBC では、Application 層が `Connection` を扱わずに境界を決める仕組みを自分で作る必要がある」と述べました。`@Transactional` は、それを肩代わりします。
@@ -216,7 +215,7 @@ class JdbcStudentRepository implements StudentRepository {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/infrastructure/jdbc/JdbcStudentRepository.java)
+> **サンプル**：[`step3-spring/src/main/java/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java)
 
 データベース編 12 章の補足にある、素の JDBC 版（約 13 行）と比べてみてください。
 
@@ -255,7 +254,7 @@ class StudentController {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/presentation/StudentController.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/StudentController.java)
+> **サンプル**：[`step3-spring/src/main/java/grades/presentation/学生コントローラ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/学生コントローラ.java)
 
 | アノテーション | 役割 |
 |---|---|
