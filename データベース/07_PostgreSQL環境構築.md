@@ -224,7 +224,7 @@ CREATE DATABASE grades_db;
 | `db/02_seed.sql` | サンプルデータ | 09・10 章 |
 
 > [!NOTE]
-> **サンプル**：[`db/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/db)
+> **サンプル**：[`db/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/db)
 
 ### psql で実行する
 

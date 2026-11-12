@@ -73,7 +73,7 @@ src/grades/
 > `Main` は、全部の層を知っている唯一のクラスです。「どの実装を使うか」を決めて部品をつなぐ役割を持ちます（8 節）。Spring では、この組み立てを **DI コンテナ**が肩代わりします（05 章）。
 
 > [!NOTE]
-> **サンプル**：実際のフォルダ構成は [`step1-memory/src/grades/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step1-memory/src/grades) で確認できます。
+> **サンプル**：実際のフォルダ構成は [`step1-memory/src/grades/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step1-memory/src/grades) で確認できます。
 
 ## 3. Domain 層：record でルールを持たせる
 
@@ -91,7 +91,7 @@ public record Enrollment(int studentId, int courseId, int academicYear, Integer 
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/Enrollment.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/Enrollment.java)
+> **サンプル**：[`step1-memory/src/grades/domain/Enrollment.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/Enrollment.java)
 
 - `score` を `int` ではなく `Integer` にしているのは、**「まだ点数が無い（履修中）」を `null` で表す**ためです（データベース編 06 章・12 章）
 - Domain 層には `println`・SQL・`Scanner` を書きません
@@ -113,7 +113,7 @@ public interface StudentRepository {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/StudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/StudentRepository.java)
+> **サンプル**：[`step1-memory/src/grades/domain/StudentRepository.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/StudentRepository.java)
 
 - **Application 層**（`GradeService`）は、このインタフェースの型で変数を持ち、使う
 - **Infrastructure 層**（`InMemoryStudentRepository`、`JdbcStudentRepository`）は、これを `implements` する
@@ -159,7 +159,7 @@ public class GradeService {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/application/GradeService.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/application/GradeService.java)
+> **サンプル**：[`step1-memory/src/grades/application/GradeService.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/application/GradeService.java)
 
 `GradeService` の中には `new` が 1 つもありません。「何を使うか」は**作る側が決める**、「どう使うか」は `GradeService` が決める、という分担です。
 
@@ -207,7 +207,7 @@ public static void main(String[] args) {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/Main.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/Main.java)（サンプルの step1 は、仕組みが見えるように素の Java で書いています。Spring 版は `step3-spring` です）
+> **サンプル**：[`step1-memory/src/grades/Main.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/Main.java)（サンプルの step1 は、仕組みが見えるように素の Java で書いています。Spring 版は `step3-spring` です）
 
 保存先を変えたいときに書き換えるのは、**`Main` の `new InMemory…` を `new Jdbc…` に変える数行だけ**です。他のクラスは変更不要です。データベース編 12 章では、実際にそうします。
 
