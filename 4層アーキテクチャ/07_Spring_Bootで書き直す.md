@@ -99,9 +99,9 @@ src/main/java/grades/
 │   ├── 学生コントローラ.java           ← REST の受け口（step1 の コンソール画面 に相当）
 │   └── 例外ハンドラ.java               ← エラーを HTTP の応答に変える
 ├── usecase/
-│   └── 学生を登録する.java, 成績を登録する.java, …   ← @Service を付ける
+│   └── 学生を登録する.java, 成績を登録する.java, …   ← @Service を付ける（成績一覧.java などの DTO は付けない）
 ├── domain/                            ← 変更なし（Spring のアノテーションは 1 つも無い）
-│   └── 学生.java, 科目.java, 履修.java, 履修一覧.java, 成績一覧.java, …リポジトリ.java
+│   └── 学生.java, 科目.java, 履修.java, 履修一覧.java, …リポジトリ.java
 └── dataaccess/
     └── jdbc/
         └── Jdbc学生リポジトリ.java, Jdbc科目リポジトリ.java, Jdbc履修リポジトリ.java
@@ -131,8 +131,8 @@ step1 の各クラスが、Spring 版でどうなるかを整理します。
 |---|---|---|---|
 | **起動** | `Main`（`new` で組み立てる） | `成績管理アプリ`（`@SpringBootApplication`） | **組み立てのコードが不要**になる。DI コンテナが行う |
 | **Presentation** | `コンソール画面`（コンソールの入出力） | `学生コントローラ`（`@RestController`） | 入出力が**コンソール → HTTP/JSON** に変わる |
-| **Application** | `学生を登録する` など 5 つのユースケース | 同じクラス | `@Service` と `@Transactional` を**付けるだけ** |
-| **Domain** | `学生` `科目` `履修` `履修一覧` `成績一覧` `…リポジトリ` | 同じ | **変更なし**（1 行も変えない）。`成績一覧`（DTO）も Domain 層にある |
+| **Application** | `学生を登録する` など 5 つのユースケース、`成績一覧`（DTO） | 同じクラス | ユースケースに `@Service` と `@Transactional` を**付けるだけ**（DTO は変更なし） |
+| **Domain** | `学生` `科目` `履修` `履修一覧` `…リポジトリ` | 同じ | **変更なし**（1 行も変えない） |
 | **Infrastructure** | `メモリ…リポジトリ` | `Jdbc…リポジトリ`（`@Repository`、`JdbcClient`） | 保存先が**メモリ → PostgreSQL**。接続の処理は JdbcClient が代行 |
 
 ```mermaid
