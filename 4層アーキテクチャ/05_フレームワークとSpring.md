@@ -65,8 +65,8 @@ flowchart LR
 @RestController
 class 学生コントローラ {
     @GetMapping("/students/{id}/transcript")      // 「このURLにアクセスされたら、このメソッドを呼んで」
-    成績一覧の応答 成績一覧を表示(@PathVariable("id") int 学生ID) {
-        // …（ユースケース `成績一覧を表示する` を呼んで結果を返す）
+    成績一覧の応答 成績一覧を取得(@PathVariable("id") int 学生ID) {
+        // …（ユースケース `成績一覧を取得する` を呼んで結果を返す）
     }
 }
 ```

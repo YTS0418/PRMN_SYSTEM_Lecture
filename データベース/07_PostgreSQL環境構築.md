@@ -252,7 +252,7 @@ Query Tool の「Open File」ボタンでファイルを開き、実行します
 | `password authentication failed` | パスワードが違う。インストール時に決めたものを確認する |
 | SQL を入力しても、何も実行されない | 文末の `;` を忘れている。psql は `;` が来るまで入力が続くと考える |
 | `database "grades_db" does not exist` | 作成していない、またはスペルミス。`\l` で一覧を確認する |
-| 日本語が文字化けする（Windows の psql） | コンソールの文字コードの違い。`\encoding UTF8` を実行する。それでも直らない場合は pgAdmin を使う |
+| 日本語が文字化けする、または `.sql` ファイルを流すと一部の `INSERT` が失敗して外部キーのエラーになる（Windows の psql） | コンソールの文字コードの違い。対話画面では `\encoding UTF8` を実行する。`-f` でファイルを流すときは、先に環境変数 `PGCLIENTENCODING` を `UTF8` にする（コマンドプロンプトは `set PGCLIENTENCODING=UTF8`、PowerShell は `$env:PGCLIENTENCODING = 'UTF8'`）。それでも直らない場合は pgAdmin を使う |
 | 5432 番ポートが使用中 | 別の PostgreSQL がすでに動いている。ポートを変えるか、もう一方を停止する |
 | `postgres` ユーザーのパスワードを忘れた | 再設定には手順が必要。学習用なら、再インストールが早い場合もある |
 

@@ -37,7 +37,7 @@ step1 は**コンソール**で操作するアプリケーションでした。S
 |---|---|---|
 | 学生を登録する | `POST` | `/students` |
 | 成績を登録する | `PUT` | `/students/{id}/enrollments` |
-| 成績一覧を表示する | `GET` | `/students/{id}/transcript` |
+| 成績一覧を取得する | `GET` | `/students/{id}/transcript` |
 
 ```mermaid
 flowchart LR
@@ -238,7 +238,7 @@ step1 の `コンソール画面`（入力を読み取ってユースケース�
 @RequestMapping("/students")
 class 学生コントローラ {
     private final 学生を登録する 学生を登録する;
-    private final 成績一覧を表示する 成績一覧を表示する;
+    private final 成績一覧を取得する 成績一覧を取得する;
     // …（コンストラクタ注入。ユースケースを受け取る）
 
     @PostMapping                                                   // POST /students
@@ -248,7 +248,7 @@ class 学生コントローラ {
     }
 
     @GetMapping("/{id}/transcript")                                // GET /students/1/transcript
-    成績一覧の応答 成績一覧を表示(@PathVariable("id") int 学生ID) { /* … */ }
+    成績一覧の応答 成績一覧を取得(@PathVariable("id") int 学生ID) { /* … */ }
 
     // 入出力用の DTO。@JsonProperty で、JSON のキー（英語）と日本語の項目名を結びつける
     record 学生登録の入力(@JsonProperty("name") String 氏名,
@@ -274,7 +274,7 @@ Controller は、**入力を受け取り、ユースケースを呼び、結果�
 > URL（`/students`）と JSON のキー（`"name"` など）は、サンプルでは**英語のまま**です。クラス名・メソッド名・変数名は日本語なので、`@JsonProperty("name")` で「JSON のキー `name` は、Java の `氏名`」と結びつけています。
 
 > [!TIP]
-> 05 章で説明した「制御の反転」を、ここで体験しています。`main` から `成績一覧を表示` を呼ぶコードは、**どこにもありません**。URL にアクセスがあると、Spring が Controller のメソッドを呼びます。
+> 05 章で説明した「制御の反転」を、ここで体験しています。`main` から `成績一覧を取得` を呼ぶコードは、**どこにもありません**。URL にアクセスがあると、Spring が Controller のメソッドを呼びます。
 
 > [!CAUTION]
 > **セキュリティの視点**：この例の `GET /students/{id}/transcript` は、URL の `1` を `2` に変えるだけで、**誰でも他人の成績を見られます**。ログインした人が誰で、その人がこのデータを見てよいかを確かめる仕組み（**認証・認可**）がないためです。Web アプリの脆弱性をまとめた OWASP Top 10:2025 では、この「アクセス制御の不備」が 1 位です（[OWASP「A01:2025 Broken Access Control」](https://top10.owasp.org/2025/A01_2025-Broken_Access_Control)、閲覧日：2026-11-08）。本番のアプリケーションでは、Spring Security（[05 章](05_フレームワークとSpring.md)）などで認証・認可を加えます。
