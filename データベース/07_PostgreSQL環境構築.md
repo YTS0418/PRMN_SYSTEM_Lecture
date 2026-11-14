@@ -61,19 +61,13 @@ flowchart LR
 
 次の 3 つにチェックを入れます（Stack Builder は不要です）。
 
-<!-- 📷 SS: ../images/database/postgres/pg-07-01-installer-components.png -->
-> 📷 **スクショ指定：`pg-07-01-installer-components.png`**
-> - 画面：PostgreSQL インストーラの「Select Components」画面
-> - 強調：「PostgreSQL Server」「pgAdmin 4」「Command Line Tools」のチェックを赤枠で囲む
+![インストーラの Select Components の画面](../images/database/postgres/pg-07-01-installer-components.png)
 
 ### パスワードの設定
 
 `postgres` ユーザー（データベースの管理者）の**パスワード**を決めます。
 
-<!-- 📷 SS: ../images/database/postgres/pg-07-02-installer-password.png -->
-> 📷 **スクショ指定：`pg-07-02-installer-password.png`**
-> - 画面：インストーラの「Password」画面（`postgres` ユーザーのパスワード入力）
-> - 強調：パスワード入力欄を赤枠で囲む（実際のパスワードは写さない）
+![インストーラの Password 画面](../images/database/postgres/pg-07-02-installer-password.png)
 
 > [!WARNING]
 > **このパスワードは忘れないでください**。接続のたびに必要です。学習用のパソコンでも、推測されにくいものにしましょう。
@@ -85,10 +79,7 @@ flowchart LR
 
 通常は、既定の **5432** のままにします。
 
-<!-- 📷 SS: ../images/database/postgres/pg-07-03-installer-port.png -->
-> 📷 **スクショ指定：`pg-07-03-installer-port.png`**
-> - 画面：インストーラの「Port」画面
-> - 強調：ポート番号 `5432` の入力欄を赤枠で囲む
+![インストーラの Port 画面](../images/database/postgres/pg-07-03-installer-port.png)
 
 それ以外（インストール先、ロケールなど）は、既定のままで構いません。インストールが終わると、サーバーが自動で起動します。
 
@@ -127,12 +118,7 @@ psql -U postgres
 
 パスワードを聞かれるので、インストール時に決めたものを入力します（入力しても画面には表示されません）。
 
-<!-- 📷 SS: ../images/database/postgres/pg-07-04-psql-login.png -->
-> 📷 **スクショ指定：`pg-07-04-psql-login.png`**
-> - 画面：ターミナルで `psql -U postgres` を実行し、パスワード入力後に `postgres=#` のプロンプトが出た状態
-> - 強調：実行したコマンドと `postgres=#` のプロンプトを赤枠で囲む
-
-`postgres=#` と表示されれば接続成功です。ここに SQL を入力できます。**文末には必ず `;`（セミコロン）が必要**です。
+![ターミナルの実行画面](../images/database/postgres/pg-07-04-psql-login.png)
 
 ```sql
 SELECT version();
@@ -170,10 +156,7 @@ SELECT version();
 | Username | `postgres` |
 | Password | インストール時のパスワード |
 
-<!-- 📷 SS: ../images/database/pgadmin/pga-07-01-register-server.png -->
-> 📷 **スクショ指定：`pga-07-01-register-server.png`**
-> - 画面：pgAdmin で「Register - Server」ダイアログの Connection タブを開いた状態
-> - 強調：Host name/address、Port、Username の入力欄を赤枠で囲む（パスワード欄は空欄にする）
+![pgAdmin　の Register - Server Connection タブ](../images/database/pgadmin/pga-07-01-register-server.png)
 
 5. 「Save」を押すと、左のツリーにサーバーが表示される
 
@@ -197,19 +180,13 @@ CREATE DATABASE grades_db;
 1. 左のツリーで **Databases** を右クリック → **Create → Database...**
 2. Database に `grades_db` と入力して「Save」
 
-<!-- 📷 SS: ../images/database/pgadmin/pga-07-02-object-tree.png -->
-> 📷 **スクショ指定：`pga-07-02-object-tree.png`**
-> - 画面：左の Object Explorer で Servers → PostgreSQL 18 → Databases を展開し、`grades_db` を作成した状態
-> - 強調：`grades_db` を赤枠で囲む
+![grades_db が作成されている Object Explorer 画面](../images/database/pgadmin/pga-07-02-object-tree.png)
 
 ### Query Tool を開く
 
 `grades_db` を選択した状態で、上部の **Query Tool** ボタン（または右クリック → Query Tool）を開くと、SQL を入力して実行できる画面になります。
 
-<!-- 📷 SS: ../images/database/pgadmin/pga-07-03-query-tool.png -->
-> 📷 **スクショ指定：`pga-07-03-query-tool.png`**
-> - 画面：`grades_db` を選択して Query Tool を開き、`SELECT version();` を実行した状態
-> - 強調：Query Tool を開くボタン、SQL 入力欄、実行（▶）ボタン、結果表示欄をそれぞれ赤枠で囲み、番号①〜④を振る
+![grades_db にて SELECT version(); を実行した画面](../images/database/pgadmin/pga-07-03-query-tool.png)
 
 > [!TIP]
 > Query Tool では、SQL を書いて **F5**（または ▶ ボタン）を押すと実行されます。複数の文があるときは、実行したい部分を選択してから実行します。
