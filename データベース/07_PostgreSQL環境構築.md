@@ -180,19 +180,13 @@ CREATE DATABASE grades_db;
 1. 左のツリーで **Databases** を右クリック → **Create → Database...**
 2. Database に `grades_db` と入力して「Save」
 
-<!-- 📷 SS: ../images/database/pgadmin/pga-07-02-object-tree.png -->
-> 📷 **スクショ指定：`pga-07-02-object-tree.png`**
-> - 画面：左の Object Explorer で Servers → PostgreSQL 18 → Databases を展開し、`grades_db` を作成した状態
-> - 強調：`grades_db` を赤枠で囲む
+![grades_db が作成されている Object Explorer 画面](../images/database/pgadmin/pga-07-02-object-tree.png)
 
 ### Query Tool を開く
 
 `grades_db` を選択した状態で、上部の **Query Tool** ボタン（または右クリック → Query Tool）を開くと、SQL を入力して実行できる画面になります。
 
-<!-- 📷 SS: ../images/database/pgadmin/pga-07-03-query-tool.png -->
-> 📷 **スクショ指定：`pga-07-03-query-tool.png`**
-> - 画面：`grades_db` を選択して Query Tool を開き、`SELECT version();` を実行した状態
-> - 強調：Query Tool を開くボタン、SQL 入力欄、実行（▶）ボタン、結果表示欄をそれぞれ赤枠で囲み、番号①〜④を振る
+![grades_db にて SELECT version(); を実行した画面](../images/database/pgadmin/pga-07-03-query-tool.png)
 
 > [!TIP]
 > Query Tool では、SQL を書いて **F5**（または ▶ ボタン）を押すと実行されます。複数の文があるときは、実行したい部分を選択してから実行します。
