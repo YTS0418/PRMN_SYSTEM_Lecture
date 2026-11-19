@@ -1,0 +1,25 @@
+' Notification の位置（05 章）
+@startuml dia-05-01-notification-positions
+!include _common.iuml
+skinparam defaultTextAlignment center
+rectangle "画面" as screen #f4f4f4 {
+  rectangle "TOP_START\n（左上）" as ts #d6eaf8
+  rectangle "TOP_CENTER\n（上・中央）" as tc #d6eaf8
+  rectangle "TOP_END\n（右上）" as te #d6eaf8
+  rectangle "MIDDLE\n（画面の中央）" as m #fadbd8
+  rectangle "BOTTOM_START\n（左下・既定）" as bs #d5f5e3
+  rectangle "BOTTOM_CENTER\n（下・中央）" as bc #d6eaf8
+  rectangle "BOTTOM_END\n（右下）" as be #d6eaf8
+  ts -[hidden]right- tc
+  tc -[hidden]right- te
+  ts -[hidden]down- m
+  tc -[hidden]down- m
+  te -[hidden]down- m
+  m -[hidden]down- bs
+  m -[hidden]down- bc
+  m -[hidden]down- be
+  bs -[hidden]right- bc
+  bc -[hidden]right- be
+}
+note bottom of bc : 幅いっぱいの TOP_STRETCH（上）と\nBOTTOM_STRETCH（下）もある
+@enduml

@@ -1,0 +1,11 @@
+' CSRF：なりすまして操作させられる（12 章）
+@startuml dia-12-01-csrf
+!include _common.iuml
+participant "利用者\n（ログイン中）" as U C_USER
+participant "悪意のあるサイト" as E C_DANGER
+participant "成績管理システム" as S C_SERVER
+U -> E : 悪意のあるサイトを開く
+E --> U : 隠しフォーム\n（成績を書き換えるリクエスト）
+U -> S : ブラウザが、Cookie つきで、\nリクエストを送ってしまう
+S -> S : ログイン済みの本人の\nリクエストに見える
+@enduml
