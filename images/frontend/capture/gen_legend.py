@@ -18,7 +18,7 @@ from shots import SHOTS
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 CHAPTERS = ROOT / "フロントエンド"
 LEGEND = re.compile(r"<!-- legend:(?P<name>[\w/.\-]+) -->\n(?P<body>.*?)<!-- /legend -->", re.S)
-IMAGE = re.compile(r"(?:!\[(?P<alt>[^\]]*)\]\(|<img src=\")\.\./images/frontend/app/(?P<name>[\w/\-]+)\.png(?:\)|\" alt=\"(?P<alt2>[^\"]*)\" width=\"\d+\">)")
+IMAGE = re.compile(r"(?:!\[(?P<alt>[^\]]*)\]\(|<img src=\")\.\./images/frontend/(?:app/)?(?P<name>[\w/\-]+)\.png(?:\)|\" alt=\"(?P<alt2>[^\"]*)\" width=\"\d+\">)")
 
 
 def numbered_marks():

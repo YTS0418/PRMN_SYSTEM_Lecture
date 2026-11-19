@@ -6,8 +6,10 @@ from shots import SHOTS
 
 out = pathlib.Path(__file__).resolve().parent.parent / "撮影リスト.md"
 groups = {}
+manual = [s for s in SHOTS if s.get("manual")]
 for s in SHOTS:
-    groups.setdefault(s["name"].split("/")[0], []).append(s)
+    if not s.get("manual"):
+        groups.setdefault(s["name"].split("/")[0], []).append(s)
 
 lines = ["""# スクリーンショット撮影リスト（フロントエンド編）
 
@@ -45,11 +47,12 @@ for g, items in groups.items():
         lines.append(f"| `/images/frontend/app/{s['name']}.png` | `{s['path']}`{base} | {steps} | {numbered} |")
         total += 1
 lines.append(f"\n合計：**{total} 枚**（自動）\n")
-lines.append("""## 一覧（手動撮影）
-
-| 保存パス | 画面 | 強調 |
-|---|---|---|
-| `/images/frontend/setup/vdn-02-01-vaadin-start.png` | [Vaadin Start](https://start.vaadin.com/) で、Flow・Maven・Java 25 を選び、ダウンロード直前の状態 | プロジェクトの種類、Java のバージョン、ダウンロードのボタンを、赤枠で囲み、番号①〜③ |
-""")
-out.write_text("\n".join(lines))
-print("書きました:", out, f"({total} 枚)")
+lines.append("## 一覧（手動撮影）\n")
+lines.append("外部サイトの画面は、**Claude in Chrome** などで撮影し、赤枠と番号は、画像の加工で付ける（枠の位置は、画面から測る）。\n")
+lines.append("| 保存パス | 画面 | 番号の説明 |")
+lines.append("|---|---|---|")
+for s in manual:
+    numbered = "、".join(f"{NUMBERS[m['n'] - 1]}{m['label'].split('（')[0]}" for m in sorted((normalize_mark(m) for m in s["marks"]), key=lambda m: m["n"]))
+    lines.append(f"| `/images/frontend/{s['name']}.png` | <{s['path']}>（2026-11-19 に撮影） | {numbered} |")
+out.write_text("\n".join(lines) + "\n")
+print("書きました:", out, f"（自動 {total} 枚、手動 {len(manual)} 枚）")

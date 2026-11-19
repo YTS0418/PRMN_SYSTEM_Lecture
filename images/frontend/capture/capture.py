@@ -360,7 +360,7 @@ def main():
         name, _, url = item.partition("=")
         base_urls[name] = url.rstrip("/")
 
-    shots = [s for s in SHOTS if not args.only or s["name"].startswith(args.only)]
+    shots = [s for s in SHOTS if not s.get("manual") and (not args.only or s["name"].startswith(args.only))]
     shots = [s for s in shots if s.get("base", "main") in base_urls]
     if not shots:
         sys.exit("対象の撮影が見つかりません")

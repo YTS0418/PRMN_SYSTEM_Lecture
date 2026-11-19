@@ -210,4 +210,12 @@ SHOTS = [
      "clip": {"sel": "vaadin-app-layout vaadin-vertical-layout", "pad": 8}, "width": 900, "height": 600, "steps": []},
     {"name": "parts/theme-aura", "path": "/students/register", "user": "teacher01", "base": "aura",
      "clip": {"sel": "vaadin-app-layout vaadin-vertical-layout", "pad": 8}, "width": 900, "height": 600, "steps": []},
+
+    # ===== 手動撮影（Claude in Chrome で撮影し、赤枠と番号は、画像の加工で付ける）。capture.py は撮影しない =====
+    {"name": "setup/vdn-02-01-vaadin-start", "manual": True, "path": "https://start.vaadin.com/", "marks": [
+        {"sel": "", "n": 1, "label": "Java のバージョン（この資料は、**Java 25 LTS**。既定のままでよい）"},
+        {"sel": "", "n": 2, "label": "テーマ（この資料は、**Lumo**。既定は Aura）"},
+        {"sel": "", "n": 3, "label": "グループ ID とアーティファクト ID（プロジェクトの名前）"},
+        {"sel": "", "n": 4, "label": "ダウンロードのボタン（zip が、ダウンロードされる）"},
+    ]},
 ]
