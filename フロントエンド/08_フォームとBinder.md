@@ -42,22 +42,7 @@
 
 **Binder** は、**入力欄（フィールド）と、データのオブジェクトの項目を、結びつける**仕組みです。
 
-```mermaid
-flowchart LR
-    subgraph form["画面（入力欄）"]
-        f1["TextField 氏名"]
-        f2["IntegerField 入学年度"]
-    end
-    b["Binder<br>・値の受け渡し<br>・変換<br>・入力チェック"]
-    subgraph bean["データ（Java のオブジェクト）"]
-        o1["氏名"]
-        o2["入学年度"]
-    end
-    f1 <--> b
-    f2 <--> b
-    b <--> o1
-    b <--> o2
-```
+<img src="../images/frontend/diagram/dia-08-01-binder.svg" alt="Binder の役割（入力欄と Java のオブジェクトの結びつけ）" width="628">
 
 | 操作 | 内容 |
 |---|---|

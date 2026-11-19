@@ -1,0 +1,14 @@
+' ブラウザとサーバーのやりとり（01 章）
+@startuml dia-01-01-browser-server
+!include _common.iuml
+participant "ブラウザ" as B C_BROWSER
+participant "サーバー（Java）" as S C_SERVER
+B -> S : 1. URL にアクセス（例：/students）
+S -> S : 2. ビューのクラスを new して、\nコンポーネントを組み立てる
+S --> B : 3. 画面の内容を送る
+B -> B : 4. 画面を表示する
+B -> S : 5. ボタンを押した（イベント）
+S -> S : 6. リスナーの Java コードを実行する
+S --> B : 7. 変わった部分だけを送る
+B -> B : 8. 画面の一部を更新する
+@enduml

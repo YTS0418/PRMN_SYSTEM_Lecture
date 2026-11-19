@@ -59,19 +59,7 @@ add(氏名, 登録);                       // 画面に並べる
 
 Vaadin の画面は、**サーバー側のコンポーネントの木**（Java のオブジェクト）が元になっています。ブラウザには、その内容を表示する部品（Web Components）と、**サーバーと通信する小さな JavaScript** が届きます。
 
-```mermaid
-sequenceDiagram
-    participant B as ブラウザ
-    participant S as サーバー（Java）
-    B->>S: 1. URL にアクセス（例：/students）
-    S->>S: 2. ビューのクラスを new して、コンポーネントを組み立てる
-    S-->>B: 3. 画面の内容を送る
-    B->>B: 4. 画面を表示する
-    B->>S: 5. ボタンを押した（イベント）
-    S->>S: 6. リスナーの Java コードを実行する
-    S-->>B: 7. 変わった部分だけを送る
-    B->>B: 8. 画面の一部を更新する
-```
+<img src="../images/frontend/diagram/dia-01-01-browser-server.svg" alt="ブラウザとサーバーのやりとり" width="616">
 
 > [!IMPORTANT]
 > **ブラウザは「表示」と「操作の通知」だけを担当し、判断や処理は、すべてサーバーの Java が行います。** この性質は、**セキュリティ**にとって大きな利点です（業務のコードがブラウザに送られない）。一方で、**操作のたびにサーバーと通信する**ので、サーバーの負荷と、通信の遅れを意識する必要があります（[06 章](06_イベントと画面の仕組み.md)）。
@@ -98,21 +86,7 @@ Java で Web アプリを作る方法は、Vaadin 以外にもあります。
 | テンプレートエンジン | Thymeleaf | サーバー（HTML のテンプレート） | HTML を書く。シンプル。動きのある画面は JavaScript が必要 |
 | SPA ＋ REST API | React / Vue ＋ Spring の `@RestController` | ブラウザ（JavaScript） | 画面の自由度が高い。フロントとバックで言語が分かれる |
 
-```mermaid
-flowchart LR
-    subgraph V["Vaadin Flow"]
-        direction LR
-        v1["ブラウザ<br>（表示のみ）"] <-->|"自動の通信"| v2["サーバー<br>画面＋処理"]
-    end
-    subgraph T["Thymeleaf"]
-        direction LR
-        t1["ブラウザ"] -->|"リクエスト"| t2["サーバー<br>HTML を作って返す"]
-    end
-    subgraph S["SPA ＋ REST"]
-        direction LR
-        s1["ブラウザ<br>画面（JavaScript）"] <-->|"JSON"| s2["サーバー<br>データのみ"]
-    end
-```
+<img src="../images/frontend/diagram/dia-01-02-compare.svg" alt="画面を作る 3 つの方式（Vaadin Flow、Thymeleaf、SPA ＋ REST API）の比較" width="700">
 
 > [!TIP]
 > **この資料で Vaadin を選ぶ理由**：①Java だけで画面まで作れる（学習の対象を増やさない）、②部品が揃っていて、**使いやすい画面を作りやすい**、③4 層の Presentation 層として、Application 層を直接呼べる、の 3 つです。どの方式が良いかは、チームの経験と、作るものによって変わります。

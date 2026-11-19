@@ -1,0 +1,13 @@
+' Grid の遅延読み込み（07 章）
+@startuml dia-07-01-lazy-loading
+!include _common.iuml
+participant "ブラウザ\n（スクロール）" as B C_BROWSER
+participant "Grid" as G C_SERVER
+participant "ユースケース／DB" as U C_EXTERNAL
+B -> G : 見える範囲を要求\n（例：1〜50 件目）
+G -> U : offset=0, limit=50
+U --> G : 50 件
+B -> G : スクロール（51〜100 件目）
+G -> U : offset=50, limit=50
+U --> G : 50 件
+@enduml

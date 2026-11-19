@@ -1,0 +1,25 @@
+' フロントエンド編の図で、共通の見た目（ER 図は、データベース編の _common.iuml と、同じ配色）
+skinparam defaultFontName "Noto Sans CJK JP"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam roundCorner 14
+skinparam ArrowColor #555555
+skinparam ArrowThickness 1.6
+skinparam RectangleBorderColor #555555
+skinparam RectangleBackgroundColor #f4f4f4
+skinparam NoteBackgroundColor #fffbe6
+skinparam NoteBorderColor #d4a017
+skinparam sequenceArrowThickness 1.6
+skinparam sequenceLifeLineBorderColor #999999
+skinparam sequenceLifeLineBackgroundColor white
+skinparam sequenceParticipantBorderColor #555555
+skinparam sequenceParticipantFontStyle bold
+skinparam maxMessageSize 400
+skinparam padding 4
+' 色：利用者・ブラウザ（Presentation の色）、サーバー（Application・Domain の色）、外部（Infrastructure の色）
+!define C_USER #fdebd0
+!define C_BROWSER #d6eaf8
+!define C_SERVER #d5f5e3
+!define C_EXTERNAL #fff3cd
+!define C_DANGER #fadbd8

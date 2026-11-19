@@ -1,0 +1,15 @@
+' OpenID Connect のログインの流れ（A3）
+@startuml dia-A3-01-oidc
+!include _common.iuml
+participant "ブラウザ" as B C_BROWSER
+participant "アプリ" as A C_SERVER
+participant "IdP\n（認証サービス）" as I C_EXTERNAL
+B -> A : ログインしたい
+A --> B : IdP のログイン画面へ移動させる
+B -> I : IdP で、ID・パスワードを入力\n（アプリには見えない）
+I --> B : 認証できたので、一時的なコードを渡し、\nアプリへ戻す
+B -> A : コードを渡す
+A -> I : コードを、ID トークンに交換する\n（アプリと IdP の間の通信）
+I --> A : ID トークン（誰がログインしたか）
+A --> B : ログイン完了
+@enduml

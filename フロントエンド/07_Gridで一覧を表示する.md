@@ -191,18 +191,7 @@ var データ = 学生一覧を取得する.実行する();       // ユース�
     .stream());                                // Stream で返す
 ```
 
-```mermaid
-sequenceDiagram
-    participant B as ブラウザ（スクロール）
-    participant G as Grid
-    participant U as ユースケース／DB
-    B->>G: 見える範囲を要求（例：1〜50 件目）
-    G->>U: offset=0, limit=50
-    U-->>G: 50 件
-    B->>G: スクロール（51〜100 件目）
-    G->>U: offset=50, limit=50
-    U-->>G: 50 件
-```
+<img src="../images/frontend/diagram/dia-07-01-lazy-loading.svg" alt="Grid の遅延読み込み（スクロールのたびに、必要な範囲だけ取得する）" width="546">
 
 > [!IMPORTANT]
 > 遅延読み込みでは、**「どこから、何件」を指定して取得できる**ユースケースと、リポジトリが必要です（SQL の `LIMIT` / `OFFSET`、データベース編 10 章）。ユースケースが、全件を返してから、画面で切り出しても、意味がありません。また、全件の**件数**を返す処理も、必要になることがあります。
