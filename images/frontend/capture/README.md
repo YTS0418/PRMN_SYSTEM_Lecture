@@ -75,12 +75,23 @@ flowchart LR
 - 赤枠は 3px、番号は赤い丸の中に白い文字（①②…）。ダイアログや通知（最前面に出る部品）の上にも出るよう、赤枠も、最前面（`popover`）に出す
 - 撮影用のユーザー（`teacher01`、`student01`）は、**講義用の仮のもの**。パスワードは、環境変数（`CAPTURE_PASSWORD`）で渡す
 
+## 作業の流れ（画像を足す・直すとき）
+
+```bash
+python3 capture.py --only parts/button --sheet   # 1. 撮影。失敗した画像は出力されない。_check/ に、枠の周囲の確認用の画像ができる
+python3 fix_img_widths.py --write                # 2. 章の画像を、実寸の幅（<img width>）にする
+python3 gen_legend.py --write                    # 3. 番号の説明の表を、shots.py の label から作る
+python3 gen_legend.py --check                    #    番号と表の一致を確認
+python3 check_snippets.py                        # 4. 章のコードと、サンプルの見本のコードの一致を確認
+python3 gen_shotlist.py                          # 5. 撮影リストを作り直す
+```
+
 ## 新しい画像を追加するとき
 
-1. 資料に、📷 スクショ指定のブロックを書く
-2. `shots.py` に、設定を 1 つ追加する
-3. [撮影リスト](/images/frontend/撮影リスト.md) に、行を足す
-4. 撮影して、資料のブロックを、画像の 1 行に置き換える
+1. サンプルの見本の画面に、コードを足す（`// snippet: 名前` 〜 `// end snippet`。要素に `見本("名前", …)` で id を付ける）
+2. `shots.py` に、設定を 1 つ足す（番号は、章の本文が説明するものだけ）
+3. 撮影し、章に、コードブロック（`<!-- snippet: 名前 -->`）と画像を置く
+4. 上の「作業の流れ」の 2〜5 を実行する
 
 ## 注意
 

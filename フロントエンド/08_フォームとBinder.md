@@ -105,19 +105,7 @@ try {
 
 ## 4. 入力チェック
 
-`forField(...)` のあとに、チェックを、**順番に**つなげます。最初に失敗したチェックで、止まります。
-
-```java
-binder.forField(氏名)
-      .asRequired("氏名を入力してください")                                  // 必須
-      .withValidator(s -> s.length() <= 50, "氏名は50文字以内にしてください")  // 条件
-      .bind(学生登録フォーム::get氏名, 学生登録フォーム::set氏名);
-
-binder.forField(入学年度)
-      .asRequired("入学年度を入力してください")
-      .withValidator(new IntegerRangeValidator("2000〜2100 の範囲で入力してください", 2000, 2100))
-      .bind(学生登録フォーム::get入学年度, 学生登録フォーム::set入学年度);
-```
+`forField(...)` のあとに、チェックを、**順番に**つなげて、最後に `bind` します。最初に失敗したチェックで、止まります。`binder.validate()` で、チェックを実行し、結果を、入力欄に表示します（`writeBean` も、同じチェックを行います）。
 
 | チェック | 書き方 |
 |---|---|
@@ -126,6 +114,44 @@ binder.forField(入学年度)
 | 用意されたチェック | `StringLengthValidator`（長さ）、`IntegerRangeValidator`（範囲）、`EmailValidator`（メール） |
 | 型の変換 | `withConverter(...)`（例：文字 → 整数の `StringToIntegerConverter`） |
 
+**必須**
+
+<!-- snippet: form-required -->
+```java
+var 氏名 = new TextField("氏名");
+var binder = new Binder<学生登録フォーム>(学生登録フォーム.class);
+binder.forField(氏名)
+        .asRequired("氏名を入力してください")
+        .bind(学生登録フォーム::get氏名, 学生登録フォーム::set氏名);
+binder.validate();
+```
+
+<img src="../images/frontend/app/parts/form-required.png" alt="必須のチェックに失敗した TextField（欄が赤くなり、メッセージが出る）" width="216">
+
+**範囲**
+
+<!-- snippet: form-range -->
+```java
+var 入学年度 = new IntegerField("入学年度");
+入学年度.setValue(1999);
+var binder = new Binder<学生登録フォーム>(学生登録フォーム.class);
+binder.forField(入学年度)
+        .withValidator(new IntegerRangeValidator("2000〜2100 の範囲で入力してください", 2000, 2100))
+        .bind(学生登録フォーム::get入学年度, 学生登録フォーム::set入学年度);
+binder.validate();
+```
+
+<img src="../images/frontend/app/parts/form-range.png" alt="範囲のチェックに失敗した IntegerField（1999 を入力。メッセージが出る）" width="216">
+
+条件を、いくつでも、続けて書けます（長さと必須、など）。
+
+```java
+binder.forField(氏名)
+      .asRequired("氏名を入力してください")                                  // 必須
+      .withValidator(s -> s.length() <= 50, "氏名は50文字以内にしてください")  // 条件
+      .bind(学生登録フォーム::get氏名, 学生登録フォーム::set氏名);
+```
+
 > [!NOTE]
 > `IntegerField` は、すでに整数の値（`Integer`）を持つので、文字 → 数値の変換は、不要です。`TextField` に数字を入力させる場合は、`StringToIntegerConverter` で変換します（変換できない文字が入ったときのエラーメッセージも、指定します）。
 
@@ -133,11 +159,27 @@ binder.forField(入学年度)
 
 | 方法 | 内容 |
 |---|---|
-| 各入力欄の下に、メッセージを出す（既定） | 入力欄ごとのエラーを、その欄に出す。最も分かりやすい |
+| 各入力欄の下に、メッセージを出す（既定） | 入力欄ごとのエラーを、その欄に出す。最も分かりやすい（4 節の画像） |
 | まとめて表示する（`setStatusLabel`） | フォームの上などに、1 つのラベルに出す |
 | 状態を自分で処理する（`withValidationStatusHandler`） | 色の変更など、細かい制御 |
 
-![入力チェックのエラー表示。①氏名、②入学年度](../images/frontend/app/app-08-01-validation-error.png)
+**ラベルにまとめて表示する（`setStatusLabel`）**
+
+エラーのメッセージを、入力欄ではなく、**指定したラベル**に出します。
+
+<!-- snippet: form-status-label -->
+```java
+var 氏名 = new TextField("氏名");
+var 状態 = new Span();
+var binder = new Binder<学生登録フォーム>(学生登録フォーム.class);
+binder.forField(氏名)
+        .asRequired("氏名を入力してください")
+        .bind(学生登録フォーム::get氏名, 学生登録フォーム::set氏名);
+binder.setStatusLabel(状態);
+binder.validate();
+```
+
+<img src="../images/frontend/app/parts/form-status-label.png" alt="setStatusLabel で、エラーのメッセージを、ラベルに表示した例（入力欄の下に、赤い文字）" width="216">
 
 > [!TIP]
 > **ユーザビリティの視点**：
@@ -225,7 +267,7 @@ public class 学生登録ビュー extends VerticalLayout {
 > [!NOTE]
 > **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java)（作成予定）
 
-![学生の登録フォーム。①入力欄、②登録ボタン](../images/frontend/app/app-08-02-register-form.png)
+<img src="../images/frontend/app/screens/register.png" alt="学生の登録画面（氏名、所属学科、入学年度、登録するボタン）" width="900">
 
 > [!TIP]
 > **ユーザビリティの視点**：登録が**成功したとき**は、①成功を知らせ（`Notification`）、②**次の操作がしやすい状態**にします（フォームを空にして、続けて登録できる、または一覧に移動する）。登録が**終わったかどうか**が分からないフォームは、利用者に、二重に登録させてしまいます。

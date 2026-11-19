@@ -23,7 +23,7 @@ OUT_DIR = HERE.parent / "app"
 CHECK_DIR = HERE / "_check"                   # 確認用の画像（Git で管理しない）
 
 RED = (211, 47, 47)                           # 枠の色（#d32f2f）
-BORDER = 3                                    # 枠の太さ（px）
+BORDER = 2                                    # 枠の太さ（px）
 GAP = 1                                       # 対象と枠の間（px）
 BADGE = 22                                    # 番号の丸の直径（px）
 
@@ -221,6 +221,20 @@ def shoot(browser, base_urls, shot, make_sheet):
         run_steps(page, shot.get("steps", []))
         wait_ready(page, settle=shot.get("settle_after", 300))
 
+        # 見本の画面：切り抜く見本（id）以外を、隠す（切り抜きの余白に、ほかの見本や見出しが写らないように）
+        clip_sel = (shot.get("clip") or {}).get("sel") if isinstance(shot.get("clip"), dict) else shot.get("clip")
+        if isinstance(clip_sel, str) and clip_sel.startswith("#"):
+            page.evaluate("""(id) => {
+                document.querySelectorAll('.sample-item').forEach(e => { if (e.id !== id) e.style.display = 'none'; });
+                document.querySelectorAll('h1, h2, h3, vaadin-app-layout [slot=navbar], vaadin-app-layout [slot=drawer]')
+                    .forEach(e => { if (!e.closest('.sample-item')) e.style.display = 'none'; });
+            }""", clip_sel[1:])
+        # hide：指定した部品を隠す（ダイアログや通知の後ろの、画面の内容を消す）
+        for sel in shot.get("hide", []):
+            page.evaluate("(s) => document.querySelectorAll(s).forEach(e => { e.style.display = 'none'; })", sel)
+        if shot.get("hide") or (isinstance(clip_sel, str) and clip_sel.startswith("#")):
+            wait_ready(page, settle=200)
+
         vw, vh = shot.get("width", 1280), shot.get("height", 800)
         viewport = {"x": 0, "y": 0, "width": vw, "height": vh}
 
@@ -242,7 +256,9 @@ def shoot(browser, base_urls, shot, make_sheet):
             r = measure(page, m["sel"], m["how"])
             if r["width"] <= 0 or r["height"] <= 0:
                 raise RuntimeError(f"大きさが 0 です: {m['sel']}（{m['how']}）")
-            frames.append({"m": m, "rect": r, "outer": inflate(r, GAP + BORDER), "n": m["n"]})
+            # inset=True：画面の端に接する部品は、枠を、対象の内側に描く
+            outer = dict(r) if m.get("inset") else inflate(r, (0 if m.get("tight") else GAP) + BORDER)
+            frames.append({"m": m, "rect": r, "outer": outer, "n": m["n"]})
 
         # 検査 1：重なり（入れ子を許したもの以外）
         for i in range(len(frames)):

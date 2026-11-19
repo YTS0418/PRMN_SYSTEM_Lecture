@@ -35,19 +35,24 @@
 
 ## 2. 一覧を表示する
 
-```java
-var 一覧 = new Grid<成績明細>();
-一覧.addColumn(成績明細::科目名).setHeader("科目");
-一覧.addColumn(成績明細::単位数).setHeader("単位");
-一覧.addColumn(成績明細::年度).setHeader("年度");
-一覧.addColumn(成績明細::点数).setHeader("点数");
+`Grid<行の型>` を作り、`addColumn` で列を、`setItems` でデータを渡します。
 
-一覧.setItems(成績一覧.明細リスト());          // 表示するデータを渡す
+<!-- snippet: grid-basic -->
+```java
+var 一覧 = new Grid<学生行>();
+一覧.addColumn(学生行::学生番号).setHeader("学生番号");
+一覧.addColumn(学生行::氏名).setHeader("氏名");
+一覧.addColumn(学生行::学科).setHeader("所属学科");
+一覧.setItems(
+        new 学生行(1, "Taro", "情報システム学科", 2024),
+        new 学生行(2, "Hanako", "情報システム学科", 2024),
+        new 学生行(3, "Jiro", "電子工学科", 2024));
+一覧.setAllRowsVisible(true);
 ```
 
-`addColumn` に、**メソッド参照**（`成績明細::科目名`）を渡すだけです。`record` のアクセサと、相性が良い書き方です。
+<img src="../images/frontend/app/parts/grid-basic.png" alt="Grid（学生番号、氏名、所属学科の 3 列、3 行）" width="584">
 
-![学生一覧の Grid。①列の見出し、②1 行、③並べ替えのアイコン](../images/frontend/app/app-07-01-grid.png)
+`addColumn` に、**メソッド参照**（`学生行::氏名`）を渡すだけです。`record` のアクセサと、相性が良い書き方です。
 
 ## 3. 列の設定
 
@@ -59,22 +64,56 @@ var 一覧 = new Grid<成績明細>();
 | 固定 | `.setFrozen(true)` | 横にスクロールしても、左に固定する |
 | 非表示・並び替え | `.setVisible(false)`、`setColumnReorderingAllowed(true)` | 利用者が、列を入れ替えられる |
 
+### 並べ替え
+
+列に `setSortable(true)` を付けると、見出しに**並べ替えの矢印**が出ます。`sort` で、最初の並び順も指定できます。
+
+<!-- snippet: grid-sortable -->
+```java
+var 一覧 = new Grid<学生行>();
+一覧.addColumn(学生行::学生番号).setHeader("学生番号").setSortable(true);
+var 氏名の列 = 一覧.addColumn(学生行::氏名).setHeader("氏名").setSortable(true);
+一覧.addColumn(学生行::入学年度).setHeader("入学年度").setSortable(true);
+一覧.setItems(
+        new 学生行(1, "Taro", "情報システム学科", 2024),
+        new 学生行(2, "Hanako", "情報システム学科", 2024),
+        new 学生行(3, "Jiro", "電子工学科", 2024));
+一覧.sort(List.of(new GridSortOrder<>(氏名の列, SortDirection.ASCENDING)));
+一覧.setAllRowsVisible(true);
+```
+
+<img src="../images/frontend/app/parts/grid-sortable.png" alt="氏名の昇順に並べた Grid（氏名の見出しに、昇順の矢印が付く）" width="632">
+
+<!-- legend:parts/grid-sortable -->
+| 番号 | 説明 |
+|---|---|
+| ① | 列の見出し（`setHeader`） |
+| ② | セル（1 行・1 列分のデータ） |
+| ③ | 並べ替えの矢印（`setSortable(true)`） |
+<!-- /legend -->
+
 ### 表示の加工
 
-数値や真偽値を、そのまま表示せず、**分かりやすい文字や部品**にしたいときは、`addColumn` に、**加工する関数**や、**部品を作る関数**（`ComponentRenderer`）を渡します。
+数値や真偽値を、そのまま表示せず、**分かりやすい文字や部品**にしたいときは、`addColumn` に、**加工する関数**や、**部品を作る関数**（`addComponentColumn`）を渡します。
 
+<!-- snippet: grid-component-column -->
 ```java
-// 点数が null のとき（履修中）は「履修中」と表示する
-一覧.addColumn(m -> m.点数() == null ? "履修中" : String.valueOf(m.点数()))
-    .setHeader("点数");
-
-// 合否を、色つきのバッジ（Span）で表示する
+var 一覧 = new Grid<成績行>();
+一覧.addColumn(成績行::科目名).setHeader("科目");
+一覧.addColumn(m -> m.点数() == null ? "履修中" : String.valueOf(m.点数())).setHeader("点数");
 一覧.addComponentColumn(m -> {
     var バッジ = new Span(m.合格() ? "合格" : "不合格");
     バッジ.getElement().getThemeList().add(m.合格() ? "badge success" : "badge error");
     return バッジ;
 }).setHeader("合否");
+一覧.setItems(
+        new 成績行("プログラミング基礎", 2024, 80, true),
+        new 成績行("線形代数", 2024, 55, false),
+        new 成績行("データベース", 2025, null, false));
+一覧.setAllRowsVisible(true);
 ```
+
+<img src="../images/frontend/app/parts/grid-component-column.png" alt="点数が空のときは「履修中」、合否は色つきのバッジで表示した Grid" width="584">
 
 > [!TIP]
 > **ユーザビリティの視点**：
@@ -84,17 +123,38 @@ var 一覧 = new Grid<成績明細>();
 
 ## 4. 行の選択
 
+| モード | 内容 |
+|---|---|
+| `SINGLE` | 1 行だけ選べる（既定） |
+| `MULTI` | 複数の行を選べる（左にチェックボックスが付く） |
+| `NONE` | 選べない（表示だけ） |
+
+**複数の行を選ぶ（MULTI）**
+
+<!-- snippet: grid-selection-multi -->
 ```java
-一覧.setSelectionMode(Grid.SelectionMode.SINGLE);              // 1 行だけ選べる（既定）
+var 一覧 = new Grid<学生行>();
+一覧.setSelectionMode(Grid.SelectionMode.MULTI);
+一覧.addColumn(学生行::氏名).setHeader("氏名");
+一覧.addColumn(学生行::学科).setHeader("所属学科");
+var 学生 = List.of(
+        new 学生行(1, "Taro", "情報システム学科", 2024),
+        new 学生行(2, "Hanako", "情報システム学科", 2024),
+        new 学生行(3, "Jiro", "電子工学科", 2024));
+一覧.setItems(学生);
+一覧.select(学生.get(0));
+一覧.select(学生.get(2));
+一覧.setAllRowsVisible(true);
+```
+
+<img src="../images/frontend/app/parts/grid-selection-multi.png" alt="MULTI の Grid（左にチェックボックス。1 行目と 3 行目が選ばれている）" width="584">
+
+**選ばれたときの処理**は、`addSelectionListener` で登録します。1 行だけ選ぶとき（`SINGLE`）は、次のように書きます。
+
+```java
 一覧.addSelectionListener(e ->                                  // 選ばれたら
     e.getFirstSelectedItem().ifPresent(m -> 詳細を表示する(m)));
 ```
-
-| モード | 内容 |
-|---|---|
-| `SINGLE` | 1 行だけ選べる |
-| `MULTI` | 複数の行を選べる（左にチェックボックスが付く） |
-| `NONE` | 選べない（表示だけ） |
 
 行の項目を**ダブルクリック**したときの処理は、`addItemDoubleClickListener` で登録します。
 
@@ -200,7 +260,15 @@ public class 成績一覧ビュー extends VerticalLayout implements BeforeEnter
 > [!NOTE]
 > **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java)（作成予定）
 
-![成績一覧の画面。①誰の成績か、②履修中の行、③平均点](../images/frontend/app/app-07-02-transcript-view.png)
+<img src="../images/frontend/app/screens/transcript.png" alt="成績一覧の画面（誰の成績か、履修中の行、平均点）" width="900">
+
+<!-- legend:screens/transcript -->
+| 番号 | 説明 |
+|---|---|
+| ① | 誰の成績か |
+| ② | 履修中の行（点数がないので、「履修中」と表示） |
+| ③ | 平均点（点数のある履修だけの平均） |
+<!-- /legend -->
 
 > [!TIP]
 > **ユーザビリティの視点**：一覧の画面では、**「誰の」「何の」一覧かを、見出しではっきり示します**。また、データが 0 件のときは、空の表を出すだけにせず、「まだ成績が登録されていません」のように、**状態と次の行動**を伝えます（ヒューリスティクスの「システム状態の視認性」）。

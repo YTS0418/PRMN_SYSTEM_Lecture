@@ -10,6 +10,8 @@ def normalize_mark(m):
     d.setdefault("n", None)
     d.setdefault("label", "")
     d.setdefault("nested_ok", False)
+    d.setdefault("inset", False)               # True のとき、枠を対象の内側に描く（画面の端に接する部品）
+    d.setdefault("tight", False)               # True のとき、対象と枠の間を空けない（隣り合う部品に、近いとき）
     return d
 
 

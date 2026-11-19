@@ -18,7 +18,7 @@ from shots import SHOTS
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 CHAPTERS = ROOT / "フロントエンド"
 LEGEND = re.compile(r"<!-- legend:(?P<name>[\w/.\-]+) -->\n(?P<body>.*?)<!-- /legend -->", re.S)
-IMAGE = re.compile(r"!\[(?P<alt>[^\]]*)\]\(\.\./images/frontend/app/(?P<name>[\w/\-]+)\.png\)")
+IMAGE = re.compile(r"(?:!\[(?P<alt>[^\]]*)\]\(|<img src=\")\.\./images/frontend/app/(?P<name>[\w/\-]+)\.png(?:\)|\" alt=\"(?P<alt2>[^\"]*)\" width=\"\d+\">)")
 
 
 def numbered_marks():
@@ -54,7 +54,7 @@ def main():
         # 番号を振った画像には、表が必要。番号のない画像に、表は不要
         for im in images:
             name = im.group("name")
-            if re.search(f"[{NUMBERS}]", im.group("alt")):
+            if re.search(f"[{NUMBERS}]", im.group("alt") or im.group("alt2") or ""):
                 problems.append(f"{md.name}: alt テキストに番号が入っています: {name}")
             if name in marks and name not in legends:
                 problems.append(f"{md.name}: 番号を振った画像に、説明の表がありません: {name}")
