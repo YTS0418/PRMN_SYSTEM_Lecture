@@ -135,6 +135,32 @@ SHOTS = [
     部品("form-range", FORM, "form-range"),
     部品("form-status-label", FORM, "form-status-label"),
 
+
+    # ===== 追加の部品（05 章の表示部品、03 ナビゲーション、06 イベント、10 ログイン、12 セキュリティ、13 テーマ）=====
+    部品("input-text-area", INPUT, "input-text-area"),
+    部品("input-email", INPUT, "input-email"),
+    部品("input-number", INPUT, "input-number"),
+    部品("input-checkbox", INPUT, "input-checkbox"),
+    部品("input-multi-combo", INPUT, "input-multi-combo"),
+    部品("layout-tabs", LAYOUT, "layout-tabs"),
+    部品("layout-details", LAYOUT, "layout-details"),
+    部品("display-headings", "/demo/display", "display-headings"),
+    部品("display-paragraph", "/demo/display", "display-paragraph"),
+    部品("display-icon", "/demo/display", "display-icon"),
+    部品("display-avatar", "/demo/display", "display-avatar"),
+    部品("display-progress", "/demo/display", "display-progress"),
+    部品("nav-router-link", "/demo/navigation", "nav-router-link"),
+    部品("nav-side-nav", "/demo/navigation", "nav-side-nav"),
+    部品("events-value-change", "/demo/events", "events-value-change"),
+    部品("login-default", "/demo/login", "login-default"),
+    部品("login-japanese", "/demo/login", "login-japanese"),
+    部品("login-error", "/demo/login", "login-error"),
+    部品("security-span", "/demo/security", "security-span"),
+    部品("security-html", "/demo/security", "security-html"),
+    部品("theme-class", "/demo/theme", "theme-class"),
+    部品("theme-variable", "/demo/theme", "theme-variable"),
+    部品("theme-dark", "/demo/theme", "theme-dark"),
+
     # ===== 画面（幅 900。要所だけ）=====
     画面("app-layout", "/students", width=1100, height=640, marks=[
         {"sel": ["vaadin-side-nav-item:first-of-type", "vaadin-side-nav-item:last-of-type"], "how": "text", "n": 1, "label": "メニュー（`SideNav`）"},
