@@ -126,7 +126,7 @@ flowchart LR
 
 ## 5. ビルドして動かす
 
-Dockerfile のあるフォルダ（`step3-spring/`）で、イメージを作ります。
+Dockerfile のあるフォルダ（サンプルの `architecture/step3-spring/`）で、イメージを作ります。
 
 ```bash
 docker build -t grades-app:1.0 .
@@ -163,7 +163,7 @@ target/
 
 ## 7. Vaadin の場合
 
-Vaadin（フロントエンド編で扱う予定）を使うアプリでは、**本番用のビルド**が必要です。IDE で動かす開発モードは、画面のためのファイルを実行時に作るため、**本番には向きません**。
+Vaadin を使うアプリでは、**本番用のビルド**が必要です。IDE で動かす開発モードは、画面のためのファイルを実行時に作るため、**本番には向きません**。
 
 - Maven では、`production` プロファイルを付けてビルドします（`./mvnw -Pproduction package`）。画面用の JavaScript を、**ビルド時にまとめて最適化**します
 - ビルド中に、**Node.js** が自動でダウンロードされるため、ビルドに時間がかかります
@@ -176,7 +176,7 @@ RUN ./mvnw -Pproduction -DskipTests package
 - `production` プロファイルは、プロジェクトの `pom.xml` に定義されている必要があります（Vaadin の公式スターターには、含まれています）。無い場合は、公式ドキュメントに従って追加します
 
 > [!NOTE]
-> 手順の詳細や、バージョンによる違いは、[Vaadin Docs「Production Build」](https://vaadin.com/docs/latest/production/production-build)を確認してください（閲覧日：2026-11-19）。この資料のサンプル（`step3-spring`）は Vaadin を使っていないので、Vaadin 版の Dockerfile は、フロントエンド編が完成してから、サンプルに加えます。
+> 手順の詳細や、バージョンによる違いは、[Vaadin Docs「Production Build」](https://vaadin.com/docs/latest/production/production-build)を確認してください（閲覧日：2026-11-19）。Vaadin 版の Dockerfile は、サンプルの `frontend/grades-vaadin/Dockerfile` にあります（`-Pproduction` でビルドします）。Compose で動かすには、`docker/compose.vaadin.yaml` を使います。
 
 ## 8. よくあるミス
 

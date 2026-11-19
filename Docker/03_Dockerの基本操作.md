@@ -103,11 +103,11 @@ docker exec -it grades-pg psql -U postgres -d grades_db
 SQL ファイルをコンテナに流し込むなら、次のようにします。
 
 ```bash
-docker exec -i grades-pg psql -U postgres -d grades_db < db/01_schema.sql
+docker exec -i grades-pg psql -U postgres -d grades_db < database/db/01_schema.sql
 ```
 
 > [!NOTE]
-> `-i` だけ（`-t` なし）にするのは、ファイルの内容を**入力として渡す**ためです。PowerShell では `<` が使えないので、`Get-Content db/01_schema.sql | docker exec -i grades-pg psql -U postgres -d grades_db` と書きます。
+> `-i` だけ（`-t` なし）にするのは、ファイルの内容を**入力として渡す**ためです。PowerShell では `<` が使えないので、`Get-Content database/db/01_schema.sql | docker exec -i grades-pg psql -U postgres -d grades_db` と書きます。
 
 ## 4. ポートを公開する
 

@@ -46,14 +46,14 @@ flowchart LR
 
 ## 2. app サービスを加える
 
-サンプルでは、`compose.yaml` を**汚さない**ために、アプリの設定を別ファイル `compose.app.yaml` に分けます。`compose.yaml` に**重ねて**使います。
+サンプルでは、`compose.yaml` を**汚さない**ために、アプリの設定を別ファイル `compose.app.yaml` に分けます。`compose.yaml` に**重ねて**使います。どちらも、サンプルの `docker/` フォルダにあり、**そのフォルダで**コマンドを実行します。
 
 `compose.app.yaml`：
 
 ```yaml
 services:
   app:
-    build: ./step3-spring
+    build: ../architecture/step3-spring
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/grades_db
       SPRING_DATASOURCE_USERNAME: postgres
@@ -67,7 +67,7 @@ services:
 
 | 部分 | 意味 |
 |---|---|
-| `build: ./step3-spring` | イメージを、このフォルダの Dockerfile から作る（[05 章](05_Dockerfileとイメージ作成.md)）。`image:` の代わりに書く |
+| `build: ../architecture/step3-spring` | イメージを、このフォルダの Dockerfile から作る（[05 章](05_Dockerfileとイメージ作成.md)）。`image:` の代わりに書く |
 | `environment:` | アプリに渡す環境変数（[3 節](#3-設定を環境変数で上書きする)） |
 | `ports:` | `127.0.0.1:8080:8080`。ブラウザなどから見える（パソコン側だけ） |
 | `depends_on` | `db` が**健康**になるまで、起動を待つ（[4 節](#4-db-の起動を待つ)） |

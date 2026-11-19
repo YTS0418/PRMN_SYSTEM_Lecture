@@ -122,13 +122,13 @@ PostgreSQL のイメージには、**初回起動時に、決まったフォル�
     # ...（省略）
     volumes:
       - pgdata:/var/lib/postgresql
-      - ./db/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
-      - ./db/02_seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+      - ../database/db/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ../database/db/02_seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
 ```
 
 | 部分 | 意味 |
 |---|---|
-| `./db/01_schema.sql` | パソコン側のファイル（サンプルリポジトリの `db/`） |
+| `../database/db/01_schema.sql` | パソコン側のファイル（サンプルリポジトリの `database/db/`）。`compose.yaml` は `docker/` にあるので、1 つ上の階層から指す |
 | `/docker-entrypoint-initdb.d/01_schema.sql` | コンテナ側の置き場所 |
 | `:ro` | 読み取り専用（コンテナから書き換えられない） |
 
