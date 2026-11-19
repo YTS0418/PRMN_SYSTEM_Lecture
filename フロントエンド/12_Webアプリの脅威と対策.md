@@ -95,7 +95,7 @@ class 成績の権限 {
 ```
 
 > [!NOTE]
-> **サンプル**：[`<VAADIN_STEP>/src/main/java/grades/usecase/成績一覧を取得する.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/<VAADIN_STEP>/src/main/java/grades/usecase/成績一覧を取得する.java)（検討中）
+> **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/usecase/成績一覧を取得する.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/usecase/成績一覧を取得する.java)（作成予定）
 
 | どこで確認するか | 守れるか | 理由 |
 |---|---|---|

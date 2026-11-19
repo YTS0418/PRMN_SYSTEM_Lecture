@@ -226,7 +226,7 @@ public class 学生登録ビュー extends VerticalLayout {
 ```
 
 > [!NOTE]
-> **サンプル**：[`<VAADIN_STEP>/src/main/java/grades/presentation/学生登録ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/<VAADIN_STEP>/src/main/java/grades/presentation/学生登録ビュー.java)（検討中）
+> **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java)（作成予定）
 
 <!-- 📷 SS: ../images/frontend/app/app-08-02-register-form.png -->
 > 📷 **スクショ指定：`app-08-02-register-form.png`**（自動撮影）
