@@ -161,6 +161,21 @@ SHOTS = [
     部品("theme-variable", "/demo/theme", "theme-variable"),
     部品("theme-dark", "/demo/theme", "theme-dark"),
 
+
+    # ===== 09 章（例外の表示）、A2（開発モードと本番モード）、A4（アップロード・Signals）、11 章（アクセス拒否）=====
+    {"name": "parts/usecase-success", "path": "/demo/feedback", "user": "teacher01", "steps": [("click", "例外の表示（成功）")],
+     "hide": ["vaadin-app-layout"], "clip": {"sel": "vaadin-notification-card", "how": "part:overlay", "pad": 16}},
+    {"name": "parts/usecase-domain-error", "path": "/demo/feedback", "user": "teacher01", "steps": [("click", "例外の表示（Domain）")],
+     "hide": ["vaadin-app-layout"], "clip": {"sel": "vaadin-notification-card", "how": "part:overlay", "pad": 16}},
+    {"name": "parts/usecase-not-found", "path": "/demo/feedback", "user": "teacher01", "steps": [("click", "例外の表示（見つからない）")],
+     "hide": ["vaadin-app-layout"], "clip": {"sel": "vaadin-notification-card", "how": "part:overlay", "pad": 16}},
+    部品("advanced-upload-default", "/demo/advanced", "advanced-upload-default"),
+    部品("advanced-upload-japanese", "/demo/advanced", "advanced-upload-japanese"),
+    部品("advanced-signal", "/demo/advanced", "advanced-signal"),
+    画面("access-denied", "/students/register", user="student01", width=520, height=120),
+    画面("mode-production", "/students"),
+    画面("mode-development", "/students", base="dev"),
+
     # ===== 画面（幅 900。要所だけ）=====
     画面("app-layout", "/students", width=1100, height=640, marks=[
         {"sel": ["vaadin-side-nav-item:first-of-type", "vaadin-side-nav-item:last-of-type"], "how": "text", "n": 1, "label": "メニュー（`SideNav`）"},

@@ -12,7 +12,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 CHAPTERS = ROOT / "フロントエンド"
-DEFAULT_SAMPLE = ROOT.parent / "PRMN_SYSTEM_Sample/frontend/grades-vaadin/src/main/java"
+DEFAULT_SAMPLE = ROOT.parent / "PRMN_SYSTEM_Sample/frontend/grades-vaadin/src"      # main と test の両方
 
 SAMPLE_REGION = re.compile(r"//\s*snippet:\s*(?P<id>[\w\-]+)\s*\n(?P<body>.*?)//\s*end snippet", re.S)
 DOC_BLOCK = re.compile(r"<!-- snippet: (?P<id>[\w\-]+) -->\s*\n```java\n(?P<body>.*?)```", re.S)
@@ -35,7 +35,7 @@ def pretty(code):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sample", default=str(DEFAULT_SAMPLE), help="サンプルの Java のフォルダ")
+    ap.add_argument("--sample", default=str(DEFAULT_SAMPLE), help="サンプルの src フォルダ（main と test の Java）")
     args = ap.parse_args()
 
     sample = {}
