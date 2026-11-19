@@ -309,6 +309,9 @@ class ApiExceptionHandler {
 
 PostgreSQL が起動していて、`grades_db` にテーブルとサンプルデータが入っている（データベース編 07〜09 章）ことを確認し、環境変数 `DB_PASSWORD` を設定したうえで、プロジェクトのフォルダで起動します。
 
+> [!TIP]
+> PostgreSQL を Docker（Compose）で用意する場合は、[Docker 編 04 章](../Docker/04_Docker_Compose入門.md)を参照してください。アプリ自体もコンテナで動かす方法は、[Docker 編 06 章](../Docker/06_アプリとDBをComposeで動かす.md)にあります。
+
 ```bash
 ./mvnw spring-boot:run
 ```
