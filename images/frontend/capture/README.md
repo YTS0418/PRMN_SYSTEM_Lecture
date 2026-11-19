@@ -10,20 +10,48 @@
 ```bash
 python3 -m venv .venv && . .venv/bin/activate
 pip install playwright
-playwright install chromium
+playwright install chromium          # Chromium を入れる。Chrome が入っているなら、次の行でもよい
+export CAPTURE_BROWSER_CHANNEL=chrome  # 入れた Chrome を使う場合だけ（Playwright の Chromium を使うなら不要）
 ```
 
 ## 実行の手順
 
-1. サンプル（Vaadin 版）を起動する（撮影用のデータが入った状態。`http://localhost:8080`）
-2. このフォルダで、スクリプトを実行する
+1. サンプル（Vaadin 版、`frontend/grades-vaadin/`）を、**本番モード**で起動する。撮影用のデータ（`frontend/db/` の SQL）が入った状態にする
 
 ```bash
-python3 capture.py --base-url http://localhost:8080          # すべて
-python3 capture.py --only app-05-01-input-components         # 1 枚だけ
+cd ../../../../PRMN_SYSTEM_Sample/frontend/grades-vaadin     # サンプルのリポジトリ
+./mvnw -Pproduction -DskipTests clean package
+java -jar target/grades-vaadin-0.0.1-SNAPSHOT.jar            # http://localhost:8080
+```
+
+2. このフォルダで、撮影用の仮のパスワードを環境変数に入れて、スクリプトを実行する
+
+```bash
+export CAPTURE_PASSWORD='grades-sample'                       # サンプルの、仮のパスワード（コードには書かない）
+python3 capture.py                                            # すべて（テーマの比較は除く）
+python3 capture.py --only app-05-01                           # 名前が app-05-01 で始まるものだけ
 ```
 
 画像は、`../app/` に保存されます。
+
+> [!TIP]
+> **本番モードで撮影する**のがおすすめです。開発モードでは、画面の隅に、「App is running in development mode」の表示が出て、画像に写ってしまいます。
+
+### テーマの比較（`app-13-01`）
+
+テーマを変えた、2 つのアプリが必要です。
+
+1. 既定のテーマのアプリを、8080 番で起動する（上の手順）
+2. 起動クラス（`成績管理アプリ`）に `@StyleSheet(Lumo.STYLESHEET)` を付けたコピーを作り、`--server.port=8081` で起動する
+3. 次のように実行する
+
+```bash
+python3 capture.py --alt-url lumo=http://localhost:8081 --only app-13
+```
+
+### 部品の見本の画面
+
+`app-04`、`app-05` の画像は、サンプルの `部品見本ビュー`（`/demo/components`）を撮っています。業務の画面ではなく、資料の画像のための画面です。
 
 ## 仕組み
 
@@ -44,8 +72,8 @@ flowchart LR
 
 - ビューポート 1280×800（`app-04-02` の `-02` だけ 480 幅）、ライトテーマ、ロケール `ja-JP`
 - アニメーションを止める（CSS で `transition` / `animation` を無効にする）
-- 赤枠は 3px、番号は赤い丸の中に白い文字（①②…）
-- 撮影用のユーザー（`teacher01`、`student01`）は、**講義用の仮のもの**。パスワードは、環境変数（`CAPTURE_PASSWORD`）で渡し、**ファイルには書かない**
+- 赤枠は 3px、番号は赤い丸の中に白い文字（①②…）。ダイアログや通知（最前面に出る部品）の上にも出るよう、赤枠も、最前面（`popover`）に出す
+- 撮影用のユーザー（`teacher01`、`student01`）は、**講義用の仮のもの**。パスワードは、環境変数（`CAPTURE_PASSWORD`）で渡す
 
 ## 新しい画像を追加するとき
 
@@ -57,5 +85,7 @@ flowchart LR
 ## 注意
 
 - 撮影は、**開発用の仮のデータだけ**で行う。本物の学生の氏名・成績を、写さない
+- 赤枠は、画面の部品の位置から、自動で計算します。ずれたり、文字に重なったりしたときは、`shots.py` のセレクタを直します
+- 撮影に失敗した 1 枚があっても、ほかの撮影は続けます（最後に、失敗した枚数を表示します）
 - Vaadin のバージョンを上げたら、全部撮り直す（見た目が変わる）
 - 手動撮影の画像（`vdn-…`、`ide-…`）は、このスクリプトの対象外

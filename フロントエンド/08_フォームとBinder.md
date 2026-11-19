@@ -137,10 +137,7 @@ binder.forField(入学年度)
 | まとめて表示する（`setStatusLabel`） | フォームの上などに、1 つのラベルに出す |
 | 状態を自分で処理する（`withValidationStatusHandler`） | 色の変更など、細かい制御 |
 
-<!-- 📷 SS: ../images/frontend/app/app-08-01-validation-error.png -->
-> 📷 **スクショ指定：`app-08-01-validation-error.png`**（自動撮影）
-> - 画面：氏名を空欄、入学年度に 1999 を入力して「登録」を押した学生登録フォーム（欄が赤くなり、メッセージが出ている）
-> - 強調：①氏名のエラーメッセージ、②入学年度のエラーメッセージ を赤枠で囲み、番号を振る
+![入力チェックのエラー表示。①氏名、②入学年度](../images/frontend/app/app-08-01-validation-error.png)
 
 > [!TIP]
 > **ユーザビリティの視点**：
@@ -228,10 +225,7 @@ public class 学生登録ビュー extends VerticalLayout {
 > [!NOTE]
 > **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java)（作成予定）
 
-<!-- 📷 SS: ../images/frontend/app/app-08-02-register-form.png -->
-> 📷 **スクショ指定：`app-08-02-register-form.png`**（自動撮影）
-> - 画面：学生の登録フォーム（氏名・所属学科・入学年度、「登録」ボタン）の、入力前の状態
-> - 強調：①入力欄（ラベル、ヘルパーテキスト）、②主ボタン（登録）を赤枠で囲み、番号を振る
+![学生の登録フォーム。①入力欄、②登録ボタン](../images/frontend/app/app-08-02-register-form.png)
 
 > [!TIP]
 > **ユーザビリティの視点**：登録が**成功したとき**は、①成功を知らせ（`Notification`）、②**次の操作がしやすい状態**にします（フォームを空にして、続けて登録できる、または一覧に移動する）。登録が**終わったかどうか**が分からないフォームは、利用者に、二重に登録させてしまいます。

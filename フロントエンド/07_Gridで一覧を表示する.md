@@ -47,10 +47,7 @@ var 一覧 = new Grid<成績明細>();
 
 `addColumn` に、**メソッド参照**（`成績明細::科目名`）を渡すだけです。`record` のアクセサと、相性が良い書き方です。
 
-<!-- 📷 SS: ../images/frontend/app/app-07-01-grid.png -->
-> 📷 **スクショ指定：`app-07-01-grid.png`**（自動撮影）
-> - 画面：成績一覧の `Grid`（科目、単位、年度、点数、合否の列と、数行のデータ）
-> - 強調：①列の見出し、②1 行（データ 1 件）、③並べ替えのアイコン を赤枠で囲み、番号を振る
+![学生一覧の Grid。①列の見出し、②1 行、③並べ替えのアイコン](../images/frontend/app/app-07-01-grid.png)
 
 ## 3. 列の設定
 
@@ -203,10 +200,7 @@ public class 成績一覧ビュー extends VerticalLayout implements BeforeEnter
 > [!NOTE]
 > **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java)（作成予定）
 
-<!-- 📷 SS: ../images/frontend/app/app-07-02-transcript-view.png -->
-> 📷 **スクショ指定：`app-07-02-transcript-view.png`**（自動撮影）
-> - 画面：「千歳 太郎 さんの成績」の見出し、成績の `Grid`（履修中の行を含む）、平均点が出ている成績一覧の画面
-> - 強調：①見出し（誰の成績か）、②履修中の行、③平均点 を赤枠で囲み、番号を振る
+![成績一覧の画面。①誰の成績か、②履修中の行、③平均点](../images/frontend/app/app-07-02-transcript-view.png)
 
 > [!TIP]
 > **ユーザビリティの視点**：一覧の画面では、**「誰の」「何の」一覧かを、見出しではっきり示します**。また、データが 0 件のときは、空の表を出すだけにせず、「まだ成績が登録されていません」のように、**状態と次の行動**を伝えます（ヒューリスティクスの「システム状態の視認性」）。
