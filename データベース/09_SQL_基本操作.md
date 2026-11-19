@@ -33,11 +33,11 @@
 08 章で作ったテーブルに、サンプルデータを入れます。
 
 ```bash
-psql -U postgres -d grades_db -f db/02_seed.sql
+psql -U postgres -d grades_db -f database/db/02_seed.sql
 ```
 
 > [!NOTE]
-> **サンプル**：[`db/02_seed.sql`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/db/02_seed.sql)
+> **サンプル**：[`database/db/02_seed.sql`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/database/db/02_seed.sql)
 
 入るデータの概要です。
 

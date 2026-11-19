@@ -49,7 +49,7 @@ flowchart LR
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step3-spring)
+> **サンプル**：[`architecture/step3-spring/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/architecture/step3-spring)
 
 ## 2. プロジェクトの作成
 
@@ -169,7 +169,7 @@ public class 学生を登録する {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/usecase/学生を登録する.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/usecase/学生を登録する.java)
+> **サンプル**：[`architecture/step3-spring/src/main/java/grades/usecase/学生を登録する.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step3-spring/src/main/java/grades/usecase/学生を登録する.java)
 
 ### @Transactional
 
@@ -213,7 +213,7 @@ class Jdbc学生リポジトリ implements 学生リポジトリ {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java)
+> **サンプル**：[`architecture/step3-spring/src/main/java/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step3-spring/src/main/java/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java)
 
 データベース編 12 章の補足にある、素の JDBC 版（約 13 行）と比べてみてください。
 
@@ -258,7 +258,7 @@ class 学生コントローラ {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/presentation/学生コントローラ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/学生コントローラ.java)
+> **サンプル**：[`architecture/step3-spring/src/main/java/grades/presentation/学生コントローラ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step3-spring/src/main/java/grades/presentation/学生コントローラ.java)
 
 | アノテーション | 役割 |
 |---|---|
@@ -302,7 +302,7 @@ class 例外ハンドラ {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step3-spring/src/main/java/grades/presentation/例外ハンドラ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step3-spring/src/main/java/grades/presentation/例外ハンドラ.java)
+> **サンプル**：[`architecture/step3-spring/src/main/java/grades/presentation/例外ハンドラ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step3-spring/src/main/java/grades/presentation/例外ハンドラ.java)
 
 | 例外 | 発生元 | HTTP ステータス |
 |---|---|---|

@@ -85,7 +85,7 @@ src/grades/
 > `Main` は、全部の層を知っている唯一のクラスです。「どの実装を使うか」を決めて部品をつなぐ役割を持ちます（8 節）。Spring では、この組み立てを **DI コンテナ**が肩代わりします（05 章）。
 
 > [!NOTE]
-> **サンプル**：実際のフォルダ構成は [`step1-memory/src/grades/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step1-memory/src/grades) で確認できます。
+> **サンプル**：実際のフォルダ構成は [`architecture/step1-memory/src/grades/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/architecture/step1-memory/src/grades) で確認できます。
 
 ## 3. Domain 層：record でルールを持たせる
 
@@ -103,7 +103,7 @@ public record 履修(int 学生ID, int 科目ID, int 年度, Integer 点数) {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/履修.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/履修.java)
+> **サンプル**：[`architecture/step1-memory/src/grades/domain/履修.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step1-memory/src/grades/domain/履修.java)
 
 - `点数` を `int` ではなく `Integer` にしているのは、**「まだ点数が無い（履修中）」を `null` で表す**ためです（データベース編 06 章・12 章）
 - Domain 層には `println`・SQL・`Scanner` を書きません
@@ -131,7 +131,7 @@ public record 履修一覧(List<履修> 履修リスト) {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/履修一覧.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/履修一覧.java)
+> **サンプル**：[`architecture/step1-memory/src/grades/domain/履修一覧.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step1-memory/src/grades/domain/履修一覧.java)
 
 > [!TIP]
 > フィールドを `private` にして、作るときに値を検査するクラスは、Domain 層のクラスの考え方そのものです（付録 Java 入門 06 章でも、同じ書き方を扱っています）。
@@ -150,7 +150,7 @@ public interface 学生リポジトリ {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/domain/学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/domain/学生リポジトリ.java)
+> **サンプル**：[`architecture/step1-memory/src/grades/domain/学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step1-memory/src/grades/domain/学生リポジトリ.java)
 
 - **Application 層**（`usecase` パッケージの `学生を登録する` など）は、このインタフェースの型で変数を持ち、使う
 - **Infrastructure 層**（`dataaccess` パッケージの `メモリ学生リポジトリ`、`Jdbc学生リポジトリ`）は、これを `implements` する
@@ -206,7 +206,7 @@ public class 学生を登録する {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/usecase/学生を登録する.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/usecase/学生を登録する.java)
+> **サンプル**：[`architecture/step1-memory/src/grades/usecase/学生を登録する.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step1-memory/src/grades/usecase/学生を登録する.java)
 
 `学生を登録する` の中には、`学生リポジトリ` の実装クラスを `new` する行が 1 つもありません。「何を使うか」は**作る側が決める**、「どう使うか」は `学生を登録する` が決める、という分担です。
 
@@ -254,7 +254,7 @@ public static void main(String[] args) {
 ```
 
 > [!NOTE]
-> **サンプル**：[`step1-memory/src/grades/Main.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step1-memory/src/grades/Main.java)（サンプルの step1 は、仕組みが見えるように素の Java で書いています。Spring 版は `step3-spring` です）
+> **サンプル**：[`architecture/step1-memory/src/grades/Main.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/architecture/step1-memory/src/grades/Main.java)（サンプルの step1 は、仕組みが見えるように素の Java で書いています。Spring 版は `architecture/step3-spring` です）
 
 保存先を変えたいときに書き換えるのは、**`Main` の `new メモリ…` を `new Jdbc…` に変える数行だけ**です。他のクラスは変更不要です。データベース編 12 章では、実際にそうします。
 
