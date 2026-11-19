@@ -212,7 +212,7 @@ pgAdmin には、既存のテーブルから **ER 図を自動で描く機能**�
 サンプルの `db/01_schema.sql` は、ここまでの内容を 1 つにまとめたものです。
 
 > [!NOTE]
-> **サンプル**：[`db/01_schema.sql`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/db/01_schema.sql)
+> **サンプル**：[`db/01_schema.sql`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/db/01_schema.sql)
 
 | 部分 | 内容 | 関連する章 |
 |---|---|---|

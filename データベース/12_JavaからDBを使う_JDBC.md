@@ -8,7 +8,7 @@
 - JDBC の役割と、ドライバの仕組みが分かる
 - `JdbcClient` で、SQL の実行と結果の取得ができる
 - **SQL インジェクション**の危険性と、プレースホルダによる対策を説明できる
-- `JdbcClient` を使った Repository を、Infrastructure 層に実装する流れが分かる
+- `JdbcClient` を使ったリポジトリを、Infrastructure 層に実装する流れが分かる
 - 保存先をメモリからデータベースに差し替えるとき、**何を変えて、何を変えないか**を説明できる
 
 ## 目次
@@ -65,7 +65,10 @@ flowchart LR
 ```
 
 > [!IMPORTANT]
-> 4 層のうち、データベースを直接扱うのは **Infrastructure 層だけ**です。`JdbcClient` や `java.sql` を import してよいのは、`infrastructure.jdbc` パッケージの中だけ、という約束にします。
+> 4 層のうち、データベースを直接扱うのは **Infrastructure 層だけ**です。`JdbcClient` や `java.sql` を import してよいのは、`dataaccess.jdbc` パッケージの中だけ、という約束にします。
+
+> [!NOTE]
+> サンプルのクラス名・メソッド名・変数名は日本語です（4層アーキテクチャ編 04 章）。たとえば `StudentRepository` を実装する `JdbcStudentRepository` は、`学生リポジトリ` を実装する `Jdbc学生リポジトリ` です。テーブル名・列名は英語のままなので、SQL はこの資料のこれまでの章と同じです。
 
 ## 2. 接続する
 
@@ -104,7 +107,7 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 
 ### 参考：Spring Boot を使う場合
 
-この章では Spring Boot を使わないので、`DataSource` と `JdbcClient` を Java のコードで作りました。**Spring Boot を使う場合は、接続設定を Java で書きません**。`src/main/resources/application.properties` に次のように書くと、Spring Boot が `DataSource`（コネクションプール：11 節）と `JdbcClient` を自動で用意し、Repository のコンストラクタに渡してくれます（[4層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)）。
+この章では Spring Boot を使わないので、`DataSource` と `JdbcClient` を Java のコードで作りました。**Spring Boot を使う場合は、接続設定を Java で書きません**。`src/main/resources/application.properties` に次のように書くと、Spring Boot が `DataSource`（コネクションプール：11 節）と `JdbcClient` を自動で用意し、リポジトリのコンストラクタに渡してくれます（[4層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)）。
 
 ```properties
 spring.datasource.driver-class-name=org.postgresql.Driver
@@ -118,38 +121,38 @@ spring.datasource.password=${DB_PASSWORD}
 
 ## 3. SQL を実行して結果を受け取る
 
-SQL の値を入れたい場所に `:名前`（名前付きプレースホルダ）を書き、`param` で値を渡します。`StudentRepository` を実装する `JdbcStudentRepository` の `findById` です。
+SQL の値を入れたい場所に `:名前`（名前付きプレースホルダ）を書き、`param` で値を渡します。`学生リポジトリ` を実装する `Jdbc学生リポジトリ` の `探す` です。
 
 ```java
-public class JdbcStudentRepository implements StudentRepository {
+public class Jdbc学生リポジトリ implements 学生リポジトリ {
     private final JdbcClient jdbcClient;
 
     // コンストラクタインジェクション：JdbcClient は外から受け取る（自分で作らない）
-    public JdbcStudentRepository(JdbcClient jdbcClient) {
+    public Jdbc学生リポジトリ(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
     @Override
-    public Optional<Student> findById(int id) {
+    public Optional<学生> 探す(int 学生ID) {
         String sql = """
                 SELECT student_id, name, department_id, enrolled_year
                 FROM students
                 WHERE student_id = :id
                 """;
         return jdbcClient.sql(sql)
-                .param("id", id)                              // :id に値を渡す
-                .query((rs, rowNum) -> new Student(rs.getInt("student_id"), rs.getString("name"),
+                .param("id", 学生ID)                          // :id に値を渡す
+                .query((rs, rowNum) -> new 学生(rs.getInt("student_id"), rs.getString("name"),
                         rs.getInt("department_id"), rs.getInt("enrolled_year")))   // 行 → Domain のオブジェクト
                 .optional();                                  // 0 件なら Optional.empty()
     }
 }
 ```
 
-- `JdbcClient` は、コンストラクタの引数で受け取ります（**コンストラクタインジェクション**）。誰が `JdbcClient` を作るか（8 節の `Main`、または Spring Boot）を、Repository は知らなくて済みます（4層アーキテクチャ編 03 章）
+- `JdbcClient` は、コンストラクタの引数で受け取ります（**コンストラクタインジェクション**）。誰が `JdbcClient` を作るか（8 節の `Main`、または Spring Boot）を、リポジトリは知らなくて済みます（4層アーキテクチャ編 03 章）
 - SQL は、**テキストブロック**（`"""` で囲む複数行の文字列：[Java 入門 02 章](../付録/Java入門/02_基本文法・変数と型.md)）で変数に入れてから、`sql(...)` に渡します。SQL が長くなっても、改行して読みやすく書けます
 
 > [!NOTE]
-> **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/infrastructure/jdbc/JdbcStudentRepository.java)
+> **サンプル**：[`step2-jdbc/src/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/step2-jdbc/src/grades/dataaccess/jdbc/Jdbc学生リポジトリ.java)
 
 SQL の種類と欲しい結果に合わせて、最後に呼ぶメソッドを選びます。
 
@@ -162,7 +165,7 @@ SQL の種類と欲しい結果に合わせて、最後に呼ぶメソッドを�
 
 ポイントです。
 
-- 「**行（`rs`）→ Domain のオブジェクト（Student）**」の変換を、Infrastructure 層が担当する。`ResultSet` は、この層から外に出さない（4層アーキテクチャ編 02 章・04 章）
+- 「**行（`rs`）→ Domain のオブジェクト（`学生`）**」の変換を、Infrastructure 層が担当する。`ResultSet` は、この層から外に出さない（4層アーキテクチャ編 02 章・04 章）
 - `(rs, rowNum) -> ...` は、1 行を 1 つのオブジェクトに変換する処理。行を進める処理は `JdbcClient` が行う
 - 列は、名前（`rs.getString("name")`）か、番号（1 から）で読み取る。名前のほうが間違いにくい
 
@@ -229,30 +232,30 @@ SELECT * FROM students WHERE name = '' OR '1'='1'
 
 ## 5. 行を追加する：採番された ID の受け取り
 
-`StudentRepository.save` は、学生を追加し、**採番された ID を持つ `Student`** を返します（4層アーキテクチャ編）。09 章の `RETURNING` を使います。
+`学生リポジトリ.保存する` は、学生を追加し、**採番された学生ID を持つ `学生`** を返します（4層アーキテクチャ編）。09 章の `RETURNING` を使います。
 
 ```java
 @Override
-public Student save(Student student) {
+public 学生 保存する(学生 学生) {
     String sql = """
             INSERT INTO students (name, department_id, enrolled_year)
             VALUES (:name, :departmentId, :enrolledYear)
             RETURNING student_id
             """;
-    int id = jdbcClient.sql(sql)
-            .param("name", student.name())
-            .param("departmentId", student.departmentId())
-            .param("enrolledYear", student.enrolledYear())
+    int 採番された学生ID = jdbcClient.sql(sql)
+            .param("name", 学生.氏名())
+            .param("departmentId", 学生.学科ID())
+            .param("enrolledYear", 学生.入学年度())
             .query(Integer.class)                         // RETURNING があるので query
             .single();
-    return student.withId(id);                            // 採番された ID を持つ Student を返す
+    return 学生.学生IDを付ける(採番された学生ID);          // 採番された ID を持つ学生を返す
 }
 ```
 
 > [!TIP]
 > `RETURNING` がある `INSERT` は、結果の行を返すので、`update` ではなく `query` を使います。
 
-履修の保存（`EnrollmentRepository.save`）は、メモリ版の「同じ（学生, 科目, 年度）があれば上書き」を、SQL の `ON CONFLICT` で実現できます。
+履修の保存（`履修リポジトリ.保存する`）は、メモリ版の「同じ（学生, 科目, 年度）があれば上書き」を、SQL の `ON CONFLICT` で実現できます。
 
 ```sql
 INSERT INTO enrollments (student_id, course_id, academic_year, score) VALUES (:studentId, :courseId, :academicYear, :score)
@@ -268,50 +271,50 @@ ON CONFLICT (student_id, course_id, academic_year) DO UPDATE SET score = EXCLUDE
 | 操作 | 注意 | 書き方 |
 |---|---|---|
 | **読み取り** | `rs.getInt("score")` は、NULL のとき **0 を返す**（0 点と区別できない） | `rs.getObject("score", Integer.class)`（NULL なら `null`） |
-| **書き込み** | `null` を渡すときは、列の型を明示すると確実 | `.param("score", score, Types.SMALLINT)`（`null` も渡せる） |
+| **書き込み** | `null` を渡すときは、列の型を明示すると確実 | `.param("score", 点数, Types.SMALLINT)`（`null` も渡せる） |
 
-4層アーキテクチャ編で `Enrollment` の `score` を `Integer` にしていたのは、このためです。Java 側の `null`（履修中）と、データベース側の `NULL` を、Infrastructure 層で対応させます。
+4層アーキテクチャ編で `履修` の `点数` を `Integer` にしていたのは、このためです。Java 側の `null`（履修中）と、データベース側の `NULL` を、Infrastructure 層で対応させます。
 
 > [!WARNING]
 > `getInt` を使うと、**履修中の行が 0 点として読み込まれます**。合否の判定は誤り（0 点＝不合格）になるので、気づきにくいバグになります。
 
-## 7. Repository を実装する
+## 7. リポジトリを実装する
 
-4層アーキテクチャ編 06 章で読んだ `InMemory…Repository` に対応する、**データベース版**を Infrastructure 層に追加します。
+4層アーキテクチャ編 06 章で読んだ `メモリ…リポジトリ` に対応する、**データベース版**を Infrastructure 層（`dataaccess.jdbc` パッケージ）に追加します。
 
 ```mermaid
 classDiagram
     direction LR
-    class StudentRepository {
+    class 学生リポジトリ {
         <<interface>>
-        +save(Student) Student
-        +findById(int) Optional~Student~
-        +findAll() List~Student~
+        +保存する(学生) 学生
+        +探す(int) Optional~学生~
+        +すべて探す() List~学生~
     }
-    class InMemoryStudentRepository
-    class JdbcStudentRepository {
+    class メモリ学生リポジトリ
+    class Jdbc学生リポジトリ {
         -JdbcClient jdbcClient
     }
-    StudentRepository <|.. InMemoryStudentRepository : 実装（step1）
-    StudentRepository <|.. JdbcStudentRepository : 実装（step2）
+    学生リポジトリ <|.. メモリ学生リポジトリ : 実装（step1）
+    学生リポジトリ <|.. Jdbc学生リポジトリ : 実装（step2）
 ```
 
-| Repository | 主な SQL |
+| リポジトリ | 主な SQL |
 |---|---|
-| `JdbcStudentRepository` | `INSERT`（`RETURNING`）、`SELECT ... WHERE student_id = :id`、`SELECT ... ORDER BY student_id` |
-| `JdbcCourseRepository` | `SELECT ... FROM courses`（読み取りのみ） |
-| `JdbcEnrollmentRepository` | `INSERT ... ON CONFLICT`、`SELECT ... WHERE student_id = :studentId` |
+| `Jdbc学生リポジトリ` | `INSERT`（`RETURNING`）、`SELECT ... WHERE student_id = :id`、`SELECT ... ORDER BY student_id` |
+| `Jdbc科目リポジトリ` | `SELECT ... FROM courses`（読み取りのみ） |
+| `Jdbc履修リポジトリ` | `INSERT ... ON CONFLICT`、`SELECT ... WHERE student_id = :studentId` |
 
 > [!NOTE]
-> **サンプル**：[`step2-jdbc/src/grades/infrastructure/jdbc/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/step2-jdbc/src/grades/infrastructure/jdbc)
+> **サンプル**：[`step2-jdbc/src/grades/dataaccess/jdbc/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/step2-jdbc/src/grades/dataaccess/jdbc)
 
 ### Domain のオブジェクトとテーブルは、同じ形でなくてよい
 
 | テーブルの列 | Domain のオブジェクト |
 |---|---|
-| `courses.teacher_id`（NOT NULL） | `Course` には持たせない（今回のユースケースでは使わない。`SELECT` で取らなければよい） |
-| `enrollments.enrollment_id`（代理キー） | `Enrollment` には持たせない（業務上の意味がなく、Domain は知らなくてよい） |
-| `students.enrolled_year` | `Student` に持たせる（登録時に必須なので） |
+| `courses.teacher_id`（NOT NULL） | `科目` には持たせない（今回のユースケースでは使わない。`SELECT` で取らなければよい） |
+| `enrollments.enrollment_id`（代理キー） | `履修` には持たせない（業務上の意味がなく、Domain は知らなくてよい） |
+| `students.enrolled_year` | `学生`（`入学年度`）に持たせる（登録時に必須なので） |
 
 テーブルは**データを保存するための形**、Domain のオブジェクトは**業務で使う形**です。両者を対応づける（マッピング）のが、Infrastructure 層の役割です。
 
@@ -321,34 +324,34 @@ classDiagram
 
 | 層 | 変更 |
 |---|---|
-| **Domain** | **変更なし**（`Student`、`Enrollment`、`…Repository` のインタフェース） |
-| **Application** | **変更なし**（`GradeService`、`Transcript`） |
-| **Presentation** | **変更なし**（`ConsoleApp`） |
-| **Infrastructure** | `jdbc` パッケージに **`Jdbc…Repository` を追加**（`memory` パッケージはそのまま残してよい） |
-| **Main**（組み立て） | `new InMemory…` を `new Jdbc…(jdbcClient)` に**差し替える** |
+| **Domain** | **変更なし**（`学生`、`履修`、`履修一覧`、`…リポジトリ` のインタフェース） |
+| **Application** | **変更なし**（`usecase` パッケージの 5 つのユースケース） |
+| **Presentation** | **変更なし**（`コンソール画面`） |
+| **Infrastructure** | `jdbc` パッケージに **`Jdbc…リポジトリ` を追加**（`memory` パッケージはそのまま残してよい） |
+| **Main**（組み立て） | `new メモリ…` を `new Jdbc…(jdbcClient)` に**差し替える** |
 
 ```mermaid
 flowchart LR
     subgraph before["step1：メモリ版"]
         direction TB
-        m1["Main"] --> i1["InMemory…Repository"]
+        m1["Main"] --> i1["メモリ…リポジトリ"]
     end
     subgraph after["step2：データベース版"]
         direction TB
-        m2["Main"] --> i2["Jdbc…Repository"] --> pg[("PostgreSQL")]
+        m2["Main"] --> i2["Jdbc…リポジトリ"] --> pg[("PostgreSQL")]
     end
     before -->|"Main の数行だけ変える"| after
 ```
 
-`Main` では、2 節のとおり `DataSource` と `JdbcClient` を用意して、`Jdbc…Repository` に渡します。
+`Main` では、2 節のとおり `DataSource` と `JdbcClient` を用意して、`Jdbc…リポジトリ` に渡します。
 
 ```java
 JdbcClient jdbcClient = JdbcClient.create(dataSource);
-StudentRepository students = new JdbcStudentRepository(jdbcClient);   // new InMemoryStudentRepository() から差し替え
+学生リポジトリ 学生リポジトリ = new Jdbc学生リポジトリ(jdbcClient);   // new メモリ学生リポジトリ() から差し替え
 ```
 
 > [!NOTE]
-> 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`GradeService` も `ConsoleApp` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
+> 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`usecase` の各クラスも `コンソール画面` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
 
 ## 9. 例外の扱い
 
@@ -360,13 +363,13 @@ StudentRepository students = new JdbcStudentRepository(jdbcClient);   // new InM
 | 外部キー、NOT NULL などの違反 | `DataIntegrityViolationException` | `FOREIGN KEY` / `NOT NULL` / `CHECK` |
 | SQL の書き間違い | `BadSqlGrammarException` | なし |
 
-ただし、これらは Spring の例外です。Application 層に Spring を知らせないよう、**業務で意味のある例外は Infrastructure 層で変換**します。`RepositoryException` は Domain 層に置き、どの層からも使えるようにします（4層アーキテクチャ編 03 章）。
+ただし、これらは Spring の例外です。Application 層に Spring を知らせないよう、**業務で意味のある例外は Infrastructure 層で変換**します。`保存失敗例外` は Domain 層に置き、どの層からも使えるようにします（4層アーキテクチャ編 03 章）。
 
 ```java
 try {
     // …（INSERT を実行）
 } catch (DataAccessException e) {
-    throw new RepositoryException("学生の登録に失敗しました", e);
+    throw new 保存失敗例外("学生の登録に失敗しました", e);
 }
 ```
 
@@ -420,22 +423,22 @@ SQL の実行には `PreparedStatement` を使います。値を入れたい場�
 | `executeQuery()` | `SELECT` | `ResultSet`（結果の行の集まり） |
 | `executeUpdate()` | `INSERT` / `UPDATE` / `DELETE` | 変更された行数（`int`） |
 
-`ResultSet` は、`next()` で 1 行ずつ進めながら、列の値を読み取ります。3 節の `findById` を素の JDBC で書くと、次のようになります。
+`ResultSet` は、`next()` で 1 行ずつ進めながら、列の値を読み取ります。3 節の `探す` を素の JDBC で書くと、次のようになります。
 
 ```java
 @Override
-public Optional<Student> findById(int id) {
+public Optional<学生> 探す(int 学生ID) {
     String sql = "SELECT student_id, name, department_id, enrolled_year FROM students WHERE student_id = ?";
     try (Connection conn = dataSource.getConnection();
          PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setInt(1, id);                                 // 1 番目の ? に値を入れる（番号は 1 から）
+        ps.setInt(1, 学生ID);                             // 1 番目の ? に値を入れる（番号は 1 から）
         try (ResultSet rs = ps.executeQuery()) {
             if (!rs.next()) return Optional.empty();      // 行がなければ空
-            return Optional.of(new Student(rs.getInt("student_id"), rs.getString("name"),
+            return Optional.of(new 学生(rs.getInt("student_id"), rs.getString("name"),
                     rs.getInt("department_id"), rs.getInt("enrolled_year")));   // 行 → Domain のオブジェクト
         }
     } catch (SQLException e) {
-        throw new RepositoryException("学生の取得に失敗しました", e);
+        throw new 保存失敗例外("学生の取得に失敗しました", e);
     }
 }
 ```
@@ -447,19 +450,19 @@ public Optional<Student> findById(int id) {
 ```java
 String sql = "INSERT INTO students (name, department_id, enrolled_year) VALUES (?, ?, ?) RETURNING student_id";
 try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-    ps.setString(1, student.name());
-    ps.setInt(2, student.departmentId());
-    ps.setInt(3, student.enrolledYear());
+    ps.setString(1, 学生.氏名());
+    ps.setInt(2, 学生.学科ID());
+    ps.setInt(3, 学生.入学年度());
     try (ResultSet rs = ps.executeQuery()) {          // RETURNING があるので executeQuery
         rs.next();
-        return student.withId(rs.getInt("student_id"));   // 採番された ID を持つ Student を返す
+        return 学生.学生IDを付ける(rs.getInt("student_id"));   // 採番された ID を持つ学生を返す
     }
-}   // catch (SQLException e) は findById と同様
+}   // catch (SQLException e) は 探す と同様
 ```
 
 ### NULL の扱い
 
-書き込みでは、`ps.setInt(4, score)` に `null`（`Integer`）を渡せません。`ps.setObject(4, score, Types.SMALLINT)` を使います。読み取りの注意は、6 節と同じです。
+書き込みでは、`ps.setInt(4, 点数)` に `null`（`Integer`）を渡せません。`ps.setObject(4, 点数, Types.SMALLINT)` を使います。読み取りの注意は、6 節と同じです。
 
 ### 例外の扱い
 
@@ -467,7 +470,7 @@ JDBC のメソッドは、失敗すると **`SQLException`**（チェック例�
 
 | 層 | 方針 |
 |---|---|
-| **Infrastructure** | `SQLException` を**捕まえる**。独自の**実行時例外**（例：`RepositoryException`）に包んで投げ直す |
+| **Infrastructure** | `SQLException` を**捕まえる**。独自の**実行時例外**（例：`保存失敗例外`）に包んで投げ直す |
 | **Application / Presentation** | `java.sql` を import しない。`SQLException` を**知らない** |
 
 `SQLException` のままだと、Application 層が「JDBC を使っている」ことを知ってしまい、依存の向きが崩れます（4層アーキテクチャ編 03 章）。
@@ -510,10 +513,10 @@ try (Connection conn = dataSource.getConnection()) {
 | `.single()` で例外になる | 結果が 0 件、または値が NULL。0 件がありうるなら `.optional()` を使う |
 | `getInt` で NULL が 0 になる | `getObject("列名", Integer.class)` を使う |
 | `RETURNING` つきの `INSERT` に `.update()` を使う | 結果の行を受け取れない。`.query(...)` を使う |
-| Spring の例外を Application 層まで投げてしまう | 業務で意味のある例外は、Infrastructure 層で `RepositoryException` などに変換する |
+| Spring の例外を Application 層まで投げてしまう | 業務で意味のある例外は、Infrastructure 層で `保存失敗例外` などに変換する |
 | パスワードをソースコードに書いて、Git にコミットする | 環境変数や設定ファイルを使う。コミットしてしまったら、パスワードを変更する |
-| `ResultSet` を Repository の外に返す | 閉じられたあとは読めない。Domain のオブジェクトに変換してから返す |
-| Repository のメソッドごとに確定する | ユースケース全体の原子性が失われる（11 章）。境界は Application 層で決める |
+| `ResultSet` をリポジトリの外に返す | 閉じられたあとは読めない。Domain のオブジェクトに変換してから返す |
+| リポジトリのメソッドごとに確定する | ユースケース全体の原子性が失われる（11 章）。境界は Application 層で決める |
 | （素の JDBC）`Connection` / `ResultSet` を閉じ忘れる | 接続が枯渇する。try-with-resources で必ず閉じる |
 | （素の JDBC）`ps.setInt(0, ...)` で例外 | `?` の番号は **1 から**数える |
 | （素の JDBC）`rs.next()` を呼ばずに `rs.getInt` を呼ぶ | 最初の `next()` で最初の行に進む。呼ばずに読むと例外になる |
