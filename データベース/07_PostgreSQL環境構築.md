@@ -193,25 +193,25 @@ CREATE DATABASE grades_db;
 
 ## 7. サンプルの SQL を実行する
 
-サンプルリポジトリの `db/` フォルダに、テーブル定義とサンプルデータがあります。
+サンプルリポジトリの `database/db/` フォルダに、テーブル定義とサンプルデータがあります。
 
 | ファイル | 内容 | 使う章 |
 |---|---|---|
-| `db/01_schema.sql` | テーブルの定義 | 08 章 |
-| `db/02_seed.sql` | サンプルデータ | 09・10 章 |
+| `database/db/01_schema.sql` | テーブルの定義 | 08 章 |
+| `database/db/02_seed.sql` | サンプルデータ | 09・10 章 |
 
 > [!NOTE]
-> **サンプル**：[`db/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/db)
+> **サンプル**：[`database/db/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/database/db)
 
 ### psql で実行する
 
 ファイルのあるフォルダに移動して、次を実行します。
 
 ```bash
-psql -U postgres -d grades_db -f db/01_schema.sql
+psql -U postgres -d grades_db -f database/db/01_schema.sql
 ```
 
-`-d` は接続するデータベース、`-f` は実行する SQL ファイルです。すでに psql に入っている場合は、`\i db/01_schema.sql` でも実行できます。
+`-d` は接続するデータベース、`-f` は実行する SQL ファイルです。すでに psql に入っている場合は、`\i database/db/01_schema.sql` でも実行できます。
 
 ### pgAdmin で実行する
 

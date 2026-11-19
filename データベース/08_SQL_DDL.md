@@ -209,10 +209,10 @@ pgAdmin には、既存のテーブルから **ER 図を自動で描く機能**�
 
 ## 8. 01_schema.sql を読む
 
-サンプルの `db/01_schema.sql` は、ここまでの内容を 1 つにまとめたものです。
+サンプルの `database/db/01_schema.sql` は、ここまでの内容を 1 つにまとめたものです。
 
 > [!NOTE]
-> **サンプル**：[`db/01_schema.sql`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/db/01_schema.sql)
+> **サンプル**：[`database/db/01_schema.sql`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/database/db/01_schema.sql)
 
 | 部分 | 内容 | 関連する章 |
 |---|---|---|
@@ -229,7 +229,7 @@ pgAdmin には、既存のテーブルから **ER 図を自動で描く機能**�
 
 実際の開発では、テーブルの構造を**少しずつ変更し続けます**。そのとき、「いつ・何を変えたか」を記録しておかないと、環境ごとに構造が食い違ってしまいます。
 
-- DDL を**ファイルとして保存し、Git で管理**する（このサンプルの `db/` のように）
+- DDL を**ファイルとして保存し、Git で管理**する（このサンプルの `database/db/` のように）
 - 変更は、`ALTER TABLE` を書いたファイルを**順番に追加**していく（元のファイルは書き換えない）
 - 専用のツール（**Flyway**、**Liquibase** など）で、変更の適用を自動化する。Spring Boot とも連携できる
 
