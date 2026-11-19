@@ -9,7 +9,7 @@
 
 ```bash
 python3 -m venv .venv && . .venv/bin/activate
-pip install playwright
+pip install playwright pillow       # Pillow は、撮影後の検査（枠の位置の確認）に使う
 playwright install chromium          # Chromium を入れる。Chrome が入っているなら、次の行でもよい
 export CAPTURE_BROWSER_CHANNEL=chrome  # 入れた Chrome を使う場合だけ（Playwright の Chromium を使うなら不要）
 ```
