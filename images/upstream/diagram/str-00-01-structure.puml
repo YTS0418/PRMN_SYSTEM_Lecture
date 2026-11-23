@@ -1,0 +1,22 @@
+' 上流工程の構成（00 章）：聞く → 整理する → 形にする → 受け渡す
+@startuml str-00-01-structure
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+rectangle "全体像（01 章）" as A #d6eaf8 {
+  rectangle "01\n上流工程とは" as a0 #white
+}
+rectangle "聞く・整理する・形にする（02〜05 章）" as B #d5f5e3 {
+  rectangle "02\n利用者と課題" as b0 #white
+  rectangle "03\nメンタルモデル" as b1 #white
+  rectangle "04\nストーリーと\nマッピング" as b2 #white
+  rectangle "05\nユースケース" as b3 #white
+  b0 -right-> b1
+  b1 -right-> b2
+  b2 -right-> b3
+}
+rectangle "受け渡し（06 章）" as C #fff3cd {
+  rectangle "06\n設計への受け渡し" as c0 #white
+}
+A -down-> B
+B -down-> C
+@enduml

@@ -1,0 +1,26 @@
+' Docker / Compose 編の構成（00 章）：基本 → Compose → 運用
+@startuml str-00-01-structure
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+rectangle "Docker の基本（01〜03 章）" as A #d6eaf8 {
+  rectangle "01\nDockerとは" as a0 #white
+  rectangle "02\n導入" as a1 #white
+  rectangle "03\n基本操作" as a2 #white
+  a0 -right-> a1
+  a1 -right-> a2
+}
+rectangle "Compose（04〜06 章）" as B #d5f5e3 {
+  rectangle "04\nCompose入門" as b0 #white
+  rectangle "05\nDockerfile" as b1 #white
+  rectangle "06\nアプリとDB" as b2 #white
+  b0 -right-> b1
+  b1 -right-> b2
+}
+rectangle "運用（07〜08 章）" as C #fff3cd {
+  rectangle "07\nチーム開発" as c0 #white
+  rectangle "08\n本番" as c1 #white
+  c0 -right-> c1
+}
+A -down-> B
+B -down-> C
+@enduml

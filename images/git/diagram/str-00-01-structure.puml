@@ -1,0 +1,22 @@
+' Git 資料の構成（00 章）：導入 → CUI で仕組みを理解 → GUI（どちらか一方）→ 困ったとき
+@startuml str-00-01-structure
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+rectangle "00　導入・初期設定（最初に 1 回）" as g0 #fff3cd
+rectangle "CUI（コマンド）で仕組みを理解（01〜03 章）" as CUI #d6eaf8 {
+  rectangle "01\n仕組みと用語" as g1 #white
+  rectangle "02\nCUI 基本編" as g2 #white
+  rectangle "03\nCUI 応用編" as g3 #white
+  g1 -right-> g2
+  g2 -right-> g3
+}
+rectangle "GUI（普段使う IDE に合わせて、どちらか一方）（04・05 章）" as GUI #d5f5e3 {
+  rectangle "04\nGUI VSCode 編" as g4 #white
+  rectangle "05\nGUI IntelliJ 編" as g5 #white
+  g4 -[hidden]right- g5
+}
+rectangle "06　CUI と GUI の使い分け（困ったとき）" as g6 #white
+g0 -down-> CUI
+CUI -down-> GUI
+GUI -down-> g6
+@enduml
