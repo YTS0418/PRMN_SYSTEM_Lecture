@@ -1,5 +1,5 @@
 ' 第 3 正規形にした結果：05 章 6 節
-' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+' 生成：bash tools/build-diagrams.sh images/database/diagram（リポジトリの直下で実行）
 @startuml er-05-02-3nf
 !include _common.iuml
 class departments {
