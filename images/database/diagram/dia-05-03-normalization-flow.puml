@@ -1,0 +1,27 @@
+' 正規化の判断の流れ（データベース編 05 章 12 節）：1NF は青、2NF は緑、3NF は黄
+@startuml dia-05-03-normalization-flow
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+skinparam rectangle<<q>> {
+  BackgroundColor white
+  BorderColor #d4a017
+  BorderThickness 2
+}
+rectangle "セルに複数の値や\n繰り返しがあるか？" as q1 <<q>>
+rectangle "複合キーの一部だけで\n決まる列があるか？" as q2 <<q>>
+rectangle "主キー以外の列から\n決まる列があるか？" as q3 <<q>>
+rectangle "行に展開し、ID を持たせる\n→ 第 1 正規形" as a1 #d6eaf8
+rectangle "別の表に切り出す\n→ 第 2 正規形" as a2 #d5f5e3
+rectangle "別の表に切り出す\n→ 第 3 正規形" as a3 #fff3cd
+rectangle "完成" as done #d5f5e3
+q1 -right-> a1 : はい
+q1 -down-> q2 : いいえ
+a1 -down-> q2
+q2 -right-> a2 : はい
+q2 -down-> q3 : いいえ
+a2 -down-> q3
+q3 -right-> a3 : はい
+q3 -down-> done : いいえ
+a3 -down-> done
+@enduml

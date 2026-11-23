@@ -1,0 +1,17 @@
+' 関数従属：各列が、何で決まるか（データベース編 05 章 5 節）。青＝学生ID だけ、黄＝科目ID だけ、緑＝主キー全体
+@startuml dia-05-02-dependencies
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "学生ID" as s #e5e5e5
+rectangle "学生ID だけで決まる列\n\n学生名 / 学科ID / 学科名" as sg #d6eaf8
+rectangle "科目ID" as c #e5e5e5
+rectangle "科目ID だけで決まる列\n\n科目名 / 単位数 / 教員ID\n教員名 / 教員の学科ID" as cg #fff3cd
+rectangle "(学生ID, 科目ID, 年度)\n主キー全体" as k #e5e5e5
+rectangle "主キー全体で決まる列\n\n点数" as kg #d5f5e3
+s --> sg : 決める
+c --> cg : 決める
+k --> kg : 決める
+s -[hidden]down- c
+c -[hidden]down- k
+@enduml
