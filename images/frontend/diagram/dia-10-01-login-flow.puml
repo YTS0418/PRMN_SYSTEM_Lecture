@@ -1,0 +1,17 @@
+' ログインの流れ（10 章）
+@startuml dia-10-01-login-flow
+!include _common.iuml
+participant "ブラウザ" as B C_BROWSER
+participant "Spring\nSecurity" as SS C_EXTERNAL
+participant "Vaadin\n（ビュー）" as V C_SERVER
+B -> V : /students にアクセス
+V -> SS : ログイン済みか？
+SS --> V : いいえ
+V --> B : ログイン画面（/login）へ移動させる
+B -> SS : ユーザー名とパスワードを送る\n（POST /login）
+SS -> SS : 認証（11 章：DB から取得して照合）
+SS --> B : 成功：セッションを作り、元の画面へ
+B -> V : /students にアクセス（ログイン済み）
+V -> V : 注釈で、ロールを確認（認可）
+V --> B : 画面を表示
+@enduml

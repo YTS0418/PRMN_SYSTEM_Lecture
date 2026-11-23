@@ -3,23 +3,23 @@
 ' 生成：plantuml -tpng arch-*.puml（このフォルダで実行）
 @startuml arch-00-01-grades-model
 !include ../../database/diagram/_common.iuml
-class Student {
-  id
-  name
-  departmentId
-  enrolledYear
+class 学生 {
+  学生ID
+  氏名
+  学科ID
+  入学年度
 }
-class Course {
-  id
-  title
-  credits
+class 科目 {
+  科目ID
+  科目名
+  単位数
 }
-class Enrollment {
-  studentId
-  courseId
-  academicYear
-  score
+class 履修 {
+  学生ID
+  科目ID
+  年度
+  点数
 }
-Student "1" -- "0..*" Enrollment : 履修する
-Course "1" -- "0..*" Enrollment : 履修される
+学生 "1" -- "0..*" 履修 : 履修する
+科目 "1" -- "0..*" 履修 : 履修される
 @enduml

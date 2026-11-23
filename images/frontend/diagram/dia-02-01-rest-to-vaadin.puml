@@ -1,0 +1,20 @@
+' REST から Vaadin へ：Presentation 層を足す／置き換える（02 章）
+@startuml dia-02-01-rest-to-vaadin
+!include _common.iuml
+top to bottom direction
+rectangle "4層編 07 章（REST）" as before #f4f4f4 {
+  rectangle "学生コントローラ\n@RestController" as a1 #d6eaf8
+  rectangle "ユースケース" as a2 #d5f5e3
+  rectangle "Domain / dataaccess" as a3 #d5f5e3
+  a1 -right-> a2
+  a2 -right-> a3
+}
+rectangle "この資料（Vaadin）" as after #f4f4f4 {
+  rectangle "学生登録ビュー など\n@Route" as b1 #d6eaf8
+  rectangle "ユースケース" as b2 #d5f5e3
+  rectangle "Domain / dataaccess" as b3 #d5f5e3
+  b1 -right-> b2
+  b2 -right-> b3
+}
+before -down-> after : Presentation 層を足す／置き換える
+@enduml

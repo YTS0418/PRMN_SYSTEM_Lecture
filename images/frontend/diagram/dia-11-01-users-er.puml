@@ -1,0 +1,35 @@
+' users テーブルと、学生の関係（11 章）
+@startuml dia-11-01-users-er
+!include _common.iuml
+hide circle
+hide methods
+skinparam classAttributeIconSize 0
+skinparam ClassBackgroundColor #ECECFF
+skinparam ClassBorderColor #9370DB
+entity "students\n（学生）" as students {
+  * student_id : PK
+  --
+  name
+  department_id
+  enrolled_year
+}
+entity "enrollments\n（履修）" as enrollments {
+  * enrollment_id : PK
+  --
+  student_id : FK
+  course_id : FK
+  academic_year
+  score
+}
+entity "users\n（ログイン用）" as users {
+  * user_id : PK
+  --
+  username : UK
+  password_hash
+  role
+  student_id : FK（学生のときだけ）
+  enabled
+}
+students ||--o| users : 学生のときだけ
+students ||--o{ enrollments : 履修する
+@enduml

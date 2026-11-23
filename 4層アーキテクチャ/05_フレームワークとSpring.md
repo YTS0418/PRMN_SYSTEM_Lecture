@@ -63,16 +63,16 @@ flowchart LR
 
 ```java
 @RestController
-class StudentController {
+class 学生コントローラ {
     @GetMapping("/students/{id}/transcript")      // 「このURLにアクセスされたら、このメソッドを呼んで」
-    Transcript transcript(@PathVariable int id) {
-        // …（GradeService を呼んで結果を返す）
+    成績一覧の応答 成績一覧を取得(@PathVariable("id") int 学生ID) {
+        // …（ユースケース `成績一覧を取得する` を呼んで結果を返す）
     }
 }
 ```
 
 > [!NOTE]
-> 03 章・04 章の DI も、制御の反転の一種です。`GradeService` は「自分で部品を作る」のをやめ、**部品を渡される側**になりました。フレームワークは、それをさらに押し進めたものです。
+> 03 章・04 章の DI も、制御の反転の一種です。`学生を登録する` などのユースケースは「自分で部品を作る」のをやめ、**部品を渡される側**になりました。フレームワークは、それをさらに押し進めたものです。
 
 > [!NOTE]
 > 実際には、境目はあいまいです。ライブラリでも、コールバック（呼び返される処理）を登録するものがあります。「**全体の流れを握っているのは誰か**」で考えると分かりやすくなります。
@@ -179,11 +179,11 @@ flowchart LR
 ```
 
 - ①で、`@Service` や `@Repository` などの付いたクラスを、起動クラスのパッケージ以下から探します（**コンポーネントスキャン**）
-- ③で、`GradeService` が `StudentRepository` を必要としていれば、**`StudentRepository` を実装した Bean** を探して渡します
+- ③で、`学生を登録する` が `学生リポジトリ` を必要としていれば、**`学生リポジトリ` を実装した Bean** を探して渡します
 - Bean は、既定では**アプリケーション全体で 1 つだけ**作られ、共有されます
 
 > [!WARNING]
-> Bean は共有されるため、**フィールドに利用者ごとの状態（ログイン中のユーザーなど）を持たせてはいけません**。`GradeService` のように、状態を持たず、必要な部品だけを持つ作りにします。
+> Bean は共有されるため、**フィールドに利用者ごとの状態（ログイン中のユーザーなど）を持たせてはいけません**。`学生を登録する` のように、状態を持たず、必要な部品だけを持つ作りにします。
 
 ### 主なアノテーション
 
@@ -222,29 +222,29 @@ Spring Boot でよく見る名前と、この資料の 4 層は次のように�
 
 ```java
 @SpringBootApplication
-public class GradesApplication {
+public class 成績管理アプリ {
     public static void main(String[] args) {
-        SpringApplication.run(GradesApplication.class, args);   // コンテナを起動する
+        SpringApplication.run(成績管理アプリ.class, args);       // コンテナを起動する
     }
 }
 
 @Configuration
 class RepositoryConfig {
     @Bean                                                       // 「この戻り値を部品として管理して」
-    StudentRepository studentRepository() {
-        return new InMemoryStudentRepository();                 // ここで保存先を決める
+    学生リポジトリ 学生リポジトリ() {
+        return new メモリ学生リポジトリ();                       // ここで保存先を決める
     }
-    // …（他の Repository も同様）
+    // …（他のリポジトリも同様）
 }
 ```
 
-`GradeService` や Controller に相当するクラスは、**コンストラクタの引数の型を見て**、コンテナが適切な部品を渡します。`new GradeService(...)` を、開発者は書きません。
+ユースケース（`学生を登録する` など）や Controller に相当するクラスは、**コンストラクタの引数の型を見て**、コンテナが適切な部品を渡します。`new 学生を登録する(...)` を、開発者は書きません。
 
 ```mermaid
 flowchart LR
     subgraph C["Spring の DI コンテナ"]
         direction LR
-        repo["StudentRepository<br>（InMemory… の実体）"] -.->|注入| svc["GradeService"]
+        repo["学生リポジトリ<br>（メモリ… の実体）"] -.->|注入| svc["学生を登録する"]
         svc -.->|注入| ctl["Controller"]
     end
     cfg["@Configuration<br>@Bean の宣言"] -->|定義を渡す| C
@@ -259,26 +259,26 @@ flowchart LR
 | 「何を使うか」を決める場所 | `Main` | `@Configuration` / `@Bean`（または `@Repository` の付いたクラス） |
 | 渡す方法 | コンストラクタの引数に自分で渡す | コンストラクタの引数の型を見て、コンテナが渡す |
 | 全部の層を知っているのは | `Main` | 設定クラスと起動クラス（コンテナが仲介） |
-| 保存先を切り替えるとき | `Main` の `new InMemory…` を `new Jdbc…` に変える | `@Bean` の戻り値を `Jdbc…` に変える（実装ごとに切り替える `@Profile` という仕組みもあります） |
+| 保存先を切り替えるとき | `Main` の `new メモリ…` を `new Jdbc…` に変える | `@Bean` の戻り値を `Jdbc…` に変える（実装ごとに切り替える `@Profile` という仕組みもあります） |
 
 ### コンストラクタ注入
 
 ```java
 @Service                                          // 「この部品を Bean にして」
-public class GradeService {
-    private final StudentRepository studentRepository;
+public class 学生を登録する {
+    private final 学生リポジトリ 学生リポジトリ;
 
     // コンストラクタが 1 つだけなら、@Autowired は書かなくてよい
-    public GradeService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public 学生を登録する(学生リポジトリ 学生リポジトリ) {
+        this.学生リポジトリ = 学生リポジトリ;
     }
 }
 ```
 
-04 章の `GradeService` に `@Service` を付けただけです。**`GradeService` のコードは、Spring を使っても使わなくても、ほとんど変わりません**。
+04 章の `学生を登録する` に `@Service` を付けただけです。**ユースケースのコードは、Spring を使っても使わなくても、ほとんど変わりません**。
 
 > [!TIP]
-> `private @Autowired StudentRepository repo;` のように、**フィールドに直接 `@Autowired` を付ける**書き方（フィールド注入）も存在しますが、推奨されません。`final` にできず、テストで差し替えにくく、依存が見えにくいためです。**コンストラクタ注入を使いましょう**。
+> `private @Autowired 学生リポジトリ リポジトリ;` のように、**フィールドに直接 `@Autowired` を付ける**書き方（フィールド注入）も存在しますが、推奨されません。`final` にできず、テストで差し替えにくく、依存が見えにくいためです。**コンストラクタ注入を使いましょう**。
 
 ## 6. 4層を Spring で作ると
 
@@ -298,7 +298,7 @@ flowchart TB
         A["Application<br>@Service / @Transactional"]
         I["Infrastructure<br>@Repository / JdbcClient"]
     end
-    D["Domain<br>素の Java（Student / Enrollment / Repository インタフェース）"]
+    D["Domain<br>素の Java（学生 / 履修 / リポジトリのインタフェース）"]
     P --> A --> D
     I -.->|実装する| D
     style D fill:#e3f2fd,stroke:#1976d2
@@ -307,11 +307,11 @@ flowchart TB
 | 理由 | 内容 |
 |---|---|
 | 業務のルールは長く使う | フレームワークが変わる・古くなっても、Domain 層はそのまま使い続けられる |
-| テストしやすい | Spring を起動しなくても、`new Enrollment(...)` だけでテストできる |
+| テストしやすい | Spring を起動しなくても、`new 履修(...)` だけでテストできる |
 | 第 1 部・04 章までの設計がそのまま使える | 素の Java 版（`step1`）の Domain 層は、Spring 版でも **1 行も変えずに**使える |
 
 > [!TIP]
-> `import org.springframework...` が書かれているのが、`presentation`、`application`、`infrastructure` のパッケージだけで、**`domain` には 1 つも無い**。これが、Spring を使うときの 4 層の約束です。
+> `import org.springframework...` が書かれているのが、`presentation`、`usecase`（Application 層）、`dataaccess`（Infrastructure 層）のパッケージだけで、**`domain` には 1 つも無い**。これが、Spring を使うときの 4 層の約束です。
 
 ## 7. 他の Java フレームワークとの違い
 
