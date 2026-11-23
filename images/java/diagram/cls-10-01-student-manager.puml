@@ -1,0 +1,26 @@
+' 総合演習のクラス構成（Java 入門 10 章）
+@startuml cls-10-01-student-manager
+!include ../../database/diagram/_common.iuml
+show methods
+left to right direction
+class Main {
+  +{static} main(String[] args)
+}
+class StudentManager {
+  -students : List<Student>
+  +add(Student)
+  +printAll()
+  +average() : double
+  +top() : Student
+  +save(String)
+  +load(String)
+}
+class Student {
+  -name : String
+  -score : int
+  +getName() : String
+  +getScore() : int
+}
+Main --> StudentManager : 使う
+StudentManager o-- Student : 持つ（ArrayList）
+@enduml

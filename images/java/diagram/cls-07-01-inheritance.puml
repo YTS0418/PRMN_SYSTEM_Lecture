@@ -1,0 +1,17 @@
+' 継承（Java 入門 07 章）
+@startuml cls-07-01-inheritance
+!include ../../database/diagram/_common.iuml
+show methods
+class Animal {
+  #name
+  +eat()
+}
+class Dog {
+  +bark()
+}
+class Cat {
+  +meow()
+}
+Animal <|-- Dog
+Animal <|-- Cat
+@enduml

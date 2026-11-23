@@ -155,25 +155,7 @@ public interface 学生リポジトリ {
 - **Application 層**（`usecase` パッケージの `学生を登録する` など）は、このインタフェースの型で変数を持ち、使う
 - **Infrastructure 層**（`dataaccess` パッケージの `メモリ学生リポジトリ`、`Jdbc学生リポジトリ`）は、これを `implements` する
 
-```mermaid
-classDiagram
-    direction LR
-    class 学生を登録する {
-        -学生リポジトリ 学生リポジトリ
-        +実行する(String, int, int) 学生
-    }
-    class 学生リポジトリ {
-        <<interface>>
-        +保存する(学生) 学生
-        +探す(int) Optional~学生~
-        +すべて探す() List~学生~
-    }
-    class メモリ学生リポジトリ
-    class Jdbc学生リポジトリ
-    学生を登録する --> 学生リポジトリ : 使う
-    学生リポジトリ <|.. メモリ学生リポジトリ : 実装
-    学生リポジトリ <|.. Jdbc学生リポジトリ : 実装
-```
+<img src="../images/architecture/diagram/cls-04-01-usecase-repository.svg" alt="学生を登録する（実行するメソッドを持つ）が、インタフェース「学生リポジトリ」を使い、メモリ版と Jdbc 版が、そのインタフェースを実装する関係" width="800">
 
 - `学生を登録する` は、実体がメモリなのかデータベースなのかを**知らない**
 - 実装クラスは `学生リポジトリ` を実装するだけなので、**差し替えても `学生を登録する` は変わらない**

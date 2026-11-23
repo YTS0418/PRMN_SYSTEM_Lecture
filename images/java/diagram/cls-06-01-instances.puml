@@ -1,0 +1,15 @@
+' クラスとインスタンス（Java 入門 06 章）
+@startuml cls-06-01-instances
+!include ../../database/diagram/_common.iuml
+show methods
+class Student {
+  name
+  score
+}
+object "Taro\n（name=Taro, score=80）" as taro
+object "Hanako\n（name=Hanako, score=95）" as hanako
+object "Jiro\n（name=Jiro, score=70）" as jiro
+Student <.. taro : new
+Student <.. hanako : new
+Student <.. jiro : new
+@enduml

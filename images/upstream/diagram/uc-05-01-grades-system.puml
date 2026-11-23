@@ -1,0 +1,35 @@
+' 成績管理システムのユースケース図（上流工程 05 章 3 節）：教務・教員・学生が、どのユースケースを使うか
+@startuml uc-05-01-grades-system
+!include ../../frontend/diagram/_common.iuml
+left to right direction
+skinparam actorBorderColor #555555
+skinparam actorBackgroundColor white
+skinparam usecaseBackgroundColor #d5f5e3
+skinparam usecaseBorderColor #555555
+skinparam packageBorderColor #555555
+skinparam packageBackgroundColor white
+skinparam packageStyle rectangle
+
+actor 教務 as gm
+actor 教員 as te
+actor 学生 as st
+
+rectangle "成績管理システム" {
+  usecase "学生を登録する" as u1
+  usecase "科目を登録する" as u2
+  usecase "履修を登録する" as u3
+  usecase "成績を登録する" as u4
+  usecase "成績を修正する" as u5
+  usecase "学生の成績一覧を\n表示する" as u6
+  usecase "科目の成績一覧を\n表示する" as u7
+}
+
+gm -- u1
+gm -- u2
+gm -- u3
+st -- u3
+te -- u4
+te -- u5
+te -- u7
+st -- u6
+@enduml
