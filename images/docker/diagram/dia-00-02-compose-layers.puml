@@ -1,0 +1,19 @@
+' Compose で動く、app コンテナ（4 層）と db コンテナ（Docker 編 00 章）
+@startuml dia-00-02-compose-layers
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "Docker / Compose（実行環境）" as Docker #eef6ff {
+  rectangle "app コンテナ" as app #f4f4f4 {
+    rectangle "Presentation" as P #d6eaf8
+    rectangle "Application" as A #d5f5e3
+    rectangle "Domain" as D #d5f5e3
+    rectangle "Infrastructure" as I #fff3cd
+    P --> A
+    A --> D
+    I ..> D : 実装する
+  }
+  database "db コンテナ\nPostgreSQL" as db #fff3cd
+  I --> db
+}
+@enduml

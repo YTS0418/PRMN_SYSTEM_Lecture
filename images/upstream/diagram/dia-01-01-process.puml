@@ -1,0 +1,15 @@
+' 開発の流れ（上流工程 01 章）：要求・要件を明らかにするのが最初の工程
+@startuml dia-01-01-process
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "要求・要件を\n明らかにする\n（上流工程）" as r #d5f5e3
+rectangle "設計する" as d #white
+rectangle "実装する" as i #white
+rectangle "テストする" as t #white
+rectangle "運用する" as o #white
+r --> d
+d --> i
+i --> t
+t --> o
+@enduml
