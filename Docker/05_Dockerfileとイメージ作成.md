@@ -97,18 +97,7 @@ EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-```mermaid
-flowchart LR
-    subgraph s1["ステージ 1：build（JDK、約 500MB）"]
-        direction TB
-        a["pom.xml → 依存の取得"] --> b["src → mvnw package"] --> jar["app.jar"]
-    end
-    subgraph s2["ステージ 2：実行（JRE）"]
-        direction TB
-        j["JRE"] --> r["app.jar だけ"]
-    end
-    jar -->|"COPY --from=build"| r
-```
+<img src="../images/docker/diagram/dia-05-01-multistage.svg" alt="マルチステージビルド。ステージ 1（build、JDK、約 500MB）で、依存の取得、mvnw package を行って app.jar を作り、COPY --from=build で、ステージ 2（実行、JRE）に、app.jar だけを持っていく。ステージ 1 は最終イメージに残らない" width="570">
 
 | 部分 | 意味 |
 |---|---|

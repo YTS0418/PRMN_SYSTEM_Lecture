@@ -1,0 +1,13 @@
+' 6 つの仕事を、4 つの層に分ける（4層編 01 章 6 節）
+@startuml dia-01-01-six-tasks
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+rectangle "Presentation 層：入力と表示\n① 学生番号を入力\n⑤ 結果を表示" as P #d6eaf8
+rectangle "Application 層：処理の流れ\n③ 学生で絞り込む\n⑥ 平均を計算する" as A #d5f5e3
+rectangle "Domain 層：業務のルール\n④ 点数は 0〜100" as D #d5f5e3
+rectangle "Infrastructure 層：保存先\n② ファイルから読み込む" as I #fff3cd
+P --> A
+A --> D
+I -up-> D
+@enduml

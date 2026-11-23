@@ -1,0 +1,13 @@
+' JDK・JRE・JVM の入れ子の関係（Java 入門 01 章）
+@startuml dia-01-02-jdk-jre-jvm
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+rectangle "JDK（開発キット）：開発にはこれが必要" as JDK #d6eaf8 {
+  rectangle "javac などの開発ツール" as tools #white
+  rectangle "JRE（実行環境）：実行だけならこれで足りる" as JRE #d5f5e3 {
+    rectangle "標準ライブラリ" as lib #white
+    rectangle "JVM\n（バイトコードを実行する）" as jvm #fff3cd
+  }
+}
+@enduml
