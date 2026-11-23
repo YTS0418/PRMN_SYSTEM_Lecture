@@ -5,6 +5,7 @@
 | ファイル | 内容 | 章 |
 |---|---|---|
 | `dia-00-01-structure` | 資料の構成 | 00 |
+| `dia-00-02-flow` | 画面から DB までの流れ（4 層のうち、画面は Presentation 層だけ） | 00 |
 | `dia-01-01-browser-server` | ブラウザとサーバーのやりとり（シーケンス） | 01 |
 | `dia-01-02-compare` | 画面を作る 3 つの方式の比較（SVG を直接書いた） | 01 |
 | `dia-02-01-rest-to-vaadin` | REST から Vaadin へ | 02 |
@@ -14,6 +15,7 @@
 | `dia-07-01-lazy-loading` | Grid の遅延読み込み（シーケンス） | 07 |
 | `dia-08-01-binder` | Binder の役割 | 08 |
 | `dia-09-01-rest-vs-vaadin` | REST と Vaadin の対比 | 09 |
+| `dia-09-02-view-usecase` | ビューがユースケースを呼び、結果か例外が返る | 09 |
 | `dia-10-01-login-flow` | ログインの流れ（シーケンス） | 10 |
 | `dia-11-01-users-er` | users テーブルと、学生・履修の関係 | 11 |
 | `dia-12-01-csrf` | CSRF の流れ（シーケンス） | 12 |
