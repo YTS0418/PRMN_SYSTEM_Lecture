@@ -1,0 +1,14 @@
+' 4 層と、各層を詳しく扱う資料（00 章）
+@startuml dia-00-01-layers-map
+!include ../../frontend/diagram/_common.iuml
+left to right direction
+rectangle "Presentation\n画面・入出力\n→ フロントエンド編" as P #d6eaf8
+rectangle "Application\nユースケース\n→ 上流工程・ドメイン設計・実装編" as A #d5f5e3
+rectangle "Domain\n業務のルール\n→ ドメイン設計・実装編" as D #d5f5e3
+rectangle "Infrastructure\nDB・ファイル\n→ データベース編" as I #fff3cd
+database "PostgreSQL" as DB #white
+P --> A
+A --> D
+I ..> D : 実装する
+I --> DB
+@enduml

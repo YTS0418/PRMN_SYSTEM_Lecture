@@ -291,18 +291,7 @@ public class 学生を登録する {
 
 最も大切なのは、**Domain 層に Spring を持ち込まない**ことです。
 
-```mermaid
-flowchart TB
-    subgraph S["Spring に依存してよい範囲"]
-        P["Presentation<br>@RestController"]
-        A["Application<br>@Service / @Transactional"]
-        I["Infrastructure<br>@Repository / JdbcClient"]
-    end
-    D["Domain<br>素の Java（学生 / 履修 / リポジトリのインタフェース）"]
-    P --> A --> D
-    I -.->|実装する| D
-    style D fill:#e3f2fd,stroke:#1976d2
-```
+<img src="../images/architecture/diagram/dia-05-01-spring-scope.svg" alt="Presentation・Application・Infrastructure は Spring に依存してよく、Domain は素の Java で、Spring に依存しない" width="684">
 
 | 理由 | 内容 |
 |---|---|

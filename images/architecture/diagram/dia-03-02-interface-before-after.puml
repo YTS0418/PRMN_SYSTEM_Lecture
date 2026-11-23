@@ -1,0 +1,27 @@
+' インタフェースの有無で、依存の向きが変わる（03 章）
+@startuml dia-03-02-interface-before-after
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+hide stereotype
+skinparam rectangle<<bad>> {
+  BackgroundColor #fdf2f2
+  BorderColor #c0392b
+}
+skinparam rectangle<<good>> {
+  BackgroundColor #f2fbf5
+  BorderColor #28b463
+}
+rectangle "インタフェースなし" as before <<bad>> {
+  rectangle "Application" as A1 #d5f5e3
+  rectangle "Infrastructure" as I1 #fff3cd
+  A1 -[#c0392b]-> I1
+}
+rectangle "インタフェースあり" as after <<good>> {
+  rectangle "Application" as A2 #d5f5e3
+  rectangle "Domain：\nRepository インタフェース" as R #d5f5e3
+  rectangle "Infrastructure" as I2 #fff3cd
+  A2 --> R
+  I2 -up-> R : 実装する
+}
+before -[hidden]right- after
+@enduml
