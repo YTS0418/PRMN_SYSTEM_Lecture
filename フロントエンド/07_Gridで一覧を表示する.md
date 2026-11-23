@@ -247,7 +247,7 @@ public class 成績一覧ビュー extends VerticalLayout implements BeforeEnter
 ```
 
 > [!NOTE]
-> **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java)（作成予定）
+> **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/成績一覧ビュー.java)
 
 <img src="../images/frontend/app/screens/transcript.png" alt="成績一覧の画面（誰の成績か、履修中の行、平均点）" width="900">
 

@@ -174,7 +174,7 @@ Git 資料の構成は次のとおりです。
 | [A4 発展的な機能](/フロントエンド/A4_発展的な機能.md) | 非同期処理と Push、国際化、アップロード、Signals |
 
 > [!NOTE]
-> Vaadin 版のサンプルコードは、サンプルリポジトリの [`frontend/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/frontend) に置く予定です（作成予定）。資料中のサンプルへのリンクは、先に書いてあります。
+> Vaadin 版のサンプルコードは、サンプルリポジトリの [`frontend/`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/frontend) にあります。各章の「サンプル」の欄から、対応するファイルを開けます。
 
 #### 7. Docker / Compose
 

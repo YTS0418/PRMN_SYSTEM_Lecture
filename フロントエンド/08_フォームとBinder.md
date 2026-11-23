@@ -250,7 +250,7 @@ public class 学生登録ビュー extends VerticalLayout {
 ```
 
 > [!NOTE]
-> **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java)（作成予定）
+> **サンプル**：[`frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java`](https://github.com/YTS0418/PRMN_SYSTEM_Sample/blob/main/frontend/grades-vaadin/src/main/java/grades/presentation/学生登録ビュー.java)
 
 <img src="../images/frontend/app/screens/register.png" alt="学生の登録画面（氏名、所属学科、入学年度、登録するボタン）" width="900">
 
