@@ -6,6 +6,8 @@
 
 システム開発の基礎となるトピックをまとめた資料集です。必要なトピックを、必要なときに参照してください。トピック同士で関連する箇所には、互いへのリンクを付けています。
 
+<img src="images/common/diagram/dia-00-01-materials-map.svg" alt="資料の地図。4 層アーキテクチャを中心に、フロントエンドは Presentation 層、上流工程は Application・Domain 層、データベースは Infrastructure 層を詳しく扱い、Docker / Compose は全層の実行環境を扱う。土台として、完成版の Java 入門と Git / GitHub、動く完成コードとしてサンプルリポジトリがある。ベータ版の資料は点線の枠" width="880">
+
 資料は、完成の度合いで 2 つに分けています。
 
 ### 2年生向け資料（完成版）
