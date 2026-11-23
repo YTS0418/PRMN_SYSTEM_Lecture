@@ -57,7 +57,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/grades_db
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?.env に POSTGRES_PASSWORD を設定してください}
     ports:
       - "127.0.0.1:8080:8080"
     depends_on:
@@ -68,7 +68,7 @@ services:
 | 部分 | 意味 |
 |---|---|
 | `build: ../architecture/step3-spring` | イメージを、このフォルダの Dockerfile から作る（[05 章](05_Dockerfileとイメージ作成.md)）。`image:` の代わりに書く |
-| `environment:` | アプリに渡す環境変数（[3 節](#3-設定を環境変数で上書きする)） |
+| `environment:` | アプリに渡す環境変数（[3 節](#3-設定を環境変数で上書きする)）。パスワードは `DB_PASSWORD` で渡す |
 | `ports:` | `127.0.0.1:8080:8080`。ブラウザなどから見える（パソコン側だけ） |
 | `depends_on` | `db` が**健康**になるまで、起動を待つ（[4 節](#4-db-の起動を待つ)） |
 
@@ -99,10 +99,13 @@ Spring Boot には、**環境変数で、設定ファイルの値を上書きで
 |---|---|
 | `spring.datasource.url` | `SPRING_DATASOURCE_URL` |
 | `spring.datasource.username` | `SPRING_DATASOURCE_USERNAME` |
-| `spring.datasource.password` | `SPRING_DATASOURCE_PASSWORD` |
+| `spring.datasource.password` | `SPRING_DATASOURCE_PASSWORD`（このアプリでは、下の注記のとおり `DB_PASSWORD` で渡す） |
 | `server.port` | `SERVER_PORT` |
 
 これで、**同じ jar（同じイメージ）**のまま、IDE では `localhost`、Compose では `db` と、**環境ごとに接続先を切り替えられます**。設定を変えるたびに、イメージを作り直す必要はありません。
+
+> [!NOTE]
+> **このアプリは、パスワードを `DB_PASSWORD` で受け取ります**。`application.properties` が `${DB_PASSWORD}` と書いていて、アプリの起動処理も、最初に環境変数 `DB_PASSWORD` があるかを確かめるためです（無いと、`環境変数 DB_PASSWORD が設定されていません` と表示して、起動せずに終わります）。そのため、`compose.app.yaml` では、`SPRING_DATASOURCE_PASSWORD` ではなく **`DB_PASSWORD`** にパスワードを入れます。値は、`.env` の `POSTGRES_PASSWORD` と同じです。
 
 > [!NOTE]
 > 上書きの優先順位や、書き方の詳細は、[Spring Boot Docs「Externalized Configuration」](https://docs.spring.io/spring-boot/reference/features/external-config.html)にあります（閲覧日：2026-11-19）。
@@ -156,22 +159,39 @@ sequenceDiagram
 
 ```bash
 docker compose -f compose.yaml -f compose.app.yaml up -d --build
-docker compose ps
+docker compose -f compose.yaml -f compose.app.yaml ps
 ```
 
 `STATUS` が、`db` は `healthy`、`app` は `running`（`Up`）になれば成功です。アプリのログを見ます。
 
 ```bash
-docker compose logs -f app
+docker compose -f compose.yaml -f compose.app.yaml logs -f app
 ```
 
-`Started GradesApplication` と出れば、起動しています。[4層アーキテクチャ編 07 章 10 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#10-動かして確かめる)の `curl` で、確かめます。
+> [!WARNING]
+> `ps`、`logs`、`down` などにも、**起動したときと同じ `-f` が必要**です。付けないと、`compose.yaml` だけを見るので、`no such service: app` になります。毎回打つのが面倒なら、[2 節](#2-app-サービスを加える)の TIP の `COMPOSE_FILE` を使います。
+
+`Started GradesApplication` と出れば、起動しています（`Ctrl + C` でログの表示を止めても、アプリは動いたままです）。[4層アーキテクチャ編 07 章 10 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#10-動かして確かめる)の `curl` で、確かめます。
 
 ```bash
-curl http://localhost:8080/students
+curl http://localhost:8080/students/1/transcript
 ```
 
-学生の一覧が返れば、**コンテナのアプリが、コンテナの DB にアクセスできています**。
+> [!WARNING]
+> **Windows の PowerShell では、`curl.exe` と打ちます**。PowerShell の `curl` は、本物の curl ではなく、`Invoke-WebRequest` の別名です。`curl` のままだと、日本語が文字化けしたり、`StatusCode` などの一覧が表示されたりします。Git Bash や macOS では、`curl` のままで動きます。
+>
+> ```powershell
+> curl.exe http://localhost:8080/students/1/transcript
+> ```
+
+学生 1 の成績一覧（JSON）が返れば、**コンテナのアプリが、コンテナの DB にアクセスできています**。
+
+```json
+{"studentName":"Taro","lines":[{"courseTitle":"プログラミング基礎","credits":2,"academicYear":2024,"score":80,"passed":true},{"courseTitle":"データベース","credits":2,"academicYear":2025,"score":72,"passed":true},{"courseTitle":"線形代数","credits":4,"academicYear":2024,"score":55,"passed":false}],"average":69.0}
+```
+
+> [!NOTE]
+> このアプリには、`GET /students`（学生の一覧）はありません。ブラウザや `curl` で `/students` だけを開くと、`405 Method Not Allowed` になります。使える URL は、4層アーキテクチャ編 07 章 10 節にあります。
 
 <!-- 📷 SS: ../images/docker/desktop/dkr-06-01-compose-app.png -->
 > 📷 **スクショ指定：`dkr-06-01-compose-app.png`**
@@ -199,7 +219,10 @@ docker compose -f compose.yaml -f compose.app.yaml up -d --build app
 | 環境変数を変えたのに、反映されない | `up -d` を、もう一度実行する（設定が変わったコンテナだけ、作り直される）。イメージの中身を変えたときは `--build` を付ける |
 | `app` が `db` より先に起動して失敗する | `healthcheck` と `condition: service_healthy` が無い |
 | 8080 番ポートが使用中 | IDE で動かしたアプリが、まだ動いている。停止する |
-| `no such service: app` | `-f compose.app.yaml` を付け忘れた |
+| `no such service: app` | `-f compose.yaml -f compose.app.yaml` を付け忘れた（`ps`・`logs`・`down` にも必要） |
+| `環境変数 DB_PASSWORD が設定されていません`（`app` のログ） | `compose.app.yaml` で、パスワードを `DB_PASSWORD` で渡していない（`SPRING_DATASOURCE_PASSWORD` だけでは足りない）。[3 節](#3-設定を環境変数で上書きする)の注記を見る |
+| `405 Method Not Allowed` | URL が違う。`/students` ではなく `/students/1/transcript` を使う |
+| PowerShell で、日本語が文字化けする / `StatusCode` の一覧が出る | `curl` ではなく **`curl.exe`** を使う（[5 節](#5-起動して確かめる)） |
 | `compose.app.yaml` の変更が `compose.yaml` と食い違う | `docker compose -f compose.yaml -f compose.app.yaml config` で、**合成した結果**を確認する |
 
 ---

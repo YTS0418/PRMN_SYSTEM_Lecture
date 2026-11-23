@@ -184,6 +184,7 @@ flowchart LR
 ```
 POSTGRES_PASSWORD=ここに自分で決めたパスワード
 PGADMIN_PASSWORD=ここに別のパスワード
+DB_PORT=5432
 ```
 
 `compose.yaml` では、`${変数名}` で参照します。
@@ -194,11 +195,15 @@ services:
     environment:
       POSTGRES_DB: grades_db
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
   pgadmin:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
 ```
+
+`${DB_PORT:-5432}` は、「`DB_PORT` が設定されていればその値、無い（または空）なら `5432`」という意味です。**パソコン側のポート番号を、`.env` で変えられる**ようにしています。すでにパソコンに PostgreSQL（[データベース編 07 章](../データベース/07_PostgreSQL環境構築.md)）が入っていて 5432 番が使用中のときは、`.env` に `DB_PORT=5433` と書きます。変わるのは、**パソコンから**つなぐときのポート番号だけです。コンテナどうしの `db:5432` は、変わりません。
 
 そして、`.gitignore` に `.env` を加えます。
 
@@ -213,7 +218,10 @@ services:
 ```
 POSTGRES_PASSWORD=
 PGADMIN_PASSWORD=
+DB_PORT=
 ```
+
+`DB_PORT` は、パスワードではないので、`.env.example` に書いても問題ありません。空のままにすると、`5432` になります。
 
 ```bash
 cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example .env
@@ -245,6 +253,7 @@ cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example 
 | `yaml: line N: mapping values are not allowed` など、YAML のエラー | インデントやスペースの間違い。`docker compose config` で、場所を確認する |
 | `no configuration file provided: not found` | `compose.yaml` のあるフォルダにいない。`cd` で移動する |
 | `The "POSTGRES_PASSWORD" variable is not set` の警告 | `.env` が無い、または変数名の違い。`.env.example` から作る |
+| `port is already allocated`、`address already in use` | パソコン側の 5432 番が使用中（パソコンに入れた PostgreSQL など）。`.env` に `DB_PORT=5433` と書いて、`docker compose up -d` をやり直す。パソコンの psql や pgAdmin は `5433` 番に、IDE で動かすアプリは `jdbc:postgresql://localhost:5433/grades_db` につなぐ |
 | SQL を直したのに、反映されない | 初期化は**初回だけ**。`docker compose down -v` で、ボリュームを消して作り直す |
 | pgAdmin から `localhost` で接続できない | pgAdmin はコンテナの中にいる。Host には **`db`**（サービス名）を書く |
 | `localhost:5050` が開かない | `docker compose ps` で `pgadmin` が動いているか確認する。ポート番号の確認もする |
