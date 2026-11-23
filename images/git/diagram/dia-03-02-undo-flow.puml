@@ -1,0 +1,45 @@
+' 取り消したいときに、使うコマンドを決める流れ（Git 03 章）：消えるものは赤、基本は緑
+@startuml dia-03-02-undo-flow
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+skinparam rectangle<<q>> {
+  BackgroundColor #fff3cd
+  BorderColor #d4a017
+}
+skinparam rectangle<<danger>> {
+  BackgroundColor #fadbd8
+  BorderColor #c0392b
+}
+skinparam rectangle<<safe>> {
+  BackgroundColor #d5f5e3
+  BorderColor #28b463
+  BorderThickness 2
+}
+skinparam rectangle<<rescue>> {
+  BackgroundColor #d6eaf8
+  BorderColor #2e86c1
+}
+rectangle "取り消したいのは？" as Q1 <<q>>
+rectangle "git restore ファイル名\n変更は消えます" as R1 <<danger>>
+rectangle "git restore --staged ファイル名" as R2 #white
+rectangle "もう push した？" as Q2 <<q>>
+rectangle "何をしたい？" as Q3 <<q>>
+rectangle "git commit --amend" as R3 #white
+rectangle "git reset\n（~-~-soft / ~-~-mixed / ~-~-hard）\n~-~-hard は変更が消えます" as R4 <<danger>>
+rectangle "そのブランチを使っているのは\n自分だけ？" as Q4 <<q>>
+rectangle "git revert コミットID\n基本はこれ（安全）" as R5 <<safe>>
+rectangle "git revert\nまたは\nreset ＋ push --force-with-lease" as R6 <<danger>>
+rectangle "git reflog で復元" as R7 <<rescue>>
+Q1 --> R1 : 編集したファイルの変更\n（まだ add していない）
+Q1 --> R2 : add しただけ\n（まだコミットしていない）
+Q1 --> Q2 : コミット
+Q2 --> Q3 : まだ
+Q3 --> R3 : 直前のメッセージや\n内容を直したい
+Q3 --> R4 : コミットを\nなかったことに
+Q2 --> Q4 : した
+Q4 --> R5 : 他の人も使う\n（main など）
+Q4 --> R6 : 自分だけ
+R4 .[#2e86c1].> R7 : 消しすぎた！
+R6 .[#2e86c1].> R7 : 消しすぎた！
+@enduml
