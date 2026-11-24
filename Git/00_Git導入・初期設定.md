@@ -281,7 +281,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 4. ブラウザが開くので GitHub にログインし、**Authorize in GitHub** をクリックする。
 5. アカウント一覧に自分のユーザー名が表示されれば完了。**OK** で閉じる。
 
-![InteliJ IDEAでのGitHubへのログイン](../images/git/setup/setup-05-02-intellij-github-account.png)
+![IntelliJ IDEA での GitHub へのログイン](../images/git/setup/setup-05-02-intellij-github-account.png)
 
 #### 方法2：PAT でログイン（方法1がうまくいかない場合）
 

@@ -309,6 +309,7 @@ Git の操作は、主に次の4か所で行います。
 4. **変更の同期** で push する。
 
 ![コンフリクト解消後のコミット画面](../images/git/vscode/vsc-09-04-conflict-resolved-commit.png)
+
 > [!NOTE]
 > **マージをやめたい**（CUI の `git merge --abort`）：VSCode のボタンでは中止しにくいため、統合ターミナルで `git merge --abort` を実行します。
 

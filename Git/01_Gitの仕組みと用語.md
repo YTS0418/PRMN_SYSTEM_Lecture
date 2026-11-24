@@ -23,7 +23,7 @@
 
 ## 1. Git と GitHub とは
 
-![GitとGitHubの画像](../images/git/diagram/git_github.png)
+<img src="../images/git/diagram/git_github.png" alt="Git のロゴ（左）と GitHub のロゴ（右）" width="480">
 
 ### Git（ギット）
 

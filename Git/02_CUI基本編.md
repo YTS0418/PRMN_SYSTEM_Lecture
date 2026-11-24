@@ -38,7 +38,7 @@
 
 ## 1. 毎回の作業の流れ
 
-![gitサイクルイメージ](../images/git/diagram/gitサイクルイメージ.png)
+<img src="../images/git/diagram/gitサイクルイメージ.png" alt="Git の基本操作を一周する 7 つのステップ。1 リポジトリを作る・取得する（git init / git clone）、2 ブランチを作る（git switch -c）、3 コードを編集する、4 変更を確認する（git status）、5 ステージに追加する（git add）、6 コミットする（git commit）、7 リモートに送る（git push）" width="800">
 
 ```mermaid
 flowchart TD

@@ -427,7 +427,7 @@ git push                      # 初回は git push -u origin feature-login
 4. 右側の **Reviewers** でレビューしてほしい人を選ぶ。
 5. **Create pull request** をクリックする。
 
-![](../images/git/github/gh-06-02-create-pull-request.png)
+![Pull Request の作成画面（base と compare のブランチ、タイトル、説明、Reviewers を入力する）](../images/git/github/gh-06-02-create-pull-request.png)
 
 > [!TIP]
 > **まだ作業途中だけど見てほしい**ときは、Create pull request の横の ▼ から **Create draft pull request** を選ぶと、下書きの PR になります。
