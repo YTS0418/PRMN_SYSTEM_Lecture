@@ -62,6 +62,10 @@ flowchart LR
 
 次の 3 つにチェックを入れます（Stack Builder は不要です）。
 
+- **PostgreSQL Server**（データベース本体）
+- **pgAdmin 4**（操作画面。5 節で使います）
+- **Command Line Tools**（`psql` コマンド。4 節で使います）
+
 ![インストーラの Select Components の画面](../images/database/postgres/pg-07-01-installer-components.png)
 
 ### パスワードの設定
@@ -209,7 +213,7 @@ CREATE DATABASE grades_db;
 
 ### psql で実行する
 
-ファイルのあるフォルダに移動して、次を実行します。
+サンプルリポジトリ（[PRMN_SYSTEM_Sample](https://github.com/YTS0418/PRMN_SYSTEM_Sample)）を clone してあるものとします。まだなら、先に `git clone` してください（clone の方法は [Git 編 00 章 6 節](../Git/00_Git導入・初期設定.md#6-リポジトリを-clone-する)を参照）。そのリポジトリの**ルート**（`database` フォルダがある場所）にターミナルで移動して、次を実行します。
 
 ```bash
 psql -U postgres -d grades_db -f database/db/01_schema.sql
