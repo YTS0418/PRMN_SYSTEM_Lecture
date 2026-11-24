@@ -58,7 +58,7 @@ Binder に使う Java のオブジェクト（**Bean**）は、通常、**値を
 /** 学生の登録フォームの入力値（Presentation 層の、入力専用のクラス） */
 public class 学生登録フォーム {
     private String 氏名;
-    private Integer 学科ID;
+    private 学科 学科;                 // 選ばれた学科（ドメインの record）
     private Integer 入学年度;
     // getter / setter …
 }
@@ -68,18 +68,27 @@ public class 学生登録フォーム {
 var binder = new Binder<>(学生登録フォーム.class);
 
 binder.forField(氏名)
+      .asRequired("氏名を入力してください")
       .bind(学生登録フォーム::get氏名, 学生登録フォーム::set氏名);   // 入力欄 ↔ 項目
 
+binder.forField(学科)                                          // 学科の Select（05 章）
+      .asRequired("所属学科を選んでください")
+      .bind(学生登録フォーム::get学科, 学生登録フォーム::set学科);
+
 binder.forField(入学年度)
+      .asRequired("入学年度を入力してください")
       .bind(学生登録フォーム::get入学年度, 学生登録フォーム::set入学年度);
 ```
+
+> [!WARNING]
+> 入力欄を `bind` し忘れると、その項目は `null` のままです。たとえば `int` の引数に `null` の `Integer` を渡すと、`NullPointerException` で止まります。**`writeBean` で取り出す項目は、すべて `bind` し、必須の項目には `asRequired` を付けます。**
 
 ```java
 // 保存ボタンが押されたとき
 var 入力 = new 学生登録フォーム();
 try {
     binder.writeBean(入力);                       // チェックして、オブジェクトに書き込む
-    学生を登録する.実行する(入力.get氏名(), 入力.get学科ID(), 入力.get入学年度());
+    学生を登録する.実行する(入力.get氏名(), 入力.get学科().学科ID(), 入力.get入学年度());
 } catch (ValidationException e) {
     // 入力チェックに失敗（エラーは、すでに欄に表示されている）
 }
