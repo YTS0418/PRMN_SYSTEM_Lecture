@@ -149,7 +149,7 @@ SQL は、**ファイル名の順**（`01` → `02`）に実行されます。`P
 > - 画面：ブラウザで `localhost:5050` を開いた pgAdmin のログイン画面
 > - 強調：アドレスバーの `localhost:5050` を赤枠で囲む
 
-サーバーの登録は、[データベース編 07 章 5 節](../データベース/07_PostgreSQL環境構築.md#5-pgadmin-で接続する)と同じ手順です。ただし、**Host name/address だけ違います**。
+サーバーの登録は、[データベース編 07 章 5 節](../データベース/07_PostgreSQL環境構築.md#5-pgadmin-で接続する)と同じ手順です。ただし、**Host name/address だけ違います**（Maintenance database には、`grades_db` を入れます）。
 
 | 項目 | 値 |
 |---|---|
@@ -197,14 +197,16 @@ services:
   db:
     environment:
       POSTGRES_DB: grades_db
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?.env に POSTGRES_PASSWORD を設定してください}
     ports:
       - "127.0.0.1:${DB_PORT:-5432}:5432"
   pgadmin:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?.env に PGADMIN_PASSWORD を設定してください}
 ```
+
+`${変数名:?メッセージ}` は、「変数が無い（または空）なら、**メッセージを表示して、起動を止める**」という意味です。パスワードの設定し忘れに、起動の前に気づけます。
 
 `${DB_PORT:-5432}` は、「`DB_PORT` が設定されていればその値、無い（または空）なら `5432`」という意味です。**パソコン側のポート番号を、`.env` で変えられる**ようにしています。すでにパソコンに PostgreSQL（[データベース編 07 章](../データベース/07_PostgreSQL環境構築.md)）が入っていて 5432 番が使用中のときは、`.env` に `DB_PORT=5433` と書きます。変わるのは、**パソコンから**つなぐときのポート番号だけです。コンテナどうしの `db:5432` は、変わりません。
 
@@ -231,7 +233,7 @@ cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example 
 ```
 
 > [!CAUTION]
-> **セキュリティの視点**：`.env` を **一度でも Git にコミットすると、あとで消しても履歴に残ります**。GitHub に push したあとでは、パスワードを変えるしかありません。**`.gitignore` に `.env` を書いてから**、`.env` を作ってください。また、`.env.example` には**本物のパスワードを書きません**（見本として、`changeme` のような値も避け、空にします）。`${POSTGRES_PASSWORD}` が空のままだと、Compose は警告を出します。
+> **セキュリティの視点**：`.env` を **一度でも Git にコミットすると、あとで消しても履歴に残ります**。GitHub に push したあとでは、パスワードを変えるしかありません。**`.gitignore` に `.env` を書いてから**、`.env` を作ってください。また、`.env.example` には**本物のパスワードを書きません**（見本として、`changeme` のような値も避け、空にします）。`${POSTGRES_PASSWORD}` が空のままだと、`compose.yaml` の `:?` の指定により、Compose はエラーを表示して起動しません。
 
 > [!NOTE]
 > アプリ側（Spring Boot）で `DB_PASSWORD` を環境変数で渡す方法は、[4層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)にあります。考え方は同じです。
@@ -255,7 +257,7 @@ cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example 
 |---|---|
 | `yaml: line N: mapping values are not allowed` など、YAML のエラー | インデントやスペースの間違い。`docker compose config` で、場所を確認する |
 | `no configuration file provided: not found` | `compose.yaml` のあるフォルダにいない。`cd` で移動する |
-| `The "POSTGRES_PASSWORD" variable is not set` の警告 | `.env` が無い、または変数名の違い。`.env.example` から作る |
+| `required variable POSTGRES_PASSWORD is missing a value` のエラー（`.env に POSTGRES_PASSWORD を設定してください` と表示される） | `.env` が無い、パスワードが空、または変数名の違い。`.env.example` から作って、値を入れる |
 | `port is already allocated`、`address already in use` | パソコン側の 5432 番が使用中（03 章で作った `grades-pg` が残っている、パソコンに入れた PostgreSQL など）。03 章のコンテナなら `docker rm -f grades-pg` で消す。`.env` に `DB_PORT=5433` と書いて、`docker compose up -d` をやり直す。パソコンの psql や pgAdmin は `5433` 番に、IDE で動かすアプリは `jdbc:postgresql://localhost:5433/grades_db` につなぐ |
 | SQL を直したのに、反映されない | 初期化は**初回だけ**。`docker compose down -v` で、ボリュームを消して作り直す |
 | pgAdmin から `localhost` で接続できない | pgAdmin はコンテナの中にいる。Host には **`db`**（サービス名）を書く |

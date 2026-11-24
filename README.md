@@ -180,7 +180,7 @@ Git 資料の構成は次のとおりです。
 
 #### 7. Docker / Compose
 
-「自分のパソコンでは動くのに、ほかの人のパソコンでは動かない」を防ぎ、チーム全員が**同じ環境**で開発するための資料です。**Docker** の基本から、**Docker Compose** で PostgreSQL・pgAdmin・Spring Boot アプリをまとめて動かす方法、本番に出すときの**考え方**までを扱います。題材は他の資料と同じ成績管理システムで、完全な `compose.yaml` と Dockerfile は、[サンプルリポジトリ](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/docker)の `docker/` にまとめています。概要は [はじめに](/Docker/00_はじめに.md) にあります。
+「自分のパソコンでは動くのに、ほかの人のパソコンでは動かない」を防ぎ、チーム全員が**同じ環境**で開発するための資料です。**Docker** の基本から、**Docker Compose** で PostgreSQL・pgAdmin・Spring Boot アプリをまとめて動かす方法、本番に出すときの**考え方**までを扱います。題材は他の資料と同じ成績管理システムで、完全な `compose.yaml` は、[サンプルリポジトリ](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/docker)の `docker/` に、Dockerfile は、アプリ側のフォルダ（`architecture/step3-spring/` と `frontend/grades-vaadin/`）にあります。概要は [はじめに](/Docker/00_はじめに.md) にあります。
 
 | 章 | 内容 |
 |---|---|

@@ -194,7 +194,7 @@ docker volume rm grades-pgdata      # 削除（中のデータも消える）
 | コンテナがすぐ終了する（`docker ps` に出ない） | `docker logs コンテナ名` で原因を見る。`POSTGRES_PASSWORD` の付け忘れが多い |
 | 環境変数 `POSTGRES_PASSWORD` を変えたのにパスワードが変わらない | ボリュームに**すでにデータがある**と、初回起動時の設定は使われない。ボリュームを消して作り直す（データも消える） |
 | `docker rm` したらデータが消えた | ボリュームを使っていなかった。[5 節](#5-ボリュームでデータを残す)のとおり `-v` を付ける |
-| `docker exec` で `the input device is not a TTY` | PowerShell や MinTTY で対話モードが使えない。`winpty docker exec -it ...` を試すか、PowerShell / コマンドプロンプトで実行する |
+| `docker exec` で `the input device is not a TTY` | Git Bash の端末（MinTTY）では、対話モードが使えないことがある。`winpty docker exec -it ...` を試すか、PowerShell / コマンドプロンプトで実行する |
 | `docker exec` で `No such container` | コンテナが停止している。`docker ps -a` で確認して `docker start` する |
 
 ---
