@@ -369,7 +369,7 @@ curl http://localhost:8080/students/1/transcript
 | ミス | 原因・対処 |
 |---|---|
 | 起動時に `Failed to configure a DataSource` | `application.properties` の接続先が違う、または PostgreSQL が起動していない。URL、ユーザー名、パスワードを確認する |
-| 起動時に `password authentication failed` | 環境変数 `DB_PASSWORD` が設定されていない、または間違っている |
+| 起動時に `password authentication failed` | 環境変数 `DB_PASSWORD` の値が間違っている（**未設定**のときは、接続の前に `環境変数 DB_PASSWORD が設定されていません` と表示して、起動せずに終わる） |
 | `No qualifying bean of type '学生リポジトリ'` | 実装クラスに `@Repository` が付いていない、または起動クラスのパッケージの外に置いている |
 | Controller にアクセスしても `404` になる | 起動クラスと違うパッケージに置いている、`@RequestMapping` の URL が違う |
 | `@Transactional` を付けたのに、取り消されない | チェック例外は取り消されない、または同じクラス内の呼び出しになっている |
