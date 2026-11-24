@@ -27,6 +27,7 @@
 | [4. 4層アーキテクチャ](#4-4層アーキテクチャ) | アプリケーションを層に分ける設計と Spring Boot |
 | [5. 上流工程](#5-上流工程) | 利用者の要求を聞き取り、ユースケースに整理するまで |
 | [6. フロントエンド](#6-フロントエンドvaadin) | Vaadin による画面の作り方、ログインとセキュリティ、使いやすさの考え方 |
+| [7. Docker / Compose](#7-docker--compose) | 開発環境をそろえる、DB とアプリのコンテナ化、本番デプロイの考え方 |
 
 データベースと 4層アーキテクチャは、同じ題材（成績管理システム）でつながっています。動く完成コードは、別のリポジトリ（[サンプルシステム](https://github.com/YTS0418/PRMN_SYSTEM_Sample)）にまとめています。
 
@@ -117,7 +118,7 @@ Git 資料の構成は次のとおりです。
 | Presentation | [6. フロントエンド](#6-フロントエンドvaadin) |
 | Application / Domain | [5. 上流工程](#5-上流工程)、ドメイン設計・実装編（作成予定） |
 | Infrastructure | [3. データベース](#3-データベース) |
-| 全層に共通 | 開発環境・品質編（作成予定） |
+| 全層に共通 | [7. Docker / Compose](#7-docker--compose)、開発環境・品質編（作成予定） |
 
 | 章 | 内容 |
 |---|---|
@@ -174,6 +175,22 @@ Git 資料の構成は次のとおりです。
 
 > [!NOTE]
 > Vaadin 版のサンプルコードは、サンプルリポジトリの [`frontend/`](https://github.com/<ORG>/PRMN_SYSTEM_Sample/tree/main/frontend) に置く予定です（作成予定）。資料中のサンプルへのリンクは、先に書いてあります。
+
+#### 7. Docker / Compose
+
+「自分のパソコンでは動くのに、ほかの人のパソコンでは動かない」を防ぎ、チーム全員が**同じ環境**で開発するための資料です。**Docker** の基本から、**Docker Compose** で PostgreSQL・pgAdmin・Spring Boot アプリをまとめて動かす方法、本番に出すときの**考え方**までを扱います。題材は他の資料と同じ成績管理システムで、完全な `compose.yaml` と Dockerfile は、[サンプルリポジトリ](https://github.com/YTS0418/PRMN_SYSTEM_Sample/tree/main/docker)の `docker/` にまとめています。概要は [はじめに](/Docker/00_はじめに.md) にあります。
+
+| 章 | 内容 |
+|---|---|
+| [00 はじめに](/Docker/00_はじめに.md) | 資料の概要、章の構成、4層の中での位置づけ |
+| [01 Dockerとは](/Docker/01_Dockerとは.md) | 解決したい問題、イメージとコンテナ、仮想マシンとの違い |
+| [02 Docker導入](/Docker/02_Docker導入.md) | Docker Desktop のインストール、動作確認 |
+| [03 Dockerの基本操作](/Docker/03_Dockerの基本操作.md) | run / ps / logs / exec、ポート公開、ボリューム |
+| [04 Docker Compose入門](/Docker/04_Docker_Compose入門.md) | compose.yaml、PostgreSQL と pgAdmin の起動、初期データ、`.env` |
+| [05 Dockerfileとイメージ作成](/Docker/05_Dockerfileとイメージ作成.md) | Dockerfile、マルチステージビルド、Spring Boot / Vaadin |
+| [06 アプリとDBをComposeで動かす](/Docker/06_アプリとDBをComposeで動かす.md) | サービス間の接続、設定の上書き、起動順序 |
+| [07 チーム開発での使い方](/Docker/07_チーム開発での使い方.md) | 使い分け、Git に載せるもの、リセット、掃除 |
+| [08 本番デプロイの考え方](/Docker/08_本番デプロイの考え方.md) | 開発と本番の違い、秘密情報、HTTPS、更新とロールバック |
 
 ## 資料を修正・追加するとき
 
