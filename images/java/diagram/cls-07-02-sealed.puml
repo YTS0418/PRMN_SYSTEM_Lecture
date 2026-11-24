@@ -2,14 +2,14 @@
 @startuml cls-07-02-sealed
 !include ../../database/diagram/_common.iuml
 show methods
-interface Shape <<sealed>>
-class Circle <<record>> {
+interface Figure <<sealed>>
+class Round <<record>> {
   double r
 }
 class Rect <<record>> {
   double w
   double h
 }
-Shape <|.. Circle
-Shape <|.. Rect
+Figure <|.. Round
+Figure <|.. Rect
 @enduml

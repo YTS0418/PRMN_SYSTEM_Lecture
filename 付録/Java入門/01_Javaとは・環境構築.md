@@ -150,7 +150,7 @@ void main() {
 ## 5. IDEで実行する
 
 ### IntelliJ IDEA（推奨）
-1. [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) をインストール
+1. [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) をインストールする（無料で使える範囲で足ります。2025.3 以降は Community 版と Ultimate 版が 1 つの配布にまとまりました。ダウンロードページの案内に従ってください）
 2. **New Project** → Language: Java、Build system: **IntelliJ**、JDK: 25 を選択
 3. `src` フォルダ内に `Hello` クラスを作成し、コードを貼る
 4. `main` の横の緑の ▶ をクリック
@@ -198,7 +198,7 @@ public class Hello {                                   // ①
 | `class Hello is public, should be declared in a file named Hello.java` | ファイル名とクラス名が違う |
 | `';' expected` | 行末の `;` 忘れ |
 | `cannot find symbol` | スペルミス（`System` を `system` と書くなど）。Java は**大文字小文字を区別** |
-| `error: Could not find or load main class Hello` | `java Hello.class` と書いた、または別フォルダで実行している |
+| `Error: Could not find or load main class Hello` | `java Hello.class` と書いた、または別フォルダで実行している |
 | `'javac' は、内部コマンドまたは外部コマンド…` | JDK が未インストール、または PATH 未設定 |
 
 ## 8. 練習問題
