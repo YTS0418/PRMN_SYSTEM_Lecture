@@ -404,9 +404,9 @@ Python など、他の言語を学んだ人向けに、代表的な Web フレ�
 | 項目 | バージョン |
 |---|---|
 | Java | **25**（LTS） |
-| Spring Boot | **4.0 系**（2025 年 11 月に公開） |
-| Spring Framework | **7.0 系**（Spring Boot 4.0 が内蔵） |
-| 対応する Java | Spring Boot 4.0 は Java 17 以上（Java 25 も対応） |
+| Spring Boot | **4.1 系**（この資料のサンプルは 4.1.2） |
+| Spring Framework | **7.0 系**（Spring Boot 4.x が内蔵） |
+| 対応する Java | Spring Boot 4.x は Java 17 以上（Java 25 も対応） |
 
 > [!WARNING]
 > これらは、執筆時点の情報です。実機での動作確認は行っていません。新しい版が出ている場合は、[Spring Boot 公式サイト](https://spring.io/projects/spring-boot)で最新の情報を確認してください。
