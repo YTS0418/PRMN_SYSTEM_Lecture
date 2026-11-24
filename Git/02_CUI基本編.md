@@ -65,6 +65,9 @@ git push                          # ⑥ 送る
 > [!IMPORTANT]
 > **作業を始める前に必ず pull、終わったら push** を習慣にしましょう。
 
+> [!NOTE]
+> ① の `git pull` は、`main` のように **GitHub にも同じブランチがある**ブランチで行います。`git switch -c` で作ったばかりの（まだ push していない）ブランチで `git pull` すると、`There is no tracking information for the current branch.` と出て失敗します。この場合は、pull は不要です。ほかの人の変更を取り込みたいときは、[03 応用編 2 節](03_CUI応用編.md#2-自分のブランチを最新の-main-に合わせる)の方法を使います。
+
 ---
 
 ## 2. 状態を確認する
@@ -339,7 +342,11 @@ Automatic merge failed; fix conflicts and then commit the result.
 ファイルを開くと、次のような**印**が入っています。
 
 ```
+<<<<<<< HEAD
+String title = "Hi";
+=======
 String title = "こんにちは";
+>>>>>>> feature-a
 ```
 
 | 印 | 意味 |

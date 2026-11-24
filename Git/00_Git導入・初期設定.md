@@ -142,7 +142,10 @@ git config --global user.email "GitHubに登録したメールアドレス"
 
 ```bash
 git config --global init.defaultBranch main
+git config --global pull.rebase false
 ```
+
+2 行目は、`git pull` のときの動きを「取得（fetch）して、**merge** する」に決める設定です。この設定がないと、手元と GitHub の両方に新しいコミットがあるとき、`git pull` が `Need to specify how to reconcile divergent branches` というエラーで止まることがあります。
 
 設定の確認:
 
@@ -154,6 +157,7 @@ git config --global --list
 user.name=あなたの名前
 user.email=xxxx@example.com
 init.defaultbranch=main
+pull.rebase=false
 ```
 
 ---
