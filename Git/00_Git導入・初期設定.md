@@ -419,12 +419,17 @@ GitHub の **ブランチ保護ルール**を設定すると、main への変更
 ### 設定手順
 
 1. リポジトリの **Settings** → **Branches**（または **Rules** → **Rulesets**）を開く。
-2. **Add branch ruleset**（または Add rule）をクリックし、対象に `main` を指定する。
-3. 次の項目を有効にする。
+2. **Add branch ruleset**（または Add rule）をクリックし、ルールセットの名前を付ける（例：`protect-main`）。
+3. **Enforcement status** を **Active** にする（**Disabled** のままだとルールが効きません）。
+4. **Target branches** で、**既定のブランチ（Include default branch）**、または `main` を対象に加える。
+5. 次の項目を有効にする。
    - **Require a pull request before merging**（PR を必須にする）
    - 必要に応じて **Require approvals**（レビューの承認を必須にする）
    - **Block force pushes**（force push を禁止する）
-7. **Create** をクリックして保存する。
+6. **Create** をクリックして保存する。
+
+> [!NOTE]
+> GitHub の画面の名前や並びは、更新で変わることがあります。見つからないときは、項目名で探してください。
 
 ### 設定するとどうなる？
 

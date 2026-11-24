@@ -322,16 +322,16 @@ git reflog
 ```
 
 ```
-3f2a1c9 HEAD@{0}: reset: moving to HEAD~1
-9e8d7c6 HEAD@{1}: commit: 入力チェックを追加     ← 消してしまったコミット
-3f2a1c9 HEAD@{2}: commit: ログイン画面を追加
+8d4e2b1 HEAD@{0}: reset: moving to HEAD~1
+3f2a1c9 HEAD@{1}: commit: 入力チェックを追加     ← 消してしまったコミット
+8d4e2b1 HEAD@{2}: commit: ログイン画面を追加
 ```
 
 戻りたい時点のコミット ID を見つけたら、次のどちらかで復元します。
 
 ```bash
-git reset --hard 9e8d7c6            # 今のブランチをその時点に戻す
-git switch -c rescue 9e8d7c6        # その時点から新しいブランチを作る（安全）
+git reset --hard 3f2a1c9            # 今のブランチをその時点に戻す
+git switch -c rescue 3f2a1c9        # その時点から新しいブランチを作る（安全）
 ```
 
 > [!NOTE]
