@@ -171,7 +171,7 @@ docker compose -f compose.yaml -f compose.app.yaml logs -f app
 > [!WARNING]
 > `ps`、`logs`、`down` などにも、**起動したときと同じ `-f` が必要**です。付けないと、`compose.yaml` だけを見るので、`no such service: app` になります。毎回打つのが面倒なら、[2 節](#2-app-サービスを加える)の TIP の `COMPOSE_FILE` を使います。
 
-`Started GradesApplication` と出れば、起動しています（`Ctrl + C` でログの表示を止めても、アプリは動いたままです）。[4層アーキテクチャ編 07 章 10 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#10-動かして確かめる)の `curl` で、確かめます。
+`Started 成績管理アプリ` と出れば、起動しています（`Ctrl + C` でログの表示を止めても、アプリは動いたままです）。[4層アーキテクチャ編 07 章 10 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#10-動かして確かめる)の `curl` で、確かめます。
 
 ```bash
 curl http://localhost:8080/students/1/transcript

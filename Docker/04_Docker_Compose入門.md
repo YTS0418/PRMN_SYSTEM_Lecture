@@ -89,6 +89,9 @@ volumes:
 
 ## 3. 起動と停止
 
+> [!WARNING]
+> [03 章](03_Dockerの基本操作.md)で作った `grades-pg` のコンテナが残っていると、**同じ 5432 番ポートを取り合って**、次の `docker compose up` が `port is already allocated` で失敗します。先に `docker rm -f grades-pg` で消しておきます（中のデータは使わないので、消して構いません）。
+
 `compose.yaml` があるフォルダで、次を実行します。
 
 ```bash
@@ -253,7 +256,7 @@ cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example 
 | `yaml: line N: mapping values are not allowed` など、YAML のエラー | インデントやスペースの間違い。`docker compose config` で、場所を確認する |
 | `no configuration file provided: not found` | `compose.yaml` のあるフォルダにいない。`cd` で移動する |
 | `The "POSTGRES_PASSWORD" variable is not set` の警告 | `.env` が無い、または変数名の違い。`.env.example` から作る |
-| `port is already allocated`、`address already in use` | パソコン側の 5432 番が使用中（パソコンに入れた PostgreSQL など）。`.env` に `DB_PORT=5433` と書いて、`docker compose up -d` をやり直す。パソコンの psql や pgAdmin は `5433` 番に、IDE で動かすアプリは `jdbc:postgresql://localhost:5433/grades_db` につなぐ |
+| `port is already allocated`、`address already in use` | パソコン側の 5432 番が使用中（03 章で作った `grades-pg` が残っている、パソコンに入れた PostgreSQL など）。03 章のコンテナなら `docker rm -f grades-pg` で消す。`.env` に `DB_PORT=5433` と書いて、`docker compose up -d` をやり直す。パソコンの psql や pgAdmin は `5433` 番に、IDE で動かすアプリは `jdbc:postgresql://localhost:5433/grades_db` につなぐ |
 | SQL を直したのに、反映されない | 初期化は**初回だけ**。`docker compose down -v` で、ボリュームを消して作り直す |
 | pgAdmin から `localhost` で接続できない | pgAdmin はコンテナの中にいる。Host には **`db`**（サービス名）を書く |
 | `localhost:5050` が開かない | `docker compose ps` で `pgadmin` が動いているか確認する。ポート番号の確認もする |
