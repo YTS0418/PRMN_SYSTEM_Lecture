@@ -26,6 +26,9 @@
 
 ---
 
+> [!IMPORTANT]
+> この章の結果の表は、**サンプルデータ（`02_seed.sql`）を入れた直後の状態**の値です。09 章で `INSERT` / `UPDATE` / `DELETE` を試して、データが変わっているときは、`01_schema.sql` → `02_seed.sql` の順に流し直してから始めてください（やり方は [07 章](07_PostgreSQL環境構築.md) と同じです）。
+
 ## 1. 集約関数
 
 複数の行を**1 つの値にまとめる**関数です。
@@ -39,7 +42,7 @@
 | `MAX(列)` / `MIN(列)` | 最大値 / 最小値 |
 
 ```sql
-SELECT COUNT(*) AS total, COUNT(score) AS graded, AVG(score) AS average FROM enrollments;
+SELECT COUNT(*) AS total, COUNT(score) AS graded, ROUND(AVG(score), 2) AS average FROM enrollments;
 ```
 
 | total | graded | average |
@@ -158,6 +161,12 @@ flowchart LR
 
 **`LEFT JOIN`** は、**左側のテーブルの行をすべて残し**、右側に対応する行がなければ、右側の列を **NULL** にします。正式には `LEFT OUTER JOIN` と書きますが、`OUTER` は省略できます。
 
+まず、履修が 1 件もない学生を 1 人追加します（09 章で追加済みなら、この `INSERT` は不要です）。
+
+```sql
+INSERT INTO students (name, department_id, enrolled_year) VALUES ('Mika', 3, 2025);
+```
+
 ```sql
 SELECT s.name, COUNT(e.enrollment_id) AS courses
 FROM students s
@@ -174,7 +183,7 @@ ORDER BY s.student_id;
 | Sakura | 2 |
 | Ken | 2 |
 | Yuki | 2 |
-| （09 章で追加した Mika） | 0 |
+| Mika | 0 |
 
 | 種類 | 結果 |
 |---|---|
