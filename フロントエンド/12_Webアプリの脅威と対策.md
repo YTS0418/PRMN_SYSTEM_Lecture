@@ -205,9 +205,11 @@ jdbc.sql("SELECT * FROM students WHERE name = :name").param("name", 氏名);
 # セッションの期限と Cookie の設定（application.properties）
 server.servlet.session.timeout=30m
 server.servlet.session.cookie.http-only=true
-server.servlet.session.cookie.secure=true
 server.servlet.session.cookie.same-site=lax
 ```
+
+> [!NOTE]
+> `Secure`（HTTPS のときだけ Cookie を送る）の設定 `server.servlet.session.cookie.secure=true` は、**開発の `http://localhost` では有効にしない**でください。Cookie が送られず、ログインできなくなります。HTTPS で公開するときの、本番用の設定ファイル `application-prod.properties`（[A2 章](A2_本番ビルドとデプロイ.md)）に書きます。サンプルでは、`application.properties` に、コメントアウトした形で置いています。
 
 > [!TIP]
 > **ユーザビリティの視点**：セキュリティの対策は、**使いにくさ**を生むことがあります。たとえば、パスワードに、複雑な条件を課したり、頻繁に、期限切れにすると、利用者は、付箋に書いたり、簡単な変形で、使い回したりします（**かえって、安全でなくなる**）。**「長いパスワード（パスフレーズ）を許す」「パスワードの貼り付けを許す（パスワードマネージャを使える）」**といった、**使いやすくて、安全**な方向を、選びます。

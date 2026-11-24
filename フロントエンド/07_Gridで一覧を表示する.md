@@ -225,7 +225,7 @@ var データビュー = 一覧.setItems(データ);
 ```java
 @Route("students/:studentId/transcript")
 @PageTitle("成績一覧")
-@PermitAll
+@PermitAll                                 // 11 章で、@RolesAllowed に書き換える
 public class 成績一覧ビュー extends VerticalLayout implements BeforeEnterObserver {
 
     private final 成績一覧を取得する 成績一覧を取得する;          // コンストラクタ注入（09 章）
@@ -272,7 +272,7 @@ public class 成績一覧ビュー extends VerticalLayout implements BeforeEnter
 | `Grid` の高さが 0 で、見えない | 親の高さが決まっていない（[04 章](04_レイアウト.md)）。`setHeight` か、`expand` |
 | 並べ替えが効かない／画面のデータだけが並ぶ | 遅延読み込みでは、並べ替えを、**DB の `ORDER BY` で実行**する必要がある（`setSortProperty` と、`query.getSortOrders()` の利用） |
 | 登録後、一覧が古いまま | `setItems` をやり直していない |
-| 一覧に、利用者に見せてはいけない項目（パスワードのハッシュなど）が入っている | 画面に出すデータは、**表示用のデータ（DTO）**に絞る。ドメインのオブジェクトを、そのまま渡さない |
+| 一覧に、利用者に見せてはいけない項目（パスワードのハッシュなど）が入っている | 画面に出すデータは、**表示用のデータ（DTO）**に絞る。`学生` のように秘密の項目がないものは、そのまま渡してよいが、`users` のような型は、そのまま渡さない（[09 章](09_4層とつなぐ.md)） |
 
 ---
 
