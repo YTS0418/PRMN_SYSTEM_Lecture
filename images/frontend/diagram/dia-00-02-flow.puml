@@ -1,0 +1,17 @@
+' Vaadin の画面から DB まで（フロントエンド編 00 章）：画面は Presentation 層だけを作る
+@startuml dia-00-02-flow
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "利用者\n（ブラウザ）" as user #white
+rectangle "Vaadin のビュー\nPresentation" as view #d6eaf8
+rectangle "ユースケース\nApplication" as uc #d5f5e3
+rectangle "Domain\n（変更なし）" as dom #d5f5e3
+rectangle "Jdbc…リポジトリ\nInfrastructure" as repo #fff3cd
+database "PostgreSQL" as pg #fff3cd
+user --> view
+view --> uc
+uc --> dom
+repo ..> dom : 実装
+repo --> pg
+@enduml

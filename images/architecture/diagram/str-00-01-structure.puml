@@ -1,0 +1,22 @@
+' 4層アーキテクチャ編の構成（00 章）：第 1 部 → 第 2 部
+@startuml str-00-01-structure
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+rectangle "第 1 部　共通の考え方（01〜03 章）" as A #d6eaf8 {
+  rectangle "01\nなぜ層に分けるのか" as a0 #white
+  rectangle "02\n4層の役割" as a1 #white
+  rectangle "03\n依存の向きと抽象" as a2 #white
+  a0 -right-> a1
+  a1 -right-> a2
+}
+rectangle "第 2 部　Java 編（04〜07 章）" as B #d5f5e3 {
+  rectangle "04\nJavaで4層を作る" as b0 #white
+  rectangle "05\nフレームワークとSpring" as b1 #white
+  rectangle "06\nサンプル実装の読み方" as b2 #white
+  rectangle "07\nSpring Bootで書き直す" as b3 #white
+  b0 -right-> b1
+  b1 -right-> b2
+  b2 -right-> b3
+}
+A -down-> B
+@enduml

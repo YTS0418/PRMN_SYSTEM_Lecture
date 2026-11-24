@@ -1,0 +1,14 @@
+' ビューがユースケースを呼び、結果か例外が返る（フロントエンド編 09 章）
+@startuml dia-09-02-view-usecase
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "ビュー\n（Presentation）" as view #d6eaf8
+rectangle "ユースケース\n（Application）" as uc #d5f5e3
+rectangle "Domain" as dom #d5f5e3
+rectangle "リポジトリの実装\n（Infrastructure）" as repo #fff3cd
+view --> uc : 呼ぶ
+uc --> dom
+uc ..> repo : インタフェース経由
+uc -[#2e86c1]-> view : 結果／例外
+@enduml

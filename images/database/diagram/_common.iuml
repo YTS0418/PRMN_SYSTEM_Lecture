@@ -1,6 +1,7 @@
 ' データベース編の ER 図で共通の見た目
 skinparam defaultFontName "Noto Sans CJK JP"
 skinparam defaultFontSize 14
+' dpi 150：SVG を、PNG のときと同じ大きさで表示するための指定（外すと、約 2/3 の大きさになる）
 skinparam dpi 150
 skinparam shadowing false
 skinparam backgroundColor white

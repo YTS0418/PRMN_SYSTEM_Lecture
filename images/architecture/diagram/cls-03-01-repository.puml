@@ -1,0 +1,19 @@
+' 依存の向きとインタフェース（4層編 03 章）：ユースケースは、インタフェースだけを知っている
+@startuml cls-03-01-repository
+!include ../../database/diagram/_common.iuml
+show methods
+left to right direction
+class 学生を登録する #d5f5e3 {
+  -学生リポジトリ : 学生リポジトリ
+}
+interface 学生リポジトリ #d5f5e3 {
+  +保存する(学生) : 学生
+  +探す(int) : Optional<学生>
+  +すべて探す() : List<学生>
+}
+class メモリ学生リポジトリ #fff3cd
+class Jdbc学生リポジトリ #fff3cd
+学生を登録する --> 学生リポジトリ : 使う
+学生リポジトリ <|.. メモリ学生リポジトリ : 実装
+学生リポジトリ <|.. Jdbc学生リポジトリ : 実装
+@enduml

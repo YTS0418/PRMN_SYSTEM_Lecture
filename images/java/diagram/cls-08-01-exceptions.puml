@@ -1,0 +1,25 @@
+' 例外クラスの階層（Java 入門 08 章）
+@startuml cls-08-01-exceptions
+!include ../../database/diagram/_common.iuml
+show methods
+class Throwable
+class Error {
+  深刻な問題・catchしない
+}
+class Exception
+class RuntimeException {
+  非チェック例外
+}
+class IOException {
+  チェック例外
+}
+Throwable <|-- Error
+Throwable <|-- Exception
+Exception <|-- RuntimeException
+Exception <|-- IOException
+RuntimeException <|-- NullPointerException
+RuntimeException <|-- ArrayIndexOutOfBoundsException
+RuntimeException <|-- ArithmeticException
+RuntimeException <|-- IllegalArgumentException
+IllegalArgumentException <|-- NumberFormatException
+@enduml

@@ -209,21 +209,7 @@ git rebase --abort        # やめて元に戻す
 
 ### まずはこの図で、使うコマンドを決める
 
-```mermaid
-flowchart TD
-    Q1{"取り消したいのは？"}
-    Q1 -->|"編集したファイルの変更<br>（まだ add していない）"| R1["git restore ファイル名<br>⚠️ 変更は消えます"]
-    Q1 -->|"add しただけ<br>（まだコミットしていない）"| R2["git restore --staged ファイル名"]
-    Q1 -->|"コミット"| Q2{"もう push した？"}
-    Q2 -->|"まだ"| Q3{"何をしたい？"}
-    Q3 -->|"直前のメッセージや<br>内容を直したい"| R3["git commit --amend"]
-    Q3 -->|"コミットをなかったことに"| R4["git reset<br>（--soft / --mixed / --hard）"]
-    Q2 -->|"した"| Q4{"そのブランチを<br>使っているのは自分だけ？"}
-    Q4 -->|"他の人も使う<br>（main など）"| R5["git revert コミットID<br>✅ 基本はこれ"]
-    Q4 -->|"自分だけ"| R6["git revert<br>または<br>reset ＋ push --force-with-lease"]
-    R4 -.->|"消しすぎた！"| R7["git reflog で復元"]
-    R6 -.->|"消しすぎた！"| R7
-```
+<img src="../images/git/diagram/dia-03-02-undo-flow.svg" alt="取り消しの判断フロー。取り消したいものによって、使うコマンドが分かれる。編集したファイルの変更は git restore（変更は消える）、add しただけなら git restore --staged、コミットは、push 前なら git commit --amend か git reset、push 後なら、他の人も使うブランチは git revert（基本はこれ）。消しすぎたときは git reflog で復元する" width="880">
 
 > [!TIP]
 > **迷ったら `git revert`**。履歴を消さずに「打ち消すコミット」を足すだけなので、どんな状況でも安全です。
@@ -269,13 +255,7 @@ gitGraph
 
 reset には3つのモードがあり、**取り消したコミットの変更がどこに残るか**が違います。
 
-```mermaid
-flowchart LR
-    C["取り消したコミット D の変更"]
-    C -->|"--soft"| S["📦 ステージに残る<br>（すぐコミットし直せる）"]
-    C -->|"--mixed（省略時）"| M["📝 作業ツリーに残る<br>（add からやり直し）"]
-    C -->|"--hard"| H["🗑️ 完全に消える<br>⚠️ 危険"]
-```
+<img src="../images/git/diagram/dia-03-01-reset-options.svg" alt="取り消したコミットの変更が、--soft ではステージに残り、--mixed では作業ツリーに残り、--hard では完全に消える図" width="657">
 
 | モード            | コミット | ステージ      | 作業ツリー     | 使う場面                       |
 | -------------- | ---- | --------- | --------- | -------------------------- |

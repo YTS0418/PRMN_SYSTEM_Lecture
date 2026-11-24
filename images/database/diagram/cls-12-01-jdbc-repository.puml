@@ -1,0 +1,17 @@
+' リポジトリの実装を差し替える（データベース編 12 章）
+@startuml cls-12-01-jdbc-repository
+!include ../../database/diagram/_common.iuml
+show methods
+left to right direction
+interface 学生リポジトリ #d5f5e3 {
+  +保存する(学生) : 学生
+  +探す(int) : Optional<学生>
+  +すべて探す() : List<学生>
+}
+class メモリ学生リポジトリ #fff3cd
+class Jdbc学生リポジトリ #fff3cd {
+  -jdbcClient : JdbcClient
+}
+学生リポジトリ <|.. メモリ学生リポジトリ : 実装（step1）
+学生リポジトリ <|.. Jdbc学生リポジトリ : 実装（step2）
+@enduml

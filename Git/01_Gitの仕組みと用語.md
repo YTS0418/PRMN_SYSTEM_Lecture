@@ -63,24 +63,7 @@ Git で管理しているデータを**インターネット上に保存・共�
 
 Git では、ファイルの変更が次の場所を順番に移動していきます。**この図が Git のすべての基本**です。
 
-```mermaid
-flowchart LR
-    subgraph PC["自分の PC（ローカル）"]
-        direction LR
-        WT["📝 作業ツリー<br>（編集中のファイル）"]
-        ST["📦 ステージ<br>（コミットの準備置き場）"]
-        LR_["📚 ローカルリポジトリ<br>（コミットの履歴）"]
-    end
-    subgraph GH["GitHub（リモート）"]
-        RR["☁️ リモートリポジトリ<br>origin"]
-    end
-    WT -->|"git add"| ST
-    ST -->|"git commit"| LR_
-    LR_ -->|"git push"| RR
-    RR -->|"git pull"| WT
-    RR -.->|"git fetch<br>（確認だけ）"| LR_
-    RR ==>|"git clone<br>（最初の1回）"| PC
-```
+<img src="../images/git/diagram/dia-01-01-data-flow.svg" alt="Git の 3 つの場所とデータの流れ。作業ツリーから git add でステージへ、git commit でローカルリポジトリへ、git push でリモートリポジトリへ進む。リモートからは、git pull で作業ツリーへ、git fetch でローカルリポジトリへ、git clone でローカル全体へ取り込む" width="800">
 
 | 場所 | 何があるか | たとえ |
 |---|---|---|

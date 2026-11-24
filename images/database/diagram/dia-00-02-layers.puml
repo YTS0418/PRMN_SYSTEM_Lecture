@@ -1,0 +1,15 @@
+' データベースを扱う層（データベース編 00 章）：Infrastructure 層が DB につながる
+@startuml dia-00-02-layers
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "Presentation" as P #d6eaf8
+rectangle "Application" as A #d5f5e3
+rectangle "Domain\n（Repository インタフェース）" as D #d5f5e3
+rectangle "Infrastructure\n（JDBC で Repository を実装）" as I #fff3cd
+database "PostgreSQL" as DB #fff3cd
+P --> A
+A --> D
+I ..> D : 実装する
+I --> DB
+@enduml

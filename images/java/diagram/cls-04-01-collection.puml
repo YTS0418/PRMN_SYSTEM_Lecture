@@ -1,0 +1,14 @@
+' コレクションの種類（Java 入門 04 章）
+@startuml cls-04-01-collection
+!include ../../database/diagram/_common.iuml
+show methods
+interface Collection
+interface List
+interface Set
+interface Map
+Collection <|-- List
+Collection <|-- Set
+List <|.. ArrayList
+Set <|.. HashSet
+Map <|.. HashMap
+@enduml
