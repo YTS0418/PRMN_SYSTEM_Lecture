@@ -62,7 +62,7 @@ var 一覧 = new Grid<学生行>();
 | 並べ替え | `.setSortable(true)` | 見出しをクリックして、並べ替えられる |
 | 幅 | `.setAutoWidth(true)`、`.setFlexGrow(1)` | 内容に合わせる／余白を割り当てる |
 | 固定 | `.setFrozen(true)` | 横にスクロールしても、左に固定する |
-| 非表示・並び替え | `.setVisible(false)`、`setColumnReorderingAllowed(true)` | 利用者が、列を入れ替えられる |
+| 非表示・並べ替え | `.setVisible(false)`、`setColumnReorderingAllowed(true)` | 利用者が、列を入れ替えられる |
 
 ### 並べ替え
 

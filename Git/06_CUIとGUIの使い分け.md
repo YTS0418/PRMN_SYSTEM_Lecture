@@ -60,7 +60,7 @@ flowchart LR
 | **任意のコミットまで** reset する（soft / mixed / hard） | `git reset --モード コミットID` | **×** | ○ Reset Current Branch to Here |
 | push 済みのコミットを revert する | `git revert コミットID` | **×** | ○ Revert Commit |
 | マージコミットを revert する | `git revert -m 1 コミットID` | **×** | △ 親を選ぶダイアログが出る |
-| reflog で消えたコミットを復元する | `git reflog` | **×** | **×**（Local History で救える場合あり → [5章](#5-intellij-の-local-history)） |
+| reflog で消えたコミットを復元する | `git reflog` | **×** | **×**（Local History で救える場合あり → [5 節](#5-intellij-の-local-history)） |
 | force push（`--force-with-lease`） | `git push --force-with-lease` | △ 設定 `git.allowForcePush` を有効にすると「プッシュ (強制)」が使える | ○ Force Push |
 | 対話的 rebase（コミットの並べ替え・まとめ） | `git rebase -i` | **×** | ○ Interactively Rebase from Here |
 | マージを中止する | `git merge --abort` | △ ボタンが見つけにくい → ターミナル推奨 | ○ Abort Merge |
@@ -97,11 +97,11 @@ flowchart TD
     A(["GUI で困った！<br>（エラー・想定外の表示・ボタンがない）"]) --> B["統合ターミナルを開く"]
     B --> C["git status を実行"]
     C --> D{"表示を読むと…"}
-    D -->|"Changes not staged / Untracked"| E["未コミットの変更がある<br>→ 02 基本編 3章"]
-    D -->|"both modified / You have unmerged paths"| F["コンフリクト中<br>→ 02 基本編 7章"]
-    D -->|"Your branch is ahead / behind"| G["push / pull 待ち<br>→ 02 基本編 3章"]
+    D -->|"Changes not staged / Untracked"| E["未コミットの変更がある<br>→ 02 基本編 3 節"]
+    D -->|"both modified / You have unmerged paths"| F["コンフリクト中<br>→ 02 基本編 7 節"]
+    D -->|"Your branch is ahead / behind"| G["push / pull 待ち<br>→ 02 基本編 3 節"]
     D -->|"have diverged"| H["GitHub と手元が分岐している<br>→ git pull でマージ"]
-    D -->|"rebase in progress"| I["rebase の途中<br>→ 03 応用編 3章"]
+    D -->|"rebase in progress"| I["rebase の途中<br>→ 03 応用編 3 節"]
     D -->|"working tree clean"| J["変更なし<br>→ git log --oneline --graph --all<br>で履歴を確認"]
     E & F & G & H & I & J --> K{"解決した？"}
     K -->|いいえ| L["git status と git log の結果を<br>メンターに見せて相談"]
@@ -113,9 +113,9 @@ flowchart TD
 |---|---|---|
 | push 済みのコミットを取り消したい（VSCode） | `git revert コミットID` | [03 応用編 4-4](./03_CUI応用編.md#4-4-push-済みのコミットを取り消すrevert) |
 | 間違えて reset --hard してしまった | `git reflog` | [03 応用編 4-6](./03_CUI応用編.md#4-6-消しすぎたときの最終手段reflog) |
-| マージを途中でやめたい（VSCode） | `git merge --abort` | [02 基本編 7章](./02_CUI基本編.md#7-コンフリクトを解決する) |
-| GUI のエラーメッセージの意味が分からない | `git status` | [02 基本編 2章](./02_CUI基本編.md#2-状態を確認する) |
-| 何がどうなっているか全体を見たい | `git log --oneline --graph --all` | [03 応用編 1章](./03_CUI応用編.md#1-履歴を見る習慣をつける) |
+| マージを途中でやめたい（VSCode） | `git merge --abort` | [02 基本編 7 節](./02_CUI基本編.md#7-コンフリクトを解決する) |
+| GUI のエラーメッセージの意味が分からない | `git status` | [02 基本編 2 節](./02_CUI基本編.md#2-状態を確認する) |
+| 何がどうなっているか全体を見たい | `git log --oneline --graph --all` | [03 応用編 1 節](./03_CUI応用編.md#1-履歴を見る習慣をつける) |
 
 > [!TIP]
 > **メンターに相談するときは**、`git status` と `git log --oneline --graph --all` の結果をそのまま貼り付けると、状況がすぐに伝わります。GUI のスクリーンショットだけより、ずっと早く解決できます。

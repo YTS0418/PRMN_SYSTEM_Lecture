@@ -289,7 +289,7 @@ flowchart LR
 | 切り替えてしまって見失った | `git reflog` でコミット ID を探し、`git switch -c 新しいブランチ名 <コミットID>` で復活させる |
 
 > [!NOTE]
-> **見分け方**：`git status` で `HEAD detached at ...` と表示されます。VS Code では左下のブランチ名の場所にコミット ID が表示され、IntelliJ では `HEAD (Detached)` と表示されます。
+> **見分け方**：`git status` で `HEAD detached at ...` と表示されます。VSCode では左下のブランチ名の場所にコミット ID が表示され、IntelliJ では `HEAD (Detached)` と表示されます。
 
 ---
 

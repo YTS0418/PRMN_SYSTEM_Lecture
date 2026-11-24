@@ -72,7 +72,7 @@ flowchart TD
 
 ## 2. GitHub アカウントの作成
 
-Git の設定（[4章](#4-名前とメールアドレスの設定)）で **GitHub に登録したメールアドレス**を使うため、先にアカウントを作成します。
+Git の設定（[4 節](#4-名前とメールアドレスの設定)）で **GitHub に登録したメールアドレス**を使うため、先にアカウントを作成します。
 
 1. https://github.com を開き、**Sign up** をクリックする。
 2. **メールアドレス**・パスワード・ユーザー名を入力する。
@@ -82,13 +82,13 @@ Git の設定（[4章](#4-名前とメールアドレスの設定)）で **GitHu
 
 > [!NOTE]
 > **メールアドレスを公開したくない場合**<br>
-> GitHub の **Settings → Emails** で「Keep my email addresses private」にチェックを入れると、`ユーザー名@users.noreply.github.com` 形式の非公開用アドレスが発行されます。4章ではこのアドレスを使ってもOKです。
+> GitHub の **Settings → Emails** で「Keep my email addresses private」にチェックを入れると、`ユーザー名@users.noreply.github.com` 形式の非公開用アドレスが発行されます。4 節ではこのアドレスを使ってもOKです。
 
 ---
 
 ## 3. Git のインストール
 
-まず、すでにインストールされているか確認します。ターミナル（Windows は PowerShell）で次を実行し、バージョンが表示されればインストール済みです（[4章](#4-名前とメールアドレスの設定)へ進んでOK）。
+まず、すでにインストールされているか確認します。ターミナル（Windows は PowerShell）で次を実行し、バージョンが表示されればインストール済みです（[4 節](#4-名前とメールアドレスの設定)へ進んでOK）。
 
 ```bash
 git --version
@@ -100,7 +100,7 @@ git --version
 
 1. 公式サイト https://git-scm.com/download/win を開く（自動でダウンロードが始まります。始まらない場合は「Click here to download manually」をクリック）。
 2. ダウンロードした `Git-x.x.x-64-bit.exe` を実行する。
-3. インストーラーの画面は基本的にすべて **「Next」** のままでOK。最後に「Install」→「Finish」をクリック。
+3. インストーラの画面は基本的にすべて **「Next」** のままでOK。最後に「Install」→「Finish」をクリック。
 4. **開いているターミナル／VSCode／IntelliJ をいったんすべて閉じて、開き直す**（開き直さないと認識されません）。
 5. `git --version` でバージョンが表示されれば完了。
 
@@ -131,7 +131,7 @@ brew install git
 
 ## 4. 名前とメールアドレスの設定
 
-コミットに「誰が書いたか」が記録されるため、最初に登録します。メールアドレスは **2章で GitHub に登録したもの**を使います。
+コミットに「誰が書いたか」が記録されるため、最初に登録します。メールアドレスは **2 節で GitHub に登録したもの**を使います。
 
 ```bash
 git config --global user.name "あなたの名前"
@@ -263,7 +263,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 3. ブラウザが開くので GitHub にログインし、**Authorize Visual Studio Code** をクリックする。
    ![Authorize Visual Studio Code](../images/git/setup/setup-05-01-vscode-signin-04.png)
    ![Authorize Visual Studio Code](../images/git/setup/setup-05-01-vscode-signin-05.png)
-4. 「VS Code を開きますか？」と出たら **開く** を選ぶ。
+4. 「VSCode を開きますか？」と出たら **開く** を選ぶ。
 5. アカウントアイコンに自分のユーザー名が表示されれば完了。
 
 > [!NOTE]
@@ -333,7 +333,7 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-自分のリポジトリを新しく作りたい場合は、[8章](#8-リポジトリを作る)を参照してください。
+自分のリポジトリを新しく作りたい場合は、[8 節](#8-リポジトリを作る)を参照してください。
 
 ---
 
@@ -353,7 +353,7 @@ nothing to commit, working tree clean
 3. **Public**（誰でも見られる）か **Private**（自分だけ）を選ぶ。
 4. **Add a README file** にチェックを入れる。
 5. **Create repository** をクリックする。
-6. 6章と同じ手順で clone する。
+6. 6 節と同じ手順で clone する。
 
 ```bash
 git clone https://github.com/自分のユーザー名/my-repository.git
@@ -412,7 +412,7 @@ git remote -v
 
 ## 9. main ブランチを保護する
 
-8章で作ったリポジトリでは、最初は main に直接 push できてしまいます。うっかり main を壊さないように、**リポジトリを作ったら最初に main ブランチの保護設定をする**ことをおすすめします。
+8 節で作ったリポジトリでは、最初は main に直接 push できてしまいます。うっかり main を壊さないように、**リポジトリを作ったら最初に main ブランチの保護設定をする**ことをおすすめします。
 
 GitHub の **ブランチ保護ルール**を設定すると、main への変更は**ブランチを作ってプルリクエスト（PR）を出し、マージする**という流れに限定されます。
 
