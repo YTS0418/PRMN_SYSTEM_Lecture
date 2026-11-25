@@ -1,8 +1,8 @@
 # 06. CUI と GUI の使い分け
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
 
-← 前へ [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+← 前へ [04. GUI VSCode 編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ 編](./05_GUI_IntelliJ編.md)
 
 GUI は便利ですが、**すべての Git 操作ができるわけではありません**。この資料では、GUI でできない（やりにくい）操作と、GUI で困ったときに CUI に戻る方法をまとめます。
 
@@ -129,7 +129,7 @@ CUI でもできますが、GUI のほうが**ずっと分かりやすい**操�
 | 操作 | GUI が得意な理由 |
 |---|---|
 | **差分の確認** | 変更前・変更後を左右に並べて、色付きで見られる |
-| **コンフリクトの解決** | 3画面のエディタで、自分側・相手側・結果を見比べながらクリックで選べる |
+| **コンフリクトの解決** | 3 画面のエディタで、自分側・相手側・結果を見比べながらクリックで選べる |
 | **行単位のコミット** | ファイルの一部だけをコミットに含めるのが、クリックだけでできる（CUI は `git add -p` で対話的に選ぶ必要がある） |
 | **履歴グラフの閲覧** | ブランチの分かれ方をグラフで見て、クリックで中身を確認できる |
 | **PR のレビュー** | コードの横にコメントを書ける（GitHub の Web 画面や拡張機能） |
@@ -156,13 +156,13 @@ IntelliJ IDEA には、Git とは別に **Local History**（ローカル履歴�
 **使い方**：ファイル（またはフォルダ）を右クリック → **Local History** → **Show History** → 戻したい時点を選んで **Revert**。
 
 
-![IntelliJ IDEAのLocal History画面](../images/git/intellij/ij-99-01-local-history.png)
+![IntelliJ IDEA の Local History 画面](../images/git/intellij/ij-99-01-local-history.png)
 
 > [!WARNING]
 > Local History は**その PC の IntelliJ の中だけ**に残る一時的な記録です。期間が過ぎると消えるので、**大事な変更は必ずコミット**しましょう。VSCode では、エクスプローラーの **タイムライン** に「ファイルの保存」の履歴が残っていれば、同じように戻せる場合があります。
 
 ---
 
-← 前へ [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+← 前へ [04. GUI VSCode 編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ 編](./05_GUI_IntelliJ編.md)
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)

@@ -1,10 +1,10 @@
 # 00. Git 導入・初期設定
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
 
 次へ → [01. Git の仕組みと用語](./01_Gitの仕組みと用語.md)
 
-Git / GitHub を使い始めるための**最初の1回だけ**行う準備です。<br>終わったら、この資料はもう読まなくて大丈夫です（PC を買い替えたときなどに見返してください）。
+Git / GitHub を使い始めるための**最初の 1 回だけ**行う準備です。<br>終わったら、この資料はもう読まなくて大丈夫です（PC を買い替えたときなどに見返してください）。
 
 ## Git 資料の構成
 
@@ -16,9 +16,9 @@ Git / GitHub を使い始めるための**最初の1回だけ**行う準備で�
 | [01 Git の仕組みと用語](./01_Gitの仕組みと用語.md) | Git とは何か、用語、データの流れ |
 | [02 CUI 基本編](./02_CUI基本編.md) | 毎日の作業（add / commit / push / pull / ブランチ） |
 | [03 CUI 応用編](./03_CUI応用編.md) | main への追従、取り消し、プルリクエスト |
-| [04 GUI VSCode編](./04_GUI_VSCode編.md) | VSCode のボタン操作で同じことをする |
-| [05 GUI IntelliJ編](./05_GUI_IntelliJ編.md) | IntelliJ IDEA のボタン操作で同じことをする |
-| [06 CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md) | GUI でできないこと・困ったときの戻り方 |
+| [04 GUI VSCode 編](./04_GUI_VSCode編.md) | VSCode のボタン操作で同じことをする |
+| [05 GUI IntelliJ 編](./05_GUI_IntelliJ編.md) | IntelliJ IDEA のボタン操作で同じことをする |
+| [06 CUI と GUI の使い分け](./06_CUIとGUIの使い分け.md) | GUI でできないこと・困ったときの戻り方 |
 
 > [!NOTE]
 > **CUI と GUI の関係について**<br>
@@ -41,15 +41,15 @@ Git / GitHub を使い始めるための**最初の1回だけ**行う準備で�
     - [5-2. ターミナル（Mac）](#5-2-ターミナルmac)
     - [5-3. VSCode](#5-3-vscode)
     - [5-4. IntelliJ IDEA](#5-4-intellij-idea)
-      - [方法1：ブラウザでログイン（おすすめ）](#方法1ブラウザでログインおすすめ)
-      - [方法2：PAT でログイン（方法1がうまくいかない場合）](#方法2pat-でログイン方法1がうまくいかない場合)
+      - [方法 1：ブラウザでログイン（おすすめ）](#方法-1ブラウザでログインおすすめ)
+      - [方法 2：PAT でログイン（方法 1 がうまくいかない場合）](#方法-2pat-でログイン方法-1-がうまくいかない場合)
   - [6. リポジトリを clone する](#6-リポジトリを-clone-する)
     - [ターミナルの場合](#ターミナルの場合)
     - [VSCode / IntelliJ の場合](#vscode--intellij-の場合)
   - [7. 動作確認](#7-動作確認)
   - [8. リポジトリを作る](#8-リポジトリを作る)
-    - [方法1：GitHub で作って clone する（おすすめ）](#方法1github-で作って-clone-するおすすめ)
-    - [方法2：手元のフォルダを Git 管理にして push する](#方法2手元のフォルダを-git-管理にして-push-する)
+    - [方法 1：GitHub で作って clone する（おすすめ）](#方法-1github-で作って-clone-するおすすめ)
+    - [方法 2：手元のフォルダを Git 管理にして push する](#方法-2手元のフォルダを-git-管理にして-push-する)
     - [作成できたか確認する](#作成できたか確認する)
   - [9. main ブランチを保護する](#9-main-ブランチを保護する)
     - [設定手順](#設定手順)
@@ -77,18 +77,18 @@ Git の設定（[4 節](#4-名前とメールアドレスの設定)）で **GitH
 1. https://github.com を開き、**Sign up** をクリックする。
 2. **メールアドレス**・パスワード・ユーザー名を入力する。
 3. 認証パズルを解き、メールに届く**確認コード**を入力する。
-4. アンケート画面などは「Skip」でOK。
+4. アンケート画面などは「Skip」で OK。
 5. 作成したら、**ユーザー名**と**登録したメールアドレス**を控えておく。
 
 > [!NOTE]
 > **メールアドレスを公開したくない場合**<br>
-> GitHub の **Settings → Emails** で「Keep my email addresses private」にチェックを入れると、`ユーザー名@users.noreply.github.com` 形式の非公開用アドレスが発行されます。4 節ではこのアドレスを使ってもOKです。
+> GitHub の **Settings → Emails** で「Keep my email addresses private」にチェックを入れると、`ユーザー名@users.noreply.github.com` 形式の非公開用アドレスが発行されます。4 節ではこのアドレスを使っても OK です。
 
 ---
 
 ## 3. Git のインストール
 
-まず、すでにインストールされているか確認します。ターミナル（Windows は PowerShell）で次を実行し、バージョンが表示されればインストール済みです（[4 節](#4-名前とメールアドレスの設定)へ進んでOK）。
+まず、すでにインストールされているか確認します。ターミナル（Windows は PowerShell）で次を実行し、バージョンが表示されればインストール済みです（[4 節](#4-名前とメールアドレスの設定)へ進んで OK）。
 
 ```bash
 git --version
@@ -100,7 +100,7 @@ git --version
 
 1. 公式サイト https://git-scm.com/download/win を開く（自動でダウンロードが始まります。始まらない場合は「Click here to download manually」をクリック）。
 2. ダウンロードした `Git-x.x.x-64-bit.exe` を実行する。
-3. インストーラの画面は基本的にすべて **「Next」** のままでOK。最後に「Install」→「Finish」をクリック。
+3. インストーラの画面は基本的にすべて **「Next」** のままで OK。最後に「Install」→「Finish」をクリック。
 4. **開いているターミナル／VSCode／IntelliJ をいったんすべて閉じて、開き直す**（開き直さないと認識されません）。
 5. `git --version` でバージョンが表示されれば完了。
 
@@ -112,13 +112,13 @@ git --version
 
 ### Mac の場合
 
-**方法A：Xcode Command Line Tools（一番かんたん・おすすめ）**
+**方法 A：Xcode Command Line Tools（一番かんたん・おすすめ）**
 
 1. ターミナルで `git --version` を実行する。
 2. 未インストールの場合は「コマンドライン・デベロッパ・ツールが必要です」というダイアログが出るので **「インストール」** をクリックする（出ない場合は `xcode-select --install` を実行）。
 3. 数分待ち、再度 `git --version` でバージョンが表示されれば完了。
 
-**方法B：Homebrew を使う**
+**方法 B：Homebrew を使う**
 
 ```bash
 brew install git
@@ -242,7 +242,7 @@ Password for 'https://...@github.com': ← ここにトークンを貼り付け�
 
 **パスワードではなくトークンを貼り付けます**（入力しても画面には何も表示されませんが、貼り付けられています）。
 
-3. Mac では **Keychain に保存**され、2回目以降は入力不要です。保存されない場合は次を確認します。
+3. Mac では **Keychain に保存**され、2 回目以降は入力不要です。保存されない場合は次を確認します。
 
 ```bash
 git config --global credential.helper               # osxkeychain と表示されればOK
@@ -259,7 +259,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 2. **「GitHub でサインイン」**（Sign in with GitHub）を選ぶ。
    - 出てこない場合は、ソース管理で push / 同期を実行すると「GitHub にサインインしますか？」と出るので **許可** する。<br>
    ![サインイン](../images/git/setup/setup-05-01-vscode-signin-02.png)
-   ![GitHubでサインイン](../images/git/setup/setup-05-01-vscode-signin-03.png)
+   ![GitHub でサインイン](../images/git/setup/setup-05-01-vscode-signin-03.png)
 3. ブラウザが開くので GitHub にログインし、**Authorize Visual Studio Code** をクリックする。
    ![Authorize Visual Studio Code](../images/git/setup/setup-05-01-vscode-signin-04.png)
    ![Authorize Visual Studio Code](../images/git/setup/setup-05-01-vscode-signin-05.png)
@@ -271,7 +271,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 
 ### 5-4. IntelliJ IDEA
 
-#### 方法1：ブラウザでログイン（おすすめ）
+#### 方法 1：ブラウザでログイン（おすすめ）
 
 1. 設定画面を開く。
    - **Windows**：`File` → `Settings`（`Ctrl + ,`）
@@ -283,7 +283,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 
 ![IntelliJ IDEA での GitHub へのログイン](../images/git/setup/setup-05-02-intellij-github-account.png)
 
-#### 方法2：PAT でログイン（方法1がうまくいかない場合）
+#### 方法 2：PAT でログイン（方法 1 がうまくいかない場合）
 
 1. [5-0](#5-0-personal-access-token-pat-の発行手順) の手順で PAT を発行する（スコープは `repo`・`gist`・`read:org`）。
 2. 手順 3 で **Log In with Token...** を選ぶ。
@@ -293,7 +293,7 @@ git config --global credential.helper osxkeychain   # 何も表示されない�
 
 ## 6. リポジトリを clone する
 
-GitHub 上のリポジトリを、自分の PC に丸ごとコピーします（**最初に1回だけ**）。
+GitHub 上のリポジトリを、自分の PC に丸ごとコピーします（**最初に 1 回だけ**）。
 
 ### ターミナルの場合
 
@@ -314,7 +314,7 @@ clone する URL は、GitHub のリポジトリページの緑色の **Code** �
 
 ### VSCode / IntelliJ の場合
 
-ボタン操作で clone することもできます。手順はそれぞれ [04 VSCode編](./04_GUI_VSCode編.md#2-clone-する) / [05 IntelliJ編](./05_GUI_IntelliJ編.md#2-clone-する) を参照してください。
+ボタン操作で clone することもできます。手順はそれぞれ [04 VSCode 編](./04_GUI_VSCode編.md#2-clone-する) / [05 IntelliJ 編](./05_GUI_IntelliJ編.md#2-clone-する) を参照してください。
 
 ---
 
@@ -339,14 +339,14 @@ nothing to commit, working tree clean
 
 ## 8. リポジトリを作る
 
-リポジトリを新しく作る方法です。作り方は2通りあります。迷ったら**方法1**を選んでください。
+リポジトリを新しく作る方法です。作り方は 2 通りあります。迷ったら**方法 1** を選んでください。
 
 | 方法 | 向いているケース |
 | --- | --- |
-| 方法1：GitHub で作って clone する | これから新しく始める |
-| 方法2：手元のフォルダを Git 管理にして push する | すでに手元にあるフォルダ・プログラムを GitHub に上げたい |
+| 方法 1：GitHub で作って clone する | これから新しく始める |
+| 方法 2：手元のフォルダを Git 管理にして push する | すでに手元にあるフォルダ・プログラムを GitHub に上げたい |
 
-### 方法1：GitHub で作って clone する（おすすめ）
+### 方法 1：GitHub で作って clone する（おすすめ）
 
 1. GitHub 右上の **＋** → **New repository** をクリックする。
 2. **Repository name** にリポジトリの名前（例：`my-repository`）を入力する。
@@ -360,13 +360,13 @@ git clone https://github.com/自分のユーザー名/my-repository.git
 cd my-repository
 ```
 
-### 方法2：手元のフォルダを Git 管理にして push する
+### 方法 2：手元のフォルダを Git 管理にして push する
 
 すでにあるフォルダを、あとから Git 管理にする方法です。
 
 **① GitHub に空のリポジトリを作る**
 
-方法1の手順1〜3と同じですが、**README などのチェックは入れずに**（空のまま）Create repository します。
+方法 1 の手順 1〜3 と同じですが、**README などのチェックは入れずに**（空のまま）Create repository します。
 
 **② 手元のフォルダで Git を始める**
 
@@ -439,10 +439,10 @@ main に直接 push しようとすると、次のようにエラーになりま
 remote: error: GH013: Repository rule violations found for refs/heads/main.
 ```
 
-変更したいときは、ブランチを作って push し、GitHub 上で PR を作成してマージします（手順は [02 CUI基本編](./02_CUI基本編.md) 以降で学びます）。
+変更したいときは、ブランチを作って push し、GitHub 上で PR を作成してマージします（手順は [02 CUI 基本編](./02_CUI基本編.md) 以降で学びます）。
 
 > [!TIP]
-> **自分ひとりのリポジトリでは「承認（Require approvals）」は入れなくてOK** <br>自分で出した PR は自分では承認できないため、必須にするとマージできなくなります。チームで開発するときに、レビュー担当者の承認を必須にしましょう。
+> **自分ひとりのリポジトリでは「承認（Require approvals）」は入れなくて OK** <br>自分で出した PR は自分では承認できないため、必須にするとマージできなくなります。チームで開発するときに、レビュー担当者の承認を必須にしましょう。
 
 > [!WARNING]
 > **Private リポジトリでは、無料プランだとルールが使えない場合があります** <br>設定画面に有料プランの案内が出たときは、Public リポジトリにするか、「main に直接 push しない」ことを自分で守りましょう。
@@ -451,4 +451,4 @@ remote: error: GH013: Repository rule violations found for refs/heads/main.
 
 次へ → [01. Git の仕組みと用語](./01_Gitの仕組みと用語.md)
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)

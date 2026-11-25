@@ -1,8 +1,8 @@
-# 03. Dockerの基本操作
+# 03. Docker の基本操作
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
-[← 前へ：02 Docker導入](02_Docker導入.md) ｜ [次へ：04 Docker Compose入門 →](04_Docker_Compose入門.md)
+[← 前へ：02 Docker 導入](02_Docker導入.md) ｜ [次へ：04 Docker Compose 入門 →](04_Docker_Compose入門.md)
 
 ## この章のゴール
 - `docker run` で PostgreSQL のコンテナを起動し、`psql` で接続できる
@@ -199,6 +199,6 @@ docker volume rm grades-pgdata      # 削除（中のデータも消える）
 
 ---
 
-[← 前へ：02 Docker導入](02_Docker導入.md) ｜ [次へ：04 Docker Compose入門 →](04_Docker_Compose入門.md)
+[← 前へ：02 Docker 導入](02_Docker導入.md) ｜ [次へ：04 Docker Compose 入門 →](04_Docker_Compose入門.md)
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)

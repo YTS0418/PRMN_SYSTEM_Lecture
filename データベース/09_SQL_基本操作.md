@@ -198,7 +198,7 @@ LIMIT 3;
 > **`ORDER BY` を書かないと、行の順序は保証されません**。「普段は入れた順に出るから」と期待してはいけません。
 
 > [!TIP]
-> PostgreSQL では、**NULL は最も大きい値として扱われます**。そのため、`ORDER BY score DESC` では**NULL の行が先頭**に来ます。上の例のように `WHERE score IS NOT NULL` で除くか、`ORDER BY score DESC NULLS LAST` と指定します。
+> PostgreSQL では、**NULL は最も大きい値として扱われます**。そのため、`ORDER BY score DESC` では **NULL の行が先頭**に来ます。上の例のように `WHERE score IS NOT NULL` で除くか、`ORDER BY score DESC NULLS LAST` と指定します。
 
 ## 7. 式と CASE
 
@@ -214,7 +214,7 @@ SELECT student_id, course_id, score,
 FROM enrollments;
 ```
 
-`CASE` は、Java の `if - else if - else` に近い式です。この例は、4層アーキテクチャ編の `履修.合格している()`（60 点以上が合格）と同じ判定を、SQL で書いたものです。
+`CASE` は、Java の `if - else if - else` に近い式です。この例は、4 層アーキテクチャ編の `履修.合格している()`（60 点以上が合格）と同じ判定を、SQL で書いたものです。
 
 > [!TIP]
 > **同じルールが、Java（Domain 層）と SQL の両方に現れる**ことになります。合格点を変える場合に両方を直す必要が出てきます。こうした重複を避けるため、判定は Domain 層に集め、SQL は**データの取り出しに専念させる**設計が基本です。

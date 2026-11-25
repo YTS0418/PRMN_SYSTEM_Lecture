@@ -1,8 +1,8 @@
-# 02. Docker導入
+# 02. Docker 導入
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
-[← 前へ：01 Dockerとは](01_Dockerとは.md) ｜ [次へ：03 Dockerの基本操作 →](03_Dockerの基本操作.md)
+[← 前へ：01 Docker とは](01_Dockerとは.md) ｜ [次へ：03 Docker の基本操作 →](03_Dockerの基本操作.md)
 
 ## この章のゴール
 - Docker Desktop をインストールして、起動を確認できる
@@ -120,6 +120,6 @@ docker compose version
 
 ---
 
-[← 前へ：01 Dockerとは](01_Dockerとは.md) ｜ [次へ：03 Dockerの基本操作 →](03_Dockerの基本操作.md)
+[← 前へ：01 Docker とは](01_Dockerとは.md) ｜ [次へ：03 Docker の基本操作 →](03_Dockerの基本操作.md)
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)

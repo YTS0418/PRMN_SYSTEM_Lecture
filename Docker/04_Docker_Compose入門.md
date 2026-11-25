@@ -1,8 +1,8 @@
-# 04. Docker Compose入門
+# 04. Docker Compose 入門
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
-[← 前へ：03 Dockerの基本操作](03_Dockerの基本操作.md) ｜ [次へ：05 Dockerfileとイメージ作成 →](05_Dockerfileとイメージ作成.md)
+[← 前へ：03 Docker の基本操作](03_Dockerの基本操作.md) ｜ [次へ：05 Dockerfile とイメージ作成 →](05_Dockerfileとイメージ作成.md)
 
 ## この章のゴール
 - `docker run` の長いオプションを、`compose.yaml` に書き写せる
@@ -236,7 +236,7 @@ cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example 
 > **セキュリティの視点**：`.env` を **一度でも Git にコミットすると、あとで消しても履歴に残ります**。GitHub に push したあとでは、パスワードを変えるしかありません。**`.gitignore` に `.env` を書いてから**、`.env` を作ってください。また、`.env.example` には**本物のパスワードを書きません**（見本として、`changeme` のような値も避け、空にします）。`${POSTGRES_PASSWORD}` が空のままだと、`compose.yaml` の `:?` の指定により、Compose はエラーを表示して起動しません。
 
 > [!NOTE]
-> アプリ側（Spring Boot）で `DB_PASSWORD` を環境変数で渡す方法は、[4層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)にあります。考え方は同じです。
+> アプリ側（Spring Boot）で `DB_PASSWORD` を環境変数で渡す方法は、[4 層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)にあります。考え方は同じです。
 
 ## 7. コマンド一覧
 
@@ -268,6 +268,6 @@ cp .env.example .env     # Windows の PowerShell なら Copy-Item .env.example 
 
 ---
 
-[← 前へ：03 Dockerの基本操作](03_Dockerの基本操作.md) ｜ [次へ：05 Dockerfileとイメージ作成 →](05_Dockerfileとイメージ作成.md)
+[← 前へ：03 Docker の基本操作](03_Dockerの基本操作.md) ｜ [次へ：05 Dockerfile とイメージ作成 →](05_Dockerfileとイメージ作成.md)
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)

@@ -1,8 +1,8 @@
-# 05. GUI IntelliJ編
+# 05. GUI IntelliJ 編
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
 
-← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ VSCode を使う人は → [04. GUI VSCode編](./04_GUI_VSCode編.md) ｜ 次へ → [06. CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)
+← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ VSCode を使う人は → [04. GUI VSCode 編](./04_GUI_VSCode編.md) ｜ 次へ → [06. CUI と GUI の使い分け](./06_CUIとGUIの使い分け.md)
 
 [02 CUI 基本編](./02_CUI基本編.md)・[03 CUI 応用編](./03_CUI応用編.md)でコマンドで行った操作を、**IntelliJ IDEA のボタン操作**で行います。各操作の見出しの下に「**CUI でいうと**」を書いているので、コマンドと見比べながら進めてください。
 
@@ -15,7 +15,7 @@
 
 > [!NOTE]
 > **GUI で分からなくなったら**
-> 左下の **ターミナル** を開いて `git status` を実行しましょう。今の状態がはっきり分かります。IntelliJ ではできない操作の一覧は [06 CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md) にまとめています。
+> 左下の **ターミナル** を開いて `git status` を実行しましょう。今の状態がはっきり分かります。IntelliJ ではできない操作の一覧は [06 CUI と GUI の使い分け](./06_CUIとGUIの使い分け.md) にまとめています。
 
 ## 目次
 
@@ -35,7 +35,7 @@
     - [7-3. 未コミットの変更があるときのダイアログ](#7-3-未コミットの変更があるときのダイアログ)
 8. [最新の main を取り込む（マージ）](#8-最新の-main-を取り込むマージ)
 9. [コンフリクトを解決する](#9-コンフリクトを解決する)
-    - [マージ... の3画面エディタ](#マージ-の3画面エディタ)
+    - [マージ... の 3 画面エディタ](#マージ-の-3-画面エディタ)
     - [解決したら](#解決したら)
 10. [取り消す](#10-取り消す)
     - [自分だけのブランチで push を取り消す（force push）](#自分だけのブランチで-push-を取り消すforce-push)
@@ -51,7 +51,7 @@
 
 ## 1. 画面の見方
 
-Git の操作は、主に次の4か所で行います。
+Git の操作は、主に次の 4 か所で行います。
 
 ```mermaid
 flowchart LR
@@ -71,12 +71,12 @@ flowchart LR
 | ③ Git ツールウィンドウ | 左下の Git アイコン（`Alt + 9` / Mac は `⌘ + 9`） | 履歴（Log）、コミットの右クリックで取り消し操作 | `log` /  `revert` / `reset` |
 | ④ メインメニュー | 左上の **☰** → **Git** | すべての Git 操作 | — |
 
-![IntelliJ IDEAのGit操作画面](../images/git/intellij/ij-01-01-overview.png)
+![IntelliJ IDEA の Git 操作画面](../images/git/intellij/ij-01-01-overview.png)
 
-![IntelliJ IDEAのGitメニュー](../images/git/intellij/ij-01-02-git-menu.png)
+![IntelliJ IDEA の Git メニュー](../images/git/intellij/ij-01-02-git-menu.png)
 
 > [!TIP]
-> **ボタンが見つからないとき**は、`Shift` を2回押して出る **どこでも検索** で `push` や `branch` などと検索すると、操作を探せます。
+> **ボタンが見つからないとき**は、`Shift` を 2 回押して出る **どこでも検索** で `push` や `branch` などと検索すると、操作を探せます。
 
 ### ファイルの色の意味
 
@@ -101,9 +101,9 @@ flowchart LR
 2. 左の **GitHub** を選ぶと、登録したアカウントのリポジトリ一覧が表示される（URL を直接入力する場合は **リポジトリー URL** を選ぶ）。
 3. 対象のリポジトリを選び、**ディレクトリ**（保存先）を指定して **クローン** をクリックする。
 
-![IntelliJ IDEAのウェルカム画面（リポジトリのクローン）](../images/git/intellij/ij-02-01-welcome-clone.png)
+![IntelliJ IDEA のウェルカム画面（リポジトリのクローン）](../images/git/intellij/ij-02-01-welcome-clone.png)
 
-![IntelliJ IDEAのリポジトリのクローン画面](../images/git/intellij/ij-02-02-clone-dialog.png)
+![IntelliJ IDEA のリポジトリのクローン画面](../images/git/intellij/ij-02-02-clone-dialog.png)
 
 > [!WARNING]
 > OneDrive などの同期フォルダの中は避けましょう（[00 導入編 6 節](./00_Git導入・初期設定.md#6-リポジトリを-clone-する)）。
@@ -120,11 +120,11 @@ flowchart LR
 - **変更**：変更したファイル
 - **バージョン管理外のファイル**：新しく作った、まだ Git 管理外のファイル
 
-![IntelliJ IDEAのCommitツールウィンドウ（変更済みファイルと未追跡ファイル）](../images/git/intellij/ij-03-01-commit-window.png)
+![IntelliJ IDEA の Commit ツールウィンドウ（変更済みファイルと未追跡ファイル）](../images/git/intellij/ij-03-01-commit-window.png)
 
 ファイルを**ダブルクリック**すると、**左に変更前・右に変更後**の差分が表示されます。
 
-![IntelliJ IDEAの差分ビュー（変更前と変更後）](../images/git/intellij/ij-03-02-diff-view.png)
+![IntelliJ IDEA の差分ビュー（変更前と変更後）](../images/git/intellij/ij-03-02-diff-view.png)
 
 > [!NOTE]
 > エディタの行番号の横にも、色の帯（緑：追加、青：変更、灰色の三角：削除）が表示されます。クリックすると、その場で差分の確認や取り消しができます。
@@ -144,9 +144,9 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 2. 下の **コミットメッセージ** 欄に内容を書く。
 3. **コミット** をクリックする（push まで行うなら **コミットしてプッシュ...**）。
 
-![IntelliJ IDEAのコミット対象ファイル選択画面](../images/git/intellij/ij-04-01-check-files.png)
+![IntelliJ IDEA のコミット対象ファイル選択画面](../images/git/intellij/ij-04-01-check-files.png)
 
-![IntelliJ IDEAのコミットメッセージ入力画面](../images/git/intellij/ij-04-02-commit-message.png)
+![IntelliJ IDEA のコミットメッセージ入力画面](../images/git/intellij/ij-04-02-commit-message.png)
 
 > [!NOTE]
 > **行単位でコミットする**：差分ビューで、変更ブロックの横にあるチェックボックスを外すと、その部分だけコミットから除外できます（CUI よりかんたんです）。
@@ -166,7 +166,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 1. 上部のブランチウィジェット → **プッシュ...**、または ☰ → `Git` → `プッシュ...`（`Ctrl + Shift + K` / Mac は `⌘ + Shift + K`）。
 2. 左に送るコミットの一覧、右にそのコミットで変わるファイルが表示される。内容を確認して **プッシュ** をクリックする。
 
-![IntelliJ IDEAのPushダイアログ](../images/git/intellij/ij-05-01-push-dialog.png)
+![IntelliJ IDEA の Push ダイアログ](../images/git/intellij/ij-05-01-push-dialog.png)
 
 > [!NOTE]
 > **初めて push するブランチ**も、同じ プッシュ ダイアログでそのまま **プッシュ** をクリックすれば OK です（`-u origin ブランチ名` 相当の設定は自動で行われます）。ダイアログ内に **新規** と表示されます。
@@ -177,7 +177,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 - **プロジェクトを更新**（更新）は、今いるブランチに GitHub の最新を取り込みます。初回は方式を聞かれるので **マージ** を選びます。
 
-![IntelliJ IDEAのUpdate Projectダイアログ](../images/git/intellij/ij-05-02-update-project.png)
+![IntelliJ IDEA の Update Project ダイアログ](../images/git/intellij/ij-05-02-update-project.png)
 
 ### fetch する
 
@@ -196,7 +196,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 - 中央：コミットの一覧とグラフ
 - 右：選んだコミットで変更されたファイル
 
-![IntelliJ IDEAのGit Log画面](../images/git/intellij/ij-06-01-git-log.png)
+![IntelliJ IDEA の Git Log 画面](../images/git/intellij/ij-06-01-git-log.png)
 
 > [!NOTE]
 > 上部の検索欄や **ブランチ** / **ユーザー** / **日付** / **パス** のフィルターで、履歴を絞り込めます。
@@ -236,7 +236,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 未コミットの変更が切り替え先とぶつかる場合、次のダイアログが表示されます。
 
-![Gitチェックアウトの問題ダイアログ](../images/git/intellij/ij-07-04-smart-checkout.png)
+![Git チェックアウトの問題ダイアログ](../images/git/intellij/ij-07-04-smart-checkout.png)
 
 | 選択肢 | 何が起きるか | CUI でいうと | 使う場面 |
 |---|---|---|---|
@@ -245,7 +245,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 | **チェックアウトしない** | 切り替えをやめる | — | 迷ったとき（先にコミットする） |
 
 > [!WARNING]
-> **強制チェックアウト で破棄した変更は、Git では元に戻せません**（IntelliJ の **ローカル履歴** で救える場合があります → [06 CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)）。
+> **強制チェックアウト で破棄した変更は、Git では元に戻せません**（IntelliJ の **ローカル履歴** で救える場合があります → [06 CUI と GUI の使い分け](./06_CUIとGUIの使い分け.md)）。
 
 > [!NOTE]
 > スマートチェックアウト で使う退避方式（スタッシュ / シェルフ）は、☰ → `設定` → `バージョン管理` → `Git` の **Clean working tree using** で選べます。
@@ -263,7 +263,7 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 4. サブメニューから **'origin/main' を 'feature-login' にマージ** を選ぶ。
 5. コンフリクトがなければマージ完了。**プッシュ...** で push する。
 
-![origin/mainをfeature-loginにマージするメニュー](../images/git/intellij/ij-08-01-merge-origin-main.png)
+![origin/main を feature-login にマージするメニュー](../images/git/intellij/ij-08-01-merge-origin-main.png)
 
 > [!WARNING]
 > **向きに注意**：メニューの文字が「'取り込むブランチ' を '今いるブランチ' にマージ」になっているか必ず確認しましょう。
@@ -280,24 +280,24 @@ IntelliJ では、**ステージの代わりにチェックボックス**でコ�
 
 マージや 更新 でコンフリクトが起きると、**競合** ダイアログが表示されます。
 
-![IntelliJ IDEAの競合（Conflicts）ダイアログ](../images/git/intellij/ij-09-01-conflicts-dialog.png)
+![IntelliJ IDEA の競合（Conflicts）ダイアログ](../images/git/intellij/ij-09-01-conflicts-dialog.png)
 
 | ボタン | 意味 |
 |---|---|
 | **自分の変更を採用** | ファイル全体を自分側の内容にする |
 | **相手の変更を採用** | ファイル全体を相手側（取り込んだブランチ）の内容にする |
-| **マージ...** | 3画面のエディタで、箇所ごとに選ぶ（おすすめ） |
+| **マージ...** | 3 画面のエディタで、箇所ごとに選ぶ（おすすめ） |
 
-### マージ... の3画面エディタ
+### マージ... の 3 画面エディタ
 
 1. 対象ファイルを選び、**マージ...** をクリックする。
-2. 3つに分かれた画面が開く。
+2. 3 つに分かれた画面が開く。
    - 左：**自分の変更**（Your version）　／　中央：**結果**（保存される内容）　／　右：**相手の変更**（Their version）
 3. 各変更の横にある **»**（左の内容を採用）・**«**（右の内容を採用）・**×**（その変更を採用しない）をクリックして取り込む。中央の結果は直接編集もできる。
 4. 上部の **左を採用** / **右を採用** で、まとめて片方を採用することもできる。
 5. 内容を確認して **適用** をクリックする。
 
-![IntelliJ IDEAの3画面マージエディタ](../images/git/intellij/ij-09-02-merge-editor.png)
+![IntelliJ IDEA の 3 画面マージエディタ](../images/git/intellij/ij-09-02-merge-editor.png)
 
 ### 解決したら
 
@@ -329,7 +329,7 @@ IntelliJ は、**Git ツールウィンドウの ログ でコミットを右ク
 
 ![ロールバックイメージ画像](../images/git/intellij/ij-10-02-rollback.png)
 
-![Gitリセットイメージ画像](../images/git/intellij/ij-10-03-reset-dialog.png)
+![Git リセットイメージ画像](../images/git/intellij/ij-10-03-reset-dialog.png)
 
 > [!NOTE]
 > Reset のモードの意味は [03 応用編 4-3](./03_CUI応用編.md#4-3-コミットをなかったことにするresetpush-前のみ) と同じです（**Keep** は「未コミットの変更を残したまま、ぶつからない範囲で巻き戻す」モード）。まずは **Soft** を使いましょう。
@@ -342,7 +342,7 @@ IntelliJ は、**Git ツールウィンドウの ログ でコミットを右ク
 1. ログ で **現在のブランチをここまでリセット...**（または コミットを元に戻す...）で取り消す。
 2. **プッシュ...** を開き、**プッシュ** ボタンの横の ▼ → **強制プッシュ** を選ぶ（IntelliJ は自動で `--force-with-lease` 相当の安全な方法で上書きします）。
 
-![Pushイメージ画像](../images/git/intellij/ij-10-04-force-push.png)
+![Push イメージ画像](../images/git/intellij/ij-10-04-force-push.png)
 
 > [!WARNING]
 > main など他の人も使うブランチでは、強制プッシュ せずに **コミットを取り消す** を使いましょう。IntelliJ は初期設定で main への 強制プッシュ を禁止しています（`設定` → `バージョン管理` → `Git` の **保護されたブランチ**）。
@@ -354,16 +354,16 @@ IntelliJ は、**Git ツールウィンドウの ログ でコミットを右ク
 > [!NOTE]
 > **CUI でいうと**：`git stash -u` / `git stash pop`（[03 応用編 5 節](./03_CUI応用編.md#5-作業を一時的に退避するstash)）
 
-IntelliJ には、Git の **スタッシュ** と、IntelliJ 独自の **シェルフ** の2つの退避方法があります。どちらでもかまいませんが、CUI と対応させたい場合はスタッシュを使いましょう。
+IntelliJ には、Git の **スタッシュ** と、IntelliJ 独自の **シェルフ** の 2 つの退避方法があります。どちらでもかまいませんが、CUI と対応させたい場合はスタッシュを使いましょう。
 
 ### スタッシュ
 
 - **退避**：☰ → `Git` → `未コミットの変更` → **変更をスタッシュ...** → メッセージを入力して **スタッシュを作成**
 - **戻す**：☰ → `Git` → `未コミットの変更` → **スタッシュ解除...** → 一覧から選んで **スタッシュをポップ**（戻して削除）または **スタッシュを適用**（戻して残す）
 
-![スタッシュのイメージ画像1](../images/git/intellij/ij-11-01-stash-changes.png)
+![スタッシュのイメージ画像 1](../images/git/intellij/ij-11-01-stash-changes.png)
 
-![スタッシュのイメージ画像2](../images/git/intellij/ij-11-02-unstash-dialog.png)
+![スタッシュのイメージ画像 2](../images/git/intellij/ij-11-02-unstash-dialog.png)
 
 ### シェルフ（IntelliJ 独自）
 
@@ -387,7 +387,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. ☰ → `Git` → `GitHub` → **プルリクエストを作成...**（または左端の **プルリクエスト** アイコン → **＋**）を選ぶ。
 3. 取り込み先（**main**）と自分のブランチ、タイトル・説明を入力し、**プルリクエストを作成** をクリックする。
 
-![PRを作るイメージ画像](../images/git/intellij/ij-12-01-create-pr.png)
+![PR を作るイメージ画像](../images/git/intellij/ij-12-01-create-pr.png)
 
 ### PR をレビューする
 
@@ -395,10 +395,10 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 2. 変更ファイルをダブルクリックすると差分が開き、行の横の **＋**（吹き出し）からコメントを書ける。
 3. **チェックアウト** で PR のブランチに切り替えると、手元で動かして確認できる。
 
-![PRをレビューするイメージ画像](../images/git/intellij/ij-12-02-review-pr.png)
+![PR をレビューするイメージ画像](../images/git/intellij/ij-12-02-review-pr.png)
 
 > [!TIP]
-> マージ方式の選択やブランチの削除は、Web 画面のほうが分かりやすいです。慣れるまでは **作成は IntelliJ でも Web でもOK、レビューとマージは Web** がおすすめです。
+> マージ方式の選択やブランチの削除は、Web 画面のほうが分かりやすいです。慣れるまでは **作成は IntelliJ でも Web でも OK、レビューとマージは Web** がおすすめです。
 
 ---
 
@@ -425,7 +425,7 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 | `git revert` | ログ で右クリック → **コミットを取り消す** |
 | `git push --force-with-lease` | プッシュ ダイアログの ▼ → **強制プッシュ** |
 | `git stash` / `pop` | ☰ → Git → 未コミットの変更 → **変更をスタッシュ...** / **スタッシュ解除...** |
-| `git reflog` など | できない → [06 CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md) |
+| `git reflog` など | できない → [06 CUI と GUI の使い分け](./06_CUIとGUIの使い分け.md) |
 
 ### メニュー名の英和対応表
 
@@ -450,6 +450,6 @@ PR は **GitHub の Web 画面で操作するのが基本**です（手順は 03
 
 ---
 
-← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ VSCode を使う人は → [04. GUI VSCode編](./04_GUI_VSCode編.md) ｜ 次へ → [06. CUIとGUIの使い分け](./06_CUIとGUIの使い分け.md)
+← 前へ [03. CUI 応用編](./03_CUI応用編.md) ｜ VSCode を使う人は → [04. GUI VSCode 編](./04_GUI_VSCode編.md) ｜ 次へ → [06. CUI と GUI の使い分け](./06_CUIとGUIの使い分け.md)
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)

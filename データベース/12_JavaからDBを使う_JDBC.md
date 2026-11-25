@@ -1,4 +1,4 @@
-# 12. JavaからDBを使う（JDBC）
+# 12. Java から DB を使う（JDBC）
 
 [📖 データベースの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
@@ -49,7 +49,7 @@ flowchart LR
 | **JDBC API** | `Connection`、`PreparedStatement`、`ResultSet` など。JDK に含まれる |
 | **JDBC ドライバ** | データベースごとのライブラリ。PostgreSQL では「PostgreSQL JDBC Driver」 |
 
-ライブラリは、プロジェクトの依存関係に追加します（Maven の場合）。使うのは `spring-jdbc` だけで、**Spring Boot は必要ありません**（Spring Boot は [4層アーキテクチャ編 07 章](../4層アーキテクチャ/07_Spring_Bootで書き直す.md) で扱います）。
+ライブラリは、プロジェクトの依存関係に追加します（Maven の場合）。使うのは `spring-jdbc` だけで、**Spring Boot は必要ありません**（Spring Boot は [4 層アーキテクチャ編 07 章](../4層アーキテクチャ/07_Spring_Bootで書き直す.md) で扱います）。
 
 ```xml
 <dependency>
@@ -68,7 +68,7 @@ flowchart LR
 > 4 層のうち、データベースを直接扱うのは **Infrastructure 層だけ**です。`JdbcClient` や `java.sql` を import してよいのは、`dataaccess.jdbc` パッケージの中だけ、という約束にします。
 
 > [!NOTE]
-> サンプルのクラス名・メソッド名・変数名は日本語です（4層アーキテクチャ編 04 章）。たとえば `StudentRepository` を実装する `JdbcStudentRepository` は、`学生リポジトリ` を実装する `Jdbc学生リポジトリ` です。テーブル名・列名は英語のままなので、SQL はこの資料のこれまでの章と同じです。
+> サンプルのクラス名・メソッド名・変数名は日本語です（4 層アーキテクチャ編 04 章）。たとえば `StudentRepository` を実装する `JdbcStudentRepository` は、`学生リポジトリ` を実装する `Jdbc学生リポジトリ` です。テーブル名・列名は英語のままなので、SQL はこの資料のこれまでの章と同じです。
 
 ## 2. 接続する
 
@@ -107,7 +107,7 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 
 ### 参考：Spring Boot を使う場合
 
-この章では Spring Boot を使わないので、`DataSource` と `JdbcClient` を Java のコードで作りました。**Spring Boot を使う場合は、接続設定を Java で書きません**。`src/main/resources/application.properties` に次のように書くと、Spring Boot が `DataSource`（コネクションプール：11 節）と `JdbcClient` を自動で用意し、リポジトリのコンストラクタに渡してくれます（[4層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)）。
+この章では Spring Boot を使わないので、`DataSource` と `JdbcClient` を Java のコードで作りました。**Spring Boot を使う場合は、接続設定を Java で書きません**。`src/main/resources/application.properties` に次のように書くと、Spring Boot が `DataSource`（コネクションプール：11 節）と `JdbcClient` を自動で用意し、リポジトリのコンストラクタに渡してくれます（[4 層アーキテクチャ編 07 章 4 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)）。
 
 ```properties
 spring.datasource.driver-class-name=org.postgresql.Driver
@@ -148,7 +148,7 @@ public class Jdbc学生リポジトリ implements 学生リポジトリ {
 }
 ```
 
-- `JdbcClient` は、コンストラクタの引数で受け取ります（**コンストラクタインジェクション**）。誰が `JdbcClient` を作るか（8 節の `Main`、または Spring Boot）を、リポジトリは知らなくて済みます（4層アーキテクチャ編 03 章）
+- `JdbcClient` は、コンストラクタの引数で受け取ります（**コンストラクタインジェクション**）。誰が `JdbcClient` を作るか（8 節の `Main`、または Spring Boot）を、リポジトリは知らなくて済みます（4 層アーキテクチャ編 03 章）
 - SQL は、**テキストブロック**（`"""` で囲む複数行の文字列：[Java 入門 02 章](../付録/Java入門/02_基本文法・変数と型.md)）で変数に入れてから、`sql(...)` に渡します。SQL が長くなっても、改行して読みやすく書けます
 
 > [!NOTE]
@@ -165,7 +165,7 @@ SQL の種類と欲しい結果に合わせて、最後に呼ぶメソッドを�
 
 ポイントです。
 
-- 「**行（`rs`）→ Domain のオブジェクト（`学生`）**」の変換を、Infrastructure 層が担当する。`ResultSet` は、この層から外に出さない（4層アーキテクチャ編 02 章・04 章）
+- 「**行（`rs`）→ Domain のオブジェクト（`学生`）**」の変換を、Infrastructure 層が担当する。`ResultSet` は、この層から外に出さない（4 層アーキテクチャ編 02 章・04 章）
 - `(rs, rowNum) -> ...` は、1 行を 1 つのオブジェクトに変換する処理。行を進める処理は `JdbcClient` が行う
 - 列は、名前（`rs.getString("name")`）か、番号（1 から）で読み取る。名前のほうが間違いにくい
 
@@ -232,7 +232,7 @@ SELECT * FROM students WHERE name = '' OR '1'='1'
 
 ## 5. 行を追加する：採番された ID の受け取り
 
-`学生リポジトリ.保存する` は、学生を追加し、**採番された学生ID を持つ `学生`** を返します（4層アーキテクチャ編）。09 章の `RETURNING` を使います。
+`学生リポジトリ.保存する` は、学生を追加し、**採番された学生ID を持つ `学生`** を返します（4 層アーキテクチャ編）。09 章の `RETURNING` を使います。
 
 ```java
 @Override
@@ -273,14 +273,14 @@ ON CONFLICT (student_id, course_id, academic_year) DO UPDATE SET score = EXCLUDE
 | **読み取り** | `rs.getInt("score")` は、NULL のとき **0 を返す**（0 点と区別できない） | `rs.getObject("score", Integer.class)`（NULL なら `null`） |
 | **書き込み** | `null` を渡すときは、列の型を明示すると確実 | `.param("score", 点数, Types.SMALLINT)`（`null` も渡せる） |
 
-4層アーキテクチャ編で `履修` の `点数` を `Integer` にしていたのは、このためです。Java 側の `null`（履修中）と、データベース側の `NULL` を、Infrastructure 層で対応させます。
+4 層アーキテクチャ編で `履修` の `点数` を `Integer` にしていたのは、このためです。Java 側の `null`（履修中）と、データベース側の `NULL` を、Infrastructure 層で対応させます。
 
 > [!WARNING]
 > `getInt` を使うと、**履修中の行が 0 点として読み込まれます**。合否の判定は誤り（0 点＝不合格）になるので、気づきにくいバグになります。
 
 ## 7. リポジトリを実装する
 
-4層アーキテクチャ編 06 章で読んだ `メモリ…リポジトリ` に対応する、**データベース版**を Infrastructure 層（`dataaccess.jdbc` パッケージ）に追加します。
+4 層アーキテクチャ編 06 章で読んだ `メモリ…リポジトリ` に対応する、**データベース版**を Infrastructure 層（`dataaccess.jdbc` パッケージ）に追加します。
 
 <img src="../images/database/diagram/cls-12-01-jdbc-repository.svg" alt="インタフェース「学生リポジトリ」を、step1 のメモリ版と、step2 の Jdbc 版が実装する関係" width="800">
 
@@ -336,7 +336,7 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 ```
 
 > [!NOTE]
-> 4層アーキテクチャ編 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`usecase` の各クラスも `コンソール画面` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
+> 4 層アーキテクチャ編 03 章で「保存先を変えたいときに書き換えるのは、組み立てる場所の数行だけ」と説明したことが、ここで確認できます。**`usecase` の各クラスも `コンソール画面` も、1 行も変更していません**。これが、インタフェースを Domain 層に置き、コンストラクタで受け取るようにした効果です。
 
 ## 9. 例外の扱い
 
@@ -348,7 +348,7 @@ JdbcClient jdbcClient = JdbcClient.create(dataSource);
 | 外部キー、NOT NULL などの違反 | `DataIntegrityViolationException` | `FOREIGN KEY` / `NOT NULL` / `CHECK` |
 | SQL の書き間違い | `BadSqlGrammarException` | なし |
 
-ただし、これらは Spring の例外です。Application 層に Spring を知らせないよう、**業務で意味のある例外は Infrastructure 層で変換**します。`保存失敗例外` は Domain 層に置き、どの層からも使えるようにします（4層アーキテクチャ編 03 章）。
+ただし、これらは Spring の例外です。Application 層に Spring を知らせないよう、**業務で意味のある例外は Infrastructure 層で変換**します。`保存失敗例外` は Domain 層に置き、どの層からも使えるようにします（4 層アーキテクチャ編 03 章）。
 
 ```java
 try {
@@ -370,7 +370,7 @@ try {
 
 今回のサンプルのユースケース（学生の登録、成績の登録）は、**どれも更新が 1 回だけ**です。自動コミットで足りるので、step2 ではトランザクションの処理を書きません。
 
-ただし、「学生と最初の履修を同時に登録する」のような、**複数の更新が必要なユースケース**では、トランザクションの境界を **Application 層**で決める必要があります（11 章 8 節）。Spring では、メソッドに **`@Transactional`** を付けるだけで済みます（4層アーキテクチャ編 07 章）。
+ただし、「学生と最初の履修を同時に登録する」のような、**複数の更新が必要なユースケース**では、トランザクションの境界を **Application 層**で決める必要があります（11 章 8 節）。Spring では、メソッドに **`@Transactional`** を付けるだけで済みます（4 層アーキテクチャ編 07 章）。
 
 ## 11. 接続の使い回し（コネクションプール）
 
@@ -458,7 +458,7 @@ JDBC のメソッドは、失敗すると **`SQLException`**（チェック例�
 | **Infrastructure** | `SQLException` を**捕まえる**。独自の**実行時例外**（例：`保存失敗例外`）に包んで投げ直す |
 | **Application / Presentation** | `java.sql` を import しない。`SQLException` を**知らない** |
 
-`SQLException` のままだと、Application 層が「JDBC を使っている」ことを知ってしまい、依存の向きが崩れます（4層アーキテクチャ編 03 章）。
+`SQLException` のままだと、Application 層が「JDBC を使っている」ことを知ってしまい、依存の向きが崩れます（4 層アーキテクチャ編 03 章）。
 
 制約に違反した場合は、`SQLException.getSQLState()` で原因を区別できます。
 

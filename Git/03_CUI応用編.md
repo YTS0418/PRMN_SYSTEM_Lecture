@@ -1,8 +1,8 @@
 # 03. CUI 応用編
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
 
-← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode 編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ 編](./05_GUI_IntelliJ編.md)
 
 チーム開発で必ず出会う「main が先に進んでしまった」「間違えてコミット／push してしまった」「プルリクエストってどう使うの？」に対応できるようになることが目標です。
 
@@ -129,7 +129,7 @@ git push                     # ⑤ 取り込んだ結果を GitHub に送る
 ```
 
 > [!NOTE]
-> `git fetch` と `git merge origin/main` は、`git pull origin main` の1行にまとめることもできます。
+> `git fetch` と `git merge origin/main` は、`git pull origin main` の 1 行にまとめることもできます。
 
 > [!NOTE]
 > **なぜ `main` ではなく `origin/main`？**
@@ -156,7 +156,7 @@ git push
 - **PR を出す前**
 - PR に「This branch has conflicts」と表示されたとき
 
-こまめに合わせるほど、1回あたりのコンフリクトが小さくなります。
+こまめに合わせるほど、1 回あたりのコンフリクトが小さくなります。
 
 ---
 
@@ -197,7 +197,7 @@ git rebase --abort        # やめて元に戻す
 | 履歴 | 枝分かれとマージコミットが残る | 一直線になる |
 | 既存のコミット | そのまま | **作り直される**（コミット ID が変わる） |
 | push 済みのブランチで使うと | 普通に `git push` できる | **`git push --force-with-lease` が必要** |
-| コンフリクト解決 | 1回で済む | コミットごとに起きることがある |
+| コンフリクト解決 | 1 回で済む | コミットごとに起きることがある |
 | おすすめ | **初心者・チーム共有のブランチ** | 慣れた人が、自分だけのブランチで |
 
 > [!WARNING]
@@ -243,7 +243,7 @@ git commit --amend --no-edit              # メッセージはそのままで追
 git reset --soft HEAD~1    # 直前の1コミットを取り消す
 ```
 
-`HEAD~1` は「今の1つ前のコミット」という意味です。`HEAD~3` なら3つ前、コミット ID（例：`8d4e2b1`）を直接指定することもできます。
+`HEAD~1` は「今の 1 つ前のコミット」という意味です。`HEAD~3` なら 3 つ前、コミット ID（例：`8d4e2b1`）を直接指定することもできます。
 
 ```mermaid
 gitGraph
@@ -253,7 +253,7 @@ gitGraph
     commit id: "D 取り消したい" type: REVERSE
 ```
 
-reset には3つのモードがあり、**取り消したコミットの変更がどこに残るか**が違います。
+reset には 3 つのモードがあり、**取り消したコミットの変更がどこに残るか**が違います。
 
 <img src="../images/git/diagram/dia-03-01-reset-options.svg" alt="取り消したコミットの変更が、--soft ではステージに残り、--mixed では作業ツリーに残り、--hard では完全に消える図" width="657">
 
@@ -463,7 +463,7 @@ git push                      # 初回は git push -u origin feature-login
 | 選択肢 | 意味 |
 |---|---|
 | **Comment** | 質問や感想だけ（承認でも修正依頼でもない） |
-| **Approve** | 承認（マージしてOK） |
+| **Approve** | 承認（マージして OK） |
 | **Request changes** | 修正が必要 |
 
 ![files-changed-comment](../images/git/github/gh-06-03-files-changed-comment.png)
@@ -495,12 +495,12 @@ git push
 ### 6-5. マージする
 
 承認されたら、PR の下部にある **Merge pull request** でマージします。▼ からマージ方式を選べます。
-![「Merge pull request」ボタンと3つの選択肢](../images/git/github/gh-06-06-merge-options.png)
+![「Merge pull request」ボタンと 3 つの選択肢](../images/git/github/gh-06-06-merge-options.png)
 
 | 方式 | main の履歴 | 特徴 |
 |---|---|---|
 | **Create a merge commit** | ブランチのコミットがすべて残り、マージコミットができる | 何をしたか細かく追える |
-| **Squash and merge** | ブランチのコミットを**1つにまとめて**追加 | main の履歴がすっきりする |
+| **Squash and merge** | ブランチのコミットを **1 つにまとめて**追加 | main の履歴がすっきりする |
 | **Rebase and merge** | ブランチのコミットを main の先端に付け替えて追加 | 一直線の履歴になる |
 
 **Create a merge commit の場合**：C・D がそのまま残り、マージコミット M ができる
@@ -516,7 +516,7 @@ gitGraph
     merge feature-login id: "M"
 ```
 
-**Squash and merge の場合**：C・D をまとめた1つのコミット CD が main に追加される
+**Squash and merge の場合**：C・D をまとめた 1 つのコミット CD が main に追加される
 
 ```mermaid
 gitGraph
@@ -548,7 +548,7 @@ git fetch --prune             # ④ GitHub で削除済みのブランチの控�
 
 PR の下部に **This branch has conflicts that must be resolved** と表示されることがあります。
 
-![PRにおけるコンフリクト画面](../images/git/github/gh-06-08-pr-conflict.png)
+![PR におけるコンフリクト画面](../images/git/github/gh-06-08-pr-conflict.png)
 
 **手元で [2 節の手順](#2-自分のブランチを最新の-main-に合わせる)** を行い、コンフリクトを解決して push すれば、PR の表示も自動で解消されます。
 
@@ -645,6 +645,6 @@ Thumbs.db
 
 ---
 
-← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ編](./05_GUI_IntelliJ編.md)
+← 前へ [02. CUI 基本編](./02_CUI基本編.md) ｜ 次へ → [04. GUI VSCode 編](./04_GUI_VSCode編.md) / [05. GUI IntelliJ 編](./05_GUI_IntelliJ編.md)
 
-[📖 Git資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Git 資料の目次](./00_Git導入・初期設定.md#git-資料の構成) ｜ [🏠 全体の目次](../README.md#目次)

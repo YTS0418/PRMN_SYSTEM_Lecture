@@ -1,8 +1,8 @@
-# 06. アプリとDBをComposeで動かす
+# 06. アプリと DB を Compose で動かす
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
-[← 前へ：05 Dockerfileとイメージ作成](05_Dockerfileとイメージ作成.md) ｜ [次へ：07 チーム開発での使い方 →](07_チーム開発での使い方.md)
+[← 前へ：05 Dockerfile とイメージ作成](05_Dockerfileとイメージ作成.md) ｜ [次へ：07 チーム開発での使い方 →](07_チーム開発での使い方.md)
 
 ## この章のゴール
 - `compose.yaml` に、アプリ（`app`）のサービスを加えられる
@@ -85,7 +85,7 @@ docker compose -f compose.yaml -f compose.app.yaml up -d --build
 
 ## 3. 設定を環境変数で上書きする
 
-`application.properties` には、[4層アーキテクチャ編 07 章](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)で、次のように書きました。
+`application.properties` には、[4 層アーキテクチャ編 07 章](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#4-設定ファイル)で、次のように書きました。
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/grades_db
@@ -171,7 +171,7 @@ docker compose -f compose.yaml -f compose.app.yaml logs -f app
 > [!WARNING]
 > `ps`、`logs`、`down` などにも、**起動したときと同じ `-f` が必要**です。付けないと、`compose.yaml` だけを見るので、`no such service: app` になります。毎回打つのが面倒なら、[2 節](#2-app-サービスを加える)の TIP の `COMPOSE_FILE` を使います。
 
-`Started 成績管理アプリ` と出れば、起動しています（`Ctrl + C` でログの表示を止めても、アプリは動いたままです）。[4層アーキテクチャ編 07 章 10 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#10-動かして確かめる)の `curl` で、確かめます。
+`Started 成績管理アプリ` と出れば、起動しています（`Ctrl + C` でログの表示を止めても、アプリは動いたままです）。[4 層アーキテクチャ編 07 章 10 節](../4層アーキテクチャ/07_Spring_Bootで書き直す.md#10-動かして確かめる)の `curl` で、確かめます。
 
 ```bash
 curl http://localhost:8080/students/1/transcript
@@ -191,7 +191,7 @@ curl http://localhost:8080/students/1/transcript
 ```
 
 > [!NOTE]
-> このアプリには、`GET /students`（学生の一覧）はありません。ブラウザや `curl` で `/students` だけを開くと、`405 Method Not Allowed` になります。使える URL は、4層アーキテクチャ編 07 章 10 節にあります。
+> このアプリには、`GET /students`（学生の一覧）はありません。ブラウザや `curl` で `/students` だけを開くと、`405 Method Not Allowed` になります。使える URL は、4 層アーキテクチャ編 07 章 10 節にあります。
 
 <!-- 📷 SS: ../images/docker/desktop/dkr-06-01-compose-app.png -->
 > 📷 **スクショ指定：`dkr-06-01-compose-app.png`**
@@ -227,6 +227,6 @@ docker compose -f compose.yaml -f compose.app.yaml up -d --build app
 
 ---
 
-[← 前へ：05 Dockerfileとイメージ作成](05_Dockerfileとイメージ作成.md) ｜ [次へ：07 チーム開発での使い方 →](07_チーム開発での使い方.md)
+[← 前へ：05 Dockerfile とイメージ作成](05_Dockerfileとイメージ作成.md) ｜ [次へ：07 チーム開発での使い方 →](07_チーム開発での使い方.md)
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)

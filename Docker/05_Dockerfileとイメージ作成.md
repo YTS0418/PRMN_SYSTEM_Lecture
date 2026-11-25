@@ -1,8 +1,8 @@
-# 05. Dockerfileとイメージ作成
+# 05. Dockerfile とイメージ作成
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
 
-[← 前へ：04 Docker Compose入門](04_Docker_Compose入門.md) ｜ [次へ：06 アプリとDBをComposeで動かす →](06_アプリとDBをComposeで動かす.md)
+[← 前へ：04 Docker Compose 入門](04_Docker_Compose入門.md) ｜ [次へ：06 アプリと DB を Compose で動かす →](06_アプリとDBをComposeで動かす.md)
 
 ## この章のゴール
 - Dockerfile の主な命令を読める
@@ -182,6 +182,6 @@ RUN ./mvnw -Pproduction -DskipTests package
 
 ---
 
-[← 前へ：04 Docker Compose入門](04_Docker_Compose入門.md) ｜ [次へ：06 アプリとDBをComposeで動かす →](06_アプリとDBをComposeで動かす.md)
+[← 前へ：04 Docker Compose 入門](04_Docker_Compose入門.md) ｜ [次へ：06 アプリと DB を Compose で動かす →](06_アプリとDBをComposeで動かす.md)
 
-[📖 Dockerの目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
+[📖 Docker の目次](./00_はじめに.md#目次) ｜ [🏠 全体の目次](../README.md#目次)
