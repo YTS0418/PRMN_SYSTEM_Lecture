@@ -102,7 +102,7 @@ Spring Boot には、**環境変数で、設定ファイルの値を上書きで
 | `spring.datasource.password` | `SPRING_DATASOURCE_PASSWORD`（このアプリでは、下の注記のとおり `DB_PASSWORD` で渡す） |
 | `server.port` | `SERVER_PORT` |
 
-これで、**同じ jar（同じイメージ）**のまま、IDE では `localhost`、Compose では `db` と、**環境ごとに接続先を切り替えられます**。設定を変えるたびに、イメージを作り直す必要はありません。
+これで、**同じ jar**（同じイメージ）のまま、IDE では `localhost`、Compose では `db` と、**環境ごとに接続先を切り替えられます**。設定を変えるたびに、イメージを作り直す必要はありません。
 
 > [!NOTE]
 > **このアプリは、パスワードを `DB_PASSWORD` で受け取ります**。`application.properties` が `${DB_PASSWORD}` と書いていて、アプリの起動処理も、最初に環境変数 `DB_PASSWORD` があるかを確かめるためです（無いと、`環境変数 DB_PASSWORD が設定されていません` と表示して、起動せずに終わります）。そのため、`compose.app.yaml` では、`SPRING_DATASOURCE_PASSWORD` ではなく **`DB_PASSWORD`** にパスワードを入れます。値は、`.env` の `POSTGRES_PASSWORD` と同じです。
