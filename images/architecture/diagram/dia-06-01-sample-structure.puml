@@ -1,0 +1,32 @@
+' step1-memory の、クラスの依存関係（06 章）
+@startuml dia-06-01-sample-structure
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+rectangle "Main" as main #white
+rectangle "presentation" as P #d6eaf8 {
+  rectangle "コンソール画面" as console #white
+}
+rectangle "usecase" as A #d5f5e3 {
+  rectangle "学生を登録する\n成績を登録する\n成績一覧を取得する\n学生一覧を取得する\n科目一覧を取得する" as service #white
+  rectangle "成績一覧 / 成績明細（DTO）" as dto #white
+}
+rectangle "domain" as D #d5f5e3 {
+  rectangle "学生 / 科目 / 履修 / 履修一覧" as entity #white
+  rectangle "学生リポジトリ\n科目リポジトリ\n履修リポジトリ\n（インタフェース）" as repo #white
+}
+rectangle "dataaccess.memory" as I #fff3cd {
+  rectangle "メモリ学生リポジトリ\nメモリ科目リポジトリ\nメモリ履修リポジトリ" as impl #white
+}
+main ..> console : 組み立てる
+main ..> service : 組み立てる
+main ..> impl : 組み立てる
+console --> service
+console --> dto
+service --> dto
+service --> repo
+service --> entity
+repo --> entity
+dto --> entity
+impl ..|> repo : implements
+impl --> entity
+@enduml

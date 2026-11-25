@@ -1,5 +1,5 @@
 ' 多対多の関係：03 章 5 節
-' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+' 生成：bash tools/build-diagrams.sh images/database/diagram（リポジトリの直下で実行）
 @startuml er-03-03-many-to-many
 !include _common.iuml
 left to right direction

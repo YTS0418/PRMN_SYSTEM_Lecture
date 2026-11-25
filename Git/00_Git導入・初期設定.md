@@ -8,16 +8,7 @@ Git / GitHub を使い始めるための**最初の1回だけ**行う準備で�
 
 ## Git 資料の構成
 
-```mermaid
-flowchart LR
-    A["00 導入・初期設定<br>（最初に1回）"] --> B["01 仕組みと用語"]
-    B --> C["02 CUI 基本編"]
-    C --> D["03 CUI 応用編"]
-    D --> E["04 GUI VSCode編"]
-    D --> F["05 GUI IntelliJ編"]
-    E --> G["06 CUIとGUIの使い分け"]
-    F --> G
-```
+<img src="../images/git/diagram/str-00-01-structure.svg" alt="Git 資料の構成。00 章の導入のあと、CUI で仕組みを理解（01〜03 章）、GUI は VSCode 編か IntelliJ 編の一方（04・05 章）、困ったときは 06 章" width="624">
 
 | 資料 | 内容 |
 |---|---|

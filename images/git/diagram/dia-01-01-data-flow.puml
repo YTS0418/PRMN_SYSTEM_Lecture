@@ -1,0 +1,18 @@
+' Git の 3 つの場所と、データの流れ（Git 01 章）：作業ツリー → ステージ → ローカルリポジトリ → リモートリポジトリ
+@startuml dia-01-01-data-flow
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+rectangle "リモートリポジトリ\norigin（GitHub に保存・みんなで共有）" as RR #e8daef
+rectangle "自分の PC（ローカル）" as PC #f4f4f4 {
+  rectangle "作業ツリー\n（編集中のファイル）" as WT #d6eaf8
+  rectangle "ステージ\n（コミットの準備置き場）" as ST #fff3cd
+  rectangle "ローカルリポジトリ\n（コミットの履歴）" as LR #d5f5e3
+  WT -right-> ST : git add
+  ST -right-> LR : git commit
+}
+LR -up-> RR : git push
+RR -down-> WT : git pull
+RR .down.> LR : git fetch\n（確認だけ）
+RR -[bold,#8e44ad]down-> PC : git clone（最初の 1 回）
+@enduml

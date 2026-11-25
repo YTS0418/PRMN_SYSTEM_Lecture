@@ -282,22 +282,7 @@ ON CONFLICT (student_id, course_id, academic_year) DO UPDATE SET score = EXCLUDE
 
 4層アーキテクチャ編 06 章で読んだ `メモリ…リポジトリ` に対応する、**データベース版**を Infrastructure 層（`dataaccess.jdbc` パッケージ）に追加します。
 
-```mermaid
-classDiagram
-    direction LR
-    class 学生リポジトリ {
-        <<interface>>
-        +保存する(学生) 学生
-        +探す(int) Optional~学生~
-        +すべて探す() List~学生~
-    }
-    class メモリ学生リポジトリ
-    class Jdbc学生リポジトリ {
-        -JdbcClient jdbcClient
-    }
-    学生リポジトリ <|.. メモリ学生リポジトリ : 実装（step1）
-    学生リポジトリ <|.. Jdbc学生リポジトリ : 実装（step2）
-```
+<img src="../images/database/diagram/cls-12-01-jdbc-repository.svg" alt="インタフェース「学生リポジトリ」を、step1 のメモリ版と、step2 の Jdbc 版が実装する関係" width="800">
 
 | リポジトリ | 主な SQL |
 |---|---|

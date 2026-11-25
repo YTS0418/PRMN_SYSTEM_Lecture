@@ -1,0 +1,27 @@
+' C・Python・Java の実行の仕組みの違い（Java 入門 01 章）
+@startuml dia-01-01-execution-model
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+rectangle "C 言語" as C #f4f4f4 {
+  rectangle "ソース（.c）" as c1 #white
+  rectangle "機械語\n（OS 依存）" as c2 #fadbd8
+  rectangle "CPU が直接実行" as c3 #white
+  c1 -right-> c2 : コンパイル
+  c2 -right-> c3
+}
+rectangle "Python" as P #f4f4f4 {
+  rectangle "ソース（.py）" as p1 #white
+  rectangle "1 行ずつ実行" as p2 #fff3cd
+  p1 -right-> p2 : インタプリタ
+}
+rectangle "Java" as J #f4f4f4 {
+  rectangle "ソース（.java）" as j1 #white
+  rectangle "バイトコード（.class）\nOS が違っても同じ" as j2 #d5f5e3
+  rectangle "実行" as j3 #white
+  j1 -right-> j2 : javac
+  j2 -right-> j3 : JVM
+}
+C -[hidden]down- P
+P -[hidden]down- J
+@enduml

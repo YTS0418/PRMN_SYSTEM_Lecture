@@ -1,5 +1,5 @@
 ' 概念 ER 図（UML のクラス図の表記）：00 章 5 節、03 章 6・7 節
-' 生成：plantuml -tpng er-*.puml（このフォルダで実行）
+' 生成：bash tools/build-diagrams.sh images/database/diagram（リポジトリの直下で実行）
 @startuml er-03-01-uml
 !include _common.iuml
 class Department {

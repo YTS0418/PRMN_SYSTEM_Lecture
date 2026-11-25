@@ -1,0 +1,23 @@
+' 仮想マシンとコンテナの違い（Docker 編 01 章）：コンテナにはゲスト OS がない
+@startuml dia-01-01-vm-vs-container
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+rectangle "仮想マシン" as VM #fdf2f2 {
+  rectangle "アプリ" as a1 #d6eaf8
+  rectangle "ゲスト OS\n（OS を丸ごと 1 つ起動）" as g1 #fadbd8
+  rectangle "ハイパーバイザ" as h1 #fff3cd
+  a1 -down-> g1
+  g1 -down-> h1
+}
+rectangle "コンテナ" as CT #f2fbf5 {
+  rectangle "アプリ" as a2 #d6eaf8
+  rectangle "Docker" as e #d5f5e3
+  a2 -down-> e
+}
+rectangle "ホスト OS" as os1 #f4f4f4
+rectangle "ホスト OS" as os2 #f4f4f4
+h1 -down-> os1
+e -down-> os2
+VM -[hidden]right- CT
+@enduml

@@ -1,0 +1,16 @@
+' 4 層の役割と、依存の向き（02 章）
+@startuml dia-02-01-four-layers
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+actor 利用者 as user
+rectangle "① Presentation 層（プレゼンテーション層）\n画面・入力・出力" as P #d6eaf8
+rectangle "② Application 層（アプリケーション層）\nユースケース（処理の流れ）" as A #d5f5e3
+rectangle "③ Domain 層（ドメイン層）\n業務のルール・データの意味" as D #d5f5e3
+rectangle "④ Infrastructure 層（インフラストラクチャ層）\nデータベース・ファイル・外部サービス" as I #fff3cd
+database "DB / ファイル" as ext #white
+user --> P
+P --> A
+A --> D
+I -up-> D
+I -down-> ext
+@enduml

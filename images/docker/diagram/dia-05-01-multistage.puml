@@ -1,0 +1,19 @@
+' マルチステージビルド（Docker 編 05 章）：build ステージで jar を作り、実行ステージには jar だけを持っていく
+@startuml dia-05-01-multistage
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+top to bottom direction
+rectangle "ステージ 1：build（JDK、約 500MB）\n最終イメージには残らない" as s1 #d6eaf8 {
+  rectangle "pom.xml\n→ 依存の取得" as a #white
+  rectangle "src\n→ mvnw package" as b #white
+  rectangle "app.jar" as jar #white
+  a -right-> b
+  b -right-> jar
+}
+rectangle "ステージ 2：実行（JRE）\n最終イメージになる" as s2 #d5f5e3 {
+  rectangle "JRE" as j #white
+  rectangle "app.jar だけ" as r #white
+  j -right-> r
+}
+jar -down-> r : COPY --from=build
+@enduml

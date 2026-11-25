@@ -1,0 +1,19 @@
+' 悪い例：Application が、Infrastructure を直接使う（03 章）
+@startuml dia-03-01-bad-dependency
+!include ../../frontend/diagram/_common.iuml
+top to bottom direction
+hide stereotype
+skinparam rectangle<<danger>> {
+  BackgroundColor #fadbd8
+  BorderColor #c0392b
+  BorderThickness 2
+}
+rectangle "Presentation" as P #d6eaf8
+rectangle "Application\n学生を登録する" as A <<danger>>
+rectangle "Domain" as D #d5f5e3
+rectangle "Infrastructure\nJdbc学生リポジトリ" as I <<danger>>
+P --> A
+A --> D
+A -[#c0392b,bold]-> I : 直接依存
+I --> D
+@enduml

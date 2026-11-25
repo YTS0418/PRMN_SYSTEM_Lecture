@@ -1,0 +1,15 @@
+' 上流工程の位置づけ（上流工程 00 章）：ユースケースが、Application 層の元になる
+@startuml dia-00-01-layers-position
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "上流工程\n（この資料）" as U #d5f5e3
+rectangle "Application\nユースケース" as A #d5f5e3
+rectangle "Presentation\n画面・入出力" as P #d6eaf8
+rectangle "Domain\n業務のルール" as D #d5f5e3
+rectangle "Infrastructure\nDB・ファイル" as I #fff3cd
+U --> A : ユースケース
+P --> A
+A --> D
+I ..> D : 実装する
+@enduml

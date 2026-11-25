@@ -1,0 +1,11 @@
+' 途中で失敗すると、中途半端な状態が残る（データベース編 11 章）
+@startuml dia-11-01-partial-failure
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "① 学生を追加\n成功" as s #d5f5e3
+rectangle "② 履修を追加\n失敗（エラー）" as e #fadbd8
+rectangle "学生だけが残る\n（中途半端な状態）" as r #fadbd8
+s --> e
+e --> r
+@enduml

@@ -45,21 +45,7 @@ Java は 1995 年に登場したプログラミング言語で、業務システ
 
 ### C・Python との実行の仕組みの違い
 
-```mermaid
-flowchart LR
-    subgraph C言語
-        direction LR
-        c1["ソース (.c)"] -->|コンパイル| c2["機械語（OS依存）"] --> c3["CPUが直接実行"]
-    end
-    subgraph Python
-        direction LR
-        p1["ソース (.py)"] -->|インタプリタ| p2["1行ずつ実行"]
-    end
-    subgraph Java
-        direction LR
-        j1["ソース (.java)"] -->|javac| j2["バイトコード (.class)"] -->|JVM| j3["実行"]
-    end
-```
+<img src="../../images/java/diagram/dia-01-01-execution-model.svg" alt="C・Python・Java の実行の仕組み。C はコンパイルして OS 依存の機械語にし、CPU が直接実行する。Python はインタプリタが 1 行ずつ実行する。Java は javac でバイトコードにし、JVM が実行するので、OS が違っても同じ .class を動かせる" width="619">
 
 Java は「コンパイルはするが、機械語ではなく JVM 用の中間コードにする」という中間的な方式です。そのおかげで OS が違っても同じ `.class` ファイルを動かせます。
 
@@ -71,16 +57,7 @@ Java は「コンパイルはするが、機械語ではなく JVM 用の中間�
 | **JRE** (Java Runtime Environment) | JVM + 標準ライブラリ。**実行だけ**ならこれで足りる |
 | **JDK** (Java Development Kit) | JRE + コンパイラ(`javac`)など。**開発にはこれが必要** |
 
-```mermaid
-flowchart TB
-    subgraph JDK["JDK（開発キット）"]
-        tools["javac などの開発ツール"]
-        subgraph JRE["JRE（実行環境）"]
-            lib["標準ライブラリ"]
-            jvm["JVM"]
-        end
-    end
-```
+<img src="../../images/java/diagram/dia-01-02-jdk-jre-jvm.svg" alt="JDK（開発キット）の中に、javac などの開発ツールと JRE（実行環境）があり、JRE の中に標準ライブラリと JVM がある、入れ子の関係" width="684">
 
 → このプロジェクトでは **JDK** をインストールします。
 

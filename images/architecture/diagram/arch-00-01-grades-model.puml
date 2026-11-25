@@ -1,6 +1,6 @@
 ' 成績管理の題材のデータ（学生・科目・履修）：4層アーキテクチャ編 00 章 4 節
 ' データベース編の ER 図と同じ見た目（../../database/diagram/_common.iuml）を使う
-' 生成：plantuml -tpng arch-*.puml（このフォルダで実行）
+' 生成：bash tools/build-diagrams.sh images/architecture/diagram（リポジトリの直下で実行）
 @startuml arch-00-01-grades-model
 !include ../../database/diagram/_common.iuml
 class 学生 {

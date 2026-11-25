@@ -1,0 +1,13 @@
+' git reset の 3 つのオプション（Git 03 章）：--hard だけが、変更を完全に消す
+@startuml dia-03-01-reset-options
+!include ../../frontend/diagram/_common.iuml
+hide stereotype
+left to right direction
+rectangle "取り消したコミット D の変更" as C #white
+rectangle "ステージに残る\n（すぐコミットし直せる）" as S #d5f5e3
+rectangle "作業ツリーに残る\n（add からやり直し）" as M #fff3cd
+rectangle "完全に消える\n危険" as H #fadbd8
+C --> S : --soft
+C --> M : --mixed（省略時）
+C -[#c0392b,bold]-> H : --hard
+@enduml

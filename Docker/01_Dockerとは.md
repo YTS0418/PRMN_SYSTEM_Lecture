@@ -71,19 +71,7 @@ flowchart LR
 | 起動 | 数十秒〜数分 | 数秒 |
 | サイズ | 数 GB | 数十〜数百 MB |
 
-```mermaid
-flowchart TB
-    subgraph VM["仮想マシン"]
-        direction TB
-        a1["アプリ"] --> g1["ゲスト OS"] --> h1["ハイパーバイザ"]
-    end
-    subgraph CT["コンテナ"]
-        direction TB
-        a2["アプリ"] --> e["Docker"]
-    end
-    h1 --> os1["ホスト OS"]
-    e --> os2["ホスト OS"]
-```
+<img src="../images/docker/diagram/dia-01-01-vm-vs-container.svg" alt="仮想マシンは、アプリの下にゲスト OS とハイパーバイザがあるのに対し、コンテナは、アプリの下に Docker があるだけで、どちらもホスト OS の上で動く図" width="458">
 
 > [!NOTE]
 > Windows と macOS では、Linux のコンテナを動かすために、裏で軽い Linux の仮想環境が動きます（Windows では **WSL 2**）。この資料では、あまり意識しなくて構いません。

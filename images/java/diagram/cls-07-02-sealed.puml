@@ -1,0 +1,15 @@
+' sealed interface と record（Java 入門 07 章）
+@startuml cls-07-02-sealed
+!include ../../database/diagram/_common.iuml
+show methods
+interface Shape <<sealed>>
+class Circle <<record>> {
+  double r
+}
+class Rect <<record>> {
+  double w
+  double h
+}
+Shape <|.. Circle
+Shape <|.. Rect
+@enduml

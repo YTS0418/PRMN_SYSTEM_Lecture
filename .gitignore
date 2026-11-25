@@ -17,3 +17,6 @@ desktop.ini
 *.tmp
 *.bak
 images/frontend/capture/_check/
+
+# Claude Code(個人設定)
+CLAUDE.md
